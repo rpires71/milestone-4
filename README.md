@@ -207,6 +207,38 @@ Aligned with the standards expected within **Level 5 Web Application Development
 
 ---
 
+## Purpose of the Website
+ 
+[⬆ Back to Table of contents](#table-of-contents)
+
+My **Full Stack Frameworks with Django – Milestone Project 4**, which forms a core component of the **Level 5 Diploma in Web Application Development**, is based on the development of **FitHub**.
+ 
+A fully functional subscription-based fitness community platform is the result of the project’s demonstration of the practical application of **full-stack web development**, **modern payment processing**, **database-driven functionality**, **test-driven development**, and **user-centred design**. Through an intuitive and structured web interface, the system enables users to manage subscriptions, share success stories, purchase branded merchandise, nutrition and personalised exercise plans, join a fitness community, and create accounts.
+ 
+Handling both one-time purchases and recurring subscription billing through asynchronous webhook handlers, the application integrates **real-world payment processing** via **Stripe**. Users are able to register, subscribe to membership tiers, access subscriber-exclusive community content, purchase products and plans, and manage their fitness profiles and subscriptions, reflecting a real-world fitness startup environment within the system design. To ensure efficient control over platform operations and business logic, administrators are able to create and manage plans, products, and content through a protected administration interface.
+
+To ensure data integrity, security, and a reliable user experience, the application has been developed using **Django**, **Python**, **HTML5**, **CSS3**, **JavaScript**, **Bootstrap 5**, and **PostgreSQL**, incorporating **template-based rendering**, **comprehensive CRUD functionality**, **form validation**, **permission-based access control**, and **payment webhook handlers**. To guarantee accessibility and usability across desktop, tablet, and mobile devices, responsive design principles and **semantic HTML** are implemented. Through the utilisation of ARIA labels, alternative text, colour contrast ratios, and inclusive navigation structures, **WCAG 2.1 Level AA** accessibility standards are satisfied.
+
+**Professional full-stack development standards** are adhered to through the implementation of:
+
+- **Secure authentication and authorisation** mechanisms using **django-allauth** to support user registration, login functionality, and permission-based access control
+
+- **Test-Driven Development (TDD)** practices supported by a comprehensive automated test suite, demonstrating development discipline and software quality assurance
+
+- **Environment-based configuration management**, including the secure storage of sensitive information (API keys and secret keys) through the use of environment variables
+
+- **Structured application architecture** implemented across five specialised Django applications: **accounts**, **plans**, **shop**, **community**, and **subscriptions**
+
+- **Real-world payment integration** via Stripe, including webhook handlers for asynchronous transaction and subscription management
+
+- **Database query optimisation** using `select_related()` and `prefetch_related()` to prevent N+1 query issues and improve application performance
+
+- **Professional code standards** adhering to PEP 8 style guidelines and DRY (Don't Repeat Yourself) principles, version control is maintained using **Git and GitHub**, with clear, descriptive commits documenting the development process and demonstrating progressive feature implementation. The final application is deployed to **Heroku** with a **PostgreSQL** database, ensuring public accessibility, scalability, and compliance with modern cloud deployment practices.
+
+The ability to translate real-world business requirements — including a dual revenue model (subscriptions and e-commerce), community engagement functionality, and secure payment processing — into a scalable, database-driven solution is demonstrated through the completed **FitHub** application, a polished, professional, and accessible web platform. In alignment with industry expectations for Level 5 web application development, the project reflects both **advanced technical proficiency** and **professional presentation**, showcasing readiness for production deployment and real-world application environments.
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
