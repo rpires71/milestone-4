@@ -82,7 +82,7 @@ Overall, **FitHub** demonstrates my ability to design and develop a **publishabl
 
 ---
 
-# Project Goals
+## Project Goals
  
 [⬆ Back to Table of contents](#table-of-contents)
  
@@ -236,6 +236,55 @@ To ensure data integrity, security, and a reliable user experience, the applicat
 - **Professional code standards** adhering to PEP 8 style guidelines and DRY (Don't Repeat Yourself) principles, version control is maintained using **Git and GitHub**, with clear, descriptive commits documenting the development process and demonstrating progressive feature implementation. The final application is deployed to **Heroku** with a **PostgreSQL** database, ensuring public accessibility, scalability, and compliance with modern cloud deployment practices.
 
 The ability to translate real-world business requirements — including a dual revenue model (subscriptions and e-commerce), community engagement functionality, and secure payment processing — into a scalable, database-driven solution is demonstrated through the completed **FitHub** application, a polished, professional, and accessible web platform. In alignment with industry expectations for Level 5 web application development, the project reflects both **advanced technical proficiency** and **professional presentation**, showcasing readiness for production deployment and real-world application environments.
+
+---
+
+## Target Audiences
+ 
+[⬆ Back to Table of contents](#table-of-contents)
+
+**FitHub** has been specifically developed to meet the requirements of several interconnected user groups with a shared interest in fitness, health, and wellbeing. The target audience will experience a user interface that prioritises **accessibility**, **clarity**, **community engagement**, and **operational efficiency** (W3C, 2023; Interaction Design Foundation, 2023), supported by customised functionality.
+
+### 1. Fitness Enthusiasts and Gym-goers
+
+With the provision of a simple and intuitive interface, the target audience will be able to access a supportive community, explore personalised nutrition and exercise plans, and purchase branded fitness products through a platform designed to help fitness enthusiasts engage with its features efficiently and effectively. For individuals seeking a reliable and convenient method of progressing their fitness journey, the platform also provides support from experienced coaches and like-minded community members.
+
+### 2. Health-Conscious Individuals and Wellness Seekers
+
+From beginners establishing healthy habits to advanced athletes seeking to achieve performance excellence, this website is designed to accommodate these target audiences. With a responsive design that ensures users can view plans, join the community, and manage subscriptions efficiently across mobile devices, tablets, and desktop systems, the platform supports users who may prioritise flexibility and on-the-go access.
+
+When committing to personalised fitness and nutrition guidance, the platform reduces friction and enhances user confidence by streamlining the registration, subscription, and plan-purchase processes. Users can discover content relevant to their specific fitness goals (weight loss, muscle gain, endurance, flexibility) through a platform that provides clear informational content, structured subject material, and accessible navigation.
+
+### 3. Fitness Coaches and Content Creators
+
+**FitHub** provides a secure and centralised environment for creating, managing, and monetising personalised exercise and nutrition plans, which are functions specifically targeted towards fitness professionals and coaches. Authorised staff members can efficiently create new plans, upload product listings, monitor community engagement, and track subscription metrics, supporting business operations and revenue management through the use of a protected administrative interface.
+
+By combining digital product sales with community-driven engagement and recurring subscription revenue, coaches can develop a sustainable business model, while the functionality reflects real-world fitness coaching and online education workflows.
+
+### 4. Community Members and Peer Support Groups
+
+Through an inclusive and welcoming environment, the subscriber-only community section enables users to provide peer support, celebrate achievements, and share their fitness progress. By building social connections with users pursuing similar fitness goals and commenting on others’ achievements, members can share their experiences.
+
+Through this community-driven approach, a sense of belonging and mutual accountability beyond transactional product purchases is established, enhancing user retention, motivation, and long-term platform engagement.
+
+### 5. Business Owners and Fitness Platform Entrepreneurs 
+ 
+A scalable and commercially viable business model is demonstrated by **FitHub** for entrepreneurs and business leaders seeking to launch fitness subscription platforms, combining multiple revenue streams — including subscriptions, product sales, and plan purchases — with secure payment integration and community engagement functionality. Best practices relating to subscription management, customer retention strategies, and community-platform development are showcased throughout the application.
+ 
+Valuable reference material for the development of comparable platforms is provided through the transparent and well-documented codebase, together with the deployment infrastructure, illustrating how a competitive market-ready solution can be achieved through the combination of technical sophistication and user-centred design.
+
+### 6. Educators and Technical Assessors
+ 
+Effective implementation of **full-stack web development principles** is demonstrated throughout the project, including:
+ 
+- Separation of concerns through a multi-app Django architecture
+- Stripe integration for real-world payment processing (subscriptions and e-commerce)
+- Comprehensive automated testing through a Test-Driven Development (TDD) methodology
+- Permission-based access control with secure user authentication
+- Performance-focused database design and optimisation
+- WCAG 2.1 Level AA compliant responsive and accessible design
+
+For educators, technical assessors, and professional reviewers seeking insight into modern production-grade full-stack web applications, the project serves as a valuable reference resource. The manner in which **advanced technical functionality**, **business logic implementation**, **accessibility compliance**, **payment-processing systems**, and **professional presentation standards** are combined demonstrates how a robust real-world web solution suitable for commercial deployment can be developed (Code Institute, 2025).
 
 ---
 
