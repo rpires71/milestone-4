@@ -288,6 +288,189 @@ For educators, technical assessors, and professional reviewers seeking insight i
 
 ---
 
+## Key Features and Skills Demonstrated
+ 
+[⬆ Back to Table of contents](#table-of-contents)
+
+The successful development of **FitHub**, an interactive, community-driven full-stack web application, demonstrates a high level of technical proficiency, advanced software engineering practices, and professional design principles. Through the application of modern web technologies, full-stack framework implementation, real-world payment integration, test-driven development methodologies, and recognised accessibility standards, a secure, dependable, and user-friendly subscription-based fitness community platform has been delivered.
+
+### Database-Driven Functionality and Full-Stack Processing
+
+To facilitate real-world subscription and e-commerce functionality, the storage and management of user profiles, fitness plans, products, orders, community posts, and subscription information are supported through the implementation of a **relational PostgreSQL database** distributed across five specialised Django applications. Comprehensive data management is achieved through the incorporation of full **CRUD (Create, Read, Update, Delete)** functionality across all core features, including plans, products, community posts, orders, and subscriptions (Code Institute, 2025).
+
+Secure and efficient processing of plan browsing, product purchases, community interactions, subscription administration, and form submissions is enabled through server-side logic developed using **Python and the Django web framework**. To enhance data retrieval performance and support application scalability, **database optimisation techniques**, including `select_related()` and `prefetch_related()`, are utilised to mitigate N+1 query issues and maintain responsive system performance (Django Software Foundation, 2024).
+
+### Real-World Payment Processing and Subscription Management
+
+Support for two distinct revenue models is provided through the integration of **Stripe payment processing** within the application:
+
+- **One-time purchases:** Secure card transactions and payment method tokenisation are facilitated through product and plan purchases using the Stripe Checkout API.
+- **Subscription billing:** Access to recurring monthly and annual subscription services is managed through automated renewals, cancellation handling, and dunning workflows.
+
+Real-time updates to subscription status and access permissions are achieved through **webhook handlers** that asynchronously process Stripe events (`checkout.session.completed`, `invoice.paid`, `customer.subscription.deleted`, `subscription.updated`) without requiring manual user intervention. To maintain reliable payment processing and prevent duplicate event execution, **idempotency checks** are implemented through a `StripeEvent` model, ensuring that webhook events are processed only once (Stripe Developer Documentation, 2025).
+
+The practical implementation of production-grade payment infrastructure and subscription-based business logic suitable for real-world deployment is demonstrated through these features.
+
+This section demonstrates the practical implementation of production-grade payment infrastructure and subscription-based business logic suitable for deployment within a real-world environment.
+
+### Test-Driven Development and Code Quality
+
+Throughout the development lifecycle, a **Test-Driven Development (TDD)** methodology is consistently employed, whereby failing unit tests are created prior to the implementation of application features. Evidence of this approach is reflected within the project's Git commit history, where test-related commits precede corresponding feature-development commits (for example, `test: add failing tests for shop views` followed by `feat: implement shop CRUD`).
+
+The scope of **comprehensive automated testing** includes:
+
+- Model methods and relationships across all five Django applications
+- View-level permission validation and access-control mechanisms
+- Form validation procedures and data-integrity checks
+- Stripe webhook processing logic using mocked Stripe payloads
+- User authentication workflows and profile-generation functionality
+
+Adherence to established **code quality standards** is maintained through:
+
+- **PEP 8 compliance** across the Python codebase
+- Application of **DRY (Don't Repeat Yourself) principles** to reduce code duplication
+- The use of **descriptive variable and function naming conventions** to improve readability and maintainability
+- **Structured exception handling** using `try/except` blocks for external API integrations and error management
+
+### Multi-Application Architecture and Separation of Concerns
+
+Advanced architectural design is demonstrated throughout the project through the implementation of five specialised Django applications, each responsible for a distinct area of functionality:
+
+- **accounts:** Management of user authentication, user profiles, and fitness objectives
+- **plans:** Creation, browsing, and purchasing of exercise and nutrition plans
+- **shop:** Administration of the product catalogue, order processing, and product reviews
+- **community:** Subscriber-exclusive success-story sharing and peer-to-peer engagement
+- **subscriptions:** Management of subscriptions, Stripe customer records, and webhook event processing
+
+Code reusability, independent testing, and scalable feature development are facilitated through the adoption of this modular architecture. To preserve referential integrity and minimise data duplication, **model relationships** (`OneToOne`, `ForeignKey`, and `ManyToMany`) are structured appropriately in accordance with relational database design principles (Django Software Foundation, 2024).
+
+### Permission-Based Access Control and Security
+
+Robust **permission-based access control mechanisms** are implemented throughout the application to ensure that access to functionality and data is restricted according to user roles and subscription status:
+
+- Public content, including the home page, shop, and plans sections, can be viewed by anonymous users; however, access to community features and purchasing functionality is restricted to registered and subscribed users.
+- Authenticated users are permitted to create profiles, purchase plans and products, and manage their personal information.
+- Access to the subscriber-exclusive community area is granted only to users with an active subscription.
+- Protected administrative views enable staff members to create, update, and manage plans and products.
+- Modification or viewing of data belonging to other users is prohibited for non-administrative accounts.
+
+Consistent enforcement of access permissions across application views is achieved through the use of **decorators** (`@login_required`, `@staff_member_required`, `@subscription_required`), thereby preventing unauthorised access and inappropriate data manipulation. Secure user authentication, account registration, and session management are provided through **django-allauth** (Code Institute, 2025).
+
+Protection of sensitive configuration data, including Stripe API credentials, secret keys, and database connection details, is achieved through the use of **environment variables**, ensuring that confidential information is excluded from version control repositories.
+
+### Responsive and Accessible Interface Design
+
+Consistent usability across desktop, tablet, and mobile devices is achieved through the implementation of **responsive web design techniques**, incorporating the **Bootstrap 5 CSS framework**, **CSS Grid**, **Flexbox**, and **media queries** (Bootstrap Documentation, 2024; Mozilla Developer Network, 2024).
+
+Compliance with **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA** is supported through the implementation of the following accessibility features:
+
+- **Semantic HTML5** elements (`<nav>`, `<main>`, `<section>`, `<article>`, etc.) are utilised to communicate document structure effectively.
+- **ARIA labels and attributes** are incorporated to enhance compatibility with assistive technologies.
+- **Alternative text (alt text)** is provided for all images to describe their content and intended purpose.
+- **Colour contrast ratios** are maintained in accordance with WCAG AA requirements (minimum 4.5:1 for text).
+- A logical **heading hierarchy** (`<h1>` through `<h6>`) is employed to support content organisation and navigation.
+- **Form labels** are explicitly associated with input elements to improve screen-reader accessibility.
+
+An inclusive and accessible user experience is promoted through these design considerations, ensuring that the platform remains usable for individuals with visual, motor, cognitive, and auditory impairments (W3C, 2023).
+
+### Dynamic User Interaction, Validation, and Feedback
+
+Interactive functionality throughout the application is delivered through the implementation of the following mechanisms:
+
+- **Template-based rendering** utilising Django's template engine to generate dynamic HTML content populated with user-specific information.
+- **Server-side validation** applied across all forms (registration, profile editing, product reviews, and community posts) to ensure data accuracy and integrity prior to database storage.
+- **Client-side validation** implemented through HTML5 form attributes and JavaScript to provide immediate feedback during user input.
+- **Flash messages** used to communicate the outcome of user actions, including success, warning, and error notifications.
+- **Progress indicators and loading states** incorporated into long-running processes, such as Stripe Checkout, to reduce the likelihood of accidental duplicate submissions.
+- **Modal confirmation dialogs** utilised for potentially destructive actions, including subscription cancellations and post deletions.
+
+Throughout key workflows, users are provided with clear and immediate feedback, promoting transparency and enhancing the overall user experience during registration, purchasing, community participation, and subscription management activities (Mozilla Developer Network, 2024).
+
+### User-Centred Design and Visual Consistency
+
+The development of the interface has been guided by **user-centred design principles**, with particular emphasis placed on clarity, intuitive navigation, accessibility, and visual appeal. To support user objectives and enhance overall usability, the following design considerations have been incorporated:
+
+- A clear **information hierarchy** directs users towards primary actions, including subscribing, making purchases, and exploring the community section.
+- **Consistent typography, colour schemes, and page layouts** are utilised to establish visual consistency throughout the platform.
+- **Conditional navigation** dynamically displays or restricts features according to user authentication and subscription status.
+- **Intuitive user journeys** reduce the number of steps required to complete essential tasks (register → subscribe → access community).
+- **Visual feedback mechanisms**, including button states, hover effects, and loading animations, provide confirmation of user interactions.
+
+By prioritising user experience throughout the design process, friction is minimised and efficient task completion is encouraged across all areas of the application (Interaction Design Foundation, 2023).
+
+### Secure Configuration, Environment Management, and Deployment
+
+Management of sensitive configuration information is achieved through the use of **environment variables** and a `.env` file, providing:
+
+- **Secure isolation** between development and production environments
+- **Flexible application configuration** across multiple deployment contexts without requiring code modifications
+- **Protection of confidential information**, including API keys, database credentials, and secret keys, from exposure within version control systems
+
+Deployment of the completed application is undertaken using **Heroku**, a cloud-based hosting platform that provides:
+
+- **Automatic scaling capabilities** to accommodate fluctuations in user traffic
+- **Managed PostgreSQL database support** with integrated backup functionality
+- **Centralised environment variable management** through Heroku Config Vars
+- **SSL/TLS encryption** to secure data transmitted between clients and the application
+- **Disabled DEBUG mode** within the production environment to minimise the risk of information disclosure
+
+Through the adoption of these deployment and configuration management practices, alignment with modern full-stack application hosting standards is demonstrated, while also evidencing readiness for deployment within a production environment (Code Institute, 2025; Heroku Developer Centre, 2024).
+
+### Version Control and Professional Development Workflow
+
+Throughout the project development lifecycle, **Git and GitHub** were employed to support version control, project tracking, and professional software development practices. Their use facilitated:
+
+- Version management through clear and descriptive commit messages
+- Progress monitoring via a detailed and traceable development history
+- Documentation of feature development, bug resolutions, and project documentation updates
+- Collaboration and peer-review workflows where applicable
+- Separation of development and production environments through dedicated branching strategies
+
+By adopting this approach, iterative development, project transparency, and industry-standard software engineering practices are effectively supported (GitHub Guides, 2024; Code Institute, 2025).
+
+**Target commit frequency:** Between 85 and 105 meaningful commits distributed across a 15-week development period, demonstrating disciplined working practices, consistent incremental progress, and sustained engagement throughout the project lifecycle.
+
+### Comprehensive Documentation and Professional Code Standards
+
+Comprehensive project documentation is provided through the **`README.md`** file, which includes:
+
+- An overview of the project and its business rationale
+- User stories and analysis of the intended target audience
+- An Entity Relationship Diagram (ERD) illustrating the database structure
+- Wireframes and supporting design rationale
+- Detailed feature descriptions accompanied by screenshots
+- Installation guidance and local development setup instructions
+- Complete deployment procedures covering Heroku, PostgreSQL, and Stripe configuration
+- Testing methodologies and documented results
+- Credits and attribution for external resources, libraries, and supporting materials
+
+To promote maintainability and adherence to professional development standards, the codebase follows **modular and structured development conventions**, including:
+
+- The use of **descriptive variable and function names** to improve code clarity and readability
+- **Inline documentation and comments** to clarify complex functionality and implementation logic
+- A **logical file and directory structure** that organises related components according to their purpose
+- Effective **separation of concerns**, ensuring static assets, templates, and Python application logic remain appropriately segregated
+- Adherence to established **Django conventions** for model creation, view organisation, and URL configuration
+
+Collectively, these practices support long-term maintainability, simplify the onboarding process for future developers, and demonstrate alignment with recognised professional software development standards (Code Institute, 2025; PEP 8 Style Guide, 2023).
+
+### Advanced Features Demonstrating Professional Competence
+
+A range of additional features have been incorporated to demonstrate professional-level development practices and advanced technical competence, including:
+
+- **Robust error-handling mechanisms** featuring graceful degradation and user-friendly error pages (404, 403, and 500)
+- **Comprehensive form validation** utilising both server-side and client-side verification to strengthen data integrity and protection
+- **Email integration services** supporting user registration confirmations and password-reset workflows through **django-allauth**
+- **Customised administrative interfaces** that provide staff members with an efficient and streamlined management environment
+- **Database query optimisation techniques** designed to eliminate N+1 query issues and maintain responsive page performance
+- **Security-enhancement measures** incorporating CSRF protection, SQL injection mitigation, and secure session-management practices
+
+Collectively, these features demonstrate a comprehensive understanding of production-grade web application development while reflecting contemporary industry standards and recognised best practices.
+
+**Overall**, a high level of proficiency in full-stack web application development is demonstrated by **FitHub** through the effective application of modern frameworks, real-world payment integration, scalable database architecture, test-driven development methodologies, user-centred design principles, security best practices, and professional deployment strategies. Readiness for deployment within a real-world environment is evidenced throughout the project, while the technical expertise, design capability, and professional development practices exhibited align with the expectations associated with Level 6 of the UK Higher Education Framework.
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
