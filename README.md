@@ -471,6 +471,185 @@ Collectively, these features demonstrate a comprehensive understanding of produc
 
 ---
 
+## UX Strategy
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+A **user-centred design methodology** underpins the UX strategy for **FitHub**, ensuring that the application effectively addresses the practical requirements of fitness enthusiasts, coaches, community participants, and administrators while maintaining accessibility, intuitiveness, engagement, and operational efficiency (Interaction Design Foundation, 2023).
+ 
+Three core phases form the foundation of the strategy:
+ 
+- Research and Planning
+- Design Principles
+- Testing and Feedback
+
+Throughout the development process, particular emphasis is placed on **accessibility**, **clarity**, **responsiveness**, **community participation**, **data integrity**, and **ease of use**. These priorities align with the principles outlined within the **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA** and recognised contemporary usability standards (W3C, 2023).
+
+### Research and Planning
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+The primary focus of this phase is the identification and analysis of the key user groups associated with the fitness community platform, including:
+ 
+- Fitness enthusiasts and gym-goers
+- Health-conscious individuals and wellness seekers
+- Fitness coaches and content creators
+- Community members and peer-support groups
+- Business owners and fitness entrepreneurs
+- Educators and technical assessors
+
+An understanding of user requirements, expectations, and objectives is developed through the creation of **user personas** and **usage scenarios**, which reflect real-world interactions commonly associated with fitness platforms, including:
+ 
+- Browsing exercise and nutrition plans according to fitness goals and difficulty levels
+- Evaluating subscription options and making informed purchasing decisions
+- Registering accounts and creating personalised fitness profiles
+- Completing payment transactions for plans and merchandise
+- Accessing the subscriber-exclusive community and sharing success stories
+- Engaging with peer-generated content through comments and support
+- Managing subscription status and membership cancellations
+- Creating, updating, and administering plans and products (coaches and administrators)
+
+Key areas of research include:
+ 
+- User expectations when discovering and purchasing fitness plans online
+- The information required before committing to a subscription service
+- The role of community functionality in promoting engagement and user retention
+- Methods used by coaches to manage multiple plans and monitor subscriber activity
+- Payment processes that increase user confidence and minimise checkout abandonment
+- The contribution of inclusive and accessible design to supporting users from diverse backgrounds and with varying abilities
+
+To ensure relevance and usability across all user groups, features and content are prioritised according to user requirements. As a result, plan descriptions, pricing information, reviews, community functionality, checkout workflows, and administrative dashboards are presented clearly and structured for ease of understanding (Code Institute, 2025).
+
+### Design Principles
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+#### Accessibility
+
+Accessibility throughout the application is supported through the use of **Semantic HTML5**, logical heading structures, and inclusive design practices. Clear form labels, placeholder text, and validation messages are incorporated to assist screen-reader users and those relying on keyboard-only navigation. Interactive components utilise ARIA labels and roles to improve compatibility with assistive technologies. Compliance with WCAG AA colour-contrast requirements (4.5:1 for text) is maintained, while readable typography contributes to an inclusive user experience across plan browsing, checkout workflows, and community interactions (W3C, 2023).
+
+#### Responsiveness
+
+Consistent usability across desktop, tablet, and mobile devices is achieved through a mobile-first design strategy implemented using the **Bootstrap 5 CSS framework**, **CSS Grid**, **Flexbox**, and **media queries** (Bootstrap Documentation, 2024; Mozilla Developer Network, 2024). Plans, products, community content, checkout forms, and navigation components adapt seamlessly to varying screen sizes and device orientations.
+
+#### Navigation
+
+Intuitive movement between major application areas, including **Home**, **Dashboard**, **Plans**, **Shop**, **Community**, and **Account Settings**, is facilitated through a clear and consistent navigation structure. Public content remains accessible to anonymous users, while subscriber-exclusive functionality is revealed through conditional navigation controls. User journeys are structured to minimise friction between registration, subscription, and community participation activities (Interaction Design Foundation, 2023).
+
+#### Visual Hierarchy
+
+User attention is directed towards key actions, such as subscribing, purchasing plans, completing transactions, participating within the community, and managing subscriptions, through the strategic application of typography, spacing, colour, and layout consistency. White space is utilised effectively to reduce cognitive load, improve readability, and highlight important information (Mozilla Developer Network, 2024).
+
+#### Information Architecture
+
+A logical organisational structure is applied to plans and products by grouping content according to category, difficulty level, and pricing. Community content is presented chronologically and supplemented with filtering capabilities. Information is prioritised according to user needs, ensuring that primary actions, such as subscribing and browsing plans, remain prominent, while secondary actions, including account management and support resources, remain easily accessible without creating visual clutter.
+
+#### Community Engagement
+
+Peer support and user motivation are encouraged through the design of the community section, which incorporates:
+
+- Prominent presentation of success stories and achievements
+- Comment-based discussions that encourage user interaction
+- Visual activity indicators, including post and comment counts
+- Notifications and content feeds designed to promote ongoing participation
+- Subscriber-exclusive access, reinforcing the value of the membership offering
+
+These features collectively contribute to the development of an active and engaged user community.
+
+#### Interactivity
+
+Meaningful user interaction is supported through plan browsing, product filtering, checkout processes, subscription management, community participation, and administrative functionality. Clear calls to action guide users through critical workflows, including registration, profile creation, subscription activation, and community access. Loading indicators and progress states are incorporated into long-running operations, such as Stripe Checkout, to maintain transparency and reduce accidental duplicate submissions.
+
+#### Trust and Credibility
+
+User confidence is strengthened through the inclusion of product reviews, five-star rating systems, transparent pricing structures, and detailed plan descriptions. Where applicable, coach credentials provide additional credibility. Secure checkout workflows, SSL encryption indicators, and clear payment-processing information further reassure users during financial transactions. Community success stories contribute valuable social proof and reinforce trust in the platform.
+
+#### Performance
+
+Responsive application performance is achieved through efficient server-side processing, database-query optimisation using `select_related()` and `prefetch_related()`, and the use of compressed static assets. Community feeds, plan browsing, and transaction processing benefit from fast response times, while progressive page loading ensures that above-the-fold content is prioritised without unnecessary delays.
+
+#### Error Handling and Validation
+
+Data accuracy and completeness are maintained through comprehensive server-side and client-side validation procedures covering registration details, profile information, payment data, and community content. User-friendly validation messages provide clear guidance on corrective actions, while confirmation notifications reinforce successful task completion. Graceful handling of external service failures, including Stripe API issues, ensures that users receive meaningful feedback and appropriate next-step guidance (Code Institute, 2025).
+
+#### Feedback and Confirmation
+
+Immediate and contextual feedback is delivered through **flash messages**, informing users of the outcome of their actions. Examples include:
+
+- "Successfully subscribed! Welcome to the community."
+- "Payment failed. Please try a different card or contact support."
+- "Your post has been shared with the community."
+- "Subscription cancelled. You have access until [date]."
+
+To minimise accidental data loss, confirmation modal dialogues are implemented for destructive actions, including subscription cancellations and post deletions.
+
+### Testing and Feedback
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+Consistent functionality, responsiveness, and user engagement are verified through manual usability testing conducted across **desktop**, **tablet**, and **mobile** devices. Particular attention is given to the following areas:
+ 
+- Plan browsing and filtering workflows
+- Subscription checkout and payment processes
+- Community participation, including posting and commenting
+- Profile administration and preference management
+- Administrative creation and management of plans and products
+- Permission-controlled access to subscriber-exclusive and public content
+
+To validate application functionality and user experience, the following testing methodologies are employed:
+ 
+- **User journey testing**, replicating real-world workflows such as registration → subscription → community access → plan purchase
+- **Form validation testing**, assessing the handling of missing, invalid, or incomplete data across registration, profile editing, plan creation, product review, and checkout forms
+- **CRUD functionality testing**, verifying the creation, retrieval, modification, and deletion of plans, products, posts, comments, and subscriptions
+- **Permission and access-control testing**, ensuring subscriber-only content remains inaccessible to unauthenticated users and administrative functionality is restricted to authorised staff members
+- **Payment workflow testing** using Stripe test cards (successful transactions, declined payments, and 3D Secure authentication) to validate checkout processes and webhook functionality
+- **Cross-browser testing** across Chrome, Firefox, Safari, and Edge environments (Mozilla Developer Network, 2024)
+- **HTML and CSS validation** using W3C validation tools to verify standards compliance and semantic markup implementation (W3C, 2023)
+- **Keyboard accessibility testing**, confirming that all interactive elements can be operated using keyboard controls alone (Tab, Enter, Escape)
+- **Screen-reader testing** using NVDA and JAWS to ensure content is announced correctly and navigation structures remain logical and accessible (WebAIM, 2023)
+
+Assessment of performance and accessibility is undertaken through the use of:
+
+- **Google Lighthouse**, evaluating performance, accessibility, search engine optimisation (SEO), and adherence to best practices
+- **Browser developer tools**, supporting responsive-design verification, console error monitoring, and network-performance analysis
+- **WAVE (Web Accessibility Evaluation Tool)**, identifying accessibility concerns and validating ARIA implementation
+- **HTML and CSS validators**, ensuring code quality and compliance with recognised web standards
+
+Given that fitness enthusiasts frequently interact with the platform whilst exercising or attending the gym, particular emphasis is placed on mobile usability. To enhance the user experience on smaller screens and touch-enabled devices, subscription management, checkout workflows, and community-content visibility are optimised for mobile interaction.
+
+Accessibility evaluation focuses on the following key areas:
+
+- **Colour-contrast verification** (4.5:1 for standard body text and 3:1 for larger text)
+- **Font-size assessment**, ensuring readability through a minimum body-text size of 14px
+- **Form labels and validation messages**, clearly associated with their corresponding input elements
+- **Visible focus indicators** to support keyboard-based navigation
+- **ARIA labels** applied to icon-only controls and interactive components
+- **Heading structures** that provide a logical and meaningful document hierarchy
+
+Insights obtained during testing activities are utilised to:
+
+- Refine user journeys and minimise friction within critical workflows, including subscriptions and community engagement
+- Improve the clarity of plan descriptions, pricing structures, and subscription benefits
+- Enhance community features and moderation capabilities
+- Optimise checkout processes to reduce cart abandonment rates
+- Strengthen validation feedback and error-message clarity
+- Improve accessibility for users with disabilities
+- Enhance performance across slower devices and network connections
+
+Potential areas for future A/B testing include:
+
+- Subscription-pricing structures and feature allocation
+- Community-feed layouts and engagement measurements
+- Plan presentation methods and filtering functionality
+- Call-to-action button wording and placement
+- Email-notification frequency and content strategy
+
+Continuous feedback from beta users, including early subscribers and fitness coaches, is incorporated into an iterative development process. This ongoing feedback cycle informs feature prioritisation and platform enhancements, ensuring that the application continues to evolve in response to user expectations and changing market requirements.
+
+**Overall**, a comprehensive and user-centred design methodology is reflected throughout the UX strategy for **FitHub**, supporting the development of a sophisticated multi-user platform that effectively balances commercial objectives, including subscription services and product sales, with meaningful user engagement and community development. By prioritising accessibility, inclusivity, clarity, and operational efficiency across a diverse range of user groups and usage scenarios, the strategy supports both individual fitness achievements and collaborative community experiences.
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
