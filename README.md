@@ -650,6 +650,344 @@ Continuous feedback from beta users, including early subscribers and fitness coa
 
 ---
 
+## Features
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+Developed as a full-stack, database-driven web application, **FitHub** replicates the functionality of a real-world subscription-based fitness community platform. Through a structured and interactive user interface that aligns with contemporary web application standards, the system provides functionality that enables users to **create accounts, explore personalised exercise and nutrition plans, purchase branded fitness merchandise, subscribe to community-access features, share success stories with fellow members, and manage their subscriptions** (Code Institute, 2025).
+ 
+The application places particular emphasis on **server-side processing and relational database integration** rather than relying on third-party fitness APIs or prebuilt subscription-management services. Secure and efficient management of user profiles, plan catalogues, product inventories, community-generated content, subscription billing, and payment transactions is achieved through the implementation of custom business logic and database-driven functionality.
+ 
+All user information, including **fitness profiles**, **subscription records**, **purchase history**, and **community contributions**, is processed through validated data-entry mechanisms and stored within a **relational PostgreSQL database**. This approach ensures data persistence, maintains data integrity, and supports secure access-control procedures across the platform.
+
+### Core Features
+ 
+#### User Authentication and Profile Management
+ 
+Secure account registration, user authentication, and session management are provided through the integration of **django-allauth**. Upon successful registration, a dedicated **UserProfile** is automatically generated for each user, storing fitness-specific information that supports personalisation and user engagement.
+ 
+Profile data includes:
+ 
+- **Fitness objectives** (weight loss, muscle gain, endurance, flexibility, and general fitness)
+- **Experience categories** (beginner, intermediate, and advanced)
+- **Physical measurements** (weight and height) used to support personalised plan recommendations
+ 
+At any stage, users are able to update and manage their profile information through pre-populated forms designed to streamline data entry and enhance the overall user experience. Access to profile information is protected through **secure authentication mechanisms**, ensuring that users can view and modify only their own data, while permission-based decorators enforce access restrictions and prevent unauthorised interaction with protected resources.
+
+#### Browse and Filter Plans
+ 
+Discovery of **Exercise Plans** and **Nutrition Plans** is facilitated through the **Plans** section, allowing users to explore content aligned with their individual fitness objectives and experience levels. To support efficient navigation and plan selection, the following browsing capabilities are provided:
+ 
+- **Plan catalogues** presenting the title, difficulty rating, duration, pricing information, and a concise overview of each plan
+- **Category-based filtering** enabling plans to be refined by type (exercise or nutrition) and difficulty level
+- **Comprehensive plan pages** containing detailed descriptions, trainer qualifications, anticipated outcomes, and customer feedback
+- **Subscriber-only indicators**, including lock icons and prominent calls to action encouraging subscription upgrades
+- **Responsive grid-based layouts** that automatically adapt to desktop, tablet, and mobile viewing environments
+
+Flexible purchasing options are supported through a dual-access model, whereby plans are priced individually (£9.99–£49.99) while also being available as part of an active subscription, thereby supporting multiple revenue streams within the platform.
+
+#### E-Commerce Shop and Product Management
+ 
+Access to branded fitness merchandise, including clothing, supplements, equipment, and accessories, is provided through the **Shop** section of the platform. To support product discovery, purchasing, and post-purchase management, the following functionality is available:
+ 
+- **Product catalogues** displaying images, descriptions, pricing information, and current stock availability
+- **Advanced product filtering** based on category, price range, and popularity
+- **Five-star review functionality** enabling users to submit ratings and detailed product feedback
+- **Average rating indicators** displayed on product cards to assist users in making informed purchasing decisions
+- **Shopping basket functionality** integrated with **secure Stripe Checkout** to facilitate one-time transactions
+- **Order-confirmation pages** providing order references and estimated delivery schedules
+- **Purchase-history records** allowing users to review previous orders and conveniently reorder products
+
+Administrative management of products is performed through a protected interface, enabling authorised staff members to maintain inventory levels, update pricing structures, and efficiently manage the product catalogue.
+
+#### Subscription Management
+ 
+Access to subscriber-exclusive functionality within **FitHub** is provided through a **dual-tier subscription model**, offering users a choice between the following membership options:
+ 
+- **Monthly subscription** (£9.99 per month) with automated recurring billing
+- **Annual subscription** (£99.99 per year) charged as a single payment, providing a saving of approximately 17%
+
+To support subscription administration and payment management, the platform incorporates the following features:
+ 
+- **Subscription plan pages** presenting membership tiers, included features, and pricing information
+- **Secure Stripe Checkout integration** utilising Stripe's Subscriptions API to process recurring payments
+- **Subscription management dashboards** displaying the active membership tier, upcoming billing dates, and available cancellation options
+- **Automated webhook processing** responsible for managing payment renewals, failed-payment scenarios, and subscription-status synchronisation
+- **Flexible cancellation functionality** enabling users to terminate subscriptions at any time while retaining access until the end of the current billing cycle
+- **Automatic renewal notifications** issued in advance of scheduled subscription charges
+
+Implementation of the Stripe subscription infrastructure demonstrates the practical application of real-world recurring-payment systems, including the management of common edge cases such as failed transactions, expired payment methods, and customer-initiated cancellations.
+
+#### Subscriber-Only Community
+ 
+Exclusive access to the **Community** section is granted to paying subscribers, creating an environment that promotes peer support, accountability, and ongoing motivation. To encourage meaningful interaction and member engagement, the community incorporates the following functionality:
+ 
+- **Success-story submissions** enabling subscribers to share fitness milestones, progress photographs, and personal experiences
+- **Chronologically ordered feeds** presenting the most recent community posts first
+- **Discussion threads** facilitating peer-to-peer conversations, encouragement, and knowledge sharing
+- **Post-creation forms** incorporating title and content fields, input validation, and confirmation feedback upon successful submission
+- **Post editing and deletion capabilities** restricted to the original author, ensuring users can manage only their own content
+- **Comment-management controls** allowing users to remove their own comments through author-specific permissions
+- **Community preview pages** for non-subscribers, highlighting selected activity and encouraging membership conversion
+- **Responsive layouts** optimised to support seamless community interaction across desktop, tablet, and mobile devices
+
+By fostering a sense of belonging, shared achievement, and mutual accountability, the community functionality enhances subscription value while contributing to long-term user engagement and retention.
+
+#### Payment Processing and Order Management
+ 
+Support for secure financial transactions within **FitHub** is delivered through the integration of **Stripe payment processing**, which is implemented across two distinct payment workflows:
+ 
+##### One-Time Purchases (Shop)
+
+The following functionality supports the processing of individual product transactions:
+
+- **Stripe Checkout Sessions** utilised for secure product purchases
+- **Card tokenisation and PCI-compliant payment processing** to protect sensitive payment information
+- **Automatic order generation** following successful payment authorisation
+- **Failed-payment management** providing clear error notifications and opportunities to retry transactions
+- **Order-confirmation emails** containing purchase receipts and transaction details
+
+##### Recurring Subscriptions
+
+Subscription-based billing is facilitated through Stripe's recurring-payment infrastructure and includes:
+
+- **Stripe Subscriptions API** supporting monthly and annual membership billing
+- **Webhook event processing** (`checkout.session.completed`, `invoice.paid`, `customer.subscription.deleted`, `subscription.updated`) to manage asynchronous payment events
+- **Idempotency controls** implemented to prevent duplicate webhook execution
+- **Real-time subscription synchronisation** ensuring membership-status updates occur without requiring page refreshes
+- **Automated handling of payment failures**, dunning processes, and customer-initiated cancellations
+- **Stripe test-card compatibility** supporting development, quality assurance, and payment-workflow testing
+
+To maintain transparency and enhance the user experience, comprehensive **payment feedback mechanisms** are incorporated throughout the checkout process, including:
+
+- Clearly structured checkout workflows with transparent pricing and associated charges
+- Success notifications confirming completed orders and active subscriptions
+- Failure alerts providing actionable guidance, including payment retries and support options
+- Loading states applied to checkout controls to minimise accidental duplicate submissions during transaction processing
+
+#### Administrative Interfaces
+ 
+Access to protected management functionality is provided exclusively to **staff members**, including coaches and administrators, through a dedicated set of administrative views designed to support platform management and operational activities.
+ 
+The available administrative features include:
+ 
+- **Exercise Plan creation interfaces**, enabling coaches to define new plans by specifying titles, descriptions, difficulty levels, durations, and pricing structures
+- **Nutrition Plan management forms** incorporating similar functionality, tailored specifically to nutrition-focused content
+- **Product administration tools** allowing the creation and management of shop inventory, including images, descriptions, pricing information, and stock levels
+- **Order-management views** providing access to customer information, purchase records, and revenue-monitoring data
+- **Community-content moderation functionality** (planned for future implementation), enabling the review of user-generated content and the removal of inappropriate material where necessary
+- **Analytics dashboards** (future enhancement) designed to present subscription statistics, revenue performance, and user-engagement metrics
+
+To ensure that administrative functionality remains secure and accessible only to authorised personnel, permission-based controls are enforced through the use of the `@staff_member_required` decorator.
+
+#### Data Validation and Error Handling
+ 
+Reliable data processing and application stability are maintained through the implementation of comprehensive validation and error-management mechanisms across all areas of user interaction.
+ 
+The platform incorporates the following validation and error-handling features:
+ 
+- **Form-validation procedures** applied to user registration (including email-uniqueness checks and password-strength requirements), profile updates, plan creation, product reviews, and community-content submissions
+- **Server-side validation mechanisms** ensuring data accuracy and integrity before information is committed to the database
+- **Client-side validation controls** utilising HTML5 constraints and JavaScript checks to provide immediate feedback during data entry
+- **User-friendly validation messages** offering clear explanations of input errors alongside actionable guidance for resolution
+- **Graceful API error management** addressing Stripe-related failures, timeout conditions, and network-connectivity issues
+- **Custom error pages** (404, 403, and 500) designed to assist users in recovering from unexpected situations and navigating back to relevant content
+
+By combining multiple layers of validation and error handling, the application promotes dependable data management, improves system reliability, and minimises user frustration throughout key workflows.
+
+#### Responsive Design and Accessibility
+ 
+Accessibility and responsive usability are fundamental design priorities throughout the application, ensuring a consistent and inclusive experience across a wide range of devices and user requirements.
+ 
+The platform incorporates the following accessibility and responsive-design features:
+ 
+- A **mobile-first development approach** implemented using the Bootstrap 5 CSS framework to provide a seamless user experience across multiple device types
+- Compliance with **WCAG 2.1 Level AA accessibility standards**, including:
+  - **Semantic HTML5 elements** (`<nav>`, `<main>`, `<section>`, `<article>`) to communicate document structure effectively
+  - **ARIA labels and attributes** applied to form controls and icon-based interactive elements
+  - **Alternative text (alt text)** provided for all images
+  - **Colour-contrast ratios** meeting accessibility requirements (minimum 4.5:1 for standard text)
+  - A logical **heading hierarchy** (`<h1>` through `<h6>`) supporting content organisation and navigation
+  - Comprehensive **keyboard-navigation support** using controls such as Tab, Enter, and Escape
+  - Compatibility with **screen-reader technologies** to improve accessibility for visually impaired users
+
+- **Responsive grid-based layouts** designed to adapt effectively to mobile (320px), tablet (768px), and desktop (1024px+) viewport dimensions
+- A **touch-optimised interface** incorporating appropriately sized buttons and interactive controls for mobile-device users
+- **Progress indicators and loading states** displayed during long-running processes, such as Stripe Checkout transactions, to keep users informed of processing status
+- **Flash-message notifications** providing immediate, contextual feedback in response to user actions and system events
+
+Through the implementation of these accessibility and responsive-design practices, the platform promotes inclusivity, enhances usability, and ensures a consistent user experience regardless of device type, input method, or accessibility requirement.
+
+#### Performance Optimisation
+ 
+Application performance is enhanced through the implementation of a range of optimisation techniques designed to improve responsiveness, reduce resource consumption, and support scalability.
+ 
+Key performance-enhancement measures include:
+ 
+- **Database-query optimisation** through the use of `select_related()` and `prefetch_related()`, reducing unnecessary database requests and mitigating N+1 query issues
+- **Compressed static resources**, including CSS and JavaScript assets, to minimise page-load times and reduce bandwidth usage
+- **Progressive content delivery**, ensuring that essential information is displayed first while supplementary content is loaded subsequently
+- **Efficient server-side rendering** using Django templates to limit unnecessary processing and improve response times
+- **Caching mechanisms** applied to frequently accessed content, such as plan catalogues and product information, to reduce database load and accelerate content retrieval
+
+Collectively, these optimisation strategies contribute to faster page rendering, improved scalability, and a more responsive user experience across the platform.
+
+---
+
+### Future Features
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+Several enhancements have been identified as part of the future development roadmap for **FitHub**, with the aim of strengthening personalisation, increasing user engagement, improving retention rates, and expanding operational functionality. These planned developments are intended to further enhance the platform whilst maintaining a secure, scalable, and data-driven environment.
+
+#### Enhanced Personalisation
+ 
+Through a secure user dashboard, registered users will have the ability to **save favourite plans**, **create personalised workout schedules**, and **monitor progress metrics**, including weight, workout frequency, and personal performance records. To improve content discovery and support purchasing decisions, a planned **personalised recommendation engine** will evaluate factors such as fitness objectives, experience level, and previous purchase history, enabling the delivery of relevant plan and product recommendations while enhancing user engagement and conversion opportunities.
+
+#### Expanded Community Features
+ 
+Community participation and social interaction will be further strengthened through the introduction of the following enhancements:
+ 
+- **Follow functionality**, enabling users to subscribe to updates from preferred community members and receive notifications when new content is published
+- **Likes and reaction mechanisms** applied to posts and comments, encouraging engagement and providing social recognition
+- **Community-profile pages** displaying member achievements, activity badges (e.g., "100 Days Active"), and follower statistics
+- **Community-based challenges**, such as a "30-Day Transformation Challenge", incorporating leaderboards, achievement tracking, and reward systems
+- **Content-moderation tools** providing administrators with the ability to identify, flag, and remove inappropriate content, thereby promoting a positive and inclusive community environment
+- **Direct messaging functionality** (planned for future consideration), facilitating peer-to-peer communication, support networks, and accountability partnerships
+
+Collectively, these enhancements are intended to increase user engagement, strengthen community relationships, and encourage long-term participation within the platform.
+
+#### Advanced Subscription Tiers
+ 
+Market reach and subscription flexibility will be expanded through the introduction of additional membership options designed to appeal to a broader range of users and organisations:
+ 
+- A **Premium membership tier** (£19.99 per month) offering benefits such as one-to-one coaching consultations, priority customer support, and access to exclusive content
+- **Group and family subscription plans** allowing multiple users to access the platform under a shared membership at discounted rates
+- **Corporate wellness packages** tailored for organisations seeking to promote employee health, wellbeing, and fitness engagement
+
+By diversifying the subscription offering, these additional tiers will support new revenue opportunities while addressing the varying needs of individual users, families, fitness groups, and corporate clients.
+
+#### Integration with Wearables and Fitness Tracking
+ 
+Support for popular fitness platforms and wearable technologies is planned for future releases, enabling enhanced activity tracking and deeper integration between user fitness data and platform functionality.
+ 
+Proposed integrations include:
+ 
+- **Strava connectivity**, allowing running and cycling activities to be synchronised automatically with community profiles and activity feeds
+- **MyFitnessPal integration**, enabling nutritional tracking data to be combined with personalised meal plans and dietary recommendations
+- **Apple Health and Google Fit synchronisation**, providing access to activity metrics such as step counts, heart-rate data, and calorie expenditure
+- **Achievement-based activity badges** awarded when predefined fitness milestones are reached (e.g., "500 km Cycled" or "100 Workouts Completed")
+
+Through the incorporation of these integrations, user engagement will be strengthened while providing richer, data-driven insights to support personalised coaching, progress monitoring, and long-term fitness development.
+
+#### Enhanced Content Management
+ 
+Advanced content-management functionality will be made available to coaches, providing greater control over the creation, delivery, and evaluation of fitness-related content.
+ 
+Planned features include:
+ 
+- **Video-upload and streaming capabilities**, enabling the delivery of instructional content demonstrating correct exercise techniques and movement patterns
+- **Downloadable PDF resources**, providing offline access to detailed workout programmes and nutrition guides
+- **Integrated live coaching sessions** through video-conferencing platforms such as Zoom and Google Meet, supporting group training and real-time interaction
+- **Content-scheduling tools**, allowing coaches to plan content releases, automate publication schedules, and manage structured content calendars
+- **Analytics dashboards**, offering insights into plan popularity, completion statistics, user engagement, and participant feedback
+
+The introduction of these capabilities will enhance content delivery, improve user engagement, and provide coaches with valuable performance metrics to support data-informed decision-making and programme optimisation.
+
+#### User-Generated Content and Reviews
+ 
+Community participation and content creation will be further enhanced through the introduction of user-generated media, testimonials, and verified feedback mechanisms.
+ 
+Planned features include:
+ 
+- **Progress-photo galleries**, enabling users to showcase fitness achievements, physical transformations, and personal milestones
+- **Video testimonials** submitted by community members and coaches to share experiences, success stories, and motivational content
+- **Dedicated blog functionality** supporting the publication of in-depth fitness guidance, training advice, and nutritional information
+- **Verified review systems** that authenticate feedback through purchase-history validation, ensuring the credibility and reliability of user reviews
+
+These enhancements will strengthen community engagement, increase content authenticity, and provide valuable social proof that supports informed decision-making and user confidence across the platform.
+
+#### Payment and Billing Enhancements
+ 
+Additional payment and billing functionality is planned to improve purchasing flexibility, support promotional activities, and accommodate a wider range of user and organisational requirements.
+ 
+Proposed enhancements include:
+ 
+- **Expanded payment options**, extending beyond Stripe to include alternative payment methods such as PayPal, Apple Pay, and Google Pay
+- **Gift-subscription functionality**, enabling users to purchase memberships on behalf of friends, family members, or colleagues
+- **Referral programmes** that reward users with discounts or incentives for successfully introducing new members to the platform
+- **Coupon and promotional-code systems** supporting marketing campaigns, seasonal offers, and targeted discount initiatives
+- **Automated invoice generation** to facilitate financial administration and record-keeping for corporate wellness programmes
+
+By broadening payment and billing capabilities, these enhancements will improve user convenience, support customer acquisition strategies, and provide greater flexibility for both individual subscribers and organisational clients.
+
+#### Performance and Infrastructure Improvements
+
+To enhance scalability, performance, and future platform expansion, the following infrastructure and optimisation improvements are planned:
+
+- **Progressive Web App (PWA) functionality**, allowing users to install FitHub directly on their devices and continue accessing essential features when offline
+- **Image-optimisation techniques**, incorporating lazy loading and responsive image delivery to reduce bandwidth usage and improve page-loading efficiency
+- **Content Delivery Network (CDN) implementation**, enabling static assets to be distributed globally and delivered more efficiently to users across different regions
+- **Database-scaling solutions**, designed to accommodate increasing user numbers, larger datasets, and higher transaction volumes
+- **API versioning strategies**, supporting the future development of native iOS and Android mobile applications while maintaining compatibility with existing platform services
+
+Collectively, these enhancements will strengthen platform reliability, improve application performance, and provide a robust foundation for future growth and technological expansion.
+
+#### Accessibility Enhancements
+
+To further strengthen inclusivity and support a wider range of accessibility requirements, several enhancements are planned for future implementation:
+
+- **High-contrast display modes**, providing improved visual accessibility for users with low vision or visual impairments
+- **Text-to-speech functionality**, enabling community content and plan descriptions to be consumed through audio output
+- **Dyslexia-friendly typography options**, designed to improve readability and support users with reading difficulties
+- **Closed-caption support** for future video-based content, ensuring accessibility for users who are deaf or hard of hearing
+- **Enhanced ARIA implementation** and additional semantic HTML refinements, maximising compatibility with screen readers and other assistive technologies
+
+The introduction of these accessibility-focused features will promote a more inclusive user experience while ensuring that the platform remains accessible to individuals with diverse needs, preferences, and assistive technology requirements.
+
+#### Machine Learning and Analytics
+
+Advanced data-analysis and machine-learning capabilities are planned to provide deeper business insights, improve personalisation, and support long-term user engagement.
+
+Proposed features include:
+
+- **Predictive analytics models** designed to identify subscribers at risk of cancellation, enabling proactive retention strategies and targeted intervention
+- **Recommendation engines** utilising collaborative-filtering techniques to suggest relevant plans and products based on the preferences and behaviours of similar users
+- **Natural language processing (NLP)** capabilities applied to community posts and product reviews to perform sentiment analysis and identify user trends
+- **Customer-churn prediction models** integrated with engagement and retention campaigns to support data-driven marketing initiatives
+
+By incorporating machine-learning and analytical technologies, the platform will be able to deliver more personalised user experiences, improve decision-making, and enhance customer retention through intelligent, data-driven insights.
+
+#### Internationalisation and Localisation
+
+To support global expansion and improve accessibility for international audiences, a range of internationalisation and localisation features are planned for future implementation.
+
+Proposed enhancements include:
+
+- **Multi-language functionality**, supporting languages such as Spanish, French, German, and Portuguese to increase accessibility and extend the platform's international reach
+- **Localised pricing models**, allowing subscription and product costs to be aligned with regional economic conditions and purchasing power
+- **Time-zone-aware scheduling systems**, facilitating the coordination of coaching sessions, community events, and fitness challenges across geographically distributed user groups
+- **Multi-currency payment support**, enabling transactions to be completed using local currencies and providing a more seamless purchasing experience
+
+Through the implementation of these features, the platform will be better equipped to serve a diverse global audience while improving user convenience, accessibility, and market adaptability.
+
+#### Social Integration
+
+User engagement, content sharing, and account accessibility will be enhanced through the introduction of social-media integration features designed to strengthen community participation and expand platform visibility.
+
+Planned functionality includes:
+
+- **Social authentication options**, enabling users to register and sign in using existing Google, Facebook, or Instagram accounts, thereby simplifying the account-access process
+- **Social-sharing capabilities**, allowing members to publish fitness achievements, milestones, and progress updates directly to external social-media platforms
+- **Instagram integration**, facilitating the synchronisation of fitness-related content with connected Instagram accounts
+- **Influencer collaboration programmes**, featuring recognised fitness coaches, trainers, and content creators to increase platform engagement and provide additional value to users
+
+By incorporating these social-integration features, the platform will encourage community growth, improve user acquisition opportunities, and strengthen engagement through increased social connectivity and content visibility.
+
+**Overall**, a robust, production-ready platform has been established through the current implementation of **FitHub**, delivering secure user management, subscription-based billing, e-commerce functionality, and community-driven engagement within a unified web application. Through the introduction of planned future enhancements, the platform's capabilities in personalisation, user engagement, content delivery, and international accessibility will be further expanded, strengthening its position as a competitive solution within the rapidly growing online fitness and wellness sector.
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
