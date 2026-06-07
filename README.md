@@ -986,6 +986,576 @@ By incorporating these social-integration features, the platform will encourage 
 
 **Overall**, a robust, production-ready platform has been established through the current implementation of **FitHub**, delivering secure user management, subscription-based billing, e-commerce functionality, and community-driven engagement within a unified web application. Through the introduction of planned future enhancements, the platform's capabilities in personalisation, user engagement, content delivery, and international accessibility will be further expanded, strengthening its position as a competitive solution within the rapidly growing online fitness and wellness sector.
 
+## Technologies Used
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+A variety of technologies, tools, and development resources have been utilised throughout the creation of this project to support both the design and implementation phases. This section provides an overview of the primary technologies employed, including hardware platforms, development environments, software frameworks, database technologies, and payment-processing solutions that contributed to the successful delivery of the application.
+
+---
+
+### Hardware & Operating System
+ 
+#### Dell Latitude 5401
+ 
+Development of this project was undertaken using a **Dell Latitude 5401** x64-based laptop equipped with an **Intel® Core™ i7-9850H processor** (2.60GHz, 6 cores, 12 threads) and **16GB of RAM**. The hardware configuration provides a reliable and high-performance development environment, supporting efficient multitasking, reduced build times, and the smooth operation of development applications, local servers, and browser-based testing tools.
+ 
+#### Windows 11 Pro
+ 
+A stable and modern development platform was provided through the use of **Windows 11 Pro**, Microsoft's latest professional operating system. Enhanced security features, performance improvements, and developer-focused functionality contribute to an environment well suited to web application development. Support for advanced hardware integration, broad software compatibility, and regular system updates ensures dependable operation throughout the development lifecycle. Compatibility with industry-standard IDEs, web browsers, testing frameworks, and validation tools further facilitates the efficient development, testing, and maintenance of the application.
+ 
+---
+
+### Development Environment
+ 
+#### Visual Studio Code
+ 
+A productive and efficient development workflow was supported through the use of **Visual Studio Code (VS Code)**, a lightweight yet feature-rich source-code editor widely adopted within modern software development environments. Intelligent code completion, syntax highlighting, and comprehensive language support for HTML5, CSS3, JavaScript, and Python contributed to enhanced coding efficiency, improved code quality, and a reduction in development errors.
+ 
+Integrated **Git version-control functionality** enabled source-code changes to be managed directly within the editor, simplifying commit management and repository synchronisation. Additional development capabilities were provided through a range of extensions, including **Live Server**, which facilitated real-time browser previews during development, and **Python extensions**, which offered advanced debugging, linting, and Django-development support. Workspace settings, interface preferences, and keyboard shortcuts were customised to create a development environment tailored to project requirements and individual workflow preferences.
+ 
+#### Git & GitHub
+ 
+Version control throughout the project was managed using **Git**, a distributed source-code management system designed to track changes and maintain a complete development history. Repository hosting and cloud-based source-code management were provided through **GitHub**, enabling secure storage, version tracking, and efficient project organisation.
+ 
+Development activities were supported through GitHub's branching and merging workflows, allowing new functionality to be implemented and tested without affecting the primary codebase. Additional project-management features, including issue tracking and task organisation tools, were used to document defects, proposed enhancements, and feature requests throughout the development process.
+ 
+The combined use of Git and GitHub played a critical role in maintaining a structured, reliable, and professional development workflow, with descriptive commit messages providing a clear record of implemented features, bug fixes, and project improvements.
+
+---
+
+### Frontend Technologies
+ 
+#### HTML5
+ 
+The structural foundation of the application is provided by **HTML5**, which utilises semantic elements such as `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, and `<footer>` to improve accessibility, enhance content organisation, and support search engine optimisation. The use of meaningful markup assists screen-reader technologies in interpreting page structure while enabling search engines to better understand and index site content.
+ 
+In addition to its semantic capabilities, HTML5 offers a range of advanced form controls and attributes that improve usability and data validation. Input types including `email`, `number`, `date`, and `tel` provide built-in validation mechanisms and device-specific input interfaces, such as optimised mobile keyboards. Together, these features contribute to a more accessible, intuitive, and user-friendly experience.
+ 
+#### CSS3
+ 
+Visual presentation and responsive layout behaviour throughout the application are achieved through the use of **CSS3**. Responsive design functionality is supported by **media queries**, enabling layouts to adapt effectively across desktop, tablet, and mobile devices. Additional styling features, including **gradients**, **box shadows**, **transitions**, and **animations**, contribute to a polished and visually engaging user interface.
+ 
+To establish a distinctive visual identity and maintain consistency across the application, custom CSS styling is used alongside Bootstrap's predefined components and layout structure. CSS3 also facilitates accessibility improvements through the management of typography, colour schemes, spacing, and contrast ratios, supporting compliance with **WCAG 2.1 Level AA** accessibility requirements.
+ 
+#### Bootstrap 5
+ 
+Responsive and mobile-first development is accelerated through the implementation of **Bootstrap 5**, a widely adopted open-source front-end framework. Its flexible grid system, extensive collection of reusable components, and utility classes enable rapid interface development while maintaining a professional and consistent appearance across the application.
+ 
+A broad range of built-in components, including navigation bars, buttons, cards, forms, modals, and dropdown menus, are utilised to provide a cohesive user experience and reduce reliance on extensive custom CSS. Bootstrap also incorporates accessibility-focused features, supporting semantic HTML structures, ARIA implementation, and colour-contrast requirements to improve usability for users with disabilities.
+ 
+#### JavaScript
+ 
+Interactive client-side functionality throughout the application is powered by **JavaScript**, enhancing user engagement and supporting dynamic content behaviour. A variety of interactive features are implemented using JavaScript, including:
+ 
+- **Client-side form validation**, verifying email formats, password-strength requirements, and mandatory fields before submission
+- **Progress indicators and loading states**, reducing the likelihood of duplicate form submissions during processing
+- **Modal confirmation dialogues** for critical actions such as subscription cancellations and post deletions
+- **Dynamic content updates** without requiring full-page refreshes
+- **Flash-message management**, enabling notifications to be displayed and dismissed interactively
+- **Responsive navigation functionality**, supporting mobile-friendly menu interactions and adaptive navigation behaviour
+
+Collectively, these technologies contribute to a responsive, accessible, and engaging front-end experience while supporting modern web-development standards and best practices.
+
+---
+
+### Backend Technologies
+ 
+#### Python 3.11
+ 
+The core backend functionality of **FitHub** is powered by **Python 3.11**, a modern high-level interpreted programming language recognised for its readability, versatility, and extensive ecosystem of frameworks and libraries. Application business logic, server-side processing, and database interactions are managed through Python, making it a fundamental component of the platform's architecture.
+ 
+Efficient software development is supported by Python's clear syntax and comprehensive standard library, while its emphasis on readability contributes to long-term maintainability. The language's object-oriented capabilities and support for structured programming principles facilitate the development of modular, reusable, and well-organised application components.
+ 
+Robust exception-handling features, extensive documentation, and a large developer community provide valuable support when troubleshooting issues and implementing new functionality. Furthermore, Python's cross-platform compatibility enables development to take place on Windows-based systems while allowing seamless deployment to Linux-based hosting environments, such as Heroku, without requiring modifications to the codebase.
+ 
+#### Django 4.2
+ 
+Serving as the primary web framework for the project, **Django 4.2** provides a comprehensive Python-based framework built around the **Model–View–Template (MVT)** architectural pattern. By promoting the **DRY (Don't Repeat Yourself)** principle, Django supports rapid development while encouraging clean, maintainable, and scalable application design.
+ 
+The framework offers a wide range of integrated features that significantly accelerate development, including:
+ 
+- **Object-Relational Mapping (ORM):** Enables database interactions to be performed through Python code rather than raw SQL, improving maintainability, readability, and security.
+- **Authentication Framework:** Simplifies user registration, login, logout, and password-management processes through a built-in authentication system.
+- **Administrative Interface:** Provides an automatically generated management dashboard for maintaining database records and administering plans, products, and other platform content.
+- **Template Engine:** Separates presentation from application logic, allowing dynamic content to be rendered efficiently while maintaining a clear code structure.
+- **Forms Framework:** Streamlines form creation, validation, error handling, and CSRF protection.
+- **URL Routing System:** Maps URL patterns to application views in a structured and maintainable manner.
+- **Middleware Architecture:** Processes requests and responses globally while supporting functionality such as session management, security controls, and static-file handling.
+- **Security Mechanisms:** Includes built-in protection against SQL injection, Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), and clickjacking attacks.
+- **Database Migration Framework:** Tracks, manages, and applies database schema modifications through version-controlled migrations.
+ 
+#### django-allauth
+ 
+Secure user authentication and account management are facilitated through **django-allauth**, a comprehensive Django package that provides registration, login, password management, and account-verification functionality without the need for custom authentication implementations.
+ 
+Key features provided by django-allauth include:
+ 
+- Email-based user registration and authentication
+- Social-authentication support (planned for future implementation)
+- Password-reset and password-change workflows
+- Email-verification functionality
+- Secure session management
+- User-profile extension and account customisation
+
+By integrating django-allauth, the application benefits from a secure, well-maintained authentication framework that reduces development complexity while supporting industry-standard account-management practices.
+
+---
+
+### Payment Processing
+ 
+#### Stripe API
+ 
+Secure payment processing within **FitHub** is delivered through the integration of **Stripe**, a widely adopted payment platform that supports both one-time transactions and recurring subscription billing. The application utilises multiple Stripe services to manage payments securely, reliably, and efficiently.
+ 
+##### Stripe Checkout
+ 
+One-time purchases, including products and individually purchased plans, are processed through **Stripe Checkout**, which provides a pre-built and secure payment experience. By leveraging the Stripe Checkout Session API, sensitive card information is handled directly by Stripe, eliminating the need for custom payment-processing implementations and reducing PCI-compliance requirements.
+ 
+##### Stripe Subscriptions API
+ 
+Management of recurring membership payments is facilitated through the **Stripe Subscriptions API**, supporting both monthly and annual subscription plans. Key subscription-management capabilities include:
+ 
+- Automated renewal processing on scheduled subscription dates
+- Subscription-status monitoring, including `active`, `past_due`, and `cancelled` states
+- Dunning workflows designed to manage failed-payment scenarios
+- Flexible cancellation options through `cancel_at_period_end`, allowing continued access until the end of the current billing cycle
+- Webhook-driven processing to support asynchronous subscription updates and status synchronisation
+ 
+##### Stripe Webhooks
+ 
+Real-time payment and subscription management is achieved through the implementation of **Stripe Webhooks**, which process critical payment events as they occur. The application handles several key webhook events, including:
+ 
+- `checkout.session.completed` — Processes successful completion of one-time purchases
+- `invoice.paid` — Updates subscription records following successful renewal payments
+- `customer.subscription.deleted` — Manages customer-initiated subscription cancellations
+- `subscription.updated` — Synchronises subscription-status changes, including `past_due` and `trialing` states
+ 
+To ensure reliable event processing and prevent duplicate transaction handling, **idempotency controls** are implemented through a dedicated `StripeEvent` model. This mechanism records processed webhook events and safeguards against repeated execution of the same payment event, thereby improving transaction integrity and overall system reliability.
+
+---
+
+### Database Technologies
+ 
+#### PostgreSQL
+ 
+The production database for **FitHub** is powered by **PostgreSQL**, a robust open-source relational database management system widely recognised for its reliability, stability, and extensive enterprise-grade capabilities. Within the deployment environment, PostgreSQL replaces SQLite, which is utilised during local development and testing.
+ 
+Several features make PostgreSQL particularly well suited to modern web applications, including:
+ 
+- **ACID-compliant transaction processing**, ensuring data reliability and integrity through Atomicity, Consistency, Isolation, and Durability principles
+- **Advanced indexing mechanisms**, improving query efficiency and accelerating data retrieval, searching, and filtering operations
+- **Foreign-key constraint support**, maintaining referential integrity between related database entities
+- **Connection-pooling capabilities**, enhancing application performance through efficient management of database connections
+- **Automated backup and recovery functionality**, provided through Heroku's managed PostgreSQL service
+- **Extensible architecture**, supporting advanced features such as full-text search, custom data types, and user-defined functions for future application growth
+
+Communication between Django and PostgreSQL is facilitated through the **psycopg2** database adapter, which enables Django's Object-Relational Mapping (ORM) framework to convert Python-based database operations into PostgreSQL-compatible SQL queries. Database configuration within the Heroku environment is further simplified through the use of the **dj-database-url** package, which automatically parses and applies the `DATABASE_URL` environment variable.
+ 
+#### SQLite3
+ 
+Local development and testing activities are supported through **SQLite3**, a lightweight file-based relational database management system that requires no dedicated server installation or configuration. Its simplicity and ease of deployment make it particularly suitable for development environments where rapid setup and portability are desirable.
+ 
+By default, Django is configured to utilise SQLite during development unless an alternative database engine is explicitly specified. This allows developers to focus on application development while maintaining a streamlined and efficient local testing environment.
+
+---
+
+### Hosting & Deployment
+ 
+#### Heroku
+ 
+Application deployment and hosting are provided through **Heroku**, a cloud-based **Platform-as-a-Service (PaaS)** solution that simplifies the deployment, management, and scaling of web applications without requiring direct administration of server infrastructure. The platform was selected due to its streamlined deployment workflow, native PostgreSQL support, and seamless integration with Git-based version-control processes.
+ 
+A range of features provided by Heroku support the operation and maintenance of the application, including:
+ 
+- **Git-based deployment workflows**, enabling application updates to be deployed directly from the repository using commands such as `git push heroku main`
+- **Dyno-based execution environments**, where lightweight containers provide isolated runtime instances for application processes. Within FitHub, a web dyno hosts the Gunicorn WSGI server responsible for handling incoming HTTP requests
+- **Automatic scaling capabilities**, allowing application resources to be adjusted in response to changing traffic levels and workload demands
+- **Managed PostgreSQL services**, providing fully maintained database infrastructure with integrated monitoring, backup, and recovery functionality
+- **Config Vars**, enabling sensitive configuration values such as `SECRET_KEY`, database credentials, and API tokens to be stored securely outside the version-controlled codebase
+- **Static-file management integration**, allowing supporting technologies such as WhiteNoise to efficiently deliver CSS, JavaScript, and image assets
+- **Automatic SSL/TLS certificate management**, ensuring secure HTTPS communication through encrypted data transmission
+- **Logging and monitoring tools**, offering real-time visibility into application performance, operational status, and runtime behaviour through command-line utilities and web-based dashboards
+ 
+#### WhiteNoise
+ 
+Efficient delivery of static assets is facilitated through **WhiteNoise**, a middleware solution designed to simplify the serving of CSS, JavaScript, image, and other static resources within Heroku-hosted environments. By integrating directly with the Django application, WhiteNoise eliminates the requirement for a dedicated content-delivery network (CDN) when serving static files.
+ 
+Additional performance benefits are achieved through built-in compression and caching mechanisms, which reduce bandwidth consumption and improve page-load times. This lightweight approach provides a reliable and efficient method of managing static resources while maintaining a simplified deployment architecture.
+
+---
+
+### Code Quality & Testing Tools
+ 
+#### Flake8
+ 
+Code quality and standards compliance are supported through the use of **Flake8**, a Python linting utility designed to identify programming errors, stylistic inconsistencies, and potential defects within source code. By combining the capabilities of PyFlakes, pycodestyle, and McCabe, Flake8 provides comprehensive analysis while enforcing adherence to **PEP 8** coding conventions.
+ 
+Within the project, Flake8 is utilised to:
+ 
+- Validate compliance with PEP 8 coding standards
+- Detect unused imports and variables
+- Identify undefined variables and references
+- Verify indentation consistency and line-length requirements
+- Highlight potential logical and structural issues within the codebase
+
+Linting behaviour is customised through a dedicated `.flake8` configuration file, which specifies a maximum line length of 88 characters to align with Black formatting conventions while excluding Django migration files from analysis.
+ 
+#### Black
+ 
+Consistent code formatting throughout the application is maintained through **Black**, an automated Python code formatter that applies a standardised coding style across all source files. By removing the need for manual formatting decisions, Black promotes consistency, readability, and maintainability throughout the codebase.
+ 
+Key characteristics of Black include:
+ 
+- **Deterministic formatting**, ensuring identical input consistently produces identical output
+- **Minimal configuration options**, encouraging adoption of widely recognised formatting standards
+- **Standardised line-length management**, using a default limit of 88 characters
+- **Quotation-mark normalisation**, promoting consistency across source files
+- **Automatic trailing-comma insertion**, resulting in cleaner and more manageable version-control diffs
+
+Integration with Visual Studio Code extensions enables automatic formatting whenever files are saved, ensuring formatting consistency throughout the development process.
+ 
+#### Pylint
+ 
+Comprehensive static code analysis is provided through **Pylint**, a Python quality-assurance tool that evaluates source code for programming errors, coding-standard compliance, maintainability concerns, and refactoring opportunities. In addition to generating detailed analysis reports, Pylint produces an overall code-quality score measured on a ten-point scale.
+ 
+Enhanced support for Django-specific development is achieved through the integration of the **pylint-django** plugin, which improves analysis accuracy by recognising Django's dynamic behaviours and reducing false-positive warnings.
+ 
+Pylint is used to assess:
+ 
+- Programming errors, including undefined variables and incorrect imports
+- Code-quality concerns, such as overly complex methods and excessive parameter usage
+- Refactoring opportunities aimed at improving maintainability and efficiency
+- Compliance with coding conventions, naming standards, and documentation practices
+ 
+#### isort
+ 
+Management of Python import statements is automated through **isort**, a utility that organises and sorts imports in accordance with PEP 8 recommendations. Imports are categorised into logical groups, including standard-library modules, third-party packages, and locally developed application modules, before being arranged alphabetically.
+ 
+Configuration settings defined within `.isort.cfg` ensure compatibility with Black and Flake8 by applying the following rules:
+ 
+- `profile = black` to maintain alignment with Black formatting standards
+- `known_django = django` to correctly identify Django-related packages
+- `known_first_party = accounts, plans, shop, community, subscriptions` to categorise locally developed applications
+- `line_length = 88` to maintain consistency across code-quality tools
+- `skip = migrations` to exclude automatically generated migration files from import sorting
+
+The combined use of Flake8, Black, Pylint, and isort contributes to a consistent, maintainable, and professional codebase while supporting modern Python development standards and best practices.
+
+---
+
+### Testing Frameworks
+ 
+#### Django TestCase
+ 
+Application testing is supported through **Django TestCase**, the testing framework provided as part of the Django ecosystem. Built upon Python's `unittest` framework, it extends core testing functionality with Django-specific utilities designed to simplify the validation of web applications and database-driven systems.
+ 
+Within the project, Django TestCase is utilised to:
+ 
+- Perform unit testing of models, views, and forms
+- Validate database queries and Object-Relational Mapping (ORM) operations
+- Verify view functionality and permission-based access controls
+- Assess form validation and data-processing behaviour
+
+To maintain test reliability and data integrity, each test is executed within a dedicated and isolated test database, ensuring that testing activities do not impact production or development data.
+ 
+#### pytest & pytest-django
+ 
+Additional testing flexibility is provided through **pytest**, a widely adopted Python testing framework recognised for its readability, extensibility, and streamlined syntax. Django-specific functionality is further enhanced through **pytest-django**, which introduces specialised fixtures and utilities tailored to Django applications.
+ 
+Within the project, pytest is used to provide:
+ 
+- A more concise and expressive testing syntax compared with Python's `unittest` framework
+- **Parametrised testing**, allowing multiple input scenarios to be evaluated efficiently within a single test definition
+- Advanced fixture management for test setup, configuration, and teardown operations
+- Enhanced assertion reporting and more informative error messages to simplify debugging and fault diagnosis
+
+The combined use of Django TestCase, pytest, and pytest-django provides a comprehensive testing environment that supports reliable quality assurance, efficient test execution, and maintainable automated testing practices throughout the development lifecycle.
+
+---
+
+### Design & Wireframing Tools
+ 
+#### Balsamiq Wireframes
+ 
+The planning and user-interface design stages of the project were supported through the use of **Balsamiq Wireframes**, a web-based wireframing application designed to facilitate the rapid creation of website layouts and interface prototypes. Prior to development, Balsamiq was used to visualise the structure, navigation flow, and overall layout of the **FitHub** platform.
+ 
+A range of features within Balsamiq contributed to the design process, including:
+ 
+- A **drag-and-drop design environment** enabling rapid creation of interface mock-ups
+- A collection of **pre-built user-interface components**, including forms, buttons, and navigation elements
+- **Low-fidelity prototyping capabilities** that prioritise information architecture, layout structure, and user journeys over visual styling
+- **Export functionality** supporting the sharing of designs with stakeholders and project reviewers
+- **Version-management features** allowing iterative refinement and comparison of design revisions
+
+Wireframes were produced for all major areas of the application, including the homepage, user-registration page, dashboard, plan-listing pages, e-commerce shop, community feed, checkout workflow, and account-management section.
+ 
+#### Draw.io
+ 
+Database modelling and system design documentation were supported through **Draw.io**, a free online diagramming platform used to create the **Entity Relationship Diagram (ERD)** for the FitHub database architecture. The tool provides a flexible environment for producing technical diagrams and visual representations of system structures.
+ 
+Draw.io was utilised for:
+ 
+- **Entity Relationship Diagram (ERD) creation** to model database entities and relationships
+- **Flowchart development** for documenting processes and workflows
+- **System-architecture diagramming** to visualise application components and interactions
+- **Exporting diagrams** in formats such as PNG, PDF, and SVG for inclusion within project documentation
+
+The completed ERD provides a clear representation of the application's database structure, illustrating the relationships between key models, including **User**, **UserProfile**, **ExercisePlan**, **NutritionPlan**, **Product**, **Order**, **OrderItem**, **Review**, **Post**, **Comment**, **Subscription**, and **StripeEvent**, together with their associated relational links.
+
+---
+
+### API Documentation & Validation Tools
+ 
+#### W3C Validator Tools
+ 
+Compliance with recognised web-development standards is verified through the use of **W3C Validator tools**, which assess HTML and CSS code against specifications published by the **World Wide Web Consortium (W3C)**. These validation utilities play an important role in maintaining code quality and ensuring adherence to industry best practices throughout the development process.
+ 
+The W3C validation tools are used to:
+ 
+- Verify **HTML5 markup** for syntax errors and structural issues
+- Validate **CSS3 stylesheets** against established standards
+- Support the implementation of accessible and semantic HTML structures
+- Improve compatibility across different web browsers
+- Contribute to enhanced **Search Engine Optimisation (SEO)** through standards-compliant markup
+
+Regular validation is performed throughout development to identify issues at an early stage, helping to maintain a high standard of code quality and consistency across the application.
+ 
+#### JSHint
+ 
+Quality assurance for client-side scripting is supported through **JSHint**, a static code-analysis tool designed to identify potential problems and coding inconsistencies within JavaScript source files.
+ 
+JSHint is used to detect issues such as:
+ 
+- Undefined variables and references
+- Unused variables and redundant code
+- Missing semicolons and syntax inconsistencies
+- Type-coercion concerns that may lead to unexpected behaviour
+- Potentially problematic coding patterns and logic structures
+
+Project-specific validation requirements are managed through a dedicated `.jshintrc` configuration file, allowing analysis rules to be tailored to the application's development standards and coding practices.
+ 
+#### Stripe Dashboard & Testing Tools
+ 
+Payment-management and transaction-monitoring activities are facilitated through the **Stripe Dashboard**, which provides a centralised administrative interface for overseeing payment operations and subscription services.
+ 
+The Stripe Dashboard supports:
+ 
+- Monitoring both test and live payment transactions
+- Managing subscription customers and billing information
+- Reviewing payment events, logs, and transaction histories
+- Testing and validating webhook integrations through Stripe's development tools
+
+Local webhook testing during development is enabled through the **Stripe CLI**, which allows Stripe events to be forwarded directly to the local development environment. This functionality supports efficient testing of webhook handlers without requiring deployment to a live hosting platform.
+ 
+```bash
+stripe listen --forward-to localhost:8000/webhooks/stripe/
+```
+
+The command above forwards Stripe test events to the local development server, enabling webhook-processing functionality to be tested, validated, and debugged in a controlled development environment.
+
+---
+
+### Communication & Collaboration
+ 
+#### Code Institute Discord
+ 
+Communication, collaboration, and peer support throughout the project were facilitated through the **Code Institute Discord** platform, which serves as the primary online community environment for students, mentors, and support staff. The platform provides a centralised space for knowledge sharing, discussion, and project-related assistance.
+ 
+Key benefits of using Code Institute Discord include:
+ 
+- Ongoing interaction with the wider learning community
+- Access to guidance and support from mentors and fellow learners
+- Opportunities to share development progress, challenges, and solutions
+- Availability of learning materials, documentation, and technical resources
+- Dedicated channels organised around project development and technical support topics
+
+Features such as threaded conversations, direct messaging, and file sharing promote collaborative learning, constructive feedback, and effective problem-solving throughout the development process.
+ 
+#### Google Meet
+ 
+Virtual communication and remote collaboration were supported through **Google Meet**, providing a reliable platform for live discussions, mentoring sessions, and project reviews.
+ 
+Google Meet was used to facilitate:
+ 
+- Real-time participation in tutorials, workshops, and mentor consultations
+- Screen-sharing sessions for code reviews, debugging activities, and project demonstrations
+- Immediate feedback and guidance from mentors and peers
+- Stable video-conferencing functionality through an intuitive and user-friendly interface
+
+The combination of Code Institute Discord and Google Meet provided an effective communication framework that supported collaboration, knowledge exchange, and continuous learning throughout the project lifecycle.
+
+---
+
+### Additional Utilities
+ 
+#### Notepad++
+ 
+Rapid code editing and lightweight script development were supported through the use of **Notepad++**, a versatile text editor well suited to quick modifications and file management tasks. Its lightweight architecture provides an efficient alternative to full-featured integrated development environments (IDEs) when performing smaller development activities.
+ 
+Key functionality includes:
+ 
+- **Syntax highlighting** for HTML, CSS, JavaScript, and Python source files
+- A **tabbed document interface** for managing multiple files simultaneously
+- **Advanced search-and-replace capabilities** with regular-expression support
+- **Auto-completion and macro-recording features** to improve productivity and automate repetitive tasks
+- A lightweight and responsive environment for quick code reviews and amendments
+ 
+#### Diffchecker
+ 
+Comparison and change-tracking activities were facilitated through **Diffchecker**, a web-based utility designed to identify differences between text, code, and file versions. The tool provides side-by-side comparisons, making it easier to review modifications and verify updates before integration.
+ 
+Diffchecker was used to:
+ 
+- Compare different versions of HTML, CSS, JavaScript, and Python files
+- Identify changes, inconsistencies, and potential coding errors
+- Reduce the risk of accidental file overwrites
+- Verify amendments and refinements before committing changes to GitHub
+ 
+#### Image Colour Picker
+ 
+Colour selection and palette management were supported through **Image Colour Picker**, a utility that extracts precise colour values from images and provides corresponding HSL, RGB, and hexadecimal (HEX) codes.
+ 
+The tool was used to:
+ 
+- Capture accurate colour values from design references and visual assets
+- Maintain consistency across branding elements and colour schemes
+- Assist in selecting effective and visually balanced colour combinations
+- Streamline the design process by simplifying colour identification and application
+ 
+#### GIMP
+ 
+Graphic design and image-processing tasks were completed using **GIMP (GNU Image Manipulation Program)**, a powerful open-source image-editing application capable of supporting a wide range of creative and optimisation activities.
+ 
+GIMP was utilised for:
+ 
+- Creating, editing, and enhancing graphical assets
+- Optimising images for web delivery by reducing file sizes whilst preserving visual quality
+- Preparing project resources such as logos, icons, banners, and thumbnails
+- Performing advanced image manipulation through the use of layers, masks, filters, and other professional editing tools
+
+Collectively, these supporting utilities enhanced productivity, streamlined development and design workflows, and contributed to the creation of a consistent and professionally presented application.
+
+---
+
+### Web Browsers
+ 
+#### Microsoft Edge, Mozilla Firefox, and Google Chrome
+ 
+Testing, debugging, and quality-assurance activities throughout the project were conducted using **Microsoft Edge**, **Mozilla Firefox**, and **Google Chrome**, three widely adopted modern web browsers that provide comprehensive development and testing capabilities.
+ 
+These browsers offer a range of tools and features that support the development process, including:
+ 
+- **Responsive-design testing tools**, enabling websites to be previewed and evaluated across various screen sizes, device types, and viewport resolutions
+- **Integrated developer tools**, providing advanced debugging functionality such as live editing of HTML, CSS, and JavaScript, network analysis, accessibility auditing, and performance monitoring
+- **Accessibility-assessment features**, supporting the evaluation of colour contrast, heading structures, ARIA implementation, and overall accessibility compliance
+- **Performance-analysis capabilities**, including Lighthouse audits for assessing performance, accessibility, search-engine optimisation, and adherence to best practices
+- **Cross-browser compatibility testing**, ensuring that application functionality, styling, and user experience remain consistent across different browsers and operating systems
+
+By utilising multiple browsers throughout development, the application can be thoroughly tested, refined, and optimised for a diverse range of users. This approach helps ensure reliable functionality, consistent presentation, and a high-quality user experience across desktop, tablet, and mobile platforms.
+
+---
+
+### Environment Management
+ 
+#### python-dotenv
+ 
+Secure configuration management within the application is supported through **python-dotenv**, a Python library that loads environment variables from a `.env` file into the `os.environ` namespace. This approach enables sensitive settings to be stored separately from the source code, improving security and reducing the risk of exposing confidential information.
+ 
+Key configuration values managed through python-dotenv include:
+ 
+- `SECRET_KEY` — Django's cryptographic secret key
+- `DATABASE_URL` — Database connection configuration string
+- `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` — Stripe API authentication credentials
+- `DEBUG` — Environment setting controlling development and production behaviour
+
+To prevent sensitive configuration data from being exposed through version-control systems, the `.env` file is excluded from repository commits through inclusion within the `.gitignore` file.
+ 
+#### dj-database-url
+ 
+Database configuration is simplified through the use of **dj-database-url**, a Python utility designed to parse and interpret database connection strings automatically. The package is particularly valuable within cloud-hosted environments, where database credentials are commonly provided through environment variables.
+ 
+Within the project, dj-database-url is used to interpret Heroku's `DATABASE_URL` configuration variable and automatically configure Django's database settings accordingly. This approach enables seamless transitions between **SQLite** during local development and **PostgreSQL** within the production environment, eliminating the need for manual configuration changes or modifications to the application codebase.
+ 
+By combining python-dotenv and dj-database-url, the project benefits from a secure, flexible, and environment-independent configuration-management strategy that supports both local development and cloud-based deployment workflows.
+
+---
+
+### Deployment & Production
+ 
+#### Gunicorn
+ 
+Application execution within the production environment is managed through **Gunicorn** (Green Unicorn), a Python-based **Web Server Gateway Interface (WSGI)** server responsible for serving the Django application and processing incoming HTTP requests. Acting as the intermediary between the web server and the Django framework, Gunicorn ensures that client requests are received, handled, and routed efficiently to the appropriate application components.
+ 
+Within the Heroku deployment environment, Gunicorn is configured through a `Procfile`, which defines the command required to launch the application:
+ 
+```bash
+web: gunicorn fitHub.wsgi
+```
+
+This configuration instructs Heroku to start a Gunicorn web process that loads the Django WSGI application and listens for incoming web traffic. By utilising Gunicorn, the application benefits from a reliable and production-ready server capable of handling concurrent requests efficiently.
+ 
+#### requirements.txt
+ 
+Dependency management and deployment consistency are maintained through the use of a **requirements.txt** file, which contains a complete list of Python packages and version specifications required by the application. By defining exact dependency versions, the file ensures that development, testing, and production environments remain consistent and reproducible.
+ 
+The requirements file enables automated installation of all project dependencies during deployment, reducing configuration errors and simplifying environment setup.
+ 
+Examples of key dependencies used within **FitHub** include:
+ 
+- `Django==4.2.0`
+- `psycopg2-binary` (PostgreSQL database adapter)
+- `dj-database-url`
+- `python-dotenv`
+- `stripe`
+- `django-allauth`
+- `gunicorn`
+- `whitenoise`
+
+Through the combined use of Gunicorn and requirements.txt, the application benefits from a stable deployment process, consistent environment configuration, and reliable production operation across cloud-hosted infrastructure.
+
+---
+
+## Version Control Standards
+ 
+### Git Conventions
+ 
+A structured and consistent version-control strategy is maintained through the use of **Git**, with descriptive commit-message conventions applied throughout the development lifecycle. These conventions provide clear documentation of project changes, making development history easier to understand, review, and maintain.
+ 
+The project follows the following commit-message categories:
+ 
+```text
+feat: add new feature
+fix: resolve a bug
+test: add or update tests
+docs: documentation changes
+style: formatting and PEP 8 compliance
+refactor: code restructuring
+perf: performance enhancement
+chore: maintenance tasks
+```
+
+By categorising commits according to their purpose, changes can be identified quickly and tracked more effectively throughout the project's history.
+ 
+Examples of commit messages used within the project include:
+ 
+- `feat: add Stripe webhook handler for subscription renewals`
+- `test: add unit tests for Product review model`
+- `fix: resolve N+1 query issue in shop list view`
+- `docs: update README with deployment instructions`
+
+The adoption of clear and meaningful commit descriptions provides a transparent record of development activities, supports maintainability, and enables contributors to understand the evolution of the project with minimal effort.
+
+---
+
+### Summary
+ 
+A broad range of modern technologies, development frameworks, and industry-recognised practices have been integrated throughout the FitHub project to support the creation of a scalable, secure, and user-focused fitness subscription platform. Core technologies such as **Django** for backend development, **Bootstrap** for responsive user-interface design, **Stripe** for secure payment processing, and **PostgreSQL** for relational data management collectively provide the foundation for a robust and professional web application.
+ 
+High standards of software quality, accessibility, and maintainability are further supported through the combined use of development tools, including **Visual Studio Code**, **Git**, and **GitHub**, alongside code-quality solutions such as **Flake8**, **Black**, and **Pylint**. In addition, comprehensive testing is facilitated through frameworks including **Django TestCase** and **pytest**, while design and planning activities are supported by tools such as **Balsamiq Wireframes** and **Draw.io**.
+ 
+The effective integration of these technologies demonstrates the practical implementation of contemporary full-stack web-development methodologies, encompassing responsive design, secure authentication, payment processing, database management, automated testing, accessibility compliance, and professional deployment practices. As a result, FitHub reflects the technical competence, development standards, and professional expectations associated with **Level 5 of the UK Higher Education Framework**.
+ 
 ---
 
 ## References
