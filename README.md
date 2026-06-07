@@ -834,17 +834,17 @@ Collectively, these optimisation strategies contribute to faster page rendering,
 
 ---
 
-### Future Features
+## Future Features
  
 [⬆ Back to Table of Contents](#table-of-contents)
  
 Several enhancements have been identified as part of the future development roadmap for **FitHub**, with the aim of strengthening personalisation, increasing user engagement, improving retention rates, and expanding operational functionality. These planned developments are intended to further enhance the platform whilst maintaining a secure, scalable, and data-driven environment.
 
-#### Enhanced Personalisation
+### Enhanced Personalisation
  
 Through a secure user dashboard, registered users will have the ability to **save favourite plans**, **create personalised workout schedules**, and **monitor progress metrics**, including weight, workout frequency, and personal performance records. To improve content discovery and support purchasing decisions, a planned **personalised recommendation engine** will evaluate factors such as fitness objectives, experience level, and previous purchase history, enabling the delivery of relevant plan and product recommendations while enhancing user engagement and conversion opportunities.
 
-#### Expanded Community Features
+### Expanded Community Features
  
 Community participation and social interaction will be further strengthened through the introduction of the following enhancements:
  
@@ -857,7 +857,7 @@ Community participation and social interaction will be further strengthened thro
 
 Collectively, these enhancements are intended to increase user engagement, strengthen community relationships, and encourage long-term participation within the platform.
 
-#### Advanced Subscription Tiers
+### Advanced Subscription Tiers
  
 Market reach and subscription flexibility will be expanded through the introduction of additional membership options designed to appeal to a broader range of users and organisations:
  
@@ -867,7 +867,7 @@ Market reach and subscription flexibility will be expanded through the introduct
 
 By diversifying the subscription offering, these additional tiers will support new revenue opportunities while addressing the varying needs of individual users, families, fitness groups, and corporate clients.
 
-#### Integration with Wearables and Fitness Tracking
+### Integration with Wearables and Fitness Tracking
  
 Support for popular fitness platforms and wearable technologies is planned for future releases, enabling enhanced activity tracking and deeper integration between user fitness data and platform functionality.
  
@@ -880,7 +880,7 @@ Proposed integrations include:
 
 Through the incorporation of these integrations, user engagement will be strengthened while providing richer, data-driven insights to support personalised coaching, progress monitoring, and long-term fitness development.
 
-#### Enhanced Content Management
+### Enhanced Content Management
  
 Advanced content-management functionality will be made available to coaches, providing greater control over the creation, delivery, and evaluation of fitness-related content.
  
@@ -894,7 +894,7 @@ Planned features include:
 
 The introduction of these capabilities will enhance content delivery, improve user engagement, and provide coaches with valuable performance metrics to support data-informed decision-making and programme optimisation.
 
-#### User-Generated Content and Reviews
+### User-Generated Content and Reviews
  
 Community participation and content creation will be further enhanced through the introduction of user-generated media, testimonials, and verified feedback mechanisms.
  
@@ -907,7 +907,7 @@ Planned features include:
 
 These enhancements will strengthen community engagement, increase content authenticity, and provide valuable social proof that supports informed decision-making and user confidence across the platform.
 
-#### Payment and Billing Enhancements
+### Payment and Billing Enhancements
  
 Additional payment and billing functionality is planned to improve purchasing flexibility, support promotional activities, and accommodate a wider range of user and organisational requirements.
  
@@ -921,7 +921,7 @@ Proposed enhancements include:
 
 By broadening payment and billing capabilities, these enhancements will improve user convenience, support customer acquisition strategies, and provide greater flexibility for both individual subscribers and organisational clients.
 
-#### Performance and Infrastructure Improvements
+### Performance and Infrastructure Improvements
 
 To enhance scalability, performance, and future platform expansion, the following infrastructure and optimisation improvements are planned:
 
@@ -933,7 +933,7 @@ To enhance scalability, performance, and future platform expansion, the followin
 
 Collectively, these enhancements will strengthen platform reliability, improve application performance, and provide a robust foundation for future growth and technological expansion.
 
-#### Accessibility Enhancements
+### Accessibility Enhancements
 
 To further strengthen inclusivity and support a wider range of accessibility requirements, several enhancements are planned for future implementation:
 
@@ -945,7 +945,7 @@ To further strengthen inclusivity and support a wider range of accessibility req
 
 The introduction of these accessibility-focused features will promote a more inclusive user experience while ensuring that the platform remains accessible to individuals with diverse needs, preferences, and assistive technology requirements.
 
-#### Machine Learning and Analytics
+### Machine Learning and Analytics
 
 Advanced data-analysis and machine-learning capabilities are planned to provide deeper business insights, improve personalisation, and support long-term user engagement.
 
@@ -958,7 +958,7 @@ Proposed features include:
 
 By incorporating machine-learning and analytical technologies, the platform will be able to deliver more personalised user experiences, improve decision-making, and enhance customer retention through intelligent, data-driven insights.
 
-#### Internationalisation and Localisation
+### Internationalisation and Localisation
 
 To support global expansion and improve accessibility for international audiences, a range of internationalisation and localisation features are planned for future implementation.
 
@@ -971,7 +971,7 @@ Proposed enhancements include:
 
 Through the implementation of these features, the platform will be better equipped to serve a diverse global audience while improving user convenience, accessibility, and market adaptability.
 
-#### Social Integration
+### Social Integration
 
 User engagement, content sharing, and account accessibility will be enhanced through the introduction of social-media integration features designed to strengthen community participation and expand platform visibility.
 
