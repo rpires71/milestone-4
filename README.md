@@ -1555,7 +1555,312 @@ A broad range of modern technologies, development frameworks, and industry-recog
 High standards of software quality, accessibility, and maintainability are further supported through the combined use of development tools, including **Visual Studio Code**, **Git**, and **GitHub**, alongside code-quality solutions such as **Flake8**, **Black**, and **Pylint**. In addition, comprehensive testing is facilitated through frameworks including **Django TestCase** and **pytest**, while design and planning activities are supported by tools such as **Balsamiq Wireframes** and **Draw.io**.
  
 The effective integration of these technologies demonstrates the practical implementation of contemporary full-stack web-development methodologies, encompassing responsive design, secure authentication, payment processing, database management, automated testing, accessibility compliance, and professional deployment practices. As a result, FitHub reflects the technical competence, development standards, and professional expectations associated with **Level 5 of the UK Higher Education Framework**.
+
+---
+
+## Wireframes
  
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+The structural planning of **FitHub**, a subscription-based fitness community platform, commenced with the creation of **wireframes** before any visual styling or detailed interface design activities were undertaken. Rather than focusing on typography, colour schemes, imagery, or branding elements, wireframes provide a simplified visual representation of the application that concentrates on layout structure, content organisation, and user-navigation pathways.
+ 
+Serving as the **architectural foundation** of the platform, the wireframes illustrate the positioning and relationships of key interface components, including navigation systems, plan-discovery pages, subscription-management workflows, e-commerce checkout processes, community-content feeds, and administrative management areas. Their low-fidelity, grayscale presentation helps maintain attention on usability, information hierarchy, and overall **user experience (UX)** considerations without the influence of visual design elements.
+ 
+During the **pre-development planning stage**, the wireframing process provided an effective method of evaluating and refining design decisions before implementation commenced. This approach ensured that core functional requirements, such as exercise and nutrition plan discovery, subscription administration, online purchasing, community engagement features, and administrative controls, were clearly defined, reviewed, and validated prior to development.
+ 
+The production of wireframes for this **Milestone 4 full-stack project** reflects established industry practice and demonstrates a structured, **user-centred design methodology**. Throughout the development lifecycle, these wireframes served as the conceptual framework for the application, informing both front-end interface construction and the integration of back-end functionality.
+
+### Design Rationale and Planning
+ 
+A structured approach to **information architecture, user-flow design, and layout consistency** is demonstrated through the wireframes, which were used to map key user interactions and establish clear navigation pathways across the platform. By modelling these interactions during the early planning stages, development activities could be organised into logical phases, enabling requirements to be prioritised effectively and user needs to be addressed systematically.
+ 
+The complexity of **FitHub** required the design of several distinct user journeys, each supporting different user roles and platform objectives.
+ 
+#### Customer Journey (Public User to Subscriber)
+ 
+This journey focuses on guiding prospective users from initial platform discovery through to active subscription and community participation:
+ 
+- Public-facing homepage and landing-page experience for unauthenticated visitors
+- User registration and authentication workflows
+- Fitness-profile creation and goal-configuration processes
+- Exercise and nutrition plan discovery, including filtering by difficulty level and fitness objective
+- Subscription-tier comparison, selection, and checkout procedures
+- Access to subscriber-exclusive community features
+ 
+#### E-Commerce Journey (Product Discovery to Purchase)
+ 
+This workflow supports users throughout the purchasing process, from product exploration to order completion:
+ 
+- Product-catalogue browsing and filtering functionality
+- Detailed product pages incorporating reviews and supporting information
+- Secure checkout workflows and payment-confirmation processes
+- Order-history management and invoice-access functionality
+ 
+#### Community Engagement Journey (Subscriber-Exclusive)
+ 
+Designed to encourage interaction and long-term engagement, this user journey focuses on community participation and content sharing:
+ 
+- Community feeds presenting member success stories and progress updates
+- Individual post pages supporting discussions through comments
+- Interfaces for creating and publishing community content
+- Peer-support interactions, including commenting and community engagement activities
+ 
+#### Administrative Dashboard (Staff and Coach Access)
+ 
+This workflow supports platform management and operational oversight through dedicated administrative functionality:
+ 
+- Interfaces for creating and managing exercise plans, nutrition plans, and products
+- Subscriber, customer, and order-management facilities
+- Revenue-monitoring and analytics functionality
+- Community-content moderation and administrative controls
+ 
+By defining these user journeys during the wireframing stage, essential functionality such as plan discovery, subscription management, online purchasing, and community participation could be positioned logically within the interface and designed to support intuitive navigation. The inclusion of wireframes within the project demonstrates the importance of **iterative planning, usability-focused design, and structured refinement**, emphasising the design process itself rather than focusing solely on the completed visual implementation.
+
+### UX Awareness and Multi-User Context
+ 
+All wireframe decisions were guided by a strong focus on **user experience (UX)**, ensuring that the needs of multiple user groups with differing objectives, behaviours, and usage contexts were carefully considered throughout the design process.
+ 
+To support these diverse requirements, several key user journeys were mapped and refined during the wireframing stage.
+ 
+#### 1. New User Discovery and Subscription Journey
+ 
+This workflow was designed to guide prospective users from their initial interaction with the platform through to subscription enrolment and checkout completion. The wireframes establish a clear information hierarchy that highlights subscription opportunities while presenting exercise plans, nutrition plans, and membership benefits in an accessible and structured manner. Registration forms were intentionally simplified, minimising the number of required fields to reduce user effort and improve conversion rates.
+ 
+#### 2. Subscriber Community Engagement Journey
+ 
+Community-focused wireframes were developed to encourage ongoing participation, interaction, and user retention. Particular emphasis was placed on chronological content presentation, clearly structured discussion threads, and the visibility of engagement indicators. By prominently displaying member success stories, comments, and community activity, the design encourages repeat visits and fosters a supportive environment centred on peer interaction and motivation.
+ 
+#### 3. E-Commerce Product Discovery Journey
+ 
+The e-commerce workflow was structured to facilitate efficient product exploration and purchasing. Wireframes incorporate clearly visible filtering mechanisms based on category, pricing, and popularity, alongside product reviews and streamlined shopping-cart functionality. Consistency between the shop and plan-discovery sections was maintained to provide a cohesive and familiar browsing experience throughout the platform.
+ 
+#### 4. Administrative Content Management Journey
+ 
+Administrative wireframes were designed with operational efficiency as a primary objective. Dashboard layouts prioritise access to key performance indicators, while streamlined interfaces support the creation and management of plans, products, subscriptions, and other platform content. Clear navigation pathways between administrative functions help reduce complexity and improve workflow efficiency for coaches and staff members.
+ 
+Particular attention was given to optimising high-priority user journeys, especially **subscription registration and checkout workflows**. By evaluating navigation flows, information placement, and task completion processes during the planning stage, potential usability challenges could be identified and addressed before development commenced. This approach helped minimise user friction, reduce cognitive load, and support efficient task completion.
+ 
+The wireframing process also enabled consideration of alternative scenarios and edge cases that may arise during real-world usage, including:
+ 
+- Presenting non-subscribers with an informative teaser page rather than a restrictive 403 access-denied response
+- Supporting users who manage multiple subscriptions, purchases, or order histories
+- Accommodating coaches responsible for creating and maintaining multiple fitness plans
+- Allowing subscribers to filter community content based on activity type, topic, or areas of interest
+
+By modelling these scenarios during the design phase, the platform's usability, flexibility, and overall user experience could be enhanced before implementation, resulting in a more intuitive and user-centred application architecture.
+
+### Information Architecture & Navigation
+ 
+A clear and structured navigation framework was established through the wireframing process to support the differing requirements of public visitors, registered users, subscribers, and administrative users. By mapping navigation pathways during the planning stage, the application's information architecture could be organised to promote intuitive navigation and minimise user confusion.
+ 
+#### Primary Navigation Structure
+ 
+The wireframes defined the following core navigation areas:
+ 
+- **Home** — Public-facing landing page and entry point to the platform
+- **Dashboard** — Central hub providing authenticated users with access to personalised content and account information
+- **Plans** — Dedicated area for discovering, browsing, and purchasing exercise and nutrition plans
+- **Shop** — E-commerce section containing fitness-related products and merchandise
+- **Community** — Subscriber-exclusive area providing access to community discussions and success stories
+- **Account Settings** — Profile-management and account-configuration functionality
+ 
+Role-based and conditional navigation behaviours were incorporated into the wireframes to ensure that relevant functionality is presented according to the user's authentication and subscription status. For example, unauthenticated visitors are presented with **Log In** and **Sign Up** calls to action, authenticated users gain access to personalised dashboard features, and active subscribers are provided with community-access functionality. Visualising these navigation states during the wireframing phase helped ensure clarity, consistency, and an intuitive user experience.
+ 
+#### Secondary Navigation Patterns
+ 
+In addition to primary navigation, several supporting navigation mechanisms were incorporated into the wireframes to improve usability and content discoverability:
+ 
+- **Breadcrumb navigation** to assist users when navigating plan-detail and content pages
+- **Filtering and sorting controls** to refine results within listings and catalogue views
+- **Pagination systems** to improve navigation through larger collections of content and community posts
+- **Tabbed interfaces** to support subscription-tier comparison and related content organisation
+ 
+By defining both primary and secondary navigation structures during the planning process, the wireframes established a logical information architecture that supports efficient task completion, improved content discovery, and a consistent user experience across the platform.
+
+### Responsive Design Considerations
+ 
+Responsive design requirements were incorporated during the wireframing stage to ensure that essential functionality remained accessible and usable across a variety of screen sizes and device types. Separate wireframes were developed for both desktop and mobile environments, allowing layout adaptations and interaction patterns to be evaluated before implementation began.
+ 
+#### Mobile Viewports
+ 
+Wireframes designed for mobile devices focused on usability within constrained screen dimensions and incorporated the following considerations:
+ 
+- **Single-column, stacked layouts** to maximise readability and simplify navigation on smaller screens
+- **Touch-friendly interactive elements** with appropriately sized buttons and controls
+- **Condensed navigation systems**, including hamburger-menu functionality to conserve screen space
+- **Optimised typography and spacing** to improve readability and reduce visual clutter
+- **Mobile-focused form design**, incorporating larger input fields and context-appropriate virtual keyboards to improve data entry efficiency
+ 
+#### Desktop Viewports
+ 
+Desktop wireframes were designed to take advantage of larger screen areas, supporting more complex layouts and enhanced content visibility through:
+ 
+- **Multi-column page structures** incorporating sidebars where appropriate
+- **Persistent navigation menus** displayed directly within the page header
+- **Grid-based layouts** for presenting products, plans, and other catalogue-based content
+- **Expanded filtering, comparison, and browsing controls** to support more detailed content exploration
+ 
+By producing dedicated wireframes for both mobile and desktop environments, responsive-design requirements were considered as a core aspect of the planning process rather than being introduced later during development. This approach helped ensure a consistent user experience across devices while reducing the need for significant layout revisions during implementation.
+
+
+### Form Design & User Input
+ 
+Particular emphasis was placed on form usability during the wireframing process, with careful consideration given to input-field organisation, validation requirements, and the presentation of user feedback. By evaluating form interactions during the planning stage, the design could be refined to promote usability, reduce input errors, and support efficient task completion.
+ 
+#### Registration and Login Forms
+ 
+User-authentication wireframes were designed to streamline the account-creation and login experience through:
+ 
+- **Minimal mandatory input fields**, including email address, password, and fitness-goal selection
+- **Clearly labelled form controls** supported by descriptive placeholder text
+- **Password-strength indicators** to encourage secure credential creation
+- **Inline validation feedback**, with error messages positioned directly beneath relevant input fields for improved clarity
+ 
+#### Plan and Product Creation Interfaces (Administrative Users)
+ 
+Administrative forms were structured to support efficient content management while reducing complexity for staff members and coaches. Key design considerations included:
+ 
+- **Multi-section form layouts** grouping related fields into logical categories
+- **Contextual help text and examples** to assist with the completion of more complex inputs
+- **Image-upload previews** allowing uploaded content to be reviewed before submission
+- **Clearly defined action controls**, including Save, Cancel, and Delete options
+ 
+#### Subscription Checkout Workflow
+ 
+Wireframes for the subscription and payment process were designed to improve transparency and user confidence throughout the purchasing journey. Features incorporated into the checkout flow included:
+ 
+- **Progress indicators** displaying the user's position within multi-step processes (e.g., Step 1 of 3)
+- **Security indicators and SSL assurances** reinforcing trust during payment activities
+- **Transparent pricing information**, including clear breakdowns of costs and applicable fees
+- **Order-review stages** allowing users to verify details before final confirmation and payment submission
+ 
+By incorporating these considerations into the wireframes, form interactions were designed to be intuitive, accessible, and aligned with established professional standards commonly found within modern e-commerce and subscription-based platforms.
+
+### Accessibility & Clarity
+ 
+Accessibility considerations were incorporated into the wireframing process from the outset, ensuring that the planned implementation would align with **WCAG 2.1 Level AA** requirements. Rather than being introduced during later development stages, accessibility features were considered as a fundamental component of the platform's conceptual design.
+ 
+The wireframes incorporated a range of accessibility-focused considerations, including:
+ 
+- **Clearly defined heading structures**, illustrating a logical content hierarchy from H1 through to H6
+- **Explicitly associated form labels**, ensuring input fields could be identified and understood easily by users and assistive technologies
+- **Alternative-text placeholders** indicating where descriptive image content would be provided
+- **Visual contrast planning**, represented through distinct grayscale differentiation to support future compliance with colour-contrast requirements
+- **Keyboard-accessible navigation pathways**, with tab-order considerations reflected within the layout design
+- **Visible focus indicators and interactive-state representations**, ensuring important interface elements remained identifiable during keyboard navigation
+ 
+By documenting these accessibility requirements within the wireframes, the project established a strong foundation for inclusive design. This approach ensured that usability, accessibility, and clarity were embedded within the planning process rather than being treated as secondary considerations during implementation.
+
+### Iterative Refinement & Stakeholder Alignment
+ 
+The wireframing process provided an effective mechanism for validating design concepts and refining interface decisions before development commenced. Through a structured and iterative approach, layouts could be evaluated, revised, and aligned with both user requirements and business objectives at an early stage of the project lifecycle.
+ 
+The refinement process consisted of four key stages:
+ 
+1. **Conceptual layout exploration** — Initial low-fidelity sketches were produced to investigate alternative navigation structures, content arrangements, and information hierarchies.
+2. **Requirements validation** — Wireframes were reviewed against project objectives to ensure alignment with key business requirements, including subscription-based access control, community functionality, and the dual-revenue model supporting both subscriptions and product sales.
+3. **Design refinement** — Feedback gathered during review activities informed revisions to layouts, navigation pathways, and critical user workflows, resulting in progressively more detailed wireframes.
+4. **Implementation preparation** — Refined wireframes served as a reference framework during development, guiding both interface construction and feature implementation.
+
+This iterative methodology helped identify potential usability and design challenges before development resources were committed. Examples of issues explored and resolved during the wireframing stage included:
+
+- Determining whether subscription tiers should be presented on a single comparison page or distributed across separate tabbed interfaces, with both approaches evaluated through alternative wireframe designs
+- Assessing the most effective method of organising community content by comparing chronological content ordering with trending or popularity-based presentation models
+- Evaluating the visual prominence of subscription and checkout calls to action through the testing of different information hierarchies and interface layouts
+
+By enabling early experimentation and validation, the wireframing process reduced design uncertainty, improved decision-making, and ensured that both user expectations and business requirements were effectively reflected within the final application design.
+
+### Professional Development Practice
+ 
+The wireframing process reflects recognised software-development best practices by emphasising planning, validation, and user-focused decision-making before implementation begins. Rather than concentrating immediately on visual styling or code development, wireframes were used to establish requirements, evaluate user interactions, and guide design decisions throughout the project lifecycle.
+ 
+Several professional practices are demonstrated through the use of wireframes:
+ 
+- **User-centred design principles**, prioritising user goals, behaviours, and navigation requirements before visual design and technical implementation
+- **Iterative design and planning**, using wireframes as collaborative tools to review, discuss, and refine requirements throughout the project
+- **Structured requirements analysis**, ensuring that expected functionality and user interactions are clearly defined prior to development
+- **Risk-reduction strategies**, enabling potential usability concerns and design challenges to be identified during the planning phase, when modifications can be implemented more efficiently and at lower cost
+- **Professional stakeholder communication**, utilising visual representations to convey design intentions, interface structures, and workflow concepts to developers, reviewers, and other stakeholders
+
+The adoption of this methodology demonstrates an understanding of the distinction between **design** and **implementation**, where design focuses on planning, evaluation, and informed decision-making, while implementation concerns the development, coding, and visual realisation of those decisions. As such, the approach aligns with recognised **Level 5 professional development standards**, reflecting a structured, methodical, and user-focused software-development process.
+
+### Wireframe Coverage
+ 
+To ensure comprehensive planning and effective validation of user journeys, wireframes were produced for all major sections of the **FitHub** platform. These wireframes covered public-facing pages, authenticated user functionality, subscription workflows, e-commerce processes, community features, and administrative interfaces, providing a complete visual blueprint for the application's structure and functionality.
+ 
+#### Public and Authentication Pages
+ 
+Wireframes were developed for the platform's public-access and authentication-related functionality, including:
+ 
+- Homepage and primary landing-page experience
+- User-registration workflow
+- User-login interface
+- Password-reset process
+ 
+#### User Dashboard and Profile Management
+ 
+Dedicated wireframes were created to support personalised user-account functionality, including:
+ 
+- User dashboard serving as the primary authenticated-user hub
+- Profile-view and profile-edit interfaces
+- Account-settings and account-management pages
+ 
+#### Plans Section
+ 
+The exercise and nutrition plan workflows were modelled through wireframes covering:
+ 
+- Plan-listing pages incorporating filtering and browsing functionality
+- Individual plan-detail pages
+- Plan-purchase and checkout processes
+ 
+#### Shop Section
+ 
+The e-commerce component of the platform was supported through wireframes illustrating:
+ 
+- Product-listing pages with filtering and sorting controls
+- Product-detail pages featuring reviews and supporting information
+- Shopping-cart functionality
+- Checkout and payment workflows
+- Order-confirmation pages
+- Order-history management interfaces
+ 
+#### Community Section (Subscriber-Only)
+ 
+Subscriber-exclusive community functionality was represented through wireframes covering:
+ 
+- Community-feed pages displaying member content
+- Individual post-detail views
+- Post-creation interfaces
+- Comment-thread and discussion functionality
+ 
+#### Subscription Management
+ 
+Subscription-related user journeys were planned through dedicated wireframes for:
+ 
+- Subscription-tier comparison pages
+- Subscription-checkout workflows
+- Subscription-confirmation pages
+- Billing and subscription-management interfaces
+ 
+#### Administrative Interfaces
+ 
+Wireframes were also produced for staff and coach management functionality, including:
+ 
+- Administrative dashboard views
+- Plan-creation and plan-management interfaces
+- Product-creation and product-management functionality
+- Subscriber-management and administration tools
+ 
+By developing wireframes for each of these core areas, the project ensured that all major workflows, user interactions, and business requirements were visualised, reviewed, and validated before implementation. This comprehensive approach reduced development risk, improved usability planning, and provided a structured foundation for both front-end and back-end development activities.
+
+### Summary
+ 
+The wireframes created for **FitHub** acted as a vital link between project requirements and technical implementation, providing a structured framework through which user experience, functionality, and information architecture could be evaluated and refined before development commenced. By establishing a clear visual representation of the platform at an early stage, design decisions could be validated and aligned with both user needs and business objectives.
+ 
+Throughout the planning process, the wireframes reinforced a commitment to delivering an **accessible, intuitive, and user-focused fitness subscription platform** that reflects the expectations of modern e-commerce systems and online community applications. Their development demonstrates the application of recognised **full-stack software-development practices**, consistent with the professional standards expected at **Level 5 of the UK Higher Education Framework**.
+ 
+By modelling a variety of user journeys—including those of public visitors, registered users, subscribers, coaches, and administrators—the wireframes ensured that the platform's complexity could be managed through logical navigation structures, clear interface design, and well-organised information architecture. This structured and user-centred methodology reduced development risk, improved planning accuracy, and helped ensure that the final implementation would effectively support the needs of all user groups.
+
 ---
 
 ## References
