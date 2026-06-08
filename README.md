@@ -1863,6 +1863,117 @@ By modelling a variety of user journeys—including those of public visitors, re
 
 ---
 
+## FitHub Fitness Subscription Application Wireframes
+
+[⬆ Back to Table of contents](#table-of-contents)
+
+The wireframes presented here correspond to the fourteen pages planned for inclusion in this FitHub Fitness Subscription Application website. Each page is shown in three versions: desktop, tablet, and mobile.
+
+---
+
+### Homepage
+
+FitHub has been designed to provide a clear, motivating, and user-friendly entry point into a complete fitness subscription platform. This homepage introduces visitors to the purpose and vision of FitHub, establishing its role as a modern, all-in-one solution that brings expert fitness plans, quality merchandise, and a supportive member community together in a single place.
+
+The primary aim of the website is to help visitors quickly understand the value FitHub offers and to guide them confidently toward the right first action — whether that is browsing membership plans, exploring the shop, or joining the community. By leading with a clear hero message, three concise value propositions (Plans, Shop, Community), and curated previews of featured plans and products, the homepage communicates the platform's purpose immediately, without the visitor needing to consult any supporting documentation.
+
+The project focuses on delivering modern web functionality, secure data handling, e-commerce capability, and a fully responsive design, while maintaining an encouraging and professional tone. The layout adapts deliberately across breakpoints — the hero image moves below the headline on smaller screens for readability, and the "Community" navigation item appears only to authenticated users — and accessibility is built in throughout, with a clear heading hierarchy, semantic structure, alt text, high-contrast typography, and visible focus states. Through clarity, usability, social proof, and a consistent call-to-action system, visitors quickly grasp what FitHub provides and why it has been developed as a practical, real-world fitness platform.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1024" height="1536" alt="homepage wireframe v2" src="https://github.com/user-attachments/assets/99a262ab-70c6-405c-9dac-978b281ca681" />
+
+</details>
+
+---
+
+### Registration
+
+FitHub's registration has been designed as a clear, reassuring, two-step journey that turns a new visitor into a member with as little friction as possible. Rather than presenting a single intimidating form, the process is split into two focused steps — account creation, then an optional fitness profile — so that each stage asks only for what it needs and the visitor always knows how far they have progressed.
+
+Step 1 establishes the member's login credentials, capturing their email address and password with real-time, accessible validation: password requirements are checked and confirmed as the user types, the show/hide toggle aids accuracy, and the matching-password check provides immediate feedback. Trust is built deliberately at this stage through clear messaging that the data is encrypted, GDPR compliant, and free of spam. Step 2 then personalises the experience by inviting the member to share their main fitness goal, experience level, and optional height and weight, which allows FitHub to recommend the most relevant plans and products — while making clear this information is optional and can be updated at any time from Account Settings.
+
+The flow focuses on modern web functionality, secure credential handling, and a fully responsive design that adapts deliberately across breakpoints, with the progress indicator ("Step 1 of 2 — 50% complete") keeping users oriented throughout. Accessibility is built in at every step: a clear heading hierarchy, labels associated with all inputs, real-time validation announced via aria-live regions, visible focus states, minimum 44px touch targets, decorative icons hidden from assistive technology, and status conveyed by more than colour alone. Through clarity, transparency, and trust-focused design, visitors can create an account quickly and confidently, understanding exactly why each piece of information is requested.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="registration wireframe v2" src="https://github.com/user-attachments/assets/dacbc014-7aef-4bfe-bf1b-cc9c30430030" />
+
+</details>
+
+---
+
+### Login
+
+FitHub's login page has been designed to be simple, secure, and fast, returning members to their account with minimal effort while reassuring them that their data is protected. A clear "Welcome Back" header and a single, focused form keep the page uncluttered, so members can sign in confidently and get straight to their fitness plans, progress tracking, and community.
+
+The login form captures the member's email (or username) and password, with helper text, a show/hide password toggle to aid accuracy, and an optional "Remember me on this device" choice that keeps them signed in for 30 days. A "Forgot your password?" link supports easy recovery, and secondary actions guide visitors without an account toward registration. Trust is reinforced throughout via supporting messaging — SSL encryption, bank-level security, and a no-spam promise — while a concise "Why log in?" panel explains the value of signing in (personalised plans, progress tracking, community access, and member benefits), ensuring the purpose is immediately evident.
+
+The page focuses on secure authentication, defensive design, and a fully responsive layout that adapts deliberately across breakpoints, with the trust panel repositioning and the "Why log in?" explainer collapsing into an accordion on smaller screens. Error handling is explicit and accessible: invalid credentials produce a clear, non-revealing message announced via an aria-live region so users are notified without disrupting their flow. Accessibility is built in throughout, with a clear heading hierarchy, labels associated with all inputs, decorative icons hidden from assistive technology, visible focus states, minimum 44px touch targets, and status conveyed by more than colour alone. Through clarity, security, and trust-focused design, returning members can sign in quickly and with confidence.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="login wireframe v2" src="https://github.com/user-attachments/assets/05e53146-31a5-46a1-bcb4-d55785d7026b" />
+
+</details>
+
+---
+
+### Dashboard
+
+The dashboard is the member's personal hub — the first place they land after logging in — designed to surface everything relevant to their fitness journey at a glance and guide them straight to their next action. A personalised welcome ("Welcome back, Roberto") and a progress snapshot establish context immediately, so the page's purpose is evident from the moment it loads and the member feels recognised and motivated.
+
+The layout is organised into clear, scannable zones. A quick-overview strip summarises key metrics — workouts completed this week, weekly progress, and daily calorie and protein intake against goals — each with a visual progress indicator and a text alternative. Beneath this, a set of main content cards gives the member direct access to the things they manage most: their current plan and its progress, recent and upcoming workouts, their subscription status and renewal date with management actions, and a nutrition tracker. A final motivation-and-social section celebrates achievements and surfaces a community leaderboard, encouraging consistency and engagement. Throughout, the dashboard shows only the member's own data and never asks for information the application already holds, in line with good UX practice.
+
+The page focuses on presenting personalised, real-time data within a fully responsive grid that adapts deliberately across breakpoints — the multi-column card layout reflowing into stacked cards and a bottom navigation bar on mobile — while keeping the most important information reachable at every size. Accessibility is built in throughout: a clear heading hierarchy, cards with labelled headings and descriptions, text alternatives for charts and progress bars, visible focus states, minimum 44px touch targets, full keyboard navigation, and status conveyed by more than colour alone. Through clarity, personalisation, and a motivating tone, the dashboard helps members understand their progress and decide what to do next with confidence.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="dashboard wireframe v2" src="https://github.com/user-attachments/assets/217ae3c6-0353-4719-8847-3668dfc2606d" />
+
+</details>
+
+---
+
+### Plans Listing
+
+The plans listing page is where members and visitors discover FitHub's fitness plans and find the one that matches their goals and ability. A clear page header sets the purpose, and the page is built around helping users narrow a large catalogue down to relevant options quickly, so they can compare and choose with confidence.
+
+The page combines a comprehensive filter sidebar with a responsive grid of plan cards. Filters allow users to refine by difficulty level, fitness goal, duration and features (such as video included, no equipment, or home-gym friendly), with a live result count beside each option and a clear "results found" total, while a sort control lets users order plans by relevance, popularity or price. Each plan card surfaces the key information needed for comparison at a glance — plan name, goal, star rating and review count, duration and time commitment, difficulty and feature badges, and price — alongside clear actions to view details or add the plan. The most popular plans are surfaced first and badged, and pagination keeps the catalogue performant and navigable.
+
+The page focuses on efficient data filtering and a fully responsive layout that adapts deliberately across breakpoints — the desktop filter sidebar collapsing into an expandable filter panel/drawer on tablet and mobile, and the grid reflowing from three columns to one. Accessibility is built in throughout: a clear heading hierarchy, filters with associated labels and counts, keyboard-navigable cards, visible focus states, minimum 44px touch targets, and status indicators (difficulty badges) conveyed by text as well as colour. Trust is reinforced with supporting messaging on security, the money-back guarantee, and flexible cancellation. Through smart filtering, scannable cards, and clear comparison, users can find the right plan for their goals with minimal effort.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="plans_listing wireframe v3" src="https://github.com/user-attachments/assets/4d5f48a1-0e3e-4787-9859-1f608a3332ff" />
+
+</details>
+
+---
+
+### Plan Detail
+
+The plan detail page gives a member or visitor everything they need to evaluate a single fitness plan and decide whether it is right for them. A clear breadcrumb and page header establish context, and the page is structured so the most decision-critical information — what the plan is, what it costs, and how to get it — is immediately visible, while supporting detail is available for those who want it.
+
+The page leads with an image carousel showing the plan from multiple angles alongside a prominent information card that summarises the goal, difficulty, rating and review count, and key facts such as duration, session length, equipment requirements and lesson count. Pricing is presented clearly with the saving on the annual option highlighted, and primary actions are always to hand. Beneath this, tabbed navigation organises the deeper content — an overview of what the member will learn, what's included and how the programme is structured; a curriculum; reviews; and FAQs — so the page remains scannable rather than overwhelming. Trust and confidence are reinforced through an instructor profile with credentials, aggregated member ratings and testimonials, and a "similar plans" section that supports comparison and continued browsing.
+
+The page focuses on clear information hierarchy and a fully responsive layout that adapts deliberately across breakpoints — the sticky information and pricing card keeping the calls to action visible while scrolling on desktop, the content tabs becoming collapsible accordions on smaller screens to reduce scrolling, and a sticky bottom CTA bar ensuring the primary action is always reachable on mobile. Accessibility is built in throughout: a clear heading hierarchy, alt text for all images, an accessible accordion pattern for the FAQs, visible focus states, minimum 44px touch targets, and pricing options conveyed by text as well as colour. Through clear pricing, organised content, and strong social proof, the page helps users make a confident, well-informed decision.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="plans_detail wireframe v2" src="https://github.com/user-attachments/assets/7046db37-25fc-4661-8c9c-1564895db6a8" />
+
+</details>
+
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
