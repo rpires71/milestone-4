@@ -26,7 +26,7 @@
   - [Future Features](#future-features)
   - [Technologies Used](#technologies-used)
   - [Wireframes](#wireframes)
-  - [FitHub Fitness Subscription Application Wireframes](#fithub-fitness-subscription-application)
+  - [FitHub Fitness Subscription Application Wireframes](#fithub-fitness-subscription-application-wireframes)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -1971,6 +1971,141 @@ The page focuses on clear information hierarchy and a fully responsive layout th
 
 </details>
 
+---
+
+### Shop Listing
+
+The shop listing page is FitHub's storefront for physical merchandise — equipment, supplements and accessories — designed to help members find and purchase the right products quickly. A clear header and breadcrumb set the context, and the page is built around efficient browsing of a large catalogue, so users can filter a wide range of products down to relevant options and add them to their cart with minimal effort.
+
+The page pairs a comprehensive filter sidebar with a responsive product grid. Users can refine by category, brand, price range, rating and stock status, each filter showing a live count, with a clear results total and a sort control for ordering by relevance, popularity or price. Each product card surfaces the information needed to make a purchase decision at a glance — product image, name, brand, star rating and review count, price, and real stock status (in stock, low stock, pre-order) — along with a quick-add quantity control and a view-details action, so members can add items to the cart directly from the grid without leaving the page. Pagination keeps the catalogue performant and navigable ("Showing 12 of 127 products").
+
+The page focuses on efficient data filtering, accurate stock information, and a fully responsive layout that adapts deliberately across breakpoints — the desktop filter sidebar collapsing into an expandable filter panel on tablet and mobile, and the grid reflowing from three columns to two to one. Accessibility is built in throughout: a clear heading hierarchy, filters with associated labels and counts, keyboard-navigable cards, visible focus states, minimum 44px touch targets, and stock status conveyed by text as well as colour. Trust is reinforced with a persistent benefits bar covering secure checkout, free shipping, easy returns and the size of the member community. Through smart filtering, scannable cards, and quick add-to-cart, users can shop efficiently and with confidence.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="shop_listing wirefrme" src="https://github.com/user-attachments/assets/46809c29-a9e3-46a8-b70e-de324054d699" />
+
+</details>
+
+---
+
+### Product Detail
+
+The product detail page gives a member everything they need to evaluate and buy a single shop product with confidence. A clear breadcrumb and a rich media gallery establish the product immediately, and the page is structured so the key purchase decision — what the product is, its options, its price and stock, and how to buy it — is front and centre, with supporting detail available for those who want it.
+
+The page leads with a high-resolution product gallery (with zoom, 360° view and video) alongside a prominent, sticky purchase card. That card summarises the product name, brand, rating and review count, real stock status with quantity remaining, and price, and lets the member configure their purchase through variant selection (colour swatches and weight options) and a quantity control before adding to the basket. Beneath this, tabbed navigation organises the deeper content — an overview of product highlights, what's in the box and certifications/warranty; specifications; reviews; and FAQs — keeping the page scannable. Confidence and value are reinforced through a detailed customer reviews breakdown with verified-purchase badges, a "frequently bought together" bundle, and a "customers also viewed" section that supports comparison and continued shopping.
+
+The page focuses on clear information hierarchy, accurate stock information, and a fully responsive layout that adapts deliberately across breakpoints — the sticky purchase card keeping the calls to action visible while scrolling on desktop, the content tabs becoming collapsible accordions on smaller screens, and a sticky bottom add-to-cart bar ensuring the primary action is always reachable on mobile. Accessibility is built in throughout: alt text for all images, a keyboard-navigable gallery and controls, ARIA labels on interactive elements, visible focus states, minimum 44px touch targets, and variant and stock states conveyed by text as well as colour. Through rich media, clear options, accurate stock, and strong social proof, the page helps users make a confident, well-informed purchase.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="product_detail wirefrme" src="https://github.com/user-attachments/assets/087bb261-78c8-4200-8058-0a45e84fb7f4" />
+
+</details>
+
+---
+
+### Shopping Cart
+
+The shopping cart gives members a clear, trustworthy review of the products they intend to buy before committing to checkout. A clear header and breadcrumb set the context, and the page is designed so users can confirm their items, adjust what they're buying, and see exactly what they'll pay — with no surprises before payment.
+
+The cart is organised into a cart-items list and an order summary. Each item is shown with its image, name, variant details (colour, size), price, an editable quantity control, stock status, and a line total, along with clear actions to remove the item or save it for later — the latter reducing accidental loss and cart abandonment. The order summary presents the subtotal, delivery and total, with the free-delivery threshold applied and pricing shown VAT-inclusive, and a promo-code field allows discounts to be applied. The summary and primary calls to action are kept prominent so the cost and the path to checkout are always clear. Stock visibility ("Only 2 left") and trust signals reinforce confidence at the point of decision.
+
+The page focuses on accurate, real-time totals and a fully responsive layout that adapts deliberately across breakpoints — the order summary sitting sticky alongside the items on desktop, collapsing into an accordion on tablet, and becoming a sticky bottom bar with the total and checkout action on mobile. Four key states are designed for explicitly — empty cart, loading, error, and out-of-stock/quantity-capped — so the page behaves gracefully in real use rather than only on the happy path. Accessibility is built in throughout: a clear heading hierarchy, a live region announcing cart and total updates, descriptive labels on all interactive controls (including icon-only buttons via aria-labels), visible focus states, minimum 44px touch targets, and stock status conveyed by text as well as colour. Through clarity, accurate pricing, and trust-focused design, members can review their cart and proceed to checkout with confidence.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="shopping_cart wireframe v2" src="https://github.com/user-attachments/assets/6263009e-eb3a-4a86-8c54-ffef662bc088" />
+
+</details>
+
+---
+
+### Checkout
+
+The checkout page is where a member completes their purchase securely, and it is the most trust-critical page in the e-commerce flow. A clear breadcrumb and header set the context, and the page is designed to collect everything needed to fulfil and pay for the order — contact, delivery and payment details — in a single, well-structured flow that keeps the member oriented and confident at every step.
+
+The page is organised into clear sections: a contact section (with the email pre-filled for logged-in members, so they are not asked for information the application already holds), a delivery details section with validated address fields and an option to save the address to the member's profile, and a payment section. Card details are captured using Stripe Elements, so the card field is hosted by Stripe and card data never touches the application's server — a genuine security benefit that is communicated to the user. A persistent order summary keeps the items and total visible throughout, and the primary call to action states the exact amount to be paid. The order itself is created via a Stripe webhook on successful payment, so the order is recorded reliably even if the member closes the browser immediately after paying.
+
+The page focuses on secure payment, defensive design, and a fully responsive layout that adapts deliberately across breakpoints — the order summary sitting sticky alongside the form on desktop, collapsing into an accordion on tablet and mobile, and the pay action and total fixed in a sticky bottom bar on smaller screens. Several states are designed for explicitly — empty-cart guard, a processing overlay that prevents double submission, inline Stripe payment errors, and field-level validation errors — so the page handles real payment scenarios gracefully. Accessibility is built in throughout: fieldset/legend grouping for each section, labels and required indicators on all fields, an aria-live region for payment errors, focus moving to the first invalid field on submission, icon-only buttons carrying aria-labels, visible focus states, sufficient colour contrast, and minimum 44px touch targets. Through secure card handling, reliable order creation, and clear feedback, members can pay with confidence. (Note: this checkout handles one-time shop products; recurring subscriptions are processed through a separate Stripe Checkout flow.)
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="checkout wireframe v2" src="https://github.com/user-attachments/assets/7850123a-fdf4-4068-b468-38d1fa048287" />
+
+</details>
+
+---
+
+### Order Confirmation
+
+The order confirmation page reassures the member that their purchase succeeded and tells them what happens next, closing the e-commerce journey on a clear, confidence-building note. A prominent success message and the order reference are shown immediately, so the member has instant proof of their order and a number to reference for any future query.
+
+The page presents the order in full: a read-only order summary listing the items, quantities, pricing and total (VAT-inclusive, with the free-delivery rule applied), the delivery address, and a "what happens next" timeline covering the confirmation email, packing and dispatch, and an estimated delivery date. The delivery estimate is calculated dynamically (order date plus processing and shipping time) so it is always accurate rather than hard-coded. Clear primary actions let the member view the order in their account or continue shopping, and a support section reduces post-purchase anxiety. Importantly, the page is reached after the Stripe redirect but is populated from the order created by the webhook, and a brief "confirming your order" state handles the case where the page loads before the webhook has finished — so the confirmation is reliable even under the asynchronous reality of payment processing.
+
+The page focuses on clear feedback, robust handling of asynchronous processes, and a fully responsive layout that adapts deliberately across breakpoints, with the order details and timeline reflowing into stacked, collapsible sections on smaller screens while keeping the success message and key information visible. Several states are designed for explicitly — confirming/webhook-pending, order not found (with an ownership guard so a member can only view their own order), email-not-sent with a resend fallback, a guest-order variant, and email-sent-successfully. Accessibility is built in throughout: focus moves to the success heading on load, the order number is selectable text, updates are announced via an aria-live region, the delivery date is available on all breakpoints, and the design meets WCAG 2.1 AA. Through clear confirmation, a helpful next-steps timeline, and reliable order handling, the member leaves the journey informed and reassured.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="order_confirmation wireframe v2" src="https://github.com/user-attachments/assets/7f12874f-d99d-41b3-baa1-baeecf5ef6b6" />
+
+</details>
+
+---
+
+### User Profile
+
+The user profile, or "My Account", is the member's central hub for managing their account, viewing their activity, and controlling their membership and preferences. A clear header and breadcrumb set the context, and the page is organised so that the many different aspects of a member's relationship with FitHub — their details, subscription, orders, saved items and community activity — are grouped into focused sections rather than presented as one long, overwhelming form.
+
+The page combines a persistent profile summary card (avatar, name, membership status and join date) with a tab-driven content area covering Overview, Account Details, Subscription, Orders, Saved Items and Community. The Overview tab gives an at-a-glance summary of the member's activity, fitness goal and active plan, while the other tabs provide focused management of each area. Account details use an edit-in-place pattern, allowing the member to update their information with validation and clear save/cancel actions — demonstrating update functionality directly in the interface. Subscription management is delegated to the Stripe Customer Portal, so billing changes and cancellations are handled securely without rebuilding payment infrastructure, with the application storing the Stripe customer ID and keeping plan status in sync via webhooks. Account actions, including a clearly separated and confirmed "delete account" option, are available throughout.
+
+The page focuses on clear information architecture, full control over the member's own data, and a fully responsive layout that adapts deliberately across breakpoints — the section navigation moving from a sidebar on desktop, to a tab strip on tablet, to a dropdown on mobile. Several states are designed for explicitly — view mode, edit-in-place, validation error, update success, empty states for orders and saved items, and a type-to-confirm delete-account flow that respects the irreversibility of the action and the member's data-protection rights. Accessibility is built in throughout: an ARIA tab pattern, focus moving to the first field in edit mode, alt text on all images, descriptive labels, destructive actions behind confirmation, success and error announced via an aria-live region, minimum 44px touch targets, and WCAG 2.1 AA compliance. The page shows only the member's own, access-controlled data. Through clear organisation, in-place editing, and secure account management, members stay in full control of their FitHub account.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="user_profile wireframe v2" src="https://github.com/user-attachments/assets/4579b4ad-05c6-4f65-a884-3c4fafe55abd" />
+
+</details>
+
+---
+
+### Order History
+
+The order history page lets members view and manage their past orders as read-only historical records. A clear header and breadcrumb set the context, and the page is built around a list-and-detail model: a scannable list of all the member's orders, each opening into a full detail view, so members can find a past purchase quickly and review it in full.
+
+The order list presents each order with its key information — order number, date, items, status and total — and supports filtering, sorting and searching so it remains usable as a member's history grows, with pagination keeping large histories performant. Order status is shown using a clear, consistent lifecycle (Processing, Dispatched, Delivered, Cancelled, Refunded) conveyed by text and icon rather than colour alone, and refund status is driven by Stripe webhooks so it stays accurate. Selecting an order opens its detail view, which reuses the structure of the confirmation page — items, delivery address, order summary and a status timeline — and provides useful actions such as reorder, invoice download and access to support. Throughout, an ownership guard ensures a member can only view their own orders. As with the rest of the account area, recurring subscription billing and invoices are managed in the Stripe Customer Portal rather than here.
+
+The page focuses on clear presentation of historical data and a fully responsive layout that adapts deliberately across breakpoints — the desktop order table transforming into stacked cards on tablet and mobile, and the detail view reflowing into collapsible sections. Several states are designed for explicitly — loading, empty (no orders yet), no-results (from filters), many-orders (paginated), and order-not-found (with the ownership guard). Accessibility is built in throughout: a real data table with column headers on desktop, status badges carrying text and icons, descriptive link text ("View order FH-10428"), labelled filter controls, pagination marking the current page, an aria-live region for filter updates, visible focus states, minimum 44px touch targets, and WCAG 2.1 AA compliance. Through clear organisation, accurate status, and reliable access control, members can track and revisit their purchases with confidence.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="order_history wireframe v5" src="https://github.com/user-attachments/assets/02fff654-780c-4041-b738-8087685c94fa" />
+
+</details>
+
+---
+
+### Admin Plan Creation
+
+The admin plan creation and management page is the staff-only interface for managing FitHub's membership plans, deliberately built as a custom front-end rather than relying on the Django admin. It allows authorised staff to create, edit and archive plans through the application's own styled interface, keeping the management experience consistent with the rest of the site and demonstrating full owner-side control of catalogue content.
+
+The page is structured around a plan-management list and a shared create/edit form. The list shows existing plans with their tier, price, billing interval and status (Published, Draft or Archived), each with edit and delete actions. The same form serves both creation and editing — empty for a new plan, pre-populated when editing — capturing the plan name, description, price and billing interval, tier, features and an image, with a published/draft status control. All input is validated server-side (required fields, price as a positive number, image type and size), and removal is handled as an archive/soft-delete behind a type-to-confirm step, so existing subscriptions and historical records are preserved rather than broken. Crucially, plans map to Stripe Products and Prices: creating a plan creates the corresponding Stripe objects via the API, and because Stripe Prices are immutable, editing a price creates a new Price and archives the previous one — with plan status kept in sync through Stripe webhooks.
+
+The page focuses on secure, role-based access, robust data integrity, and a fully responsive layout that adapts deliberately across breakpoints, with the management table transforming into cards and the form reflowing into collapsible sections on smaller screens. Access control is enforced at two layers — the route is protected so non-staff users receive a 403, and the management controls are not rendered for non-staff in the interface — directly supporting the requirement that the data store is not accessible without going through appropriate permissions. Several states are designed for explicitly — loading, empty (no plans yet), permission-denied (403), validation error and save success. Accessibility is built in throughout: labelled fields with required indicators, fieldset/legend grouping, errors announced via an aria-live region with focus moving to the first invalid field, a focus-trapped confirmation dialog, descriptive action labels, minimum 44px touch targets, and WCAG 2.1 AA compliance. Through a custom interface, defensive validation, role-based permissions and Stripe synchronisation, staff can manage the plan catalogue safely and reliably.
+
+<details>
+<summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
+
+<img width="1536" height="1024" alt="admin_plan_creation wireframe v2" src="https://github.com/user-attachments/assets/040556fa-3ac0-4e74-8e9d-e3c090ce7006" />
+
+</details>
 
 ---
 
