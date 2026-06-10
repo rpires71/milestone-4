@@ -47,6 +47,7 @@
     - [User Story 17: Delete My Account (Member)](#user-story-17-delete-my-account-member)
     - [User Story 18: Create, Edit and Archive Membership Plans (Admin)](#user-story-18-create-edit-and-archive-membership-plans-admin)
     - [User Story 19: Manage Shop Products (Admin)](#user-story-19-manage-shop-products-admin)
+    - [User Story 20: View Orders and Subscribers (Admin)](#user-story-20-view-orders-and-subscribers-admin)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2920,6 +2921,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Administration Interface
 
 - [ ] Given that an administrator manages products using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then all controls remain keyboard accessible, clearly labelled, and responsive across different screen sizes.
+
+---
+
+### User Story 20: View Orders and Subscribers (Admin)
+
+#### As an administrator, I want to **view and monitor customer orders and subscriber accounts** so that **I can provide effective customer support and oversee business activity.** *(Could Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Restricted Access for Staff Users
+
+- [ ] Given that a non-staff user attempts to access order or subscriber management areas, when the request is processed, then access is denied with a **403 Forbidden** response.
+
+##### AC2 – Order Management Overview
+
+- [ ] Given that an administrator accesses the orders section, when the page loads, then a structured list of orders is displayed, including key information such as order number, customer name, order date, current status, and total value.
+
+##### AC3 – Subscriber Management Overview
+
+- [ ] Given that an administrator accesses the subscriber management section, when subscriber data is retrieved, then both active and inactive subscribers are displayed along with their membership plan and subscription status.
+
+##### AC4 – Search and Filtering Capabilities
+
+- [ ] Given that an administrator performs a search or applies filters, when criteria such as customer name, subscription status, or order status are selected, then only matching records are displayed.
+
+##### AC5 – Empty-State Handling
+
+- [ ] Given that no records match the selected search or filter criteria, when the results are returned, then a clear and informative message is displayed instead of an empty or broken interface.
+
+##### AC6 – Secure and Proportionate Data Display
+
+- [ ] Given that customer information is presented to an administrator, when records are displayed, then only data required to complete the task is shown and processed in accordance with applicable data protection requirements.
+
+##### AC7 – Performance and Scalability
+
+- [ ] Given that large numbers of orders or subscriber records exist, when an administrator views the data, then the interface remains responsive through mechanisms such as pagination, filtering, and efficient data retrieval.
+
+##### AC8 – Accessible and Responsive Interface
+
+- [ ] Given that an administrator accesses order or subscriber information using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then data is presented accessibly, remains keyboard navigable, and adapts appropriately to different screen sizes.
 
 ---
 
