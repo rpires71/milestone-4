@@ -27,6 +27,26 @@
   - [Technologies Used](#technologies-used)
   - [Wireframes](#wireframes)
   - [FitHub Fitness Subscription Application Wireframes](#fithub-fitness-subscription-application-wireframes)
+  - [FitHub — User Stories](#fithub--user-stories)
+  - ### User Story 1: Account Registration (Visitor)
+    - [User Story 1: Account Registration (Visitor)](#user-story-1-account-registration-visitor)
+    - [User Story 2: Specify the Number of Guests (Customer)](#user-story-2-specify-the-number-of-guests-customer)
+    - [User Story 3: View a Booking Confirmation (Customer)](#user-story-3-view-a-booking-confirmation-customer)
+    - [User Story 4: Modify Booking Date/Time (Customer)](#user-story-4-modify-booking-datetime-customer)
+    - [User Story 5: Cancel a Booking (Customer)](#user-story-5-cancel-a-booking-customer)
+    - [User Story 6: View Restaurant Menu (Customer)](#user-story-6-view-restaurant-menu-customer)
+    - [User Story 7: View View Dietary Information (Customer)](#user-story-7-view-dietary-information-customer)
+    - [User Story 8: Receive Email Confirmation (Customer)](#user-story-8-receive-email-confirmation-customer)
+    - [User Story 9: View Booking History (Customer)](#user-story-9-view-booking-history-customer)
+    - [User Story 10: Special Requests (Customer)](#user-story-10-special-requests-customer)
+    - [User Story 11: View All Bookings for the Day (Staff)](#user-story-11-view-all-bookings-for-the-day-staff)
+    - [User Story 12: Search Bookings by Name (Staff)](#user-story-12-search-bookings-by-name-staff)
+    - [User Story 13: Mark Tables as Occupied/Available (Staff)](#user-story-13-mark-tables-as-occupiedavailable-staff)
+    - [User Story 14: Update Booking Status (Staff)](#user-story-14-update-booking-status-staff)
+    - [User Story 15: Manage Table Configuration (Admin)](#user-story-15-manage-table-configuration-admin)
+    - [User Story 16: Manage Time Slots (Admin)](#user-story-16-manage-time-slots-admin)
+    - [User Story 17: View Booking Statistics (Admin)](#user-story-17-view-booking-statistics-admin)
+    - [User Story 18: Manage Menu Items (Admin)](#user-story-18-manage-menu-items-admin)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2106,6 +2126,72 @@ The page focuses on secure, role-based access, robust data integrity, and a full
 <img width="1536" height="1024" alt="admin_plan_creation wireframe v2" src="https://github.com/user-attachments/assets/040556fa-3ac0-4e74-8e9d-e3c090ce7006" />
 
 </details>
+
+---
+
+## FitHub — User Stories
+
+[⬆ Back to Table of contents](#table-of-contents)
+
+FitHub is a fitness subscription web application built with Django that allows users to enrol in fitness plans, purchase merchandise through an integrated e-commerce system, and interact with other members within a subscriber-only community platform.
+
+- Each user story follows the standard format: *"As a [role], I want to [goal] so that [benefit]"* and is assigned a **MoSCo priority** (**Must**, **Should**, or **Could**) to indicate its relative importance within the project.
+
+- **Acceptance Criteria (ACs)** are defined as measurable and testable conditions that determine whether a user story has been successfully implemented. These criteria also serve as the basis for both manual and automated testing activities.
+
+- Progress is monitored using checkboxes throughout the document.
+
+- A comprehensive mapping of user stories to the **Gateway Qualifications Unit 4: Full Stack Frameworks with Django** assessment criteria is provided at the end of this document.
+
+### User Roles
+
+- **Visitor** — An anonymous user who accesses the platform without being authenticated.
+
+- **Member** — A registered user who has created an account and successfully logged into the application.
+
+- **Subscriber** — A member with an active paid subscription, granting access to premium features and content.
+
+- **Staff / Administrator** — An authorised user with elevated permissions responsible for managing platform content, subscriptions, products, and operational activities.
+
+### User Story 1: Account Registration (Visitor)
+
+#### As a visitor, I want to **create an account** so that **I can access member-only features, subscribe to fitness plans, and purchase products.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Registration Form Accessible to Visitors
+
+- [ ] Given that a user is not authenticated, when they navigate to the registration page, then a clearly labelled account registration form is displayed.
+
+##### AC2 – Restricted Access for Authenticated Users
+
+- [ ] Given that a user is already logged in, when they attempt to access the registration page, then they are redirected to an appropriate page (such as their dashboard) instead of being shown the registration form.
+
+##### AC3 – Validation of Mandatory Fields
+
+- [ ] Given that a visitor submits the registration form with incomplete or invalid information, when the form is processed, then submission is prevented and clear field-specific validation messages are displayed.
+
+##### AC4 – Password Strength and Confirmation Requirements
+
+- [ ] Given that a visitor enters a password during registration, when the form is submitted, then the password must meet the defined security requirements and match the confirmation field before the account can be created.
+
+##### AC5 – Prevention of Duplicate Registrations
+
+- [ ] Given that an email address is already associated with an existing account, when a visitor attempts to register using that email address, then the registration request is rejected and an appropriate notification is displayed.
+
+##### AC6 – Registration Success Confirmation
+
+- [ ] Given that valid registration details are submitted, when the account is successfully created, then the system displays a confirmation message and, where applicable, sends an account verification email.
+
+##### AC7 – Secure Storage of User Credentials
+
+- [ ] Given that a new account has been created, when user credentials are stored, then passwords are securely hashed and no sensitive credentials, secret keys, or authentication data are exposed within the source code or repository.
+
+##### AC8 – Accessibility and Responsive Design Compliance
+
+- [ ] Given that a visitor accesses the registration form using a desktop, tablet, mobile device, or assistive technology, when interacting with the form, then all controls are keyboard accessible, screen-reader compatible, responsive, and supported by meaningful labels and accessible error messaging.
 
 ---
 
