@@ -31,6 +31,7 @@
     - [User Story 1: Account Registration (Visitor)](#user-story-1-account-registration-visitor)
     - [User Story 2: Secure Authentication (Visitor / Member)](#user-story-2-secure-authentication-visitor--member)
     - [User Story 3: Browse Fitness Plans (Visitor / Member)](#user-story-3-browse-fitness-plans-visitor--member)
+    - [User Story 4: View Fitness Plan Details and Access-Controlled Content (Member)](#user-story-4-view-fitness-plan-details-and-access-controlled-content-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2258,6 +2259,42 @@ FitHub is a fitness subscription web application built with Django that allows u
 - [ ] Given that plan information cannot be retrieved from the database, when the Plans page attempts to load, then a clear and user-friendly error message is displayed instead of exposing a system or server error.
 
 ---
+
+### User Story 4: View Fitness Plan Details and Access-Controlled Content (Member)
+
+#### As a member, I want to **view detailed information about a fitness plan** so that **I can make an informed decision before subscribing or accessing premium content.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Comprehensive Plan Details Displayed
+
+- [ ] Given that a user selects a fitness plan, when the plan detail page loads, then a comprehensive overview is displayed, including the plan description, difficulty level, key features, and an appropriate call-to-action for subscribing or accessing content.
+
+##### AC2 – Content Restriction for Non-Subscribers
+
+- [ ] Given that a member does not have an active subscription, when they view a subscriber-exclusive fitness plan, then a preview or teaser of the content is displayed together with a clear subscription call-to-action instead of the full protected content.
+
+##### AC3 – Full Access for Eligible Subscribers
+
+- [ ] Given that a member has an active subscription that includes the selected fitness plan, when they access the plan detail page, then the complete plan content is made available.
+
+##### AC4 – Server-Side Access Control Enforcement
+
+- [ ] Given that protected plan content is requested, when access permissions are evaluated, then authorisation is enforced on the server side to prevent non-subscribers from accessing restricted content through URL manipulation, browser tools, or modified requests.
+
+##### AC5 – Context-Aware Calls to Action
+
+- [ ] Given that a user is viewing a fitness plan, when the page is displayed, then the primary call-to-action clearly reflects their current subscription status, such as subscribing to the plan or accessing available content.
+
+##### AC6 – Accessibility and Responsive Design Compliance
+
+- [ ] Given that a user accesses the plan detail page using any device or assistive technology, when interacting with the page, then the content remains readable, headings follow a logical hierarchy, and all controls are fully keyboard accessible and screen-reader compatible.
+
+##### AC7 – Graceful Handling of Missing or Invalid Plans
+
+- [ ] Given that a user requests a fitness plan that does not exist, when the request is processed, then a user-friendly "Plan Not Found" message is displayed together with a navigation option that allows the user to return to the Plans page.
 
 ---
 
