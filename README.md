@@ -41,6 +41,7 @@
     - [User Story 11: View Order History (Member)](#user-story-11-view-order-history-member)
     - [User Story 12: Create, Update and Delete Product Reviews (Member)](#user-story-12-create-update-and-delete-product-reviews-member)
     - [User Story 13: Create, Edit and Delete Community Posts (Subscriber)](#user-story-13-create-edit-and-delete-community-posts-subscriber)
+    - [User Story 14: View the Community Feed (Subscriber)](#user-story-14-view-the-community-feed-subscriber)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2674,6 +2675,40 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Community Features
 
 - [ ] Given that a subscriber accesses the community area using a desktop, tablet, mobile device, or assistive technology, when interacting with the post creation form or community feed, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+
+---
+
+### User Story 14: View the Community Feed (Subscriber)
+
+#### As a subscriber, I want to **access and browse the community feed** so that **I can stay informed about updates, discussions, and experiences shared by other members.** *(Should Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Community Feed Available to Active Subscribers
+
+- [ ] Given that a user has an active subscription, when they navigate to the community area, then community posts are retrieved from the database and displayed within the feed.
+
+##### AC2 – Access Control for Non-Subscribers
+
+- [ ] Given that a user does not have an active subscription, when they attempt to access the community feed, then they are presented with a preview or teaser page together with a subscription call-to-action, while access to the full feed is restricted through server-side permission checks.
+
+##### AC3 – Clear and Consistent Post Presentation
+
+- [ ] Given that posts are displayed within the community feed, when the page loads, then each post includes the author's name, publication date, and content in a clear, readable, and consistent format.
+
+##### AC4 – Pagination for Scalability and Performance
+
+- [ ] Given that a large number of community posts exist, when the feed is displayed, then pagination is applied to ensure efficient performance and a positive user experience.
+
+##### AC5 – Empty-State Handling
+
+- [ ] Given that no community posts have been created, when a subscriber accesses the feed, then a friendly message is displayed encouraging members to create the first post and begin community engagement.
+
+##### AC6 – Accessible and Responsive Community Experience
+
+- [ ] Given that a subscriber views the community feed using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then posts are presented using semantic HTML structure, the layout adapts appropriately to different screen sizes, and all content remains keyboard accessible and screen-reader compatible.
 
 ---
 
