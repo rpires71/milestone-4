@@ -30,6 +30,7 @@
   - [FitHub — User Stories](#fithub--user-stories)
     - [User Story 1: Account Registration (Visitor)](#user-story-1-account-registration-visitor)
     - [User Story 2: Secure Authentication (Visitor / Member)](#user-story-2-secure-authentication-visitor--member)
+    - [User Story 3: Browse Fitness Plans (Visitor / Member)](#user-story-3-browse-fitness-plans-visitor--member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2213,6 +2214,50 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC7 – Accessible and Responsive Authentication Experience
 
 - [ ] Given that a user accesses the authentication system from a desktop, tablet, mobile device, or assistive technology, when logging in or out, then the process is fully responsive, keyboard accessible, screen-reader compatible, and provides clear user feedback throughout.
+
+---
+
+### User Story 3: Browse Fitness Plans (Visitor / Member)
+
+#### As a visitor or member, I want to **view and explore the available fitness plans** so that **I can identify the option that best aligns with my fitness goals before committing to a subscription.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Published Plans Retrieved from the Database
+
+- [ ] Given that fitness plans are available, when a user accesses the Plans page, then all published plans are retrieved from the database and displayed in a clear and organised card-based layout.
+
+##### AC2 – Essential Plan Information Displayed
+
+- [ ] Given that plans are displayed on the Plans page, when a user views an individual plan card, then the card includes, at a minimum, the plan name, difficulty level or tier, subscription price, and billing frequency.
+
+##### AC3 – Filtering and Sorting Functionality
+
+- [ ] Given that multiple fitness plans are available, when a user applies filters (such as plan type or difficulty level) or changes the sorting criteria, then the displayed results update accordingly to reflect the selected options.
+
+##### AC4 – Subscriber-Only Content Clearly Identified
+
+- [ ] Given that a plan contains premium or subscriber-exclusive content, when it is viewed by a non-subscriber, then a clear access restriction indicator is displayed using both text and an accompanying icon rather than relying solely on colour.
+
+##### AC5 – Empty State Management
+
+- [ ] Given that no plans match the selected filters, or no plans are currently published, when the Plans page is displayed, then a clear and user-friendly message is presented instead of an empty or incomplete interface.
+
+##### AC6 – Responsive Layout Across Devices
+
+- [ ] Given that a user accesses the Plans page from a desktop, tablet, or mobile device, when the page is rendered, then the layout adapts appropriately to the available screen size without requiring horizontal scrolling.
+
+##### AC7 – Accessibility Compliance
+
+- [ ] Given that a user navigates the Plans page using assistive technologies, when interacting with plan cards and controls, then semantic HTML structure is used, images include meaningful alternative text, and all interactive elements remain fully keyboard accessible.
+
+##### AC8 – Graceful Error Handling
+
+- [ ] Given that plan information cannot be retrieved from the database, when the Plans page attempts to load, then a clear and user-friendly error message is displayed instead of exposing a system or server error.
+
+---
 
 ---
 
