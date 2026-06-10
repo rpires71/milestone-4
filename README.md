@@ -38,6 +38,7 @@
     - [User Story 8: Update or Remove Shopping Cart Items (Member)](#user-story-8-update-or-remove-shopping-cart-items-member)
     - [User Story 9: Secure Checkout and Payment Processing (Member)](#user-story-9-secure-checkout-and-payment-processing-member)
     - [User Story 10: View Order Confirmation (Member)](#user-story-10-view-order-confirmation-member)
+    - [User Story 11: View Order History (Member)](#user-story-11-view-order-history-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2545,6 +2546,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC7 – Accessible and Responsive Confirmation Experience
 
 - [ ] Given that a member accesses the order confirmation page using a desktop, tablet, mobile device, or assistive technology, when viewing the confirmation details, then the order number remains selectable text, headings follow a logical hierarchy, and the layout adapts appropriately to different screen sizes while remaining fully accessible.
+
+---
+
+### User Story 11: View Order History (Member)
+
+#### As a member, I want to **access and review my previous orders** so that **I can monitor, track, and reference my past purchases.** *(Should Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Order History Accessible to Authenticated Members
+
+- [ ] Given that a member is logged in, when they navigate to the **Order History** section, then a list of their previous orders is displayed.
+
+##### AC2 – User-Specific Order Visibility
+
+- [ ] Given that the order history page is loaded, when order records are retrieved, then only orders associated with the authenticated member's account are shown.
+
+##### AC3 – Structured Presentation of Order Information
+
+- [ ] Given that one or more orders exist, when the order history is displayed, then each order includes key information such as the order reference number, purchase date, item quantity, order status, and total amount paid.
+
+##### AC4 – Clear and Accessible Status Indicators
+
+- [ ] Given that order records are displayed, when a status is shown (for example, Processing, Dispatched, Delivered, Cancelled, or Refunded), then it is communicated using both descriptive text and an accompanying icon rather than relying solely on colour.
+
+##### AC5 – Filtering, Sorting, and Pagination Support
+
+- [ ] Given that a member has a large number of orders, when browsing their order history, then they can filter, sort, and paginate the results to maintain usability and efficient navigation.
+
+##### AC6 – Secure Access to Order Details
+
+- [ ] Given that a member selects an order from their history, when the order detail page is displayed, then they can view the complete order information, and access to orders belonging to other members is prevented through server-side ownership validation.
+
+##### AC7 – Empty-State Handling
+
+- [ ] Given that a member has not yet placed any orders, when the order history page is accessed, then a clear empty-state message is displayed together with a prominent link directing them to the shop.
+
+##### AC8 – Accessible and Responsive Design
+
+- [ ] Given that a member views their order history using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then the content is presented in an accessible format (such as a table with headers on larger screens and card-based layouts on smaller screens) and remains fully keyboard navigable.
 
 ---
 
