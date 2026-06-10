@@ -43,6 +43,7 @@
     - [User Story 13: Create, Edit and Delete Community Posts (Subscriber)](#user-story-13-create-edit-and-delete-community-posts-subscriber)
     - [User Story 14: View the Community Feed (Subscriber)](#user-story-14-view-the-community-feed-subscriber)
     - [User Story 15: Manage My Profile Information (Member)](#user-story-15-manage-my-profile-information-member)
+    - [User Story 16: View a Personalised Dashboard (Member)](#user-story-16-view-a-personalised-dashboard-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2752,6 +2753,40 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Profile Management
 
 - [ ] Given that a member updates their profile using a desktop, tablet, mobile device, or assistive technology, when interacting with profile forms, then all fields are clearly labelled, focus is managed appropriately during edit operations, and the interface remains responsive, keyboard accessible, and screen-reader compatible.
+
+---
+
+### User Story 16: View a Personalised Dashboard (Member)
+
+#### As a member, I want to **access a personalised dashboard** so that **I can quickly view important account information and navigate to the features most relevant to me.** *(Should Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Dashboard Available to Authenticated Members
+
+- [ ] Given that a member has successfully logged in, when they access their account area, then a personalised dashboard is available and displays an overview of their account.
+
+##### AC2 – Relevant Personalised Summary Information
+
+- [ ] Given that the dashboard is loaded, when account data is retrieved, then the dashboard displays relevant information such as subscription status, recent orders, saved items, and the member's fitness goals.
+
+##### AC3 – Member-Specific Data Only
+
+- [ ] Given that a member accesses their dashboard, when account information is displayed, then only data associated with the authenticated member's account is shown.
+
+##### AC4 – Upgrade Prompt for Non-Subscribers
+
+- [ ] Given that a member does not have an active subscription, when they view the dashboard, then a clear upgrade or subscription call-to-action is displayed in place of subscriber-only content or functionality.
+
+##### AC5 – Quick Access to Key Features
+
+- [ ] Given that the dashboard is displayed, when a member reviews the available options, then clear navigation shortcuts are provided to important areas of the application, including fitness plans, the shop, the community area, and profile management.
+
+##### AC6 – Accessible and Responsive Dashboard Experience
+
+- [ ] Given that a member accesses the dashboard using a desktop, tablet, mobile device, or assistive technology, when interacting with dashboard content, then information is organised using a logical heading structure, the layout adapts appropriately to different screen sizes, and all interactive elements remain keyboard accessible and screen-reader compatible.
 
 ---
 
