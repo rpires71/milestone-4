@@ -42,6 +42,7 @@
     - [User Story 12: Create, Update and Delete Product Reviews (Member)](#user-story-12-create-update-and-delete-product-reviews-member)
     - [User Story 13: Create, Edit and Delete Community Posts (Subscriber)](#user-story-13-create-edit-and-delete-community-posts-subscriber)
     - [User Story 14: View the Community Feed (Subscriber)](#user-story-14-view-the-community-feed-subscriber)
+    - [User Story 15: Manage My Profile Information (Member)](#user-story-15-manage-my-profile-information-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2709,6 +2710,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC6 – Accessible and Responsive Community Experience
 
 - [ ] Given that a subscriber views the community feed using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then posts are presented using semantic HTML structure, the layout adapts appropriately to different screen sizes, and all content remains keyboard accessible and screen-reader compatible.
+
+---
+
+### User Story 15: Manage My Profile Information (Member)
+
+#### As a member, I want to **update and maintain my profile details** so that **my personal information, fitness preferences, and account settings remain accurate and up to date.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Profile Displays Member-Specific Information
+
+- [ ] Given that a member accesses their profile page, when the page loads, then their personal information, including name, email address, fitness goals, profile image, and subscription status, is displayed accurately.
+
+##### AC2 – Profile Information Can Be Updated
+
+- [ ] Given that a member edits their profile information, when the updated details are submitted, then all changes are validated and successfully saved to the database.
+
+##### AC3 – Email Address Uniqueness Validation
+
+- [ ] Given that a member attempts to change their email address, when the submitted email is already associated with another account, then the update is rejected and a clear validation message is displayed.
+
+##### AC4 – Profile Image Upload and Validation
+
+- [ ] Given that a member uploads a profile image, when the file is submitted, then the file type and size are validated, the image is stored using the configured media or cloud storage solution, and the updated image is displayed within the member's profile.
+
+##### AC5 – Ownership-Based Access Control
+
+- [ ] Given that a member accesses profile management functionality, when profile data is retrieved or updated, then they can only view and modify information associated with their own account and are prevented from accessing another user's data.
+
+##### AC6 – Clear Success and Error Feedback
+
+- [ ] Given that a profile update succeeds or fails, when the operation is completed, then the member receives a clear confirmation or error message, which is announced to assistive technologies through an appropriate live region.
+
+##### AC7 – Intelligent Form Pre-Population
+
+- [ ] Given that a member is authenticated and accesses a profile form, when existing information is available, then the application automatically pre-populates relevant fields (such as email address and personal details) to reduce unnecessary data entry.
+
+##### AC8 – Accessible and Responsive Profile Management
+
+- [ ] Given that a member updates their profile using a desktop, tablet, mobile device, or assistive technology, when interacting with profile forms, then all fields are clearly labelled, focus is managed appropriately during edit operations, and the interface remains responsive, keyboard accessible, and screen-reader compatible.
 
 ---
 
