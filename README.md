@@ -36,6 +36,7 @@
     - [User Story 6: Manage or Cancel a Subscription (Subscriber)](#user-story-6-manage-or-cancel-a-subscription-subscriber)
     - [User Story 7: Add Products to the Shopping Cart (Member)](#user-story-7-add-products-to-the-shopping-cart-member)
     - [User Story 8: Update or Remove Shopping Cart Items (Member)](#user-story-8-update-or-remove-shopping-cart-items-member)
+    - [User Story 9: Secure Checkout and Payment Processing (Member)](#user-story-9-secure-checkout-and-payment-processing-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2459,6 +2460,52 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC7 – Accessible and Responsive Cart Management
 
 - [ ] Given that a member manages their cart using a desktop, tablet, mobile device, or assistive technology, when interacting with quantity controls and action buttons, then all controls remain responsive, keyboard accessible, screen-reader compatible, and include descriptive labels.
+
+---
+
+### User Story 9: Secure Checkout and Payment Processing (Member)
+
+#### As a member, I want to **complete the checkout process and pay securely** so that **I can purchase products with confidence and receive a reliable order confirmation.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Delivery Information Validation
+
+- [ ] Given that a member proceeds to the checkout page, when delivery information is entered and submitted, then all required fields are validated on the server side before payment processing can begin.
+
+##### AC2 – Secure Payment Collection Through Stripe
+
+- [ ] Given that a member enters payment details during checkout, when card information is provided, then the payment field is delivered through **Stripe Elements**, ensuring that card data is processed securely by Stripe and never reaches the application server.
+
+##### AC3 – Prevention of Duplicate Payment Submissions
+
+- [ ] Given that a member submits a payment request, when the transaction is being processed, then a loading or processing state is displayed and further submissions are temporarily disabled to prevent duplicate charges.
+
+##### AC4 – Order Confirmation Through Webhooks
+
+- [ ] Given that a payment has been successfully authorised, when the `payment_intent.succeeded` webhook event is received from Stripe, then the corresponding order is created or confirmed within the application's database, ensuring reliability even if the user closes their browser before redirection completes.
+
+##### AC5 – Successful Checkout Confirmation
+
+- [ ] Given that payment has been processed successfully, when the checkout process is completed, then the member is presented with a clear confirmation message and redirected to an order confirmation page.
+
+##### AC6 – Payment Failure Recovery
+
+- [ ] Given that a payment attempt is declined or encounters an error, when the transaction fails, then a clear inline error message is displayed and the member is able to correct the issue and retry without losing their cart contents.
+
+##### AC7 – Accurate Pricing and Order Totals
+
+- [ ] Given that an order is submitted, when pricing information is calculated, then all totals, including VAT-inclusive pricing, delivery charges, discounts, and free-delivery threshold rules, accurately match the values previously displayed within the shopping cart.
+
+##### AC8 – Protection Against Empty Cart Checkouts
+
+- [ ] Given that a member attempts to access the checkout page without any items in their shopping cart, when the request is processed, then they are redirected to the shop rather than being presented with an invalid £0.00 checkout process.
+
+##### AC9 – Accessible and Responsive Checkout Experience
+
+- [ ] Given that a member completes the checkout process using a desktop, tablet, mobile device, or assistive technology, when interacting with the checkout form, then the interface remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback for validation errors and payment outcomes.
 
 ---
 
