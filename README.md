@@ -34,6 +34,7 @@
     - [User Story 4: View Fitness Plan Details and Access-Controlled Content (Member)](#user-story-4-view-fitness-plan-details-and-access-controlled-content-member)
     - [User Story 5: Subscribe to a Membership Plan (Member)](#user-story-5-subscribe-to-a-membership-plan-member)
     - [User Story 6: Manage or Cancel a Subscription (Subscriber)](#user-story-6-manage-or-cancel-a-subscription-subscriber)
+    - [User Story 7: Add Products to the Shopping Cart (Member)](#user-story-7-add-products-to-the-shopping-cart-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2381,6 +2382,44 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Subscription Management
 
 - [ ] Given that a subscriber manages their membership using a desktop, tablet, mobile device, or assistive technology, when interacting with subscription management features, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+
+---
+
+### User Story 7: Add Products to the Shopping Cart (Member)
+
+#### As a member, I want to **add products to my shopping cart** so that **I can purchase fitness-related merchandise and equipment.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Add Products from Listing and Detail Pages
+
+- [ ] Given that a member is viewing a product from either the shop catalogue or an individual product page, when they select a quantity and choose **Add to Cart**, then the selected item is added to their shopping cart.
+
+##### AC2 – Cart Contents Persist Throughout the Session
+
+- [ ] Given that a member has added one or more items to their cart, when they continue browsing the application, then the cart contents remain available and unchanged throughout their active session.
+
+##### AC3 – Stock Availability Validation
+
+- [ ] Given that a member attempts to add a quantity greater than the available stock level, when the request is processed, then the system limits the quantity to the maximum available amount and displays an informative message explaining the restriction.
+
+##### AC4 – Real-Time Cart Indicator Updates
+
+- [ ] Given that a product has been successfully added to the shopping cart, when the action is completed, then the cart quantity indicator displayed within the navigation bar updates immediately to reflect the change.
+
+##### AC5 – Clear User Feedback Following Cart Updates
+
+- [ ] Given that an item has been added to the cart, when the operation succeeds, then the member receives a clear confirmation message indicating that the product has been successfully added.
+
+##### AC6 – Separation of Product Purchases and Subscriptions
+
+- [ ] Given that a member adds items to their cart, when the cart is updated, then only one-time purchasable products are included, while recurring subscription plans continue to be processed through the dedicated subscription workflow.
+
+##### AC7 – Accessible and Responsive Cart Functionality
+
+- [ ] Given that a member interacts with shopping cart functionality using a desktop, tablet, mobile device, or assistive technology, when adding products to the cart, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
