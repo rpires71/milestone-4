@@ -45,6 +45,7 @@
     - [User Story 15: Manage My Profile Information (Member)](#user-story-15-manage-my-profile-information-member)
     - [User Story 16: View a Personalised Dashboard (Member)](#user-story-16-view-a-personalised-dashboard-member)
     - [User Story 17: Delete My Account (Member)](#user-story-17-delete-my-account-member)
+    - [User Story 18: Create, Edit and Archive Membership Plans (Admin)](#user-story-18-create-edit-and-archive-membership-plans-admin)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2826,6 +2827,56 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC7 – Accessible and Responsive Deletion Workflow
 
 - [ ] Given that a member deletes their account using a desktop, tablet, mobile device, or assistive technology, when progressing through the confirmation process, then all controls remain keyboard accessible, focus is managed appropriately, and the workflow is clearly labelled and responsive.
+
+---
+
+### User Story 18: Create, Edit and Archive Membership Plans (Admin)
+
+#### As an administrator, I want to **create, update, and archive membership plans** so that **I can manage the platform's subscription offerings through a dedicated front-end interface without relying on the Django administration panel.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Staff-Only Access with Defence-in-Depth Controls
+
+- [ ] Given that a non-staff user attempts to access the membership plan management area directly via a URL, when the request is processed, then a **403 Forbidden** response is returned, and management controls are hidden from non-staff users throughout the user interface.
+
+##### AC2 – Dedicated Front-End Management Interface
+
+- [ ] Given that an administrator manages membership plans, when performing management actions, then all functionality is available through the application's custom front-end interface rather than the built-in Django administration system.
+
+##### AC3 – Create New Membership Plans
+
+- [ ] Given that an administrator completes the plan creation form with valid information, when the form is submitted, then a new membership plan is saved successfully and displayed within the management interface and, when published, becomes visible on the customer-facing Plans page.
+
+##### AC4 – Shared Create and Edit Workflow
+
+- [ ] Given that an administrator chooses to edit an existing membership plan, when the edit page is opened, then the same form used for creation is displayed with the plan's existing data pre-populated, and any valid changes are saved successfully.
+
+##### AC5 – Comprehensive Server-Side Validation
+
+- [ ] Given that an administrator submits a membership plan form, when the data is processed, then all input is validated on the server side, including required fields, positive pricing values, image type restrictions, and file-size limits, with clear inline validation messages displayed for invalid submissions.
+
+##### AC6 – Archive Plans Instead of Permanent Deletion
+
+- [ ] Given that an administrator removes a membership plan, when the action is confirmed, then the plan is archived (soft deleted) rather than permanently removed, ensuring that existing subscriptions and historical records remain intact whilst preventing new users from subscribing to the archived plan.
+
+##### AC7 – Synchronisation with Stripe Products and Prices
+
+- [ ] Given that an administrator creates or updates a membership plan, when the change is processed, then the corresponding Stripe Product and Price records are synchronised accordingly. Where a pricing change occurs, a new Stripe Price is created and the previous Price is archived because Stripe Prices are immutable.
+
+##### AC8 – Immediate Reflection of Administrative Changes
+
+- [ ] Given that an administrator creates, updates, or archives a membership plan, when the request is completed successfully, then the changes are reflected within the management interface and customer-facing pages on the next application request.
+
+##### AC9 – Clear Success and Failure Feedback
+
+- [ ] Given that an administrative action succeeds or fails, when processing is complete, then the administrator receives clear confirmation or error feedback, and no partial updates are applied if an operation fails.
+
+##### AC10 – Accessible and Responsive Management Interface
+
+- [ ] Given that an administrator manages membership plans using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then forms use appropriate labels, fieldsets, and validation messaging, errors are announced to assistive technologies, and the layout adapts responsively across different screen sizes (for example, transforming from tables to card-based layouts).
 
 ---
 
