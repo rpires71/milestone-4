@@ -28,25 +28,8 @@
   - [Wireframes](#wireframes)
   - [FitHub Fitness Subscription Application Wireframes](#fithub-fitness-subscription-application-wireframes)
   - [FitHub — User Stories](#fithub--user-stories)
-  - ### User Story 1: Account Registration (Visitor)
     - [User Story 1: Account Registration (Visitor)](#user-story-1-account-registration-visitor)
-    - [User Story 2: Specify the Number of Guests (Customer)](#user-story-2-specify-the-number-of-guests-customer)
-    - [User Story 3: View a Booking Confirmation (Customer)](#user-story-3-view-a-booking-confirmation-customer)
-    - [User Story 4: Modify Booking Date/Time (Customer)](#user-story-4-modify-booking-datetime-customer)
-    - [User Story 5: Cancel a Booking (Customer)](#user-story-5-cancel-a-booking-customer)
-    - [User Story 6: View Restaurant Menu (Customer)](#user-story-6-view-restaurant-menu-customer)
-    - [User Story 7: View View Dietary Information (Customer)](#user-story-7-view-dietary-information-customer)
-    - [User Story 8: Receive Email Confirmation (Customer)](#user-story-8-receive-email-confirmation-customer)
-    - [User Story 9: View Booking History (Customer)](#user-story-9-view-booking-history-customer)
-    - [User Story 10: Special Requests (Customer)](#user-story-10-special-requests-customer)
-    - [User Story 11: View All Bookings for the Day (Staff)](#user-story-11-view-all-bookings-for-the-day-staff)
-    - [User Story 12: Search Bookings by Name (Staff)](#user-story-12-search-bookings-by-name-staff)
-    - [User Story 13: Mark Tables as Occupied/Available (Staff)](#user-story-13-mark-tables-as-occupiedavailable-staff)
-    - [User Story 14: Update Booking Status (Staff)](#user-story-14-update-booking-status-staff)
-    - [User Story 15: Manage Table Configuration (Admin)](#user-story-15-manage-table-configuration-admin)
-    - [User Story 16: Manage Time Slots (Admin)](#user-story-16-manage-time-slots-admin)
-    - [User Story 17: View Booking Statistics (Admin)](#user-story-17-view-booking-statistics-admin)
-    - [User Story 18: Manage Menu Items (Admin)](#user-story-18-manage-menu-items-admin)
+    - [User Story 2: Secure Authentication (Visitor / Member)](#user-story-2-secure-authentication-visitor--member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2192,6 +2175,44 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessibility and Responsive Design Compliance
 
 - [ ] Given that a visitor accesses the registration form using a desktop, tablet, mobile device, or assistive technology, when interacting with the form, then all controls are keyboard accessible, screen-reader compatible, responsive, and supported by meaningful labels and accessible error messaging.
+
+---
+
+### User Story 2: Secure Authentication (Visitor / Member)
+
+#### As a visitor, I want to **sign in and sign out securely** so that **I can access my account while ensuring my personal information remains protected.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Login Form Available to Unauthenticated Users
+
+- [ ] Given that a user is not logged in, when they navigate to the login page, then a clearly labelled authentication form is displayed.
+
+##### AC2 – Restricted Access to Authentication Pages
+
+- [ ] Given that a user is already authenticated, when they attempt to access the login or registration pages, then they are redirected to an appropriate location rather than being shown the authentication forms.
+
+##### AC3 – Successful User Authentication
+
+- [ ] Given that a member enters valid login credentials, when the authentication form is submitted, then access is granted and the user is redirected to their dashboard or the originally requested page.
+
+##### AC4 – Feedback for Invalid Credentials
+
+- [ ] Given that a member enters incorrect login details, when the authentication attempt fails, then the system displays a clear and generic error message without indicating whether the email address or password was incorrect.
+
+##### AC5 – Secure Logout Functionality
+
+- [ ] Given that a user is authenticated, when they select the logout option, then their session is terminated, access to protected resources is revoked, and a logout confirmation message is displayed.
+
+##### AC6 – Authentication Required for Protected Content
+
+- [ ] Given that a visitor attempts to access a restricted page directly via its URL, when they are not authenticated, then they are redirected to the login page and prevented from viewing protected content.
+
+##### AC7 – Accessible and Responsive Authentication Experience
+
+- [ ] Given that a user accesses the authentication system from a desktop, tablet, mobile device, or assistive technology, when logging in or out, then the process is fully responsive, keyboard accessible, screen-reader compatible, and provides clear user feedback throughout.
 
 ---
 
