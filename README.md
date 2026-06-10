@@ -46,6 +46,7 @@
     - [User Story 16: View a Personalised Dashboard (Member)](#user-story-16-view-a-personalised-dashboard-member)
     - [User Story 17: Delete My Account (Member)](#user-story-17-delete-my-account-member)
     - [User Story 18: Create, Edit and Archive Membership Plans (Admin)](#user-story-18-create-edit-and-archive-membership-plans-admin)
+    - [User Story 19: Manage Shop Products (Admin)](#user-story-19-manage-shop-products-admin)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2877,6 +2878,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC10 – Accessible and Responsive Management Interface
 
 - [ ] Given that an administrator manages membership plans using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then forms use appropriate labels, fieldsets, and validation messaging, errors are announced to assistive technologies, and the layout adapts responsively across different screen sizes (for example, transforming from tables to card-based layouts).
+
+---
+
+### User Story 19: Manage Shop Products (Admin)
+
+#### As an administrator, I want to **create, update, and manage shop products** so that **customers are presented with accurate, up-to-date merchandise listings at all times.** *(Should Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Restricted Access for Staff Users
+
+- [ ] Given that a non-staff user attempts to access the product management area, when the request is processed, then access is denied with a **403 Forbidden** response, and all management controls remain hidden from non-staff users throughout the application interface.
+
+##### AC2 – Product Catalogue Management View
+
+- [ ] Given that an administrator opens the product management section, when the page loads, then all existing products are displayed in a structured list showing key information, including product name, category, price, stock level, and availability status.
+
+##### AC3 – Create New Products
+
+- [ ] Given that an administrator completes the product creation form with valid information, when the form is submitted, then the product is saved successfully and becomes visible within the management interface and, where applicable, the customer-facing shop.
+
+##### AC4 – Edit Existing Products
+
+- [ ] Given that an administrator updates product information, when valid changes are submitted, then the amended product details are stored in the database and reflected across the customer-facing shop on the next request.
+
+##### AC5 – Archive or Hide Products
+
+- [ ] Given that an administrator chooses to remove a product from sale, when the action is confirmed, then the product is hidden or archived rather than permanently deleted, ensuring historical orders remain intact whilst preventing new purchases.
+
+##### AC6 – Validation and Image Management
+
+- [ ] Given that an administrator submits product information, when the data is processed, then all required fields are validated, pricing values are verified, and any uploaded product images are checked for permitted file types and size restrictions.
+
+##### AC7 – Immediate Reflection of Product Changes
+
+- [ ] Given that a product is created, edited, archived, or hidden, when the operation is completed successfully, then the updated information is reflected within the customer-facing shop on the next application request.
+
+##### AC8 – Accessible and Responsive Administration Interface
+
+- [ ] Given that an administrator manages products using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then all controls remain keyboard accessible, clearly labelled, and responsive across different screen sizes.
 
 ---
 
