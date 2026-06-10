@@ -40,6 +40,7 @@
     - [User Story 10: View Order Confirmation (Member)](#user-story-10-view-order-confirmation-member)
     - [User Story 11: View Order History (Member)](#user-story-11-view-order-history-member)
     - [User Story 12: Create, Update and Delete Product Reviews (Member)](#user-story-12-create-update-and-delete-product-reviews-member)
+    - [User Story 13: Create, Edit and Delete Community Posts (Subscriber)](#user-story-13-create-edit-and-delete-community-posts-subscriber)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2631,6 +2632,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Review Features
 
 - [ ] Given that a member interacts with the review system using a desktop, tablet, mobile device, or assistive technology, when creating, editing, or deleting reviews, then all forms and review content remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+
+---
+
+### User Story 13: Create, Edit and Delete Community Posts (Subscriber)
+
+#### As a subscriber, I want to **create, update, and remove community posts** so that **I can actively participate in discussions and engage with other members of the fitness community.** *(Should Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Community Posting Restricted to Active Subscribers
+
+- [ ] Given that a user does not have an active subscription, when they attempt to create a community post, then access is denied through server-side permission checks and a clear subscription prompt is displayed.
+
+##### AC2 – Community Post Creation with Validation
+
+- [ ] Given that an active subscriber submits a new community post, when the form is processed, then all input is validated and, if successful, the post is saved and linked to the subscriber's account.
+
+##### AC3 – Immediate Display of New Posts
+
+- [ ] Given that a community post has been created successfully, when the action is completed, then the post appears within the community feed without requiring additional user interaction.
+
+##### AC4 – Edit Existing Community Posts
+
+- [ ] Given that a subscriber has authored a community post, when they choose to edit it, then the updated content is validated and saved successfully.
+
+##### AC5 – Delete Community Posts with Confirmation
+
+- [ ] Given that a subscriber chooses to remove one of their community posts, when the deletion request is confirmed, then the post is permanently removed from the community feed.
+
+##### AC6 – Ownership-Based Authorisation
+
+- [ ] Given that a subscriber attempts to edit or delete a community post, when the request is processed, then they are only permitted to modify posts that they have authored and are prevented from changing content created by other users.
+
+##### AC7 – Secure Handling of Community Content
+
+- [ ] Given that post content is submitted, stored, and displayed within the application, when the data is processed, then it is appropriately sanitised and escaped to protect against malicious scripts and unauthorised code execution.
+
+##### AC8 – Accessible and Responsive Community Features
+
+- [ ] Given that a subscriber accesses the community area using a desktop, tablet, mobile device, or assistive technology, when interacting with the post creation form or community feed, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
