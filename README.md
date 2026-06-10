@@ -44,6 +44,7 @@
     - [User Story 14: View the Community Feed (Subscriber)](#user-story-14-view-the-community-feed-subscriber)
     - [User Story 15: Manage My Profile Information (Member)](#user-story-15-manage-my-profile-information-member)
     - [User Story 16: View a Personalised Dashboard (Member)](#user-story-16-view-a-personalised-dashboard-member)
+    - [User Story 17: Delete My Account (Member)](#user-story-17-delete-my-account-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2787,6 +2788,44 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC6 – Accessible and Responsive Dashboard Experience
 
 - [ ] Given that a member accesses the dashboard using a desktop, tablet, mobile device, or assistive technology, when interacting with dashboard content, then information is organised using a logical heading structure, the layout adapts appropriately to different screen sizes, and all interactive elements remain keyboard accessible and screen-reader compatible.
+
+---
+
+### User Story 17: Delete My Account (Member)
+
+#### As a member, I want to **permanently delete my account** so that **I can remove my personal information and discontinue use of the service when it is no longer required.** *(Could Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Account Deletion Option Available
+
+- [ ] Given that a member accesses their account settings or profile area, when the page is displayed, then a clearly identifiable **Delete Account** option is available.
+
+##### AC2 – Confirmation of Destructive Actions
+
+- [ ] Given that a member chooses to delete their account, when the deletion process is initiated, then explicit confirmation is required (for example, through a type-to-confirm mechanism) before the action can proceed.
+
+##### AC3 – Active Subscription Handling
+
+- [ ] Given that a member has an active subscription, when their account is deleted, then any associated Stripe subscription is cancelled as part of the account deletion process.
+
+##### AC4 – Compliance with Data Protection Requirements
+
+- [ ] Given that an account deletion request is completed, when the member's data is processed, then personal information is removed or anonymised in accordance with applicable data protection and right-to-erasure requirements, whilst retaining any records necessary to preserve order integrity and legal obligations.
+
+##### AC5 – Ownership-Based Authorisation
+
+- [ ] Given that a member requests account deletion, when the request is processed, then they may only delete their own account and cannot perform deletion actions on behalf of another user.
+
+##### AC6 – Confirmation, Logout and Redirection
+
+- [ ] Given that account deletion has been completed successfully, when the process finishes, then the member is logged out, presented with a confirmation message, and redirected to an appropriate public-facing page.
+
+##### AC7 – Accessible and Responsive Deletion Workflow
+
+- [ ] Given that a member deletes their account using a desktop, tablet, mobile device, or assistive technology, when progressing through the confirmation process, then all controls remain keyboard accessible, focus is managed appropriately, and the workflow is clearly labelled and responsive.
 
 ---
 
