@@ -2298,6 +2298,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ---
 
+### User Story 5: Subscribe to a Membership Plan (Member)
+
+#### As a member, I want to **subscribe to a membership plan** so that **I can gain access to premium fitness content, exclusive resources, and the subscriber community.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Secure Subscription Checkout for Authenticated Members
+
+- [ ] Given that a member is logged into the platform, when they choose a subscription plan and billing option (monthly or annual), then they are redirected to a secure Stripe checkout process for the selected subscription.
+
+##### AC2 – Secure Payment Processing via Stripe
+
+- [ ] Given that a member enters payment information during checkout, when the transaction is processed, then Stripe securely handles the payment and no payment card information is stored, processed, or exposed by the application.
+
+##### AC3 – Subscription Confirmation Through Webhooks
+
+- [ ] Given that a subscription payment has been successfully completed, when Stripe sends the relevant webhook event (for example, `customer.subscription.created`), then the subscription record is created or updated within the database, ensuring reliable processing even if the user closes their browser before the checkout flow completes.
+
+##### AC4 – Clear Subscription Success Feedback
+
+- [ ] Given that a subscription has been successfully activated, when the member is redirected back to the application, then a confirmation message is displayed containing the selected plan, subscription cost, billing interval, and renewal date.
+
+##### AC5 – Helpful Payment Failure Handling
+
+- [ ] Given that a payment is declined or cannot be completed, when the transaction fails, then the system displays a clear and informative error message and allows the member to retry the payment process without losing their progress.
+
+##### AC6 – Immediate Subscription Status Updates
+
+- [ ] Given that a subscription becomes active, when the member next interacts with the application, then their subscription status is reflected consistently throughout the platform, including their profile, dashboard, content access permissions, and community features.
+
+##### AC7 – Prevention of Duplicate Active Subscriptions
+
+- [ ] Given that a member already has an active subscription, when they attempt to subscribe to another plan, then the system prevents the creation of duplicate subscriptions and directs the member to manage their existing subscription where appropriate.
+
+##### AC8 – Accessible and Responsive Subscription Experience
+
+- [ ] Given that a member completes the subscription process on a desktop, tablet, mobile device, or through assistive technologies, when progressing through the checkout journey, then all functionality remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback at every stage.
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
