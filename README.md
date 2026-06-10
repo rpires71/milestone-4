@@ -37,6 +37,7 @@
     - [User Story 7: Add Products to the Shopping Cart (Member)](#user-story-7-add-products-to-the-shopping-cart-member)
     - [User Story 8: Update or Remove Shopping Cart Items (Member)](#user-story-8-update-or-remove-shopping-cart-items-member)
     - [User Story 9: Secure Checkout and Payment Processing (Member)](#user-story-9-secure-checkout-and-payment-processing-member)
+    - [User Story 10: View Order Confirmation (Member)](#user-story-10-view-order-confirmation-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2506,6 +2507,44 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC9 – Accessible and Responsive Checkout Experience
 
 - [ ] Given that a member completes the checkout process using a desktop, tablet, mobile device, or assistive technology, when interacting with the checkout form, then the interface remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback for validation errors and payment outcomes.
+
+---
+
+### User Story 10: View Order Confirmation (Member)
+
+#### As a member, I want to **view a confirmation of my completed order** so that **I have clear evidence that my purchase was processed successfully.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Order Confirmation Displayed Following Successful Payment
+
+- [ ] Given that a member's payment has been successfully processed, when the transaction is completed, then an order confirmation page is displayed.
+
+##### AC2 – Display of Essential Order Information
+
+- [ ] Given that an order confirmation page is shown, when the member reviews the confirmation, then it includes the order reference number, purchased items, order total, delivery information, and confirmation that an order email has been sent.
+
+##### AC3 – Confirmation Data Sourced from the Verified Order Record
+
+- [ ] Given that the order confirmation page is loaded, when order information is displayed, then the data originates from the order record created or confirmed by the Stripe webhook rather than being generated solely from redirect parameters.
+
+##### AC4 – Support for Asynchronous Order Confirmation
+
+- [ ] Given that the order confirmation page loads before the webhook has finished processing the order, when the page is displayed, then a temporary **"Confirming Your Order"** status is shown and automatically transitions to the completed confirmation view once processing has finished.
+
+##### AC5 – Ownership and Authorisation Controls
+
+- [ ] Given that a member attempts to access an order confirmation page, when the request is processed, then only orders associated with their account are accessible, and any attempt to view another user's order results in an appropriate not-found or permission-denied response.
+
+##### AC6 – Confirmation Email Guidance and Support
+
+- [ ] Given that an order has been successfully confirmed, when the confirmation page is displayed, then the member is informed that a confirmation email has been sent and provided with appropriate guidance if the email has not been received (for example, checking spam folders or requesting a resend).
+
+##### AC7 – Accessible and Responsive Confirmation Experience
+
+- [ ] Given that a member accesses the order confirmation page using a desktop, tablet, mobile device, or assistive technology, when viewing the confirmation details, then the order number remains selectable text, headings follow a logical hierarchy, and the layout adapts appropriately to different screen sizes while remaining fully accessible.
 
 ---
 
