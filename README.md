@@ -39,6 +39,7 @@
     - [User Story 9: Secure Checkout and Payment Processing (Member)](#user-story-9-secure-checkout-and-payment-processing-member)
     - [User Story 10: View Order Confirmation (Member)](#user-story-10-view-order-confirmation-member)
     - [User Story 11: View Order History (Member)](#user-story-11-view-order-history-member)
+    - [User Story 12: Create, Update and Delete Product Reviews (Member)](#user-story-12-create-update-and-delete-product-reviews-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2588,6 +2589,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Design
 
 - [ ] Given that a member views their order history using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then the content is presented in an accessible format (such as a table with headers on larger screens and card-based layouts on smaller screens) and remains fully keyboard navigable.
+
+---
+
+### User Story 12: Create, Update and Delete Product Reviews (Member)
+
+#### As a member, I want to **create, edit, and remove product reviews** so that **I can share my experiences with other users and ensure my feedback remains accurate and up to date.** *(Should Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Review Submission Available to Eligible Members
+
+- [ ] Given that a logged-in member is viewing a product page, when they choose to leave feedback, then a review form containing a rating field and comment area is available.
+
+##### AC2 – Review Creation with Input Validation
+
+- [ ] Given that a member submits a review, when the form is processed, then all input is validated (for example, a mandatory rating and character limits), and valid reviews are saved and associated with both the member and the relevant product.
+
+##### AC3 – Immediate Review and Rating Updates
+
+- [ ] Given that a review has been successfully submitted, when the product page refreshes or reloads, then the review is displayed and the product's average rating is recalculated and updated accordingly.
+
+##### AC4 – Edit Existing Reviews
+
+- [ ] Given that a member has previously submitted a review, when they choose to modify it, then the updated content is validated and saved successfully.
+
+##### AC5 – Delete Reviews with Confirmation
+
+- [ ] Given that a member chooses to remove one of their reviews, when the deletion request is confirmed, then the review is permanently removed and the product's average rating is recalculated to reflect the change.
+
+##### AC6 – Ownership-Based Permissions
+
+- [ ] Given that a member attempts to edit or delete a review, when the request is processed, then they can only modify reviews that they have created and are prevented from changing reviews submitted by other members.
+
+##### AC7 – Secure Handling of Review Content
+
+- [ ] Given that review content is submitted, stored, and displayed, when the data is processed, then it is sanitised and escaped appropriately to prevent malicious scripts or unauthorised code execution.
+
+##### AC8 – Accessible and Responsive Review Features
+
+- [ ] Given that a member interacts with the review system using a desktop, tablet, mobile device, or assistive technology, when creating, editing, or deleting reviews, then all forms and review content remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
