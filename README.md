@@ -32,6 +32,8 @@
     - [User Story 2: Secure Authentication (Visitor / Member)](#user-story-2-secure-authentication-visitor--member)
     - [User Story 3: Browse Fitness Plans (Visitor / Member)](#user-story-3-browse-fitness-plans-visitor--member)
     - [User Story 4: View Fitness Plan Details and Access-Controlled Content (Member)](#user-story-4-view-fitness-plan-details-and-access-controlled-content-member)
+    - [User Story 5: Subscribe to a Membership Plan (Member)](#user-story-5-subscribe-to-a-membership-plan-member)
+    - [User Story 6: Manage or Cancel a Subscription (Subscriber)](#user-story-6-manage-or-cancel-a-subscription-subscriber)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2337,6 +2339,48 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Subscription Experience
 
 - [ ] Given that a member completes the subscription process on a desktop, tablet, mobile device, or through assistive technologies, when progressing through the checkout journey, then all functionality remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback at every stage.
+
+---
+
+### User Story 6: Manage or Cancel a Subscription (Subscriber)
+
+#### As a subscriber, I want to **manage or cancel my subscription** so that **I can maintain control over my membership, billing preferences, and subscription status.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Subscription Management Option Available
+
+- [ ] Given that a user has an active subscription, when they access their profile or subscription management area, then a clearly visible **Manage Subscription** option is displayed.
+
+##### AC2 – Integration with the Stripe Customer Portal
+
+- [ ] Given that a subscriber chooses to manage their membership, when they select the **Manage Subscription** option, then they are securely redirected to the Stripe Customer Portal where they can update payment details, change subscription plans, or cancel their subscription.
+
+##### AC3 – Subscription Changes Synchronised via Webhooks
+
+- [ ] Given that a subscriber modifies or cancels their subscription through Stripe, when the relevant webhook event (for example, `customer.subscription.updated` or `customer.subscription.deleted`) is received, then the subscription status is accurately synchronised with the application's database.
+
+##### AC4 – Ownership-Based Access Control
+
+- [ ] Given that a subscriber accesses subscription management features, when subscription information is displayed, then they can only view and manage subscriptions associated with their own account.
+
+##### AC5 – Continued Access Until the End of the Billing Period
+
+- [ ] Given that a subscriber cancels an active subscription, when the cancellation is processed, then access to subscriber-only content and features remains available until the end of the current paid billing cycle, after which access is automatically removed.
+
+##### AC6 – Subscription Status Reflected Across the Platform
+
+- [ ] Given that a subscription is updated, downgraded, upgraded, or cancelled, when the subscriber next interacts with the application, then the updated membership status is displayed consistently within their profile, dashboard, and access-controlled areas.
+
+##### AC7 – Clear Confirmation and User Feedback
+
+- [ ] Given that a subscription management action has been completed successfully, when the process finishes, then the subscriber is presented with a clear confirmation message describing the outcome of the action performed.
+
+##### AC8 – Accessible and Responsive Subscription Management
+
+- [ ] Given that a subscriber manages their membership using a desktop, tablet, mobile device, or assistive technology, when interacting with subscription management features, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
