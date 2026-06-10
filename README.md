@@ -35,6 +35,7 @@
     - [User Story 5: Subscribe to a Membership Plan (Member)](#user-story-5-subscribe-to-a-membership-plan-member)
     - [User Story 6: Manage or Cancel a Subscription (Subscriber)](#user-story-6-manage-or-cancel-a-subscription-subscriber)
     - [User Story 7: Add Products to the Shopping Cart (Member)](#user-story-7-add-products-to-the-shopping-cart-member)
+    - [User Story 8: Update or Remove Shopping Cart Items (Member)](#user-story-8-update-or-remove-shopping-cart-items-member)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2420,6 +2421,44 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC7 – Accessible and Responsive Cart Functionality
 
 - [ ] Given that a member interacts with shopping cart functionality using a desktop, tablet, mobile device, or assistive technology, when adding products to the cart, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+
+---
+
+### User Story 8: Update or Remove Shopping Cart Items (Member)
+
+#### As a member, I want to **modify item quantities or remove products from my shopping cart** so that **my order accurately reflects the items I intend to purchase.** *(Must Have)*
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Acceptance Criteria
+
+##### AC1 – Quantity Updates with Real-Time Price Recalculation
+
+- [ ] Given that a member changes the quantity of an item within their shopping cart, when the update is applied, then the corresponding line total and overall order total are recalculated immediately, and the change is announced to assistive technologies using an appropriate live region.
+
+##### AC2 – Remove Products from the Shopping Cart
+
+- [ ] Given that a member chooses to remove an item from their cart, when the action is confirmed, then the product is removed and all pricing totals are recalculated accordingly.
+
+##### AC3 – Save Items for Later Purchase
+
+- [ ] Given that a member selects the **Save for Later** option, when the action is processed, then the item is removed from the active cart and stored separately so that it can be restored at a later date.
+
+##### AC4 – Stock Availability Enforcement
+
+- [ ] Given that a member attempts to increase a product quantity beyond the available stock level, when the update is submitted, then the system prevents the change and displays the maximum quantity currently available.
+
+##### AC5 – Empty Cart State Handling
+
+- [ ] Given that no products remain in the shopping cart, when the cart page is displayed, then a clear and user-friendly empty-cart message is shown together with a prominent link directing the member back to the shop.
+
+##### AC6 – Accurate Order Calculations
+
+- [ ] Given that the contents of the shopping cart are modified, when totals are recalculated, then the subtotal, delivery charges, discounts (where applicable), and final order total are calculated correctly, including any free-delivery threshold rules.
+
+##### AC7 – Accessible and Responsive Cart Management
+
+- [ ] Given that a member manages their cart using a desktop, tablet, mobile device, or assistive technology, when interacting with quantity controls and action buttons, then all controls remain responsive, keyboard accessible, screen-reader compatible, and include descriptive labels.
 
 ---
 
