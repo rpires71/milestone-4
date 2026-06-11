@@ -48,6 +48,9 @@
     - [User Story 18: Create, Edit and Archive Membership Plans (Admin)](#user-story-18-create-edit-and-archive-membership-plans-admin)
     - [User Story 19: Manage Shop Products (Admin)](#user-story-19-manage-shop-products-admin)
     - [User Story 20: View Orders and Subscribers (Admin)](#user-story-20-view-orders-and-subscribers-admin)
+  - [FitHub Colour Palette Justification](#fithub-colour-palette-justification)
+  - [Typography Justification for FitHub Website](#typography-justification-for-fithub-website)
+  - [Accessibility Implementation, User Flow and Navigation Strategies](#accessibility-implementation-user-flow-and-navigation-strategies)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -2963,6 +2966,766 @@ FitHub is a fitness subscription web application built with Django that allows u
 ##### AC8 – Accessible and Responsive Interface
 
 - [ ] Given that an administrator accesses order or subscriber information using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then data is presented accessibly, remains keyboard navigable, and adapts appropriately to different screen sizes.
+
+---
+
+## FitHub Colour Palette Justification
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Selected Colour Palette
+
+| Colour Name | Hex Code | Purpose |
+|-------------|----------|---------|
+| Energy Red | `#C81E2D` | Primary brand colour used for key call-to-action buttons, active states, and prominent interface accents |
+| Ink Black | `#1A1A1A` | Applied to headings, body text, footer backgrounds, and secondary action buttons |
+| Slate Grey | `#6B7280` | Used for supporting text, icons, form borders, and subtle interface elements |
+| Mist Grey | `#F4F5F7` | Provides background colour for pages, content sections, and dividers |
+| Pure White | `#FFFFFF` | Used for cards, forms, modal windows, and content containers |
+| Success Green | `#2E7D32` | Indicates successful actions, stock availability, and confirmation messages |
+
+#### Functional Status Colours
+
+The following colours are used consistently throughout the application to communicate system status. To support accessibility, colour is always accompanied by descriptive text and an icon rather than being used as the sole means of conveying information.
+
+| Status | Hex Code | Application |
+|---------|----------|-------------|
+| Success | `#2E7D32` | Confirmations, completed actions, in-stock indicators, and delivered orders |
+| Warning | `#B45309` | Low-stock alerts and cautionary notifications |
+| Information | `#1D4ED8` | Processing states, dispatched orders, and informational messages |
+| Neutral Accent | `#6D28D9` | Refunded orders and other special status indicators |
+
+A darker variation of the primary brand colour (`#A3151F`) is used for hover and active states, providing clear visual feedback during user interactions.
+
+### Overview and Design Rationale
+
+The FitHub colour palette has been carefully selected to reflect the energy, motivation, and confidence associated with a modern fitness platform. As the application enables users to subscribe to training plans, purchase merchandise, and manage their accounts, the colour scheme balances motivational visual elements with a professional and highly usable interface.
+
+The palette combines a single high-impact brand colour with a structured set of neutral tones, ensuring that important actions remain prominent while maintaining clarity throughout the user journey. This restrained approach prevents visual clutter, improves usability, and allows fitness content and product imagery to remain the primary focus.
+
+The design philosophy centres on one strong accent colour, a confident dark neutral, and a collection of light supporting tones, complemented by a concise set of functional status colours. This approach creates a contemporary interface while supporting accessibility, consistency, and strong visual hierarchy.
+
+### Colour Selection Justification
+
+#### Energetic Brand Colour for User Engagement
+
+Energy Red (`#C81E2D`) serves as the primary brand colour and is intentionally reserved for the application's most important actions, including:
+
+- **Subscribe**
+- **Add to Basket**
+- **Complete Order**
+- Active navigation states
+- Key interface highlights
+
+Red is strongly associated with energy, determination, and action, making it particularly appropriate within a fitness-focused environment. Restricting its use to primary actions ensures that it remains visually meaningful and encourages user engagement without becoming overwhelming.
+
+#### Strength and Professionalism Through Ink Black
+
+Ink Black (`#1A1A1A`) is used extensively for headings, body content, footer areas, and secondary action buttons. By choosing a near-black tone rather than pure black (`#000000`), the interface achieves a premium and professional appearance whilst reducing visual harshness and improving long-form readability.
+
+This is particularly beneficial for plan descriptions, product information, and account management pages where users may spend extended periods reading content.
+
+#### Neutral Foundations for Clarity
+
+Mist Grey (`#F4F5F7`) and Pure White (`#FFFFFF`) establish a clean and distraction-free foundation throughout the application.
+
+These colours:
+
+- Reduce visual fatigue
+- Improve content separation
+- Enhance readability
+- Support strong contrast ratios
+- Allow product imagery and fitness plans to stand out
+
+The resulting interface feels spacious, organised, and easy to navigate.
+
+#### Positive Reinforcement Through Success Green
+
+Success Green (`#2E7D32`) is used for:
+
+- Success notifications
+- Subscription confirmations
+- Order confirmations
+- In-stock indicators
+
+Green is widely associated with progress, achievement, health, and positive outcomes. These associations align naturally with both fitness goals and successful transactional experiences.
+
+#### Accessible Functional Status Indicators
+
+A carefully defined set of functional colours communicates system status consistently throughout the platform:
+
+- **Green** — Success
+- **Amber** — Warning
+- **Blue** — Information
+- **Purple** — Special or neutral states
+
+To comply with accessibility best practices, colour is never used as the sole indicator of meaning. Every status is reinforced through accompanying text and iconography, ensuring information remains understandable for users with visual impairments or colour-vision deficiencies.
+
+### Consistent Branding and Visual Hierarchy
+
+The palette establishes a clear visual hierarchy across all areas of the application, including:
+
+- Navigation
+- Membership plans
+- Product listings
+- Shopping cart and checkout
+- User accounts and dashboards
+- Community features
+
+The combination of a single accent colour and structured neutral tones directs user attention towards key actions whilst maintaining balance and consistency.
+
+Implemented through CSS custom properties (variables), the palette supports scalability and ensures a cohesive visual identity across desktop, tablet, and mobile devices.
+
+### Applied Colour Theory Principles
+
+#### 1. Accent-Led Balance (60–30–10 Rule)
+
+The design follows the widely recognised 60–30–10 principle:
+
+- **60%** Light neutral colours
+- **30%** Dark structural colours
+- **10%** Accent colour
+
+This distribution creates visual stability while ensuring important actions remain highly visible.
+
+#### 2. High-Contrast Focal Points
+
+The use of a single saturated accent colour against a predominantly neutral background creates strong focal points that naturally draw attention to interactive elements such as subscription and checkout actions.
+
+This prevents competing accents from diluting the effectiveness of primary calls to action.
+
+#### 3. Psychological Associations
+
+The palette has been selected with consideration for colour psychology:
+
+- **Red** encourages energy, action, and motivation.
+- **Green** reinforces success, growth, and achievement.
+- **Dark neutrals** communicate professionalism, trust, and reliability.
+
+Together, these colours create an environment that is both motivating and credible.
+
+#### 4. Accessibility and Readability
+
+The palette has been designed to support **WCAG 2.1 AA** accessibility standards, including:
+
+- Minimum contrast ratio of **4.5:1** for body text
+- Minimum contrast ratio of **3:1** for large text and interface components
+- Dark text on light backgrounds for improved readability
+- Status indicators supported by text and icons
+
+All final colour pairings should be validated using a recognised contrast-checking tool prior to deployment.
+
+#### 5. Brand Consistency and Recognition
+
+Colours are applied consistently throughout the application, including:
+
+- Navigation components
+- Forms and validation messages
+- Product and plan cards
+- Modal windows
+- Status indicators
+- Checkout flows
+
+The use of CSS variables ensures a maintainable, scalable, and recognisable visual identity across all devices and screen sizes.
+
+### Strategic Use of Colour
+
+- **Emphasis:** Energy Red (`#C81E2D`) highlights primary actions such as subscribing, purchasing products, and completing transactions.
+- **Hierarchy:** Ink Black (`#1A1A1A`) provides structure and readability, whilst the brand red is reserved exclusively for primary interactions.
+- **Consistency:** The palette is applied uniformly across membership plans, shop functionality, cart workflows, checkout processes, and account management areas.
+- **Status Communication:** Functional colours provide clear and consistent feedback, always supported by text and icons.
+- **Contrast:** Mist Grey (`#F4F5F7`) and Pure White (`#FFFFFF`) create effective separation between content, controls, and background areas.
+
+### Summary
+
+FitHub utilises an energetic yet controlled colour palette to deliver a motivating, trustworthy, and accessible user experience. By combining a distinctive high-energy brand red with a structured neutral foundation and a carefully selected set of functional status colours, the platform achieves a modern and professional appearance whilst maintaining excellent usability.
+
+This deliberate application of colour supports user confidence throughout subscription, shopping, and account-management journeys, reinforces accessibility principles, and establishes a consistent and recognisable brand identity across the entire application.
+
+---
+
+## Typography Justification for FitHub Website
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Overview
+
+The typography selected for FitHub has been chosen to communicate a modern, confident, and motivating brand identity whilst maintaining excellent readability, accessibility, and usability. The platform is designed for users pursuing a wide range of fitness goals, from beginners taking their first steps towards a healthier lifestyle to experienced fitness enthusiasts seeking structured training plans.
+
+As FitHub supports essential user journeys such as membership subscriptions, merchandise purchases, community engagement, and account management, the typography strategy prioritises clarity, hierarchy, and consistency across all devices and screen sizes.
+
+The selected typeface pairing — **Poppins** for headings and **Inter** for body content — combines a contemporary and energetic visual style with exceptional on-screen legibility. This combination reinforces the platform's fitness-focused identity whilst ensuring that information remains accessible and easy to consume.
+
+### Typography Objectives
+
+The chosen typography system has been designed to achieve the following objectives:
+
+- Deliver a highly readable and accessible user experience for all audiences.
+- Reinforce a modern, energetic, and motivational fitness brand.
+- Establish trust and professionalism during transactional interactions such as subscriptions, purchases, and account management.
+- Maintain clarity and consistency across desktop, tablet, and mobile devices.
+- Support a wide variety of content types, including fitness plans, product information, forms, dashboards, and account pages.
+- Align with recognised user experience (UX) and accessibility best practices.
+
+This approach ensures that typography contributes positively to both the visual identity and usability of the application.
+
+### Primary Typeface — Poppins (Headings)
+
+The geometric sans-serif typeface **Poppins** is used for:
+
+- Page headings
+- Section titles
+- Navigation items
+- Card headings
+- Call-to-action buttons
+- Key interface labels
+
+#### Justification
+
+Poppins features clean geometric shapes, balanced proportions, and strong visual presence, making it particularly effective for establishing hierarchy and guiding user attention.
+
+Its bold and confident appearance allows users to quickly identify important information, including:
+
+- Page titles
+- Membership plan names
+- Product names
+- Section headings
+- Primary actions such as **Subscribe**, **Add to Basket**, and **Complete Order**
+
+The slightly rounded characteristics of Poppins create an approachable and energetic feel that aligns well with a fitness-focused platform. At the same time, its professional appearance ensures it remains suitable for commercial and transactional content.
+
+Its widespread browser support and excellent rendering performance further contribute to a consistent user experience across different devices and operating systems.
+
+### Secondary Typeface — Inter (Body Content)
+
+The humanist sans-serif typeface **Inter** is used for:
+
+- Body text
+- Plan descriptions
+- Product descriptions
+- Form labels
+- Helper text
+- Error and confirmation messages
+- Account information
+- Supporting content throughout the application
+
+#### Justification
+
+Inter was specifically designed for digital interfaces and screen-based reading, making it an excellent choice for FitHub's primary content areas.
+
+Key characteristics include:
+
+- Open and highly distinguishable letterforms
+- Generous spacing between characters
+- Tall x-height for improved readability
+- Excellent clarity at smaller font sizes
+
+These attributes ensure that users can comfortably read longer content sections such as:
+
+- Fitness plan descriptions
+- Product specifications
+- Checkout summaries
+- Community discussions
+- Profile information
+
+The neutral and highly legible design of Inter helps users absorb information efficiently and complete important tasks with confidence, particularly during registration, subscription management, and checkout workflows.
+
+### Typography Implementation Strategy
+
+To maximise consistency, maintainability, and performance, the application uses only two primary typefaces throughout the interface:
+
+| Typeface | Purpose |
+|-----------|---------|
+| **Poppins** | Headings, navigation, prominent labels, and call-to-action buttons |
+| **Inter** | Body text, paragraphs, descriptions, forms, and supporting content |
+
+Limiting the design system to two complementary typefaces reduces visual complexity, strengthens brand consistency, and minimises cognitive load for users.
+
+This restrained approach also improves performance by reducing the number of font files that must be downloaded and rendered by the browser.
+
+### Typography Specifications
+
+#### Font Sizes
+
+- **Minimum body text size:** `16px`
+- Larger font sizes are used for headings according to the visual hierarchy.
+- Text scales responsively across breakpoints to maintain readability.
+
+#### Scalable Units
+
+Typography is implemented using **rem units**, based on a root font size of `16px`.
+
+This approach ensures that:
+
+- Browser zoom functions correctly.
+- User accessibility preferences are respected.
+- Text scales consistently across devices.
+- The interface remains responsive and accessible.
+
+#### Font Weights
+
+| Weight | Usage |
+|----------|---------|
+| `400` | Body text and general content |
+| `500–600` | Sub-headings, emphasis, and supporting labels |
+| `600–700` | Headings, navigation, and call-to-action buttons |
+
+#### Fallback Font Stack
+
+```css
+font-family: 'Poppins', 'Inter', Arial, sans-serif;
+````
+
+Providing fallback fonts ensures content remains readable even if custom web fonts fail to load.
+
+### Visual Hierarchy and User Experience
+
+Typography plays a critical role in establishing a clear visual hierarchy throughout FitHub.
+
+#### Hierarchy
+
+Poppins creates strong visual anchors through:
+
+* Page titles
+* Section headings
+* Product names
+* Membership plan names
+* Primary actions
+
+Inter supports this hierarchy by presenting supporting information in a highly readable format.
+
+#### Scannability
+
+The combination of distinct heading and body fonts allows users to quickly scan pages and locate relevant information without unnecessary effort.
+
+This is particularly important for:
+
+* Plan comparison pages
+* Product listings
+* Dashboard summaries
+* Checkout workflows
+* Community content
+
+#### Consistency
+
+The same typography system is applied consistently across:
+
+* Navigation
+* Plans
+* Product pages
+* Cart and checkout
+* User profiles
+* Community features
+* Administrative interfaces
+
+This consistency strengthens familiarity and reduces cognitive effort when moving between different areas of the application.
+
+### Accessibility Considerations
+
+Typography has been selected with accessibility as a core requirement.
+
+#### Readability
+
+* Minimum body text size of `16px`
+* Clear distinction between heading levels
+* Adequate line spacing and character spacing
+* High colour contrast between text and background
+
+#### WCAG 2.1 AA Alignment
+
+The typography strategy supports compliance with WCAG 2.1 AA guidelines through:
+
+* Readable font sizes
+* Logical heading hierarchy
+* Scalable text
+* Support for browser zoom functionality
+* Clear distinction between interactive and non-interactive content
+
+#### Device Independence
+
+Both typefaces render effectively across:
+
+* Desktop computers
+* Laptops
+* Tablets
+* Smartphones
+* Assistive technologies
+
+This ensures a consistent reading experience regardless of device or screen size.
+
+### Strategic Use of Typography
+
+The typography system supports several key design objectives:
+
+* **Emphasis:** Poppins highlights important actions and navigational elements.
+* **Hierarchy:** Clear differentiation between headings, sub-headings, and supporting content.
+* **Readability:** Inter provides excellent legibility for extended reading.
+* **Consistency:** A unified typography system strengthens brand identity.
+* **Accessibility:** Scalable sizing and clear hierarchy support users with varying needs.
+
+### Summary
+
+FitHub employs a carefully selected typography system that balances motivation, professionalism, and accessibility. By combining the bold, contemporary character of **Poppins** with the exceptional readability of **Inter**, the platform creates a strong visual hierarchy whilst maintaining clarity across all user journeys.
+
+This typography strategy supports effective communication throughout subscription management, shopping experiences, community engagement, and account administration. The result is a modern, responsive, and accessible interface that reinforces the FitHub brand while delivering an excellent user experience across all devices.
+
+---
+
+## Accessibility Implementation, User Flow and Navigation Strategies
+
+**FitHub**
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Accessibility Implementation
+
+Accessibility was embedded into FitHub from the earliest stages of design and development, forming a fundamental requirement rather than a post-development enhancement. The platform has been designed to ensure that all users — including individuals with visual, auditory, cognitive, and motor impairments — can independently browse fitness plans and merchandise, register and subscribe, complete purchases, engage with the community, and manage their accounts.
+
+All accessibility decisions were informed by the **Web Content Accessibility Guidelines (WCAG) 2.1**, ensuring alignment with internationally recognised standards and inclusive design best practices (W3C, 2018).
+
+### Core Accessibility Features
+
+#### Semantic HTML Structure
+
+FitHub uses semantic HTML elements consistently, including:
+
+* `<header>`
+* `<nav>`
+* `<main>`
+* `<section>`
+* `<article>`
+* `<footer>`
+
+**Purpose within FitHub**
+
+These elements provide clearly defined page regions, helping users navigate plans, products, carts, checkout processes, account areas, and community content in a logical and predictable manner.
+
+**Justification**
+
+Semantic markup improves screen-reader interpretation, strengthens document structure, and enhances compatibility with assistive technologies (W3C, 2018; MDN, 2023).
+
+#### Keyboard Accessibility
+
+All interactive components can be operated entirely via keyboard navigation, including:
+
+* Navigation menus
+* Filters and sorting controls
+* Plan and product cards
+* Quantity selectors
+* Add-to-cart actions
+* Subscription controls
+* Account tabs
+* Form fields and buttons
+
+Visible focus indicators are provided throughout the application.
+
+**Purpose within FitHub**
+
+Users can browse plans, subscribe, shop, complete purchases, and manage their accounts without relying on a mouse or touch device.
+
+**Justification**
+
+This supports users with motor impairments and satisfies WCAG 2.1 Success Criterion 2.1.1 (Keyboard Accessible) (W3C, 2018).
+
+#### Colour Contrast Compliance
+
+Text, icons, and interactive components are designed to achieve:
+
+* Minimum contrast ratio of **4.5:1** for standard text.
+* Minimum contrast ratio of **3:1** for large text and user-interface components.
+
+All colour combinations are validated using recognised contrast-analysis tools.
+
+**Purpose within FitHub**
+
+Ensures that plan descriptions, product details, prices, buttons, status indicators, and form controls remain legible for users with low vision or colour-perception differences.
+
+**Justification**
+
+Supports WCAG 2.1 Success Criterion 1.4.3 (Contrast Minimum) (WebAIM, 2024).
+
+#### Status Information Beyond Colour Alone
+
+Order statuses and stock indicators are communicated using a combination of:
+
+* Colour
+* Icons
+* Descriptive text
+
+Examples include:
+
+* Processing
+* Dispatched
+* Delivered
+* Cancelled
+* Refunded
+* In Stock
+* Low Stock
+
+**Purpose within FitHub**
+
+Ensures that important information remains understandable even when colour cannot be perceived.
+
+**Justification**
+
+Complies with WCAG 2.1 Success Criterion 1.4.1 (Use of Colour) (W3C, 2018).
+
+#### Responsive Typography
+
+Typography is implemented using scalable `rem` units based on a root font size of `16px`.
+
+**Purpose within FitHub**
+
+Provides consistent readability for:
+
+* Fitness plans
+* Product descriptions
+* Community content
+* Account information
+* Checkout and order details
+
+across desktop, tablet, and mobile devices.
+
+**Justification**
+
+Supports browser zoom functionality and user-defined accessibility preferences, improving accessibility for users with visual or cognitive impairments (W3C, 2018; Nielsen Norman Group, 2020).
+
+#### ARIA Support
+
+Where native HTML semantics do not provide sufficient context, ARIA attributes are implemented, including:
+
+* `aria-label`
+* `aria-describedby`
+* `aria-live`
+* `role`
+
+**Purpose within FitHub**
+
+Examples include:
+
+* Live announcements for cart updates and recalculated totals.
+* Notification of payment and validation errors.
+* Descriptive labels for icon-only actions such as remove-item, save-for-later, and cart controls.
+* Proper ARIA tab implementation within the account area.
+* Order-confirmation and processing states announced using `role="status"`.
+
+**Justification**
+
+Improves accessibility for screen-reader users and enhances the usability of dynamic, interactive components (WAI-ARIA, 2017).
+
+#### Alternative Text and Descriptive Actions
+
+All non-decorative images include meaningful alternative text.
+
+Examples of descriptive actions include:
+
+* *View Order FH-10428*
+* *Subscribe to Premium Plan*
+* *Continue to Checkout*
+
+rather than generic labels such as *Click Here* or *View*.
+
+**Purpose within FitHub**
+
+Provides contextual information to users relying on assistive technologies and improves navigation clarity.
+
+**Justification**
+
+Supports WCAG 2.1 Success Criteria:
+
+* 1.1.1 Non-text Content
+* 2.4.4 Link Purpose
+
+(W3C, 2018).
+
+#### Accessible Forms and Validation
+
+Forms throughout the application include:
+
+* Associated labels
+* Required-field indicators
+* Inline validation feedback
+* Contextual guidance through `aria-describedby`
+
+When validation fails:
+
+* Focus moves to the first invalid field.
+* Errors are announced through live regions.
+* Clear instructions explain how the issue can be corrected.
+
+**Purpose within FitHub**
+
+Supports users during:
+
+* Registration
+* Login
+* Subscription management
+* Checkout
+* Delivery information entry
+* Administrative content management
+
+**Justification**
+
+Accessible validation improves task completion rates and reduces form abandonment, particularly for users with cognitive, visual, or motor impairments (Nielsen Norman Group, 2020).
+
+#### Focus Management
+
+Focus behaviour is intentionally managed throughout the application.
+
+Examples include:
+
+* Moving focus to the confirmation heading after a successful purchase.
+* Using focus-trapped dialogs for destructive actions such as account deletion and plan archiving.
+* Returning focus to the triggering element when a modal or dialog closes.
+
+**Purpose within FitHub**
+
+Maintains user orientation during significant transitions and protects users from accidental completion of irreversible actions.
+
+**Justification**
+
+Supports WCAG 2.1 focus-management best practice and improves the overall experience for keyboard and screen-reader users (W3C, 2018).
+
+### User Flow and Navigation Strategy
+
+FitHub's navigation architecture has been designed to support clear, intuitive, and goal-oriented user journeys. Navigation structures, calls-to-action, and content organisation work together to guide users efficiently through the platform's primary objectives.
+
+The platform enables users to:
+
+1. **Discover and compare** fitness plans and merchandise.
+2. **Register and subscribe** to membership plans.
+3. **Purchase** fitness products securely.
+4. **Manage** subscriptions, orders, and account information.
+5. **Participate** in the subscriber community.
+
+
+### Primary User Journeys
+
+#### Plan Discovery and Subscription
+
+* Users arrive on the **Home Page** and discover available plans.
+* The **Plans Listing** page allows filtering and sorting of available memberships.
+* Selecting a plan opens the **Plan Detail** page.
+* Users proceed through the **Stripe Checkout** subscription workflow.
+* Subscription status is synchronised through Stripe webhooks.
+
+#### Shopping and Merchandise Purchases
+
+* Users browse products through the **Shop Listing** page.
+
+* Selecting a product opens the **Product Detail** page.
+
+* Products are added to the cart.
+
+* Users proceed through:
+
+  **Product Detail → Cart → Checkout → Order Confirmation**
+
+* Payments are processed using Stripe Elements.
+
+* Orders are confirmed using the `payment_intent.succeeded` webhook.
+
+#### Account Management
+
+The **My Account** hub provides centralised access to:
+
+* Profile management
+* Subscription information
+* Order history
+* Saved items
+* Community activity
+
+Subscription management is delegated to the **Stripe Customer Portal**, ensuring secure handling of billing information.
+
+#### Community Engagement
+
+Subscriber-only content is protected through server-side access control.
+
+Users without an active subscription are guided towards the subscription journey through contextual upgrade prompts and content previews rather than being granted access to protected resources.
+
+### Navigation Enhancements
+
+To further improve usability and accessibility, FitHub incorporates the following navigation strategies:
+
+#### Skip Links
+
+A **Skip to Content** link allows keyboard and screen-reader users to bypass repetitive navigation and move directly to the page's primary content.
+
+#### Consistent Component Patterns
+
+Cards, buttons, forms, tables, states, and navigation elements follow consistent design patterns throughout the application.
+
+This consistency:
+
+* Reduces cognitive load.
+* Improves learnability.
+* Creates a predictable user experience.
+
+#### Mobile-First Responsive Design
+
+Layouts are designed using a mobile-first approach, incorporating:
+
+* Responsive grids
+* Sticky calls-to-action
+* Mobile action bars
+* Touch-friendly controls
+
+#### Clear Information Hierarchy
+
+Primary actions receive greater visual emphasis than secondary actions.
+
+Examples include:
+
+* **Subscribe**
+* **Add to Basket**
+* **Complete Order**
+
+This hierarchy guides users naturally towards key conversion goals.
+
+#### Authentication Routing
+
+Login and registration pages are accessible only to anonymous users.
+
+Authenticated users attempting to access these pages are redirected appropriately, reducing confusion and preventing unnecessary actions.
+
+#### Ownership and Permission Controls
+
+Sensitive pages are protected through ownership and role-based access checks.
+
+Examples include:
+
+* Members can access only their own orders and account information.
+* Subscribers can access only subscriber-exclusive content.
+* Staff-only areas are inaccessible to standard users.
+
+#### Graceful Error Recovery
+
+When users encounter invalid URLs, unavailable resources, or permission restrictions, the application provides clear recovery routes rather than exposing technical error pages.
+
+This helps maintain user confidence and reduces abandonment.
+
+### Summary of Accessibility and Navigation Features
+
+| Feature                          | Purpose                                           | Standard / Justification         |
+| -------------------------------- | ------------------------------------------------- | -------------------------------- |
+| Semantic HTML                    | Improves navigation for assistive technologies    | W3C (2018); MDN (2023)           |
+| Keyboard Accessibility           | Enables complete non-mouse interaction            | WCAG 2.1 SC 2.1.1                |
+| Colour Contrast                  | Enhances readability and visual clarity           | WCAG 2.1 SC 1.4.3; WebAIM (2024) |
+| Status Beyond Colour             | Prevents reliance on colour alone                 | WCAG 2.1 SC 1.4.1                |
+| Responsive Typography            | Supports readability across devices               | Nielsen Norman Group (2020)      |
+| ARIA Support                     | Improves accessibility of dynamic content         | WAI-ARIA (2017)                  |
+| Alt Text and Descriptive Actions | Provides context for all users                    | WCAG 2.1 SC 1.1.1; SC 2.4.4      |
+| Accessible Forms                 | Improves data entry and validation                | Nielsen Norman Group (2020)      |
+| Focus Management                 | Maintains orientation during interactions         | WCAG 2.1 Best Practice           |
+| Structured User Flow             | Supports efficient navigation and task completion | User-Centred Design Principles   |
+
+### Summary
+
+Accessibility, navigation, and user experience considerations have been integrated throughout FitHub's design and development process. By combining semantic structure, keyboard accessibility, responsive layouts, ARIA enhancements, strong visual hierarchy, and clearly defined user journeys, the platform aims to provide an inclusive and intuitive experience for all users.
+
+These decisions support accessibility compliance, improve usability, reduce cognitive load, and create a consistent experience across subscription management, shopping, account administration, and community engagement workflows.
+
+*Note: The references cited throughout this section are widely recognised accessibility and usability sources, including W3C/WAI, MDN, WebAIM, and Nielsen Norman Group. These references should be aligned with the project's final reference list and verified before submission. Any AI-assisted drafting should be acknowledged in accordance with the academic integrity requirements of the awarding organisation.*
 
 ---
 
