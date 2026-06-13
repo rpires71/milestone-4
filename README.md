@@ -51,6 +51,7 @@
   - [FitHub Colour Palette Justification](#fithub-colour-palette-justification)
   - [Typography Justification for FitHub Website](#typography-justification-for-fithub-website)
   - [Accessibility Implementation, User Flow and Navigation Strategies](#accessibility-implementation-user-flow-and-navigation-strategies)
+  - [Database Design for FitHub](#database-design-for-fithub)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -3726,6 +3727,397 @@ Accessibility, navigation, and user experience considerations have been integrat
 These decisions support accessibility compliance, improve usability, reduce cognitive load, and create a consistent experience across subscription management, shopping, account administration, and community engagement workflows.
 
 *Note: The references cited throughout this section are widely recognised accessibility and usability sources, including W3C/WAI, MDN, WebAIM, and Nielsen Norman Group. These references should be aligned with the project's final reference list and verified before submission. Any AI-assisted drafting should be acknowledged in accordance with the academic integrity requirements of the awarding organisation.*
+
+---
+
+## Database Design for FitHub
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Overview
+
+FitHub is built on a **relational database architecture** comprising **12 models**, including Django's built-in `User` model. These models are distributed across six custom Django applications, each representing a distinct and closely related area of the platform's functionality.
+
+The database structure consists of:
+
+- **accounts** app: 1 model (`Profile`)
+- **plans** app: 3 models (`Plan`, `PlanFeature`, `Subscription`)
+- **shop** app: 3 models (`ProductCategory`, `Product`, `ProductImage`)
+- **orders** app: 2 models (`Order`, `OrderLineItem`)
+- **reviews** app: 1 model (`Review`)
+- **community** app: 1 model (`Post`)
+- **Django built-in authentication**: `User`
+
+### Commerce Architecture
+
+FitHub employs two distinct commercial workflows:
+
+- **Membership plans** are managed as recurring subscriptions and processed through **Stripe Checkout** and the **Stripe Customer Portal**.
+- **Shop products** are purchased as one-time transactions through the shopping cart and checkout process using **Stripe Payment Intents** and **Stripe Elements**.
+
+This separation is reflected directly within the database schema. Membership plans are associated with the `Subscription` model, whereas merchandise purchases are represented through the `Order` and `OrderLineItem` models. By modelling subscriptions and product purchases independently, the database accurately reflects the different business processes and payment workflows used throughout the platform.
+
+#### Database System
+
+- **Development:** SQLite3
+- **Production:** PostgreSQL
+
+### Entity Relationship Diagram (ERD)
+
+<img width="1550" height="1035" alt="fithub_erd" src="https://github.com/user-attachments/assets/33ed6286-a685-40a2-93e9-6aeddd117122" />
+
+### Models / Tables (12 total)
+
+1. **User** (Django built-in)
+2. **Profile** (one-to-one with `User`)
+3. **Plan** (membership plan catalogue)
+4. **PlanFeature** (individual "what's included" items for a plan)
+5. **Subscription** (a user's membership, linked to Stripe)
+6. **ProductCategory** (shop product organisation)
+7. **Product** (individual shop merchandise)
+8. **ProductImage** (gallery images for a product)
+9. **Order** (a completed one-time purchase)
+10. **OrderLineItem** (individual product line within an order)
+11. **Review** (a user's review of a product)
+12. **Post** (a community feed post)
+
+### Relationships Identified
+
+- **User -> Profile** (one-to-one)
+- **User -> Subscription** (one-to-many — a user may have a current and past subscriptions; one active at a time)
+- **Plan -> Subscription** (one-to-many)
+- **Plan -> PlanFeature** (one-to-many)
+- **ProductCategory -> Product** (one-to-many)
+- **Product -> ProductImage** (one-to-many)
+- **User -> Order** (one-to-many)
+- **Order -> OrderLineItem** (one-to-many)
+- **Product -> OrderLineItem** (one-to-many)
+- **User -> Review** (one-to-many) and **Product → Review** (one-to-many), with a unique constraint on (`user`, `product`) to prevent duplicate reviews
+- **User -> Post** (one-to-many)
+
+The database design follows established **relational modelling principles** commonly used in subscription-based and e-commerce applications.
+
+The development of the entity relationships—including **one-to-many subscription and order models**, **multiple related product images and plan features**, and **user-owned reviews and community posts**—was informed by recognised relational database design practices, Entity Relationship Diagram (ERD) modelling methodologies, and guidance provided within the official Django documentation (Django Software Foundation, 2024).
+
+This approach helps ensure that the database remains well-structured, scalable, and maintainable, while supporting efficient data integrity, relationship management, and future system expansion.
+
+### Database Normal Forms and Their Importance
+
+Efficient and logical data organisation is a fundamental principle of relational database design. To achieve this, database **normalisation** applies a recognised set of rules, known as **normal forms**, which structure tables and their relationships in a way that minimises data redundancy and prevents anomalies during data insertion, modification, and deletion.
+
+The normalisation process follows a progressive series of stages, including **First Normal Form (1NF)**, **Second Normal Form (2NF)**, and **Third Normal Form (3NF)**. As a database advances through these forms, its structure becomes increasingly consistent, maintainable, and resilient to issues caused by duplicated, incomplete, or poorly organised data.
+
+Within transactional systems such as subscription-based and e-commerce applications, where data integrity and reliability are critical, the application of normalisation principles is particularly important. A well-normalised database supports accurate reporting, efficient data management, future scalability, and overall system performance while maintaining strong referential integrity.
+
+To satisfy the requirements of **Third Normal Form (3NF)**, the entities within the FitHub database were separated into distinct tables, with each table representing a single, clearly defined business concept. All non-key attributes depend exclusively on the primary key of their respective table, ensuring that data is stored only once and in the appropriate location.
+
+Redundancy was minimised through the use of well-defined relationships connected by foreign keys, while transitive dependencies were eliminated to reduce the risk of update anomalies and maintain a consistent, reliable data structure throughout the application.
+
+### Fully Compliant Third Normal Form (3NF) Database Design
+
+The FitHub database schema was developed in accordance with established **relational database normalisation principles** to promote data integrity, reduce redundancy, and support efficient querying, maintainability, and future scalability. The completed schema conforms fully to **Third Normal Form (3NF)**.
+
+#### First Normal Form (1NF)
+
+##### Requirements
+
+* Each table must contain a unique primary key.
+* All attributes must be atomic, storing only a single value.
+* Repeating groups and multi-valued fields must be eliminated.
+
+##### Implementation within FitHub
+
+* Every entity uses a single-field surrogate primary key (`id`).
+* Each attribute stores one discrete and indivisible value.
+* Repeating data structures are represented through related tables rather than embedded lists or multi-valued fields:
+
+  * Plan features are stored as individual `PlanFeature` records rather than within a list attribute.
+  * Product gallery images are represented by separate `ProductImage` records.
+  * Order contents are stored as individual `OrderLineItem` records linked to an order.
+
+This design ensures a consistent data structure, simplifies data manipulation, and completely avoids the use of multi-valued attributes.
+
+#### Second Normal Form (2NF)
+
+##### Requirements
+
+* The database must already satisfy First Normal Form (1NF).
+* Non-key attributes must not depend on only part of a composite primary key.
+
+##### Implementation within FitHub
+
+* All entities use surrogate primary keys rather than composite primary keys.
+* Consequently, every non-key attribute depends entirely on the table's primary key by definition.
+
+This approach promotes clear entity responsibility, simplifies relationship management, and prevents unnecessary dependencies between unrelated attributes.
+
+#### Third Normal Form (3NF)
+
+##### Requirements
+
+* The database must already satisfy Second Normal Form (2NF).
+* Transitive dependencies must be removed so that non-key attributes depend only on the primary key.
+
+##### Implementation within FitHub
+
+All non-key attributes within the FitHub schema depend exclusively on the primary key of their respective table. No non-key attribute relies on another non-key attribute, ensuring that transitive dependencies are eliminated throughout the database structure.
+
+Relationships between entities are maintained through foreign keys, allowing data to remain normalised while preserving referential integrity across the application.
+
+#### Deliberate and Justified Snapshot Data
+
+A notable and intentional exception to dynamic data derivation exists within the order-processing system.
+
+The `OrderLineItem.price` field and the monetary summary values stored within the `Order` model capture the product price **at the time of purchase** rather than referencing the current value of `Product.price`.
+
+This design decision ensures historical accuracy and auditability. For example, if the price of a product changes after an order has been placed, the original order must continue to reflect the amount that the customer actually paid at the time of the transaction.
+
+Storing historical pricing information in this manner is a recognised best practice in transactional and e-commerce systems. It preserves financial accuracy, supports reporting requirements, and prevents historical records from being altered by future product-price updates. Therefore, this approach represents a deliberate and justified architectural decision rather than a breach of normalisation principles.
+
+## Database Table Purposes and Design Justification
+
+Each entity within the FitHub database represents a distinct real-world concept relevant to the application's domain. By separating these concepts into individual tables, the database maintains clear boundaries of responsibility and adheres to established relational design principles.
+
+This structured approach enhances **data integrity**, improves **maintainability**, and supports future **scalability** by reducing redundancy and ensuring that data is stored in the most appropriate location. Furthermore, the separation of concerns aligns with the requirements of **Third Normal Form (3NF)**, helping to eliminate unnecessary dependencies and promote a consistent, well-organised database architecture.
+
+### Table-by-table verification
+
+#### User (Django Built-in)
+
+* All attributes (`username`, `email`, `password`, permissions, and account flags) relate directly to the user identified by the primary key (`id`).
+* No attributes are derived from other non-key fields.
+* No transitive dependencies exist within the entity.
+
+**Purpose:**
+The Django built-in `User` model stores the core authentication, authorisation, and identity information required for all system users, including members and administrative staff.
+
+**Justification:**
+Utilising Django's standard `User` model separates authentication and access-control concerns from application-specific business data. This approach promotes security, maintainability, and extensibility by ensuring that credentials, permissions, and user roles remain independent of fitness plans, subscriptions, orders, reviews, and community interactions.
+
+In addition, the model provides robust support for role-based access control, enabling clear separation between standard members and privileged staff users while leveraging Django's established authentication framework and security best practices.
+
+#### Profile (`accounts`)
+
+* All attributes (`fitness_goal`, `experience_level`, `height_cm`, `weight_kg`, `profile_image`, `stripe_customer_id`, and audit timestamps) describe the profile entity identified by its primary key.
+* The `user_id` field is implemented as a one-to-one foreign key and functions as a candidate key, ensuring that each user can have only one associated profile.
+* No authentication-related attributes are duplicated from the Django `User` model.
+* The entity follows a clean and fully compliant **Third Normal Form (3NF)** extension pattern.
+
+**Purpose:**
+The `Profile` model stores member-specific information that extends the core user account, including fitness goals, experience level, optional physical measurements, profile imagery, and the Stripe customer reference associated with the member.
+
+**Justification:**
+A one-to-one relationship with Django's built-in `User` model provides a structured extension mechanism without altering the core authentication framework. This separation of concerns prevents the `User` entity from becoming overloaded with application-specific attributes while supporting future growth and maintainability.
+
+The design also promotes normalisation by ensuring that authentication and identity data remain isolated from fitness and subscription-related information. Furthermore, storing the `stripe_customer_id` within the profile creates a direct association between the member and their Stripe customer record, enabling subscription management and billing integration without duplicating sensitive payment information within the local database.
+
+This approach improves extensibility, maintains data integrity, and supports a scalable architecture that aligns with established relational database design principles.
+
+#### Plan (`plans`)
+
+* All attributes (`name`, `slug`, `description`, `tier`, `price`, `billing_interval`, `image`, `status`, Stripe identifiers, and audit timestamps) describe the membership plan entity.
+* Plan features are stored separately within the related `PlanFeature` entity, ensuring the design remains fully normalised.
+* No transitive dependencies exist within the model.
+* The entity conforms to **Third Normal Form (3NF)**.
+
+**Purpose:**
+The `Plan` model represents a membership offering within the FitHub catalogue. It stores essential information including the plan name, description, difficulty tier, subscription price, billing interval, publication status (`published`, `draft`, or `archived`), and the corresponding Stripe Product and Price references.
+
+**Justification:**
+Membership plans are administered through a custom staff-facing management interface and are synchronised with Stripe's subscription infrastructure. Storing the `stripe_product_id` and `stripe_price_id` creates a direct relationship between each plan and its associated Stripe resources, ensuring consistency between the application database and the payment platform.
+
+The design also accommodates Stripe's pricing model, where Price objects are immutable. Consequently, when a plan's subscription fee changes, a new Stripe Price is created and linked to the plan while the previous Price is archived rather than modified. This approach preserves billing history and maintains the integrity of existing subscriptions.
+
+In addition, the `status` attribute supports a soft-delete strategy through plan archiving. Rather than permanently removing records, plans can be marked as archived, preventing new subscriptions while preserving existing memberships, historical transactions, and reporting data. This approach improves data integrity, supports referential consistency, and aligns with established best practices for subscription-based systems.
+
+#### PlanFeature (`plans`)
+
+* All attributes (`text` and `display_order`) describe a single feature associated with a membership plan.
+* The `plan_id` attribute is implemented as a foreign key linking each feature to its parent `Plan`.
+* No plan-specific attributes are duplicated within this entity.
+* The model conforms to **Third Normal Form (3NF)** and contains no transitive dependencies.
+
+**Purpose:**
+The `PlanFeature` model stores individual feature entries that describe the benefits, services, or content included within a membership plan. Each feature is represented as a separate record, enabling flexible presentation of the "What's Included" section throughout the application.
+
+**Justification:**
+Representing plan features as related records rather than storing them within a single multi-valued field supports compliance with **First Normal Form (1NF)** by ensuring that each attribute remains atomic and that repeating groups are eliminated.
+
+This design mirrors the administrative workflow, allowing staff to add, edit, remove, and reorder features independently without modifying the parent plan record. The inclusion of a `display_order` attribute enables consistent presentation of features while maintaining separation of concerns between the plan itself and its associated benefits.
+
+By normalising plan features into a dedicated entity, the database structure becomes more maintainable, scalable, and flexible, particularly if plans require a varying number of features over time.
+
+> **Alternative Design Consideration:**
+> For a simplified implementation, plan features could be stored as a single text field within the `Plan` model. However, modelling features as a related entity provides a more normalised solution, offers greater flexibility for future development, and better aligns with established relational database design principles.
+
+#### Subscription (`plans`)
+
+* All attributes (`stripe_subscription_id`, `status`, `current_period_end`, and audit timestamps) describe an individual subscription record.
+* The `user_id` and `plan_id` fields are implemented as foreign keys linking the subscription to a specific member and membership plan.
+* No user-specific or plan-specific attributes are duplicated within this entity.
+* The model contains no transitive dependencies and conforms to **Third Normal Form (3NF)**.
+
+**Purpose:**
+The `Subscription` model represents a member's active or historical membership relationship with a particular fitness plan. It stores the associated Stripe subscription reference, subscription status, renewal information, and lifecycle dates required to manage recurring memberships.
+
+**Justification:**
+Acting as the associative entity between `User` and `Plan`, the `Subscription` model records membership activity without duplicating data already stored within the related entities. This approach maintains normalisation, reduces redundancy, and preserves a clear separation of responsibilities within the database schema.
+
+The model also supports real-world subscription workflows by storing the current membership status (for example, active, cancelled, past due, or expired) together with the subscription renewal or period-end date. These values are synchronised with Stripe through webhook events, ensuring that the application's representation of a member's subscription remains accurate and up to date.
+
+By maintaining a dedicated subscription entity, FitHub can reliably manage membership access, enforce content-gating rules, support subscription lifecycle management, and provide an authoritative record of each member's relationship with their chosen plan. This design improves maintainability, supports scalability, and aligns with established relational database modelling practices for subscription-based platforms.
+
+#### ProductCategory (`shop`)
+
+* All attributes (`name` and `slug`) describe the product category entity.
+* No attributes are derived from other fields.
+* The entity contains no transitive dependencies and complies with **Third Normal Form (3NF)**.
+
+**Purpose:**
+The `ProductCategory` model provides a structured classification system for shop products, grouping items into logical categories such as equipment, supplements, clothing, or accessories.
+
+**Justification:**
+Separating product categories into a dedicated entity promotes normalisation by eliminating the need to repeatedly store category information within individual product records. This reduces data redundancy and improves consistency across the catalogue.
+
+The relationship between `ProductCategory` and `Product` supports efficient filtering, searching, sorting, and navigation throughout the shop interface, while enabling categories to be created, modified, or archived independently of the products assigned to them.
+
+By managing categories as a standalone entity, the database remains more maintainable, scalable, and flexible, supporting future expansion of the product catalogue without introducing unnecessary duplication or update anomalies.
+
+#### Product (`shop`)
+
+* All attributes (`name`, `slug`, `description`, `brand`, `price`, `stock`, `image`, `is_available`, and audit timestamps) describe the product entity.
+* The `category_id` attribute is implemented as a foreign key linking each product to a single `ProductCategory`.
+* Additional gallery images are normalised into the related `ProductImage` entity.
+* No transitive dependencies exist within the model.
+* The entity conforms to **Third Normal Form (3NF)**.
+
+**Purpose:**
+The `Product` model stores individual merchandise items available within the FitHub shop. It contains key information including the product name, description, brand, price, stock quantity, availability status, and primary product image.
+
+**Justification:**
+Each product is associated with a single category through a foreign-key relationship, ensuring category information is stored only once and preventing unnecessary duplication of data. This design supports normalisation, improves maintainability, and enables efficient filtering and categorisation throughout the shop interface.
+
+Stock management is facilitated through the `stock` attribute, which supports inventory validation across the shopping workflow, including product pages, the cart, and the checkout process. This ensures customers cannot purchase quantities exceeding the available inventory and helps maintain accurate stock records.
+
+The `is_available` attribute provides a mechanism for controlling product visibility without requiring permanent deletion. Products can be hidden from the customer-facing catalogue while remaining in the database, preserving relationships with historical orders and maintaining referential integrity.
+
+Separating product data from related images and category information results in a scalable and maintainable structure that supports future catalogue growth while remaining fully compliant with established relational database design principles.
+
+#### ProductImage (`shop`)
+
+* All attributes (`image`, `alt_text`, and `display_order`) describe a single product image.
+* The `product_id` attribute is implemented as a foreign key linking each image to a specific `Product`.
+* Each record represents one gallery image associated with a product.
+* The entity complies with **Third Normal Form (3NF)**.
+
+**Purpose:**
+The `ProductImage` model stores supplementary gallery images associated with individual products, enabling multiple images to be displayed for a single merchandise item.
+
+**Justification:**
+Modelling product images as separate related records rather than storing multiple images within a single field supports **First Normal Form (1NF)** by ensuring that all attributes remain atomic and free from repeating groups.
+
+This structure allows products to have a flexible number of associated images while maintaining a clean and scalable database design. The `display_order` attribute provides control over the sequence in which images appear within the product gallery, improving the user experience and presentation of merchandise.
+
+The inclusion of `alt_text` supports accessibility requirements by providing meaningful alternative descriptions for users who rely on assistive technologies such as screen readers. This aligns with WCAG guidance and ensures that non-visual users can understand the content and purpose of product imagery.
+
+By separating gallery images into their own entity, the database remains extensible, maintainable, and fully normalised, while supporting richer product presentation throughout the shop interface.
+
+*Note: For a simplified implementation, a single image field could be stored directly within the `Product` model. However, the dedicated `ProductImage` entity provides the more scalable and fully normalised solution.*
+
+#### Order (`orders`)
+
+* All attributes (`order_number`, customer and delivery details, monetary totals, `status`, `stripe_payment_intent_id`, and `created_at`) describe a single order transaction.
+* The `user_id` attribute is implemented as a nullable foreign key to `User`, supporting both registered-member and guest purchases.
+* Individual purchased items are normalised into the related `OrderLineItem` entity.
+* Monetary totals are intentionally stored as historical snapshots to preserve transaction accuracy.
+* The entity conforms to **Third Normal Form (3NF)**, with justified denormalisation applied only where required for audit and reporting purposes.
+
+**Purpose:**
+The `Order` model represents a completed one-time purchase within the FitHub shop. It stores customer information, delivery details, order totals, fulfilment status, and the associated Stripe payment reference required to process and track transactions.
+
+**Justification:**
+As the central transactional entity within the e-commerce component of the application, the `Order` model acts as the parent record for all purchased items while maintaining links to the customer account where applicable. The nullable `user_id` relationship provides flexibility by supporting both authenticated purchases and guest checkout workflows without compromising data integrity.
+
+Orders are created and confirmed through Stripe webhook events, specifically `payment_intent.succeeded`, ensuring that successful transactions are recorded reliably even if the customer closes their browser before the payment flow completes. This webhook-driven approach provides a more robust and authoritative source of truth than relying solely on client-side redirects.
+
+The `status` attribute supports the complete order lifecycle, including states such as **Processing**, **Dispatched**, **Delivered**, **Cancelled**, and **Refunded**. Status changes are synchronised through internal business processes and relevant Stripe webhook events, ensuring that order progress remains accurate and up to date throughout fulfilment and post-purchase activities.
+
+Order totals, delivery charges, and related monetary values are intentionally stored at the point of purchase rather than recalculated from current product data. This deliberate snapshotting preserves historical accuracy, ensuring that past orders continue to reflect the exact prices, discounts, taxes, and charges that applied when the transaction occurred. This is a recognised design pattern in transactional systems and does not constitute a normalisation violation.
+
+By separating order-level information from individual line items, the database maintains a scalable, maintainable, and fully relational structure that supports reporting, fulfilment, customer service, and long-term audit requirements.
+
+#### OrderLineItem (`orders`)
+
+* All attributes (`quantity` and `price`) describe a single purchased item within an order.
+* The `order_id` and `product_id` attributes are implemented as foreign keys linking the record to its parent order and associated product.
+* The `price` attribute is intentionally stored as a snapshot of the product price at the time of purchase.
+* The entity conforms to **Third Normal Form (3NF)**, with justified transactional snapshotting applied for historical accuracy.
+
+**Purpose:**
+The `OrderLineItem` model represents an individual product purchased as part of an order. It records the specific product, quantity ordered, and the price paid for that item at the time the transaction was completed.
+
+**Justification:**
+Separating purchased items into a dedicated `OrderLineItem` entity supports **First Normal Form (1NF)** by eliminating repeating groups and avoiding the need to store multiple products within a single order record. This design allows each order to contain any number of products while maintaining a fully relational structure.
+
+The relationship between `Order` and `OrderLineItem` creates a scalable one-to-many model, where a single order can contain multiple line items, each linked to a different product. This approach improves maintainability, simplifies reporting, and supports accurate order management throughout the application.
+
+The `price` field is intentionally stored as a historical snapshot rather than being dynamically retrieved from the current `Product.price`. This ensures that completed orders continue to reflect the exact amount paid by the customer, even if product prices change in the future. Preserving transactional values in this way is a recognised and widely adopted practice in e-commerce systems, supporting financial accuracy, auditing requirements, customer service enquiries, and historical reporting.
+
+By isolating item-level purchase data from order-level information, the database maintains a clean, normalised structure while providing the flexibility and reliability required for real-world transactional processing.
+
+#### Review (`reviews`)
+
+* All attributes (`rating`, `comment`, and audit timestamps) describe an individual product review.
+* The `user_id` and `product_id` attributes are implemented as foreign keys linking the review to both the author and the reviewed product.
+* A unique constraint on (`user`, `product`) ensures that each member can submit only one review per product.
+* The entity conforms to **Third Normal Form (3NF)**, with no duplicated user or product information.
+
+**Purpose:**
+The `Review` model stores a member's rating and written feedback for a specific product, allowing customers to share their experiences and contribute to the overall evaluation of merchandise available within the FitHub shop.
+
+**Justification:**
+By linking reviews to both `User` and `Product` through foreign-key relationships, the database avoids duplicating customer or product information while maintaining clear ownership and traceability of each review. This relational approach supports data integrity and ensures that reviews remain associated with the correct author and product throughout their lifecycle.
+
+The unique constraint on (`user`, `product`) enforces a business rule that limits each member to a single review per product. This helps maintain fairness and prevents review inflation while still allowing members to update their feedback over time through the application's edit functionality.
+
+The model supports full user-level **CRUD** operations, enabling members to create, read, update, and delete their own reviews while preventing them from modifying reviews submitted by other users. Ownership controls are enforced through application-level permissions, ensuring that review management remains secure and user-specific.
+
+In addition to storing customer feedback, the `Review` model provides the foundation for aggregated product ratings displayed throughout the shop. Individual ratings can be combined to calculate average review scores, helping customers make informed purchasing decisions and enhancing trust in the platform.
+
+This design maintains a fully normalised structure while supporting user engagement, product evaluation, and the broader e-commerce functionality of the application.
+
+#### Post (`community`)
+
+* All attributes (`content` and audit timestamps) describe a single community post.
+* The `author_id` attribute is implemented as a foreign key linking each post to its creator.
+* No transitive dependencies exist within the entity.
+* The model conforms to **Third Normal Form (3NF)**.
+
+**Purpose:**
+The `Post` model stores user-generated content published within the FitHub community feed, enabling subscribers to share experiences, ask questions, provide motivation, and engage with other members.
+
+**Justification:**
+Each post is associated with a specific user through the `author_id` foreign-key relationship, ensuring clear ownership while preventing the duplication of user-related data. This relational structure supports data integrity, maintains accountability, and enables efficient retrieval of posts created by individual members.
+
+Community participation is restricted to active subscribers, aligning with the platform's content-gating strategy and providing additional value to paid membership plans. Access controls are enforced at the application level to ensure that only authorised users can create and manage community content.
+
+The model supports full user-level **CRUD** functionality, allowing subscribers to create, read, update, and delete their own posts. Ownership rules ensure that members can modify only content they have authored, preventing unauthorised changes to posts created by others and maintaining the integrity of community discussions.
+
+By separating community content into a dedicated entity, the database remains fully normalised while supporting scalable social interaction features. This design provides a clear foundation for future enhancements such as comments, reactions, reporting mechanisms, moderation workflows, and community engagement analytics.
+
+The `Post` model therefore plays a key role in supporting member interaction, subscriber engagement, and long-term community growth while maintaining a secure and maintainable relational database structure.
+
+### Final Conclusion
+
+The FitHub database schema has been designed in accordance with established relational database principles, with related data separated into distinct entities and multi-valued attributes eliminated through the use of appropriate relationships. By avoiding unnecessary duplication and ensuring that each table represents a single business concept, the final design conforms to **Third Normal Form (3NF)**.
+
+Throughout the schema, every non-key attribute is fully dependent on the primary key of its respective table, with no partial or transitive dependencies present. The only exception to this principle is the intentional storage of transactional monetary values within orders and order line items. These values are retained as historical snapshots to preserve audit accuracy and ensure that completed purchases continue to reflect the exact prices, charges, and totals that applied at the time of the transaction.
+
+Each entity fulfils a clearly defined responsibility within the application domain. Authentication data, member profiles, subscription management, fitness plans, shop products, order processing, customer reviews, and community content are all maintained within dedicated tables and organised across logically grouped Django applications. This separation of concerns promotes maintainability, improves scalability, and supports long-term system growth while preserving data integrity.
+
+The resulting schema provides a robust foundation for both the subscription and e-commerce functionality of FitHub. By combining sound normalisation practices with carefully justified transactional design decisions, the database supports efficient querying, reliable reporting, secure data management, and future extensibility. Furthermore, the structure closely reflects the application's real-world business processes and user stories, ensuring strong alignment between the data model and the functional requirements of the system.
+
+The final design therefore delivers a scalable, maintainable, and fully normalised relational database architecture capable of supporting the ongoing development and operation of the FitHub platform.
 
 ---
 
