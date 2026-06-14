@@ -4388,6 +4388,416 @@ This structured setup provides a maintainable foundation for implementing FitHub
 
 ---
 
+## Database Models Implementation
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Overview
+
+Following the database design and Entity Relationship Diagram (ERD) presented in the **Database Design** section, FitHub implements **10 custom database models** alongside Django's built-in `User` model. These models are developed using Django's **Object-Relational Mapping (ORM)** framework, which converts the relational database schema into Python classes responsible for managing data relationships, validation rules, and business logic.
+
+The models are organised across six dedicated Django applications — `accounts`, `plans`, `shop`, `orders`, `reviews`, and `community` — in accordance with Django's modular architecture. This separation of concerns improves maintainability, scalability, code organisation, and future extensibility.
+
+> **Implementation Note:** Membership plan features are implemented as a separate related model (`PlanFeature`) using a one-to-many relationship. Product imagery is managed through a single `image` field within the `Product` model rather than a dedicated gallery model, simplifying development while maintaining a normalised database structure.
+
+### Model Architecture
+
+#### Application Structure
+
+| Application | Models | Purpose |
+|------------|---------|---------|
+| **accounts** | Profile (1) | Member profile management and extended user information |
+| **plans** | Plan, PlanFeature, Subscription (3) | Membership plans and subscription lifecycle management |
+| **shop** | ProductCategory, Product (2) | Product catalogue and categorisation |
+| **orders** | Order, OrderLineItem (2) | Shopping cart, checkout, and order processing |
+| **reviews** | Review (1) | Product ratings and reviews |
+| **community** | Post (1) | Subscriber community interactions |
+| **Django Built-in** | User (1) | Authentication and user account management |
+
+**Total Models:** 11 (10 custom models plus Django's built-in `User` model)
+
+**Commerce Architecture:**
+
+FitHub distinguishes between recurring subscription services and one-time merchandise purchases.
+
+- **Membership Plans** are managed through Stripe Checkout and the Stripe Customer Portal and are represented by the `Plan` and `Subscription` models.
+- **Shop Products** are purchased through the cart and checkout workflow using Stripe PaymentIntents and are represented by the `Product`, `Order`, and `OrderLineItem` models.
+
+This separation reflects real-world business processes while maintaining a clear, scalable, and maintainable database structure.
+
+### Model Definitions
+
+#### Accounts Application
+
+##### File: `accounts/models.py`
+
+###### **Profile Model**
+
+The `Profile` model extends Django's built-in `User` model through a one-to-one relationship, enabling member-specific information to be stored independently from Django's authentication framework.
+
+**Purpose:**
+
+- Store member fitness goals and training experience levels
+- Record optional physical measurements
+- Maintain profile image information
+- Store the Stripe customer reference used for subscription management
+
+**Fields:**
+
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `user` | OneToOneField(User) | CASCADE | Links the profile to an authenticated user |
+| `fitness_goal` | CharField(20) | choices, blank=True | Primary fitness objective |
+| `experience_level` | CharField(20) | choices, blank=True | Training experience level |
+| `height_cm` | PositiveIntegerField | null=True, blank=True | Optional height measurement |
+| `weight_kg` | DecimalField(5,2) | null=True, blank=True | Optional weight measurement |
+| `profile_image` | ImageField | null=True, blank=True | Profile photograph |
+| `stripe_customer_id` | CharField(255) | blank=True | Stripe customer identifier |
+| `created_at` | DateTimeField | auto_now_add=True | Record creation timestamp |
+| `updated_at` | DateTimeField | auto_now=True | Last modification timestamp |
+
+**Relationships:**
+- **One-to-One:** `User <-> Profile`
+
+Each authenticated user owns a single profile record.
+
+
+#### Plans Application
+
+##### File: `plans/models.py`
+
+###### **Plan Model**
+
+The `Plan` model represents a membership package available within the FitHub subscription catalogue.
+
+**Purpose:**
+
+- Define membership tiers and pricing structures
+- Store billing interval information
+- Maintain Stripe Product and Price references
+- Support draft, published, and archived states
+
+**Fields:**
+ 
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `name` | CharField(100) | - | Plan name (e.g. "Premium") |
+| `slug` | SlugField | unique=True | URL-friendly identifier |
+| `description` | TextField | blank=True | Plan description |
+| `tier` | CharField(20) | choices | Difficulty/level |
+| `price` | DecimalField(6,2) | - | Price in GBP |
+| `billing_interval` | CharField(10) | choices (monthly/annual) | Billing frequency |
+| `image` | ImageField | null=True, blank=True | Optional plan image |
+| `status` | CharField(10) | choices (published/draft/archived) | Visibility/lifecycle |
+| `stripe_product_id` | CharField(255) | blank=True | Stripe Product reference |
+| `stripe_price_id` | CharField(255) | blank=True | Stripe Price reference |
+| `created_at` | DateTimeField | auto_now_add=True | Creation timestamp |
+| `updated_at` | DateTimeField | auto_now=True | Last modification timestamp |
+ 
+**Relationships:**
+- **One-to-Many:** Plan -> PlanFeature (a plan has many features)
+- **One-to-Many:** Plan -> Subscription (a plan has many subscriptions)
+
+###### **PlanFeature Model**
+
+The `PlanFeature` model stores individual feature descriptions associated with a membership plan.
+
+**Purpose:**
+
+- Store each feature independently
+- Support ordered display within the interface
+- Maintain First Normal Form (1NF) compliance
+
+**Fields:**
+ 
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `plan` | ForeignKey(Plan) | CASCADE | Parent plan |
+| `text` | CharField(255) | - | Feature description |
+| `display_order` | PositiveIntegerField | default=0 | Ordering value |
+
+**Relationships:**
+- **Many-to-One:** PlanFeature -> Plan
+
+###### **Subscription Model**
+
+The `Subscription` model represents a member's active or historical subscription.
+
+**Purpose**
+
+- Record the relationship between a user and a plan
+- Store Stripe subscription identifiers
+- Track subscription status and renewal dates
+
+**Fields:**
+
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `user` | ForeignKey(User) | CASCADE | Subscribing member |
+| `plan` | ForeignKey(Plan) | PROTECT | Subscribed plan |
+| `stripe_subscription_id` | CharField(255) | blank=True | Stripe subscription reference |
+| `status` | CharField(20) | choices | active / cancelled / past_due |
+| `current_period_end` | DateTimeField | null=True, blank=True | Renewal/expiry date |
+| `created_at` | DateTimeField | auto_now_add=True | Creation timestamp |
+| `updated_at` | DateTimeField | auto_now=True | Last modification timestamp |
+
+**Relationships:**
+- **Many-to-One:** Subscription -> User (a member may have current and past subscriptions)
+- **Many-to-One:** Subscription -> Plan
+
+**On Delete Behaviours:**
+- **User (CASCADE):** subscriptions deleted when the member is deleted
+- **Plan (PROTECT):** a plan with subscriptions cannot be hard-deleted (archive instead)
+
+#### Shop Application
+
+##### File: `shop/models.py`
+
+###### **ProductCategory Model**
+
+The `ProductCategory` model groups products into logical classifications such as equipment, accessories, and supplements.
+
+**Purpose:**
+
+- Improve product organisation
+- Support filtering and navigation
+- Eliminate duplication of category information
+
+**Fields:**
+ 
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `name` | CharField(100) | - | Category name |
+| `slug` | SlugField | unique=True | URL-friendly identifier |
+
+**Relationships:**
+- **One-to-Many:** `ProductCategory -> Product`
+
+###### **Product Model**
+
+The `Product` model represents merchandise available for purchase through the FitHub shop.
+
+**Purpose:**
+
+- Store product information and pricing
+- Manage stock levels
+- Control product availability
+- Maintain product imagery
+
+**Fields:**
+
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `category` | ForeignKey(ProductCategory) | SET_NULL, null=True | Product category |
+| `name` | CharField(200) | - | Product name |
+| `slug` | SlugField | unique=True | URL-friendly identifier |
+| `description` | TextField | - | Product description |
+| `brand` | CharField(100) | blank=True | Brand name |
+| `price` | DecimalField(6,2) | - | Price in GBP |
+| `stock` | PositiveIntegerField | default=0 | Available stock |
+| `image` | ImageField | null=True, blank=True | Product image |
+| `is_available` | BooleanField | default=True | Whether shown for sale |
+| `created_at` | DateTimeField | auto_now_add=True | Creation timestamp |
+| `updated_at` | DateTimeField | auto_now=True | Last modification timestamp |
+
+**Relationships:**
+- **Many-to-One:** `Product -> ProductCategory`
+- **One-to-Many:** `Product -> OrderLineItem`
+- **One-to-Many:** `Product -> Review`
+
+**On Delete Behaviours:**
+- **Category (SET_NULL):** products preserved if a category is deleted.
+
+#### Orders Application
+
+##### File: `orders/models.py`
+
+###### **Order Model**
+
+The `Order` model represents a completed one-time purchase generated through the checkout process and confirmed through Stripe webhooks.
+
+**Fields:**
+ 
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `order_number` | CharField(32) | unique=True | Unique order reference |
+| `user` | ForeignKey(User) | SET_NULL, null=True | Customer (nullable for guests) |
+| `full_name` | CharField(100) | - | Customer name |
+| `email` | EmailField | - | Customer email |
+| `phone` | CharField(20) | blank=True | Contact number |
+| `address_line1` | CharField(120) | - | Delivery address |
+| `address_line2` | CharField(120) | blank=True | Delivery address (cont.) |
+| `town_city` | CharField(60) | - | Town/city |
+| `postcode` | CharField(20) | - | Postcode |
+| `country` | CharField(60) | - | Country |
+| `subtotal` | DecimalField(8,2) | default=0 | Items subtotal (snapshot) |
+| `delivery_cost` | DecimalField(6,2) | default=0 | Delivery cost (snapshot) |
+| `total` | DecimalField(8,2) | default=0 | Order total (snapshot) |
+| `status` | CharField(20) | choices | processing → refunded |
+| `stripe_payment_intent_id` | CharField(255) | blank=True | Stripe payment reference |
+| `created_at` | DateTimeField | auto_now_add=True | Order timestamp |
+
+**Purpose:**
+
+- Store customer and delivery information
+- Record order totals
+- Maintain payment references
+- Track order status throughout its lifecycle
+
+**Relationships:**
+- **Many-to-One:** `Order -> User`
+- **One-to-Many:** `Order -> OrderLineItem`
+
+**On Delete Behaviours:**
+- **User (SET_NULL):** orders preserved if a user is deleted (historical record)
+
+###### **OrderLineItem Model**
+
+The `OrderLineItem` model represents an individual product purchased within an order.
+
+**Fields:**
+
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `order` | ForeignKey(Order) | CASCADE | Parent order |
+| `product` | ForeignKey(Product) | PROTECT | Purchased product |
+| `quantity` | PositiveIntegerField | default=1 | Quantity ordered |
+| `price` | DecimalField(6,2) | - | Unit price at purchase (snapshot) |
+
+**Purpose:**
+
+- Store purchased quantities
+- Preserve historical product pricing
+- Support multi-product orders
+
+**Relationships:**
+- **Many-to-One:** `OrderLineItem -> Order`
+- **Many-to-One:** `OrderLineItem -> Product`
+
+**On Delete Behaviours:**
+- **Order (CASCADE):** line items deleted with their order
+- **Product (PROTECT):** a product referenced by orders cannot be hard-deleted
+
+#### Reviews Application
+
+##### File: `reviews/models.py`
+
+###### **Review Model**
+
+The `Review` model stores member ratings and written feedback for products.
+
+**Purpose:**
+
+- Support product review functionality
+- Generate product ratings
+- Enable member-managed CRUD operations
+
+**Fields:**
+
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `product` | ForeignKey(Product) | CASCADE | Reviewed product |
+| `user` | ForeignKey(User) | CASCADE | Author |
+| `rating` | PositiveSmallIntegerField | validators 1–5 | Star rating |
+| `comment` | TextField | blank=True | Written review |
+| `created_at` | DateTimeField | auto_now_add=True | Creation timestamp |
+| `updated_at` | DateTimeField | auto_now=True | Last modification timestamp |
+
+**Constraints:**
+- One review per user per product (`unique_together`)
+
+**Relationships:**
+- **Many-to-One:** `Review -> Product`
+- **Many-to-One:** `Review -> User`
+
+#### Community Application
+
+##### File: `community/models.py`
+
+###### **Post Model**
+
+The `Post` model stores subscriber-generated content within the community section.
+
+**Purpose:**
+
+- Support subscriber interaction
+- Facilitate community discussions
+- Provide authorised users with CRUD functionality
+
+**Fields:**
+
+| Field Name | Type | Constraints | Purpose |
+|------------|------|-------------|---------|
+| `author` | ForeignKey(User) | CASCADE | Post author |
+| `content` | TextField | - | Post body |
+| `created_at` | DateTimeField | auto_now_add=True | Creation timestamp |
+| `updated_at` | DateTimeField | auto_now=True | Last modification timestamp |
+
+**Relationships:**
+- **Many-to-One:** `Post -> User`
+
+Each post is linked directly to its author, ensuring ownership and permission controls can be enforced.
+
+### Database Relationships Summary
+
+##### One-to-One Relationships
+
+| Parent Model | Child Model | Implementation | Purpose |
+|--------------|-------------|----------------|---------|
+| User | Profile | OneToOneField, CASCADE | Extend user with member data |
+
+##### One-to-Many Relationships (Foreign Keys)
+
+| Parent Model | Child Model | On Delete | Purpose |
+|--------------|-------------|-----------|---------|
+| User | Subscription | CASCADE | Member owns their subscriptions |
+| Plan | Subscription | PROTECT | Cannot hard-delete a subscribed plan |
+| Plan | PlanFeature | CASCADE | Plan owns its features |
+| ProductCategory | Product | SET_NULL | Preserve products if category removed |
+| User | Order | SET_NULL | Preserve order history |
+| Order | OrderLineItem | CASCADE | Order owns its line items |
+| Product | OrderLineItem | PROTECT | Preserve purchased-product integrity |
+| Product | Review | CASCADE | Product owns its reviews |
+| User | Review | CASCADE | Member owns their reviews |
+| User | Post | CASCADE | Member owns their posts |
+
+### Implementation Process
+
+#### Step 1 – Create the Models
+
+Models are implemented within their respective applications:
+
+```bash
+accounts/models.py    # Profile
+plans/models.py       # Plan, PlanFeature, Subscription
+shop/models.py        # ProductCategory, Product
+orders/models.py      # Order, OrderLineItem
+reviews/models.py     # Review
+community/models.py   # Post
+```
+
+#### Step 2 – Generate Migration Files
+
+```bash
+python manage.py makemigrations
+```
+
+#### Step 3 – Apply Database Migrations
+
+```bash
+python manage.py migrate
+```
+
+#### Step 4 – Verify Functionality
+
+Each model should be registered within its corresponding `admin.py` file and verified through the Django administration interface to ensure records can be created, viewed, updated, and deleted successfully.
+
+### Summary
+
+FitHub implements a modular database architecture consisting of **10 custom models** alongside Django's built-in `User` model. By distributing responsibility across dedicated applications and enforcing clearly defined relationships, the database remains scalable, maintainable, and aligned with the project's user stories, business requirements, and Third Normal Form (**3NF**) design principles.
+
+---
+
 ## References
 
 [⬆ Back to Table of contents](#table-of-contents)
