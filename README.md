@@ -52,6 +52,9 @@
   - [Typography Justification for FitHub Website](#typography-justification-for-fithub-website)
   - [Accessibility Implementation, User Flow and Navigation Strategies](#accessibility-implementation-user-flow-and-navigation-strategies)
   - [Database Design for FitHub](#database-design-for-fithub)
+  - [Django Framework Setup and Configuration](#django-framework-setup-and-configuration)
+  - [Database Models Implementation](#database-models-implementation)
+  - [Django Admin Configuration and Sample Data](#django-admin-configuration-and-sample-data)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -3792,7 +3795,7 @@ This separation is reflected directly within the database schema. Membership pla
 - **User -> Order** (one-to-many)
 - **Order -> OrderLineItem** (one-to-many)
 - **Product -> OrderLineItem** (one-to-many)
-- **User -> Review** (one-to-many) and **Product → Review** (one-to-many), with a unique constraint on (`user`, `product`) to prevent duplicate reviews
+- **User -> Review** (one-to-many) and **Product -> Review** (one-to-many), with a unique constraint on (`user`, `product`) to prevent duplicate reviews
 - **User -> Post** (one-to-many)
 
 The database design follows established **relational modelling principles** commonly used in subscription-based and e-commerce applications.
@@ -4118,6 +4121,270 @@ Each entity fulfils a clearly defined responsibility within the application doma
 The resulting schema provides a robust foundation for both the subscription and e-commerce functionality of FitHub. By combining sound normalisation practices with carefully justified transactional design decisions, the database supports efficient querying, reliable reporting, secure data management, and future extensibility. Furthermore, the structure closely reflects the application's real-world business processes and user stories, ensuring strong alignment between the data model and the functional requirements of the system.
 
 The final design therefore delivers a scalable, maintainable, and fully normalised relational database architecture capable of supporting the ongoing development and operation of the FitHub platform.
+
+---
+
+## Django Framework Setup and Configuration
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Overview
+
+FitHub is developed using **Django 4.2.23**, a high-level Python web framework that supports the rapid development of secure, scalable, and maintainable web applications. Django follows the **Model-View-Template (MVT)** architectural pattern and provides a comprehensive set of built-in features, including authentication, database management through an ORM (Object-Relational Mapping), session handling, and an administrative interface.
+
+The framework was selected because it aligns closely with the requirements of the project, supporting subscription management, e-commerce functionality, user-generated content, and role-based access control within a single, integrated platform.
+
+### Development Environment Setup
+
+#### Prerequisites
+
+Before configuring the project, the following software and tools were installed and verified.
+
+##### System Requirements
+
+* **Python:** Version **3.12.10**
+* **pip:** Python package manager (included with Python 3.12)
+* **Git:** Version control and source-code management
+* **Visual Studio Code:** Primary development environment
+* **GitHub:** Remote repository hosting and version control
+
+##### Development Platform
+
+* **Operating System:** Windows 11
+* **Development Environment:** PowerShell within Visual Studio Code
+* **Repository:** GitHub (`milestone-4`)
+
+### Step 1: Creating the Virtual Environment
+
+To isolate project dependencies from the system-wide Python installation, a dedicated virtual environment was created. This approach prevents package conflicts and ensures that all project dependencies remain consistent across development and deployment environments.
+
+#### Creating and Activating the Virtual Environment
+
+```bash
+# Navigate to the project directory
+cd C:\Users\rober\OneDrive\Documents\vscode-projects\milestone-4
+
+# Create the virtual environment using Python 3.12
+py -3.12 -m venv venv
+
+# Activate the environment
+venv\Scripts\activate
+
+# Verify activation
+python --version
+```
+
+**Output:**
+
+```text
+Python 3.12.10
+```
+
+A successful activation displays the `(venv)` prefix in the terminal prompt.
+
+### Step 2: Installing Django
+
+After activating the virtual environment, the package manager was upgraded before installing Django.
+
+```bash
+python -m pip install --upgrade pip
+pip install Django==4.2.23
+```
+
+#### Verification
+
+```bash
+python -m django --version
+```
+
+**Output:**
+
+```text
+4.2.23
+```
+
+### Step 3: Creating the Django Project
+
+The Django project was created within the existing repository directory using the following command:
+
+```bash
+django-admin startproject fithub .
+```
+
+The trailing dot (`.`) is essential because it creates the project within the current directory rather than generating an additional nested project folder.
+
+#### Resulting Structure
+
+```text
+milestone-4/
+│
+├── manage.py
+├── fithub/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+├── venv/
+├── .gitignore
+└── README.md
+```
+
+#### Purpose of the Core Files
+
+| File          | Purpose                                                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `manage.py`   | Django command-line utility used to run the development server, migrations, and administrative tasks                      |
+| `settings.py` | Central project configuration including installed applications, middleware, database settings, and security configuration |
+| `urls.py`     | Root URL router responsible for directing requests throughout the application                                             |
+| `wsgi.py`     | Entry point for WSGI-compatible production servers                                                                        |
+| `asgi.py`     | Entry point for ASGI-compatible deployment environments                                                                   |
+
+### Step 4: Creating the FitHub Applications
+
+To support separation of concerns and maintain a modular architecture, the project was divided into six dedicated Django applications.
+
+```bash
+python manage.py startapp accounts
+python manage.py startapp plans
+python manage.py startapp shop
+python manage.py startapp orders
+python manage.py startapp reviews
+python manage.py startapp community
+```
+
+#### Application Responsibilities
+
+| Application | Purpose                                                        |
+| ----------- | -------------------------------------------------------------- |
+| `accounts`  | User profiles, dashboard functionality, and account management |
+| `plans`     | Membership plans, plan features, and subscription management   |
+| `shop`      | Product catalogue, categories, and product media               |
+| `orders`    | Cart, checkout, and order processing                           |
+| `reviews`   | Product reviews and ratings                                    |
+| `community` | Subscriber-only community posts and interactions               |
+
+### Step 5: Registering Applications
+
+After creation, each application was registered in `INSTALLED_APPS` within `settings.py`.
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'accounts',
+    'plans',
+    'shop',
+    'orders',
+    'reviews',
+    'community',
+]
+```
+
+This configuration allows Django to recognise and manage each application throughout the project lifecycle.
+
+### Step 6: Initial Database Migration
+
+Before creating custom models, Django's built-in migrations were applied to generate the core authentication and session-management tables.
+
+```bash
+python manage.py migrate
+```
+
+These migrations create the foundational Django tables, including:
+
+* Authentication (`auth`)
+* Administration (`admin`)
+* Content Types (`contenttypes`)
+* User Sessions (`sessions`)
+
+The migration process also creates the development database (`db.sqlite3`) used during initial development.
+
+### Step 7: Creating a Superuser Account
+
+A superuser account provides full administrative access to the Django administration interface and supports management tasks during development and testing.
+
+```bash
+python manage.py createsuperuser
+```
+
+The command prompts for:
+
+```text
+Username
+Email Address
+Password
+Password Confirmation
+```
+
+### Step 8: Testing the Development Environment
+
+The project configuration was validated by running the Django development server.
+
+```bash
+python manage.py runserver
+```
+
+Django successfully started using:
+
+```text
+Django version 4.2.23
+Python version 3.12.10
+```
+
+The application was then accessed through:
+
+```text
+http://127.0.0.1:8000/
+```
+
+where the default Django welcome page confirmed that the framework had been installed and configured correctly.
+
+### Step 9: Version Control Integration
+
+The project repository was connected to GitHub before development commenced.
+
+#### Git Repository Configuration
+
+```bash
+git init
+git remote add origin https://github.com/rpires71/milestone-4.git
+```
+
+#### Initial Commit
+
+```bash
+git add .
+git commit -m "Create Django project structure"
+git push -u origin main
+```
+
+This established version control from the beginning of development and provided a secure remote backup of the project.
+
+### Step 10: Dependency Management
+
+To ensure reproducibility across development and deployment environments, installed package versions are documented within a `requirements.txt` file.
+
+```bash
+pip freeze > requirements.txt
+```
+
+Dependencies can then be recreated on another machine using:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Summary
+
+The FitHub development environment was successfully configured using **Python 3.12.10**, **Django 4.2.23**, **Visual Studio Code**, **Git**, and **GitHub**. A dedicated virtual environment was created, the Django project was initialised, six modular applications were established, and the project was placed under version control before development commenced.
+
+This structured setup provides a maintainable foundation for implementing FitHub's subscription management, e-commerce functionality, community features, and administrative tools while following recognised Django development best practices.
 
 ---
 
