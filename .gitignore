@@ -1,6 +1,40 @@
-venv/
-.env
+# Python
+*.py[cod]
+*$py.class
 __pycache__/
 *.pyc
+ 
+# Virtual Environment
+venv/
+env/
+.venv
+ 
+# Django
+*.log
 db.sqlite3
+db.sqlite3-journal
+media/
+ 
+# Environment variables
+.env
+env.py
+ 
+# IDE
 .vscode/
+.idea/
+*.swp
+ 
+# OS
+.DS_Store
+Thumbs.db
+ 
+# Static files
+staticfiles/
+static_root/
+ 
+# Coverage / testing
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+.pytest_cache/
