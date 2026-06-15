@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from .models import Product
+from django.shortcuts import render, get_object_or_404
 
 
 def all_products(request):
@@ -9,3 +9,9 @@ def all_products(request):
         'products': products,
     }
     return render(request, 'shop/products.html', context)
+
+
+def product_detail(request, slug):
+    """Display an individual product."""
+    product = get_object_or_404(Product, slug=slug, is_available=True)
+    return render(request, 'shop/product_detail.html', {'product': product})

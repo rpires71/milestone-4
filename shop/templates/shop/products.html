@@ -15,7 +15,9 @@
               <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
             {% endif %}
             <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
+              <a href="{% url 'product_detail' product.slug %}" class="text-decoration-none text-dark">
+                <h5 class="card-title">{{ product.name }}</h5>
+              </a>
               {% if product.brand %}
                 <p class="text-muted mb-1">{{ product.brand }}</p>
               {% endif %}
