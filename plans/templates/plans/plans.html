@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block extra_title %}- Plans{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+  <h1 class="mb-4">Membership Plans</h1>
+
+  {% if plans %}
+    <div class="row g-4">
+      {% for plan in plans %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <a href="{% url 'plan_detail' plan.slug %}" class="text-decoration-none text-dark">
+                <h5 class="card-title">{{ plan.name }}</h5>
+              </a>
+              <p class="text-muted mb-1">{{ plan.get_tier_display }}</p>
+              <p class="fw-bold mb-0">£{{ plan.price }} / {{ plan.get_billing_interval_display|lower }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No plans available yet.</p>
+  {% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block extra_title %}- {{ plan.name }}{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+  <a href="{% url 'plans' %}" class="btn btn-outline-secondary mb-4">&larr; Back to plans</a>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <h1>{{ plan.name }}</h1>
+      <p class="text-muted">{{ plan.get_tier_display }}</p>
+      <p class="fs-4 fw-bold">£{{ plan.price }} / {{ plan.get_billing_interval_display|lower }}</p>
+      <p>{{ plan.description }}</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="h5">What's included</h2>
+      {% if plan.features.all %}
+        <ul class="list-group">
+          {% for feature in plan.features.all %}
+            <li class="list-group-item">{{ feature.text }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">Details coming soon.</p>
+      {% endif %}
+      <a href="#" class="btn btn-danger btn-lg mt-4">Subscribe</a>
+    </div>
+  </div>
+</main>
+{% endblock %}
