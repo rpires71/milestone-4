@@ -19,5 +19,21 @@
       {% if product.category %}<p class="text-muted">Category: {{ product.category.name }}</p>{% endif %}
     </div>
   </div>
+  <hr class="my-5">
+  <h2 class="h4 mb-3">Reviews</h2>
+  {% for review in product.reviews.all %}
+    <div class="mb-3">
+      <strong>{{ review.user.username }}</strong> — {{ review.rating }}/5
+      <p class="mb-0">{{ review.comment }}</p>
+    </div>
+  {% empty %}
+    <p class="text-muted">No reviews yet.</p>
+  {% endfor %}
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'add_review' product.slug %}" class="btn btn-outline-dark mt-3">Add a review</a>
+  {% else %}
+    <p class="mt-3"><a href="{% url 'account_login' %}">Log in</a> to leave a review.</p>
+  {% endif %}
 </main>
 {% endblock %}
