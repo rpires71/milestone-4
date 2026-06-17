@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block extra_title %}- Edit Review{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+  <h1 class="mb-4">Edit your review: {{ review.product.name }}</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Rating (1-5)</label>
+      {{ form.rating }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Comment</label>
+      {{ form.comment }}
+    </div>
+    <button type="submit" class="btn btn-danger">Update review</button>
+    <a href="{% url 'product_detail' review.product.slug %}" class="btn btn-outline-secondary">Cancel</a>
+  </form>
+</main>
+{% endblock %}
