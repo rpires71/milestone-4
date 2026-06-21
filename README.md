@@ -55,6 +55,8 @@
   - [Django Framework Setup and Configuration](#django-framework-setup-and-configuration)
   - [Database Models Implementation](#database-models-implementation)
   - [Django Admin Configuration and Sample Data](#django-admin-configuration-and-sample-data)
+  - [Testing](#testing)
+    - [Automated Testing](#automated-testing)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -4795,6 +4797,45 @@ Each model should be registered within its corresponding `admin.py` file and ver
 ### Summary
 
 FitHub implements a modular database architecture consisting of **10 custom models** alongside Django's built-in `User` model. By distributing responsibility across dedicated applications and enforcing clearly defined relationships, the database remains scalable, maintainable, and aligned with the project's user stories, business requirements, and Third Normal Form (**3NF**) design principles.
+
+---
+
+## Testing
+
+### Automated Testing
+
+FitHub includes a comprehensive suite of automated tests that validate models, forms, views, permissions, session functionality, and integrations with external services through mocked APIs, including Stripe. All tests have been developed using Django's built-in `TestCase` framework.
+
+To execute the complete automated test suite, run the following command:
+
+```bash
+python manage.py test
+```
+
+The testing suite currently covers seven Django applications:
+
+* `accounts`
+* `plans`
+* `shop`
+* `cart`
+* `orders`
+* `reviews`
+* `community`
+
+All automated tests are passing successfully, helping to ensure the reliability, stability, and correctness of the application's core functionality.
+
+### Payment Testing
+
+FitHub is configured to use **Stripe Test Mode**, ensuring that no real financial transactions are processed during development or testing.
+
+To test the checkout and payment workflow, use the following Stripe test card credentials:
+
+* **Card Number:** `4242 4242 4242 4242`
+* **Expiry Date:** Any future date (e.g. `12/34`)
+* **CVC:** Any three-digit value (e.g. `123`)
+* **Postcode:** Any valid postcode (e.g. `PE12 7AA`)
+
+These test credentials allow the complete payment process to be verified safely without charging a real payment card.
 
 ---
 
