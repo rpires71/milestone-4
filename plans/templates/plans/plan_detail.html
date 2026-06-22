@@ -23,7 +23,7 @@
       {% else %}
         <p class="text-muted">Details coming soon.</p>
       {% endif %}
-      <a href="#" class="btn btn-danger btn-lg mt-4">Subscribe</a>
+      <a href="{% url 'subscribe' plan.slug %}" class="btn btn-danger btn-lg mt-4">Subscribe</a>
     </div>
   </div>
 </main>
