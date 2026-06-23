@@ -1,0 +1,115 @@
+/* ============================================
+   FitHub — Brand Foundation
+   Palette, typography & core components
+   ============================================ */
+
+:root {
+  /* Brand & neutrals */
+  --energy-red:    #C81E2D;
+  --red-hover:     #A3151F;
+  --ink-black:     #1A1A1A;
+  --slate-grey:    #6B7280;
+  --mist-grey:     #F4F5F7;
+  --pure-white:    #FFFFFF;
+
+  /* Functional status colours */
+  --success-green: #2E7D32;
+  --warning-amber: #B45309;
+  --info-blue:     #1D4ED8;
+  --neutral-purple:#6D28D9;
+
+  /* Typography */
+  --font-heading: 'Poppins', 'Inter', Arial, sans-serif;
+  --font-body:    'Inter', Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+body {
+  font-family: var(--font-body);
+  color: var(--ink-black);
+  background-color: var(--mist-grey);
+  font-size: 1rem;            /* 16px base */
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--ink-black);
+}
+
+a {
+  color: var(--energy-red);
+}
+a:hover {
+  color: var(--red-hover);
+}
+
+/* ---------- Buttons ---------- */
+/* Primary CTA = Energy Red (reserved for key actions) */
+.btn-danger, .btn-primary {
+  background-color: var(--energy-red);
+  border-color: var(--energy-red);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+.btn-danger:hover, .btn-primary:hover,
+.btn-danger:focus, .btn-primary:focus {
+  background-color: var(--red-hover);
+  border-color: var(--red-hover);
+}
+
+/* Secondary CTA = outline dark */
+.btn-outline-dark {
+  border-color: var(--ink-black);
+  color: var(--ink-black);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+.btn-outline-dark:hover {
+  background-color: var(--ink-black);
+  color: var(--pure-white);
+}
+
+/* ---------- Navbar (light/branded) ---------- */
+.navbar.bg-fithub {
+  background-color: var(--pure-white);
+  border-bottom: 1px solid #e5e7eb;
+}
+.navbar.bg-fithub .navbar-brand {
+  color: var(--ink-black);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.navbar.bg-fithub .nav-link {
+  color: var(--ink-black);
+  font-weight: 500;
+}
+.navbar.bg-fithub .nav-link:hover {
+  color: var(--energy-red);
+}
+
+/* ---------- Cards & containers ---------- */
+.card {
+  background-color: var(--pure-white);
+  border: 1px solid #e5e7eb;
+}
+
+/* ---------- Accessibility: visible focus + skip link ---------- */
+*:focus-visible {
+  outline: 3px solid var(--energy-red);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ink-black);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 0;
+}
