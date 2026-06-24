@@ -1,34 +1,44 @@
 {% extends "base.html" %}
 
-{% block extra_title %}- Products{% endblock %}
+{% block extra_title %}- Shop{% endblock %}
 
 {% block content %}
-<main class="container py-5">
-  <h1 class="mb-4">Shop</h1>
+<main id="main-content" class="container py-5">
+
+  <div class="mb-5">
+    <h1 class="mb-2">Shop</h1>
+    <p class="lead text-secondary mb-0">
+      Quality supplements, equipment and gear to support your training.
+    </p>
+  </div>
 
   {% if products %}
     <div class="row g-4">
       {% for product in products %}
-        <div class="col-12 col-sm-6 col-lg-4">
+        <div class="col-6 col-lg-3">
           <div class="card h-100">
             {% if product.image %}
               <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            {% else %}
+              <div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center text-secondary">
+                Product image
+              </div>
             {% endif %}
-            <div class="card-body">
-              <a href="{% url 'product_detail' product.slug %}" class="text-decoration-none text-dark">
-                <h5 class="card-title">{{ product.name }}</h5>
-              </a>
+            <div class="card-body d-flex flex-column">
+              <h2 class="h6 mb-1">{{ product.name }}</h2>
               {% if product.brand %}
-                <p class="text-muted mb-1">{{ product.brand }}</p>
+                <p class="text-secondary small mb-2">{{ product.brand }}</p>
               {% endif %}
-              <p class="fw-bold mb-0">£{{ product.price }}</p>
+              <p class="fw-bold fs-5 mb-3">&pound;{{ product.price }}</p>
+              <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline-dark btn-sm mt-auto">View Product</a>
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
   {% else %}
-    <p>No products available yet.</p>
+    <p class="text-secondary">No products available yet.</p>
   {% endif %}
+
 </main>
 {% endblock %}
