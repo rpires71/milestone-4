@@ -3,28 +3,74 @@
 {% block extra_title %}- {{ plan.name }}{% endblock %}
 
 {% block content %}
-<main class="container py-5">
-  <a href="{% url 'plans' %}" class="btn btn-outline-secondary mb-4">&larr; Back to plans</a>
-  <div class="row g-4">
-    <div class="col-md-6">
-      <h1>{{ plan.name }}</h1>
-      <p class="text-muted">{{ plan.get_tier_display }}</p>
-      <p class="fs-4 fw-bold">£{{ plan.price }} / {{ plan.get_billing_interval_display|lower }}</p>
-      <p>{{ plan.description }}</p>
-    </div>
-    <div class="col-md-6">
-      <h2 class="h5">What's included</h2>
+<main id="main-content" class="container py-5">
+
+  <a href="{% url 'plans' %}" class="btn btn-outline-dark btn-sm mb-4">&larr; Back to plans</a>
+
+  <div class="row g-5">
+
+    <!-- LEFT: plan info + features -->
+    <div class="col-lg-7">
+      {% if plan.image %}
+        <img src="{{ plan.image.url }}" class="img-fluid rounded mb-4" alt="{{ plan.name }}">
+      {% else %}
+        <div class="ratio ratio-16x9 bg-light rounded border d-flex align-items-center justify-content-center text-secondary mb-4">
+          Plan image
+        </div>
+      {% endif %}
+
+      <h1 class="mb-1">{{ plan.name }}</h1>
+      <p class="text-secondary text-capitalize mb-4">
+        {{ plan.get_tier_display }} &middot; {{ plan.get_billing_interval_display }}
+      </p>
+
+      {% if plan.description %}
+        <p class="mb-4">{{ plan.description }}</p>
+      {% endif %}
+
+      <h2 class="h5 mb-3">What's included</h2>
       {% if plan.features.all %}
-        <ul class="list-group">
+        <ul class="list-unstyled">
           {% for feature in plan.features.all %}
-            <li class="list-group-item">{{ feature.text }}</li>
+            <li class="d-flex align-items-start mb-2">
+              <span class="me-2" style="color: var(--success-green);" aria-hidden="true">&#10003;</span>
+              <span>{{ feature.text }}</span>
+            </li>
           {% endfor %}
         </ul>
       {% else %}
-        <p class="text-muted">Details coming soon.</p>
+        <p class="text-secondary">Details coming soon.</p>
       {% endif %}
-      <a href="{% url 'subscribe' plan.slug %}" class="btn btn-danger btn-lg mt-4">Subscribe</a>
     </div>
+
+    <!-- RIGHT: subscribe panel -->
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <p class="text-secondary small mb-1 text-uppercase">Membership</p>
+          <p class="display-6 fw-bold mb-0">&pound;{{ plan.price }}</p>
+          <p class="text-secondary mb-4">per {{ plan.get_billing_interval_display|lower }}</p>
+
+          {% if user.is_authenticated %}
+            <a href="{% url 'subscribe' plan.slug %}" class="btn btn-danger btn-lg w-100">
+              Subscribe
+            </a>
+            <p class="text-secondary small text-center mt-3 mb-0">
+              Secure checkout powered by Stripe.
+            </p>
+          {% else %}
+            <a href="{% url 'account_login' %}?next={% url 'plan_detail' plan.slug %}"
+               class="btn btn-danger btn-lg w-100">
+              Log in to subscribe
+            </a>
+            <p class="text-secondary small text-center mt-3 mb-0">
+              New here? <a href="{% url 'account_signup' %}">Create an account</a>.
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
 {% endblock %}
