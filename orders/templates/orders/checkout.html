@@ -4,23 +4,27 @@
 {% block extra_title %}- Checkout{% endblock %}
 
 {% block content %}
-<main class="container py-5">
+<main id="main-content" class="container py-5">
   <h1 class="mb-4">Checkout</h1>
   <div class="row g-5">
 
     <!-- Order summary -->
     <div class="col-12 col-lg-5 order-lg-2">
-      <h2 class="h5 mb-3">Order Summary</h2>
-      {% for item in cart_items %}
-        <div class="d-flex justify-content-between">
-          <span>{{ item.product.name }} x{{ item.quantity }}</span>
-          <span>£{{ item.subtotal }}</span>
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h5 mb-3">Order Summary</h2>
+          {% for item in cart_items %}
+            <div class="d-flex justify-content-between mb-2">
+              <span>{{ item.product.name }} &times;{{ item.quantity }}</span>
+              <span>&pound;{{ item.subtotal }}</span>
+            </div>
+          {% endfor %}
+          <hr>
+          <div class="d-flex justify-content-between fw-bold fs-5">
+            <span>Total</span>
+            <span>&pound;{{ total }}</span>
+          </div>
         </div>
-      {% endfor %}
-      <hr>
-      <div class="d-flex justify-content-between fw-bold">
-        <span>Total</span>
-        <span>£{{ total }}</span>
       </div>
     </div>
 
@@ -29,35 +33,35 @@
       <form action="{% url 'checkout' %}" method="POST" id="payment-form">
         {% csrf_token %}
 
-        <fieldset class="mb-3">
-          <legend class="h5">Delivery Details</legend>
-          {{ order_form.full_name }}
-          <div class="mb-2"></div>
-          {{ order_form.email }}
-          <div class="mb-2"></div>
-          {{ order_form.phone }}
-          <div class="mb-2"></div>
-          {{ order_form.address_line1 }}
-          <div class="mb-2"></div>
-          {{ order_form.address_line2 }}
-          <div class="mb-2"></div>
-          {{ order_form.town_city }}
-          <div class="mb-2"></div>
-          {{ order_form.postcode }}
-          <div class="mb-2"></div>
-          {{ order_form.country }}
+        <fieldset class="mb-4">
+          <legend class="h5 mb-3">Delivery Details</legend>
+          <div class="mb-3">{{ order_form.full_name }}</div>
+          <div class="mb-3">{{ order_form.email }}</div>
+          <div class="mb-3">{{ order_form.phone }}</div>
+          <div class="mb-3">{{ order_form.address_line1 }}</div>
+          <div class="mb-3">{{ order_form.address_line2 }}</div>
+          <div class="mb-3">{{ order_form.town_city }}</div>
+          <div class="mb-3">{{ order_form.postcode }}</div>
+          <div class="mb-3">{{ order_form.country }}</div>
         </fieldset>
 
-        <fieldset class="mb-3">
-          <legend class="h5">Payment</legend>
-          <div class="mb-3" id="card-element"></div>
-          <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+        <fieldset class="mb-4">
+          <legend class="h5 mb-3">Payment</legend>
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-3" id="card-element"></div>
+              <div class="text-danger" id="card-errors" role="alert"></div>
+            </div>
+          </div>
+          <p class="text-secondary small mt-2 mb-0">
+            <span aria-hidden="true">&#128274;</span> Payments are securely processed by Stripe.
+          </p>
         </fieldset>
 
-        <div class="d-flex gap-2">
-          <a href="{% url 'view_cart' %}" class="btn btn-outline-secondary">Adjust cart</a>
-          <button id="submit-button" class="btn btn-danger">
-            Pay £{{ total }}
+        <div class="d-flex flex-wrap gap-2 justify-content-end">
+          <a href="{% url 'view_cart' %}" class="btn btn-outline-dark btn-lg">Adjust cart</a>
+          <button id="submit-button" class="btn btn-danger btn-lg">
+            Pay &pound;{{ total }}
           </button>
         </div>
       </form>
