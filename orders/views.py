@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
 
 import stripe
 import uuid
@@ -79,6 +82,35 @@ def checkout(request):
 def checkout_success(request, order_number):
     """Display a confirmation page after successful checkout."""
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Order successfully processed! Your order number is {order_number}.')
+
+    # Send the confirmation email
+    _send_confirmation_email(order)
+
+    messages.success(
+        request,
+        f'Order successfully processed! Your order number is {order_number}.'
+    )
     context = {'order': order}
     return render(request, 'orders/checkout_success.html', context)
+
+
+def _send_confirmation_email(order):
+    """Send the customer an order confirmation email."""
+    customer_email = order.email
+    subject = render_to_string(
+        'orders/confirmation_emails/confirmation_email_subject.txt',
+        {'order': order},
+    ).strip()
+    body = render_to_string(
+        'orders/confirmation_emails/confirmation_email_body.txt',
+        {'order': order},
+    )
+    send_mail(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [customer_email],
+        fail_silently=False,
+    )
+
+

@@ -1,0 +1,21 @@
+Hello {{ order.full_name }},
+
+Thank you for your order with FitHub!
+
+Your order number is {{ order.order_number }}.
+
+Order summary:
+{% for item in order.line_items.all %}- {{ item.product.name }} x{{ item.quantity }} — £{{ item.price }}
+{% endfor %}
+Total: £{{ order.total }}
+
+We'll deliver to:
+{{ order.address_line1 }}
+{{ order.town_city }}
+{{ order.postcode }}
+{{ order.country }}
+
+If you have any questions, just reply to this email.
+
+Thanks,
+The FitHub Team
