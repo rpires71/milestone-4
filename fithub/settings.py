@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'community',
     'cart',
     'home',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
