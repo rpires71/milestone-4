@@ -14,7 +14,11 @@ def all_plans(request):
 def plan_detail(request, slug):
     """Display an individual plan with its features."""
     plan = get_object_or_404(Plan, slug=slug, status='published')
-    return render(request, 'plans/plan_detail.html', {'plan': plan})
+    similar_plans = Plan.objects.filter(
+        status='published'
+    ).exclude(pk=plan.pk)[:3]
+    context = {'plan': plan, 'similar_plans': similar_plans}
+    return render(request, 'plans/plan_detail.html', context)
 
 
 @login_required
