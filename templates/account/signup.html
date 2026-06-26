@@ -1,0 +1,42 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n allauth account %}
+{% block head_title %}
+    {% trans "Sign Up" %}
+{% endblock head_title %}
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      {% element h1 %}
+          {% trans "Create Your FitHub Account" %}
+      {% endelement %}
+      {% element p %}
+          {% trans "Join thousands achieving their fitness goals." %}
+      {% endelement %}
+      {% setvar link %}
+          <a href="{{ login_url }}">
+      {% endsetvar %}
+      {% setvar end_link %}
+          </a>
+      {% endsetvar %}
+      {% element p %}
+          {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+      {% endelement %}
+      {% url 'account_signup' as action_url %}
+      {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+          {% slot body %}
+              {% csrf_token %}
+              {% element fields form=form unlabeled=True %}
+              {% endelement %}
+              {{ redirect_field }}
+          {% endslot %}
+          {% slot actions %}
+              {% element button tags="prominent,signup" type="submit" %}
+                  {% trans "Sign Up" %}
+              {% endelement %}
+          {% endslot %}
+      {% endelement %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
