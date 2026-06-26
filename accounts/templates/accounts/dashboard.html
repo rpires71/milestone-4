@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block extra_title %}- My Dashboard{% endblock %}
+
+{% block content %}
+<main id="main-content" class="container py-5">
+
+  <!-- Welcome header -->
+  <div class="mb-4">
+    <h1 class="fw-bold mb-1">Welcome back, {{ user.username }}!</h1>
+    <p class="lead text-secondary mb-0">Here's an overview of your FitHub account.</p>
+  </div>
+
+  <!-- Quick stat cards -->
+  <div class="row g-4 mb-4">
+    <div class="col-12 col-md-4">
+      <div class="card h-100 text-center p-4">
+        <div class="fs-1 mb-2">&#127947;</div>
+        <h2 class="h6 text-secondary mb-1">Current Plan</h2>
+        {% if active_subscription %}
+          <p class="fw-bold fs-5 mb-0">{{ active_subscription.plan.name }}</p>
+        {% else %}
+          <p class="fw-bold fs-5 mb-0">No active plan</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card h-100 text-center p-4">
+        <div class="fs-1 mb-2">&#128230;</div>
+        <h2 class="h6 text-secondary mb-1">Total Orders</h2>
+        <p class="fw-bold fs-5 mb-0">{{ order_count }}</p>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card h-100 text-center p-4">
+        <div class="fs-1 mb-2">&#127919;</div>
+        <h2 class="h6 text-secondary mb-1">Fitness Goal</h2>
+        {% if profile.fitness_goal %}
+          <p class="fw-bold fs-5 mb-0">{{ profile.get_fitness_goal_display }}</p>
+        {% else %}
+          <p class="fw-bold fs-5 mb-0">Not set</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Subscription card -->
+    <div class="col-12 col-lg-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h5 mb-3">My Subscription</h2>
+          {% if active_subscription %}
+            <p class="mb-2">
+              <span class="fw-semibold">Plan:</span> {{ active_subscription.plan.name }}
+              ({{ active_subscription.plan.get_billing_interval_display }})
+            </p>
+            <p class="mb-2">
+              <span class="fw-semibold">Status:</span>
+              <span class="badge bg-success">{{ active_subscription.get_status_display }}</span>
+            </p>
+            {% if active_subscription.current_period_end %}
+              <p class="mb-3">
+                <span class="fw-semibold">Renews on:</span>
+                {{ active_subscription.current_period_end|date:"j M Y" }}
+              </p>
+            {% endif %}
+            <a href="{% url 'plans' %}" class="btn btn-outline-dark">View Plans</a>
+          {% else %}
+            <p class="text-secondary mb-3">You don't have an active subscription yet.</p>
+            <a href="{% url 'plans' %}" class="btn btn-danger">Browse Plans</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent orders card -->
+    <div class="col-12 col-lg-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h5 mb-3">Recent Orders</h2>
+          {% if recent_orders %}
+            <div class="table-responsive">
+              <table class="table align-middle mb-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Order</th>
+                    <th scope="col">Date</th>
+                    <th scope="col" class="text-end">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for order in recent_orders %}
+                    <tr>
+                      <td class="small">{{ order.order_number|truncatechars:12 }}</td>
+                      <td class="small">{{ order.created_at|date:"j M Y" }}</td>
+                      <td class="text-end fw-semibold">&pound;{{ order.total }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <a href="{% url 'products' %}" class="btn btn-outline-dark">Shop Again</a>
+          {% else %}
+            <p class="text-secondary mb-3">You haven't placed any orders yet.</p>
+            <a href="{% url 'products' %}" class="btn btn-danger">Browse Shop</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock content %}
