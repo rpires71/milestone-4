@@ -5,38 +5,59 @@
 {% endblock head_title %}
 {% block content %}
 <div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-5">
-      {% element h1 %}
-          {% trans "Create Your FitHub Account" %}
-      {% endelement %}
-      {% element p %}
-          {% trans "Join thousands achieving their fitness goals." %}
-      {% endelement %}
-      {% setvar link %}
-          <a href="{{ login_url }}">
-      {% endsetvar %}
-      {% setvar end_link %}
-          </a>
-      {% endsetvar %}
-      {% element p %}
-          {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-      {% endelement %}
-      {% url 'account_signup' as action_url %}
-      {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-          {% slot body %}
-              {% csrf_token %}
-              {% element fields form=form unlabeled=True %}
-              {% endelement %}
-              {{ redirect_field }}
-          {% endslot %}
-          {% slot actions %}
-              {% element button tags="prominent,signup" type="submit" %}
-                  {% trans "Sign Up" %}
-              {% endelement %}
-          {% endslot %}
-      {% endelement %}
+
+  <div class="mb-4">
+    <h1 class="fw-bold mb-1">Create Your FitHub Account</h1>
+    <p class="text-secondary mb-0">Join thousands achieving their fitness goals.</p>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- LEFT: signup form -->
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm h-100">
+        <div class="card-body p-4 p-md-5">
+          {% url 'account_signup' as action_url %}
+          {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+              {% slot body %}
+                  {% csrf_token %}
+                  {% element fields form=form unlabeled=True %}
+                  {% endelement %}
+                  {{ redirect_field }}
+              {% endslot %}
+              {% slot actions %}
+                  {% element button tags="prominent,signup" type="submit" %}
+                      {% trans "Sign Up" %}
+                  {% endelement %}
+              {% endslot %}
+          {% endelement %}
+          <p class="text-center text-secondary small mt-3 mb-0">
+              Already have an account? <a href="{{ login_url }}">Sign in</a>
+          </p>
+        </div>
+      </div>
     </div>
+
+    <!-- RIGHT: trust panel -->
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm h-100 bg-light border-0">
+        <div class="card-body p-4 d-flex flex-column justify-content-center">
+          <div class="mb-4">
+            <div class="fs-3 mb-1">&#128274;</div>
+            <p class="fw-semibold mb-1">Your data is encrypted</p>
+          </div>
+          <div class="mb-4">
+            <div class="fs-3 mb-1">&#9989;</div>
+            <p class="fw-semibold mb-1">GDPR compliant</p>
+          </div>
+          <div>
+            <div class="fs-3 mb-1">&#9993;</div>
+            <p class="fw-semibold mb-1">No spam, unsubscribe anytime</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 {% endblock content %}

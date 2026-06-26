@@ -6,37 +6,70 @@
 {% endblock head_title %}
 {% block content %}
 <div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-5">
-      {% element h1 %}
-          {% trans "Welcome Back to FitHub" %}
-      {% endelement %}
-      {% if not SOCIALACCOUNT_ONLY %}
-          {% setvar link %}
-              <a href="{{ signup_url }}">
-              {% endsetvar %}
-              {% setvar end_link %}
-              </a>
-          {% endsetvar %}
-          {% element p %}
-              {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
-          {% endelement %}
-          {% url 'account_login' as login_url %}
-          {% element form form=form method="post" action=login_url tags="entrance,login" %}
-              {% slot body %}
-                  {% csrf_token %}
-                  {% element fields form=form unlabeled=True %}
-                  {% endelement %}
-                  {{ redirect_field }}
-              {% endslot %}
-              {% slot actions %}
-                  {% element button type="submit" tags="prominent,login" %}
-                      {% trans "Sign In" %}
-                  {% endelement %}
-              {% endslot %}
-          {% endelement %}
-      {% endif %}
-    </div>
+
+  <div class="mb-4">
+    <h1 class="fw-bold mb-1">Welcome Back to FitHub</h1>
+    <p class="text-secondary mb-0">Log in to access your fitness plans and track your progress.</p>
   </div>
+
+  <div class="row g-4">
+
+    <!-- LEFT: login form -->
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm h-100">
+        <div class="card-body p-4 p-md-5">
+          {% if not SOCIALACCOUNT_ONLY %}
+              {% url 'account_login' as login_url %}
+              {% element form form=form method="post" action=login_url tags="entrance,login" %}
+                  {% slot body %}
+                      {% csrf_token %}
+                      {% element fields form=form unlabeled=True %}
+                      {% endelement %}
+                      {{ redirect_field }}
+                  {% endslot %}
+                  {% slot actions %}
+                      {% element button type="submit" tags="prominent,login" %}
+                          {% trans "Log In" %}
+                      {% endelement %}
+                  {% endslot %}
+              {% endelement %}
+              <p class="text-center text-secondary small mt-3 mb-0">
+                  Don't have an account? <a href="{{ signup_url }}">Create one</a>
+              </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: trust panel -->
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm h-100 bg-light border-0">
+        <div class="card-body p-4 d-flex flex-column justify-content-center">
+          <div class="mb-4">
+            <div class="fs-3 mb-1">&#128274;</div>
+            <p class="fw-semibold mb-1">Your password is encrypted with SSL</p>
+            <p class="text-secondary small mb-0">We use 256-bit SSL encryption to protect your data.</p>
+          </div>
+          <div class="mb-4">
+            <div class="fs-3 mb-1">&#128737;</div>
+            <p class="fw-semibold mb-1">Bank-level security</p>
+            <p class="text-secondary small mb-0">Enterprise-grade infrastructure keeps your account safe.</p>
+          </div>
+          <div>
+            <div class="fs-3 mb-1">&#9993;</div>
+            <p class="fw-semibold mb-1">We'll never spam you</p>
+            <p class="text-secondary small mb-0">Only important updates about your account and plans.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Why log in info box -->
+  <div class="alert alert-info mt-4 mb-0" role="note">
+    <strong>Why log in?</strong> Logging in unlocks your personalised fitness plans, progress tracking, community access and exclusive member benefits.
+  </div>
+
 </div>
 {% endblock content %}
