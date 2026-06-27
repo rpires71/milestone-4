@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load plans_extras %}
+{% load shop_extras %}
 
 {% block extra_title %}- Home{% endblock %}
 
@@ -29,9 +31,7 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <img src="{% static 'images/hero-home.webp' %}"
-             class="img-fluid rounded border w-100"
-             alt="People training together at FitHub">
+        <img src="{% static 'images/hero-home.webp' %}" class="img-fluid rounded border w-100" alt="People training together at FitHub">
       </div>
     </div>
   </div>
@@ -79,13 +79,17 @@
       {% for plan in featured_plans %}
         <div class="col-md-4">
           <div class="card h-100">
-            {% if plan.image %}
-              <img src="{{ plan.image.url }}" class="card-img-top" alt="{{ plan.name }}">
-            {% else %}
-              <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-secondary">
-                Plan image
-              </div>
-            {% endif %}
+            {% with img=plan.slug|plan_image %}
+              {% if plan.image %}
+                <img src="{{ plan.image.url }}" class="card-img-top" alt="{{ plan.name }}">
+              {% elif img %}
+                <img src="{{ img }}" class="card-img-top" alt="{{ plan.name }}">
+              {% else %}
+                <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-secondary">
+                  Plan image
+                </div>
+              {% endif %}
+            {% endwith %}
             <div class="card-body d-flex flex-column">
               <h3 class="h5">{{ plan.name }}</h3>
               <p class="text-secondary small mb-2 text-capitalize">{{ plan.tier }} &middot; {{ plan.get_billing_interval_display }}</p>
@@ -113,13 +117,17 @@
         {% for product in featured_products %}
           <div class="col-6 col-md-3">
             <div class="card h-100">
+              {% with pimg=product.slug|product_image %}
               {% if product.image %}
                 <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+              {% elif pimg %}
+                <img src="{{ pimg }}" class="card-img-top" alt="{{ product.name }}">
               {% else %}
                 <div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center text-secondary">
                   Product image
                 </div>
               {% endif %}
+              {% endwith %}
               <div class="card-body d-flex flex-column">
                 <h3 class="h6">{{ product.name }}</h3>
                 <p class="fw-bold mb-3">&pound;{{ product.price }}</p>
