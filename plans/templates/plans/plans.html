@@ -1,73 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
+{% load plans_extras %}
 
 {% block extra_title %}- Plans{% endblock %}
 
 {% block content %}
 <main id="main-content" class="container py-5">
 
-  <!-- Page header -->
-  <div class="mb-5">
-    <h1 class="fw-bold mb-2">Browse Our Fitness Plans</h1>
+  <div class="mb-4">
+    <h1 class="mb-2">Membership Plans</h1>
     <p class="lead text-secondary mb-0">
-      Expert-designed plans for every goal and fitness level. Cancel anytime, no hidden fees.
+      Choose the plan that fits your goals. Cancel or change anytime.
     </p>
   </div>
+
+  <img src="{% static 'images/hero-plans.webp' %}"
+       class="img-fluid rounded w-100 mb-5"
+       alt="FitHub members training together">
 
   {% if plans %}
     <div class="row g-4">
       {% for plan in plans %}
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 position-relative">
-
-            {% if forloop.first %}
-              <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">
-                &#11088; Most Popular
-              </span>
-            {% endif %}
-
-            {% if plan.image %}
-              <img src="{{ plan.image.url }}" class="card-img-top" alt="{{ plan.name }}">
-            {% else %}
-              <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-secondary">
-                Plan image
-              </div>
-            {% endif %}
-
-            <div class="card-body d-flex flex-column">
-              <h2 class="h5 mb-2">{{ plan.name }}</h2>
-
-              <!-- Tier badge (colour-coded by difficulty) -->
-              <div class="mb-3">
-                {% if plan.tier == 'beginner' %}
-                  <span class="badge rounded-pill bg-success-subtle text-success-emphasis">Beginner</span>
-                {% elif plan.tier == 'intermediate' %}
-                  <span class="badge rounded-pill bg-warning-subtle text-warning-emphasis">Intermediate</span>
-                {% else %}
-                  <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis">Advanced</span>
-                {% endif %}
-                <span class="badge rounded-pill bg-light text-secondary">{{ plan.get_billing_interval_display }}</span>
-              </div>
-
-              <!-- Price -->
-              <p class="mb-3">
-                <span class="fw-bold fs-3">&pound;{{ plan.price }}</span>
-                <span class="text-secondary small">
-                  / {% if plan.billing_interval == 'annual' %}year{% else %}month{% endif %}
-                </span>
-              </p>
-
-              <!-- Features -->
-              {% if plan.features.all %}
-                <ul class="list-unstyled small mb-3">
-                  {% for feature in plan.features.all %}
-                    <li class="mb-1">
-                      <span class="text-success" aria-hidden="true">&#10003;</span>
-                      {{ feature.text }}
-                    </li>
-                  {% endfor %}
-                </ul>
+          <div class="card h-100">
+            {% with img=plan.slug|plan_image %}
+              {% if plan.image %}
+                <img src="{{ plan.image.url }}" class="card-img-top" alt="{{ plan.name }}">
+              {% elif img %}
+                <img src="{{ img }}" class="card-img-top" alt="{{ plan.name }}">
+              {% else %}
+                <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-secondary">
+                  Plan image
+                </div>
               {% endif %}
-
+            {% endwith %}
+            <div class="card-body d-flex flex-column">
+              <h2 class="h5 mb-1">{{ plan.name }}</h2>
+              <p class="text-secondary small mb-3 text-capitalize">
+                {{ plan.get_tier_display }} &middot; {{ plan.get_billing_interval_display }}
+              </p>
+              <p class="fw-bold fs-4 mb-1">&pound;{{ plan.price }}</p>
+              <p class="text-secondary small mb-3">{{ plan.get_billing_interval_display }}</p>
               <a href="{% url 'plan_detail' plan.slug %}" class="btn btn-danger mt-auto">View Plan</a>
             </div>
           </div>
@@ -77,13 +50,6 @@
   {% else %}
     <p class="text-secondary">No plans available yet.</p>
   {% endif %}
-
-  <!-- Trust strip -->
-  <div class="row g-3 text-center text-secondary small mt-5 pt-4 border-top">
-    <div class="col-12 col-md-4">&#128274; All data is secure and encrypted</div>
-    <div class="col-12 col-md-4">&#128176; 30-day money-back guarantee</div>
-    <div class="col-12 col-md-4">&#10003; Cancel anytime, no hidden fees</div>
-  </div>
 
 </main>
 {% endblock %}
