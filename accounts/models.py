@@ -22,10 +22,10 @@ class Profile(models.Model):
         User, on_delete=models.CASCADE, related_name='profile'
     )
     fitness_goal = models.CharField(
-        max_length=20, choices=GOAL_CHOICES, blank=True
+        max_length=20, choices=GOAL_CHOICES
     )
     experience_level = models.CharField(
-        max_length=20, choices=EXPERIENCE_CHOICES, blank=True
+        max_length=20, choices=EXPERIENCE_CHOICES
     )
     height_cm = models.PositiveIntegerField(null=True, blank=True)
     weight_kg = models.DecimalField(

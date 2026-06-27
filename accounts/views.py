@@ -1,5 +1,8 @@
-from django.shortcuts import render
+# accounts/views.py
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .forms import FitnessProfileForm
+from .models import Profile
 
 
 @login_required
@@ -27,3 +30,18 @@ def dashboard(request):
         'profile': profile,
     }
     return render(request, 'accounts/dashboard.html', context)
+
+
+@login_required
+def profile_setup(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == "POST":
+        form = FitnessProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard")
+    else:
+        form = FitnessProfileForm(instance=profile)
+
+    return render(request, "accounts/profile_setup.html", {"form": form})
