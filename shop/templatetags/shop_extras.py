@@ -11,7 +11,12 @@ PRODUCT_IMAGE_MAP = {
     'kettlebell-16kg': 'kettlebell-16kg.webp',
     'resistance-bands-set': 'resistance-band.webp',
     'whey-protein-powder-1kg-chocolate': 'protein-shaker.webp',
-    # Add more slug -> filename pairs here as you add product images.
+    'creatine-monohydrate-500g': 'creatine-monohydrate.webp',
+    'electrolyte-hydration-tablets': 'electrolyte-hydration.webp',
+    'performance-training-t-shirt-fithub': 'performance-shirt.webp',
+    'gym-towel-bottle-set': 'towel-bottle.webp',
+    'stainless-steel-water-bottle-750ml': 'water-bottle.webp',
+    'compression-leggings': 'compression-leggings.webp',
 }
 
 
