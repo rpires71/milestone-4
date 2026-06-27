@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load shop_extras %}
 
 {% block extra_title %}- Shop{% endblock %}
@@ -12,6 +13,9 @@
       Quality supplements, equipment and gear to support your training.
     </p>
   </div>
+  <img src="{% static 'images/shop-banner.webp' %}"
+       class="img-fluid rounded w-100 mb-5"
+       alt="FitHub equipment, supplements and accessories">
 
   {% if products %}
     <div class="row g-4">
