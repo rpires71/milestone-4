@@ -12,3 +12,13 @@ def index(request):
         'featured_products': featured_products,
     }
     return render(request, 'home/index.html', context)
+
+
+def terms(request):
+    """Static Terms & Conditions page."""
+    return render(request, 'home/terms.html')
+
+
+def privacy(request):
+    """Static Privacy Policy page."""
+    return render(request, 'home/privacy.html')
