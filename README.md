@@ -1963,7 +1963,7 @@ The page focuses on presenting personalised, real-time data within a fully respo
 <details>
 <summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
 
-<img width="1536" height="1024" alt="dashboard wireframe v2" src="https://github.com/user-attachments/assets/217ae3c6-0353-4719-8847-3668dfc2606d" />
+<img width="1536" height="1024" alt="dashboard wireframe v3" src="https://github.com/user-attachments/assets/c47844f4-8f3d-4f59-8d2c-00092084f5fe" />
 
 </details>
 
