@@ -5,10 +5,20 @@ from .forms import FitnessProfileForm
 from .models import Profile
 
 
+def profile_is_complete(profile):
+    """A profile counts as complete once goal and experience are both set."""
+    return bool(profile and profile.fitness_goal and profile.experience_level)
+
+
 @login_required
 def dashboard(request):
     """Member dashboard showing subscription, orders and profile."""
     user = request.user
+
+    # First-time users (incomplete profile) are sent to step 2 once.
+    profile = getattr(user, 'profile', None)
+    if not profile_is_complete(profile):
+        return redirect('profile_setup')
 
     # Active subscription (most recent active one, if any)
     subscriptions = user.subscriptions.all().order_by('-created_at')
@@ -35,6 +45,10 @@ def dashboard(request):
 @login_required
 def profile_setup(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
+
+    # If they've already completed step 2, don't show it again.
+    if profile_is_complete(profile) and request.method != "POST":
+        return redirect("dashboard")
 
     if request.method == "POST":
         form = FitnessProfileForm(request.POST, instance=profile)
