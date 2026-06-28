@@ -156,7 +156,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/dashboard/profile-setup/"
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = "/dashboard/profile-setup/"
+LOGIN_REDIRECT_URL = "/dashboard/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
