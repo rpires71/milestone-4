@@ -1997,7 +1997,7 @@ The page focuses on clear information hierarchy and a fully responsive layout th
 <details>
 <summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
 
-<img width="1536" height="1024" alt="plans_detail wireframe v2" src="https://github.com/user-attachments/assets/7046db37-25fc-4661-8c9c-1564895db6a8" />
+<img width="1536" height="1024" alt="plans_detail wireframe v3" src="https://github.com/user-attachments/assets/73955235-7b3d-46c6-aee4-703ee398c0e4" />
 
 </details>
 
