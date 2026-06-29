@@ -29,7 +29,7 @@
   {% if plans %}
     <div class="row g-4">
       {% for plan in plans %}
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-3">
           <div class="card h-100">
             {% with img=plan.slug|plan_image %}
               {% if plan.image %}
