@@ -1980,7 +1980,7 @@ The page focuses on efficient data filtering and a fully responsive layout that 
 <details>
 <summary><strong>View wireframes (Desktop / Tablet / Mobile)</strong></summary>
 
-<img width="1536" height="1024" alt="plans_listing wireframe v3" src="https://github.com/user-attachments/assets/4d5f48a1-0e3e-4787-9859-1f608a3332ff" />
+<img width="1536" height="1024" alt="plans_listing wireframe v4" src="https://github.com/user-attachments/assets/025c1112-73c0-454a-a64e-22df89cd4490" />
 
 </details>
 
