@@ -17,6 +17,8 @@ PRODUCT_IMAGE_MAP = {
     'gym-towel-bottle-set': 'towel-bottle.webp',
     'stainless-steel-water-bottle-750ml': 'water-bottle.webp',
     'compression-leggings': 'compression-leggings.webp',
+    'yoga-mat': 'yoga-mat.webp',
+    'skipping-rope': 'skipping-rope.webp',
 }
 
 
