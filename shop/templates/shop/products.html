@@ -46,8 +46,34 @@
               {% if product.brand %}
                 <p class="text-secondary small mb-2">{{ product.brand }}</p>
               {% endif %}
+
+              <!-- Stock status -->
+              {% if product.stock > 10 %}
+                <p class="small mb-1" style="color: var(--success-green, #2e7d32);">In stock</p>
+              {% elif product.stock > 0 %}
+                <p class="small mb-1" style="color: var(--warning-amber, #b26a00);">Low stock &ndash; {{ product.stock }} left</p>
+              {% else %}
+                <p class="small mb-1 text-secondary">Out of stock</p>
+              {% endif %}
+
               <p class="fw-bold fs-5 mb-3">&pound;{{ product.price }}</p>
-              <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline-dark btn-sm mt-auto">View Product</a>
+
+              <div class="mt-auto">
+                {% if product.stock > 0 %}
+                  <form action="{% url 'add_to_cart' product.id %}" method="POST" class="mb-2">
+                    {% csrf_token %}
+                    <div class="input-group input-group-sm mb-2">
+                      <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}"
+                             class="form-control text-center" aria-label="Quantity for {{ product.name }}">
+                      <button type="submit" class="btn btn-danger">Add to Cart</button>
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                  </form>
+                {% else %}
+                  <button type="button" class="btn btn-secondary btn-sm w-100 mb-2" disabled>Currently unavailable</button>
+                {% endif %}
+                <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline-dark btn-sm w-100">View Details</a>
+              </div>
             </div>
           </div>
         </div>
