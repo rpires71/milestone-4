@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.db import transaction
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -39,17 +40,23 @@ def checkout(request):
             order.delivery_cost = 0
             order.total = subtotal
             order.order_number = uuid.uuid4().hex.upper()
-            order.save()
 
-            # Create a line item for each product in the cart
-            for item_id, quantity in cart.items():
-                product = get_object_or_404(Product, pk=item_id)
-                OrderLineItem.objects.create(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    price=product.price,
-                )
+            # Create the order, its line items, and deduct stock atomically so
+            # they all succeed or all fail together.
+            with transaction.atomic():
+                order.save()
+                for item_id, quantity in cart.items():
+                    product = get_object_or_404(Product, pk=item_id)
+                    OrderLineItem.objects.create(
+                        order=order,
+                        product=product,
+                        quantity=quantity,
+                        price=product.price,
+                    )
+                    # Deduct sold quantity from stock (F() = atomic DB update).
+                    # Never let stock fall below zero.
+                    new_stock = max(product.stock - quantity, 0)
+                    Product.objects.filter(pk=product.pk).update(stock=new_stock)
 
             # Clear the cart and go to success page
             request.session['cart'] = {}

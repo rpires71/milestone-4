@@ -110,6 +110,54 @@ class CheckoutViewTest(TestCase):
         self.assertEqual(self.client.session['cart'], {})
         self.assertEqual(response.status_code, 302)
 
+    def test_checkout_deducts_stock(self):
+        """Completing checkout reduces each product's stock by the quantity sold."""
+        self.product.stock = 10
+        self.product.save()
+
+        session = self.client.session
+        session['cart'] = {str(self.product.id): 3}
+        session.save()
+
+        form_data = {
+            'full_name': 'John Smith',
+            'email': 'john@example.com',
+            'phone': '01234567890',
+            'address_line1': '5 Example Road',
+            'address_line2': '',
+            'town_city': 'Sampleton',
+            'postcode': 'SA1 2PL',
+            'country': 'UK',
+        }
+        self.client.post(reverse('checkout'), form_data)
+
+        self.product.refresh_from_db()
+        self.assertEqual(self.product.stock, 7)
+
+    def test_checkout_stock_never_negative(self):
+        """Stock is clamped at zero and never goes negative on oversell."""
+        self.product.stock = 2
+        self.product.save()
+
+        session = self.client.session
+        session['cart'] = {str(self.product.id): 5}
+        session.save()
+
+        form_data = {
+            'full_name': 'John Smith',
+            'email': 'john@example.com',
+            'phone': '01234567890',
+            'address_line1': '5 Example Road',
+            'address_line2': '',
+            'town_city': 'Sampleton',
+            'postcode': 'SA1 2PL',
+            'country': 'UK',
+        }
+        self.client.post(reverse('checkout'), form_data)
+
+        self.product.refresh_from_db()
+        self.assertEqual(self.product.stock, 0)
+
     def test_checkout_success_page(self):
         """The success page displays the order number."""
         order = Order.objects.create(
