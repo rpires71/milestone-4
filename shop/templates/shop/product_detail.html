@@ -1,44 +1,70 @@
 {% extends "base.html" %}
+{% load shop_extras %}
 
 {% block extra_title %}- {{ product.name }}{% endblock %}
 
 {% block content %}
 <main id="main-content" class="container py-5">
 
-  <a href="{% url 'products' %}" class="btn btn-outline-dark btn-sm mb-4">&larr; Back to shop</a>
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'products' %}">Shop</a></li>
+      {% if product.category %}
+        <li class="breadcrumb-item">{{ product.category.name }}</li>
+      {% endif %}
+      <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+    </ol>
+  </nav>
 
   <div class="row g-5">
 
-    <!-- LEFT: image -->
+    <!-- LEFT: image (model field, then static map, then placeholder) -->
     <div class="col-lg-6">
-      {% if product.image %}
-        <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
-      {% else %}
-        <div class="ratio ratio-1x1 bg-light rounded border d-flex align-items-center justify-content-center text-secondary">
-          Product image
-        </div>
-      {% endif %}
+      {% with img=product.slug|product_image %}
+        {% if product.image %}
+          <img src="{{ product.image.url }}" class="img-fluid rounded w-100" alt="{{ product.name }}">
+        {% elif img %}
+          <img src="{{ img }}" class="img-fluid rounded w-100" alt="{{ product.name }}">
+        {% else %}
+          <div class="ratio ratio-1x1 bg-light rounded border d-flex align-items-center justify-content-center text-secondary">
+            Product image
+          </div>
+        {% endif %}
+      {% endwith %}
     </div>
 
     <!-- RIGHT: details + add to cart -->
     <div class="col-lg-6">
       <h1 class="mb-1">{{ product.name }}</h1>
       {% if product.brand %}
-        <p class="text-secondary mb-3">{{ product.brand }}</p>
+        <p class="text-secondary mb-3">by {{ product.brand }}</p>
       {% endif %}
 
-      <p class="display-6 fw-bold mb-3">&pound;{{ product.price }}</p>
+      <!-- Stock status: colour + icon + text (not colour alone) -->
+      {% if product.stock > 10 %}
+        <p class="mb-3" style="color: var(--success-green, #2e7d32);">
+          <span aria-hidden="true">&#10003;</span> In stock
+        </p>
+      {% elif product.stock > 0 %}
+        <p class="mb-3" style="color: var(--warning-amber, #b26a00);">
+          <span aria-hidden="true">&#10003;</span> In stock &ndash; only {{ product.stock }} left
+        </p>
+      {% else %}
+        <p class="mb-3 text-secondary">
+          <span aria-hidden="true">&#9888;</span> Out of stock
+        </p>
+      {% endif %}
+
+      <p class="display-6 fw-bold mb-1">&pound;{{ product.price }}</p>
+      <p class="text-secondary small mb-4">One-time purchase</p>
 
       {% if product.description %}
         <p class="mb-4">{{ product.description }}</p>
       {% endif %}
 
-      <!-- Stock status: colour + icon + text (not colour alone) -->
       {% if product.stock > 0 %}
-        <p class="mb-4" style="color: var(--success-green);">
-          <span aria-hidden="true">&#10003;</span> In stock
-        </p>
-
         <form class="mb-3" action="{% url 'add_to_cart' product.id %}" method="POST">
           {% csrf_token %}
           <label for="quantity" class="form-label fw-semibold">Quantity</label>
@@ -50,13 +76,17 @@
           <input type="hidden" name="redirect_url" value="{{ request.path }}">
         </form>
       {% else %}
-        <p class="mb-4" style="color: var(--warning-amber);">
-          <span aria-hidden="true">&#9888;</span> Out of stock
-        </p>
         <button type="button" class="btn btn-secondary mb-3" disabled>
           Currently unavailable
         </button>
-      {% endif %}    
+      {% endif %}
+
+      <!-- Trust points -->
+      <ul class="list-unstyled small text-secondary border-top pt-3 mb-0">
+        <li class="mb-2">&#128666; Free shipping on orders over &pound;50</li>
+        <li class="mb-2">&#128260; 30-day hassle-free returns</li>
+        <li>&#128274; Secure checkout powered by Stripe</li>
+      </ul>
     </div>
   </div>
 
@@ -90,6 +120,33 @@
       <p class="mt-3"><a href="{% url 'account_login' %}">Log in</a> to leave a review.</p>
     {% endif %}
   </section>
+
+  <!-- CUSTOMERS ALSO VIEWED -->
+  {% if related_products %}
+    <section class="mt-5 pt-4 border-top">
+      <h2 class="h4 mb-4">Customers Also Viewed</h2>
+      <div class="row g-4">
+        {% for rp in related_products %}
+          <div class="col-6 col-lg-3">
+            <div class="card h-100">
+              {% with rimg=rp.slug|product_image %}
+                {% if rp.image %}
+                  <img src="{{ rp.image.url }}" class="card-img-top" alt="{{ rp.name }}">
+                {% elif rimg %}
+                  <img src="{{ rimg }}" class="card-img-top" alt="{{ rp.name }}">
+                {% endif %}
+              {% endwith %}
+              <div class="card-body d-flex flex-column">
+                <h3 class="h6 mb-1">{{ rp.name }}</h3>
+                <p class="fw-bold mb-3">&pound;{{ rp.price }}</p>
+                <a href="{% url 'product_detail' rp.slug %}" class="btn btn-outline-dark btn-sm mt-auto">View Details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 
 </main>
 {% endblock %}
