@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
+from django.utils.safestring import mark_safe
 from shop.models import Product
 
 
@@ -38,7 +39,11 @@ def add_to_cart(request, product_id):
             )
     else:
         cart[str(product_id)] = requested
-        messages.success(request, f'Added {product.name} to your cart.')
+        basket_url = reverse('view_cart')
+        messages.success(request, mark_safe(
+            f'Added {product.name} to your basket. '
+            f'<a href="{basket_url}" class="alert-link">View basket</a>'
+        ))
 
     request.session['cart'] = cart
     return redirect(redirect_url)
