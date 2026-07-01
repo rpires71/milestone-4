@@ -8,8 +8,8 @@ class ShopModelTest(TestCase):
     """Tests for the ProductCategory and Product models."""
 
     def setUp(self):
-        self.category = ProductCategory.objects.create(
-            name='Equipment', slug='equipment'
+        self.category, _ = ProductCategory.objects.get_or_create(
+            slug='equipment', defaults={'name': 'Equipment'}
         )
         self.product = Product.objects.create(
             category=self.category,
