@@ -14,6 +14,7 @@ class CartViewTest(TestCase):
             slug='test-kettlebell',
             description='A test product.',
             price=29.99,
+            stock=50,
         )
 
     def test_add_to_cart(self):
@@ -83,6 +84,43 @@ class CartViewTest(TestCase):
         """The cart page returns a 200 response."""
         response = self.client.get(reverse('view_cart'))
         self.assertEqual(response.status_code, 200)
+
+
+    def test_add_caps_at_available_stock(self):
+        """Adding more than the available stock caps the quantity at stock."""
+        self.product.stock = 5
+        self.product.save()
+        self.client.post(
+            reverse('add_to_cart', args=[self.product.id]),
+            {'quantity': 20, 'redirect_url': '/'},
+        )
+        cart = self.client.session['cart']
+        self.assertEqual(cart[str(self.product.id)], 5)
+
+    def test_adjust_caps_at_available_stock(self):
+        """Adjusting above available stock caps the quantity at stock."""
+        self.product.stock = 5
+        self.product.save()
+        session = self.client.session
+        session['cart'] = {str(self.product.id): 2}
+        session.save()
+        self.client.post(
+            reverse('adjust_cart', args=[self.product.id]),
+            {'quantity': 99},
+        )
+        cart = self.client.session['cart']
+        self.assertEqual(cart[str(self.product.id)], 5)
+
+    def test_add_out_of_stock_product_not_added(self):
+        """A product with zero stock is not added to the cart."""
+        self.product.stock = 0
+        self.product.save()
+        self.client.post(
+            reverse('add_to_cart', args=[self.product.id]),
+            {'quantity': 1, 'redirect_url': '/'},
+        )
+        cart = self.client.session.get('cart', {})
+        self.assertNotIn(str(self.product.id), cart)
 
 
 class CartContextProcessorTest(TestCase):
