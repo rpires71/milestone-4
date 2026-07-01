@@ -41,7 +41,7 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'view_cart' %}">
-                  Cart{% if product_count %} (£{{ total }}){% endif %}
+                  Basket{% if product_count %} (£{{ total }}){% endif %}
                 </a>
               </li>
               {% if user.is_authenticated %}
