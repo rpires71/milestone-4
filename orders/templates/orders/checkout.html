@@ -1,22 +1,49 @@
 {% extends "base.html" %}
 {% load static %}
+{% load shop_extras %}
 
 {% block extra_title %}- Checkout{% endblock %}
 
 {% block content %}
 <main id="main-content" class="container py-5">
-  <h1 class="mb-4">Checkout</h1>
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'products' %}">Shop</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'view_cart' %}">Basket</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-1">Checkout</h1>
+  <p class="text-secondary mb-4">Complete your details and payment to place your order.</p>
+
   <div class="row g-5">
 
-    <!-- Order summary -->
+    <!-- Order summary (sticky on desktop) -->
     <div class="col-12 col-lg-5 order-lg-2">
-      <div class="card">
+      <div class="card" style="position: sticky; top: 1rem;">
         <div class="card-body">
           <h2 class="h5 mb-3">Order Summary</h2>
           {% for item in cart_items %}
-            <div class="d-flex justify-content-between mb-2">
-              <span>{{ item.product.name }} &times;{{ item.quantity }}</span>
-              <span>&pound;{{ item.subtotal }}</span>
+            <div class="d-flex align-items-center mb-3">
+              <!-- Item image -->
+              {% with img=item.product.slug|product_image %}
+                {% if item.product.image %}
+                  <img src="{{ item.product.image.url }}" class="rounded me-3" style="width:56px;height:56px;object-fit:cover;" alt="{{ item.product.name }}">
+                {% elif img %}
+                  <img src="{{ img }}" class="rounded me-3" style="width:56px;height:56px;object-fit:cover;" alt="{{ item.product.name }}">
+                {% else %}
+                  <div class="bg-light rounded border me-3 d-flex align-items-center justify-content-center text-secondary" style="width:56px;height:56px;font-size:0.7rem;">Image</div>
+                {% endif %}
+              {% endwith %}
+              <div class="flex-grow-1">
+                <div class="small fw-semibold">{{ item.product.name }}</div>
+                <div class="small text-secondary">Qty: {{ item.quantity }}</div>
+              </div>
+              <span class="ms-2">&pound;{{ item.subtotal }}</span>
             </div>
           {% endfor %}
           <hr>
@@ -24,6 +51,7 @@
             <span>Total</span>
             <span>&pound;{{ total }}</span>
           </div>
+          <p class="text-secondary small mb-0 mt-1">VAT included</p>
         </div>
       </div>
     </div>
@@ -33,40 +61,80 @@
       <form action="{% url 'checkout' %}" method="POST" id="payment-form">
         {% csrf_token %}
 
-        <fieldset class="mb-4">
-          <legend class="h5 mb-3">Delivery Details</legend>
-          <div class="mb-3">{{ order_form.full_name }}</div>
-          <div class="mb-3">{{ order_form.email }}</div>
-          <div class="mb-3">{{ order_form.phone }}</div>
-          <div class="mb-3">{{ order_form.address_line1 }}</div>
-          <div class="mb-3">{{ order_form.address_line2 }}</div>
-          <div class="mb-3">{{ order_form.town_city }}</div>
-          <div class="mb-3">{{ order_form.postcode }}</div>
-          <div class="mb-3">{{ order_form.country }}</div>
+        <!-- Contact -->
+        <fieldset class="mb-4 border rounded p-4">
+          <legend class="h5 mb-3">Contact</legend>
+          <div class="mb-3">
+            <label for="{{ order_form.email.id_for_label }}" class="form-label">Email address <span class="text-danger">*</span></label>
+            {{ order_form.email }}
+          </div>
         </fieldset>
 
-        <fieldset class="mb-4">
-          <legend class="h5 mb-3">Payment</legend>
-          <div class="card">
-            <div class="card-body">
-              <div class="mb-3" id="card-element"></div>
-              <div class="text-danger" id="card-errors" role="alert"></div>
+        <!-- Delivery -->
+        <fieldset class="mb-4 border rounded p-4">
+          <legend class="h5 mb-3">Delivery Details</legend>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="{{ order_form.full_name.id_for_label }}" class="form-label">Full name <span class="text-danger">*</span></label>
+              {{ order_form.full_name }}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ order_form.address_line1.id_for_label }}" class="form-label">Address line 1 <span class="text-danger">*</span></label>
+              {{ order_form.address_line1 }}
+            </div>
+            <div class="col-12">
+              <label for="{{ order_form.address_line2.id_for_label }}" class="form-label">Address line 2 <span class="text-secondary">(optional)</span></label>
+              {{ order_form.address_line2 }}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ order_form.town_city.id_for_label }}" class="form-label">Town / City <span class="text-danger">*</span></label>
+              {{ order_form.town_city }}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ order_form.postcode.id_for_label }}" class="form-label">Postcode <span class="text-danger">*</span></label>
+              {{ order_form.postcode }}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ order_form.country.id_for_label }}" class="form-label">Country <span class="text-danger">*</span></label>
+              {{ order_form.country }}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ order_form.phone.id_for_label }}" class="form-label">Phone <span class="text-secondary">(optional)</span></label>
+              {{ order_form.phone }}
             </div>
           </div>
+          <p class="text-secondary small mt-3 mb-0"><span class="text-danger">*</span> Required fields</p>
+        </fieldset>
+
+        <!-- Payment -->
+        <fieldset class="mb-4 border rounded p-4">
+          <legend class="h5 mb-3">Payment</legend>
+          <div class="border rounded p-3">
+            <div class="mb-3" id="card-element"></div>
+            <div class="text-danger" id="card-errors" role="alert"></div>
+          </div>
           <p class="text-secondary small mt-2 mb-0">
-            <span aria-hidden="true">&#128274;</span> Payments are securely processed by Stripe.
+            <span aria-hidden="true">&#128274;</span> Payments are securely processed by Stripe. We never store your card details.
           </p>
         </fieldset>
 
         <div class="d-flex flex-wrap gap-2 justify-content-end">
-          <a href="{% url 'view_cart' %}" class="btn btn-outline-dark btn-lg">Adjust cart</a>
+          <a href="{% url 'view_cart' %}" class="btn btn-outline-dark btn-lg">Adjust basket</a>
           <button id="submit-button" class="btn btn-danger btn-lg">
-            Pay &pound;{{ total }}
+            Complete Order &mdash; Pay &pound;{{ total }}
           </button>
         </div>
       </form>
     </div>
   </div>
+
+  <!-- Trust strip -->
+  <div class="row g-3 text-center text-secondary small mt-5 pt-4 border-top">
+    <div class="col-12 col-md-4">&#128666; Free shipping over &pound;50</div>
+    <div class="col-12 col-md-4">&#128337; Estimated delivery: 3&ndash;5 days</div>
+    <div class="col-12 col-md-4">&#128260; 30-day returns</div>
+  </div>
+
 </main>
 {% endblock %}
 

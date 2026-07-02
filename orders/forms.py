@@ -21,8 +21,18 @@ class OrderForm(forms.ModelForm):
             'postcode': 'Postal Code',
             'country': 'Country',
         }
+        labels = {
+            'full_name': 'Full name',
+            'email': 'Email address',
+            'phone': 'Phone (optional)',
+            'address_line1': 'Address line 1',
+            'address_line2': 'Address line 2 (optional)',
+            'town_city': 'Town / City',
+            'postcode': 'Postcode',
+            'country': 'Country',
+        }
         for field in self.fields:
             placeholder = placeholders.get(field, '')
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'form-control'
-            self.fields[field].label = False
+            self.fields[field].label = labels.get(field, field)
