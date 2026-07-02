@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 
 import stripe
 import uuid
+import json
 
 from shop.models import Product
 from .models import Order, OrderLineItem
@@ -30,6 +31,33 @@ def checkout(request):
         if order_form.is_valid():
             order = order_form.save(commit=False)
             order.user = request.user if request.user.is_authenticated else None
+
+            # Recover the PaymentIntent id from the client secret so the order and
+            # the webhook can be matched (idempotency).
+            client_secret = request.POST.get('client_secret', '')
+            pid = client_secret.split('_secret')[0] if client_secret else ''
+            order.stripe_payment_intent_id = pid
+
+            # Store the cart + delivery details on the PaymentIntent so the webhook
+            # can rebuild the order if the customer's browser never returns.
+            if pid:
+                try:
+                    stripe.PaymentIntent.modify(pid, metadata={
+                        'cart': json.dumps(cart),
+                        'full_name': order.full_name,
+                        'email': order.email,
+                        'phone': order.phone,
+                        'address_line1': order.address_line1,
+                        'address_line2': order.address_line2,
+                        'town_city': order.town_city,
+                        'postcode': order.postcode,
+                        'country': order.country,
+                        'username': request.user.username if request.user.is_authenticated else '',
+                    })
+                except Exception:
+                    # If metadata update fails, the normal flow still records the
+                    # order below; only the webhook fallback would be affected.
+                    pass
 
             subtotal = 0
             for item_id, quantity in cart.items():

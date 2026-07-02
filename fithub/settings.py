@@ -33,7 +33,7 @@ DEBUG = "DEVELOPMENT" in os.environ
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'fithub-rp-90631f751ed4.herokuapp.com',
+    'peaceful-savannah-37284-affd33509fdb.herokuapp.com',
     '.herokuapp.com',
 ]
 
@@ -156,7 +156,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/dashboard/profile-setup/"
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_REDIRECT_URL = "/dashboard/profile-setup/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -186,5 +186,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_CURRENCY = 'gbp'
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
 SITE_ID = 1
