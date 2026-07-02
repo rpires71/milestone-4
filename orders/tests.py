@@ -158,6 +158,29 @@ class CheckoutViewTest(TestCase):
         self.product.refresh_from_db()
         self.assertEqual(self.product.stock, 0)
 
+    @patch('orders.views.stripe.PaymentIntent.create')
+    def test_checkout_invalid_form_shows_errors(self, mock_intent):
+        """An invalid checkout POST re-renders the page with field errors shown."""
+        mock_intent.return_value = type(
+            'obj', (object,), {'client_secret': 'test_secret'}
+        )
+        session = self.client.session
+        session['cart'] = {str(self.product.id): 1}
+        session.save()
+
+        # Submit with required fields blank
+        response = self.client.post(reverse('checkout'), {
+            'full_name': '',
+            'email': '',
+            'address_line1': '',
+            'town_city': '',
+            'postcode': '',
+            'country': '',
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'is-invalid')
+        self.assertContains(response, 'This field is required')
+
     def test_checkout_success_page(self):
         """The success page displays the order number."""
         order = Order.objects.create(

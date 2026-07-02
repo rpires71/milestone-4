@@ -62,9 +62,12 @@ def checkout(request):
             request.session['cart'] = {}
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. Please check your details.')
+            messages.error(request, 'Please correct the highlighted fields below.')
 
-    # GET request — build totals and show the checkout page
+    else:
+        order_form = OrderForm()
+
+    # Build totals and the Stripe intent, then show the checkout page.
     current_total = 0
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -76,7 +79,6 @@ def checkout(request):
         currency=settings.STRIPE_CURRENCY,
     )
 
-    order_form = OrderForm()
     template = 'orders/checkout.html'
     context = {
         'order_form': order_form,
@@ -119,5 +121,3 @@ def _send_confirmation_email(order):
         [customer_email],
         fail_silently=False,
     )
-
-

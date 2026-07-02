@@ -34,5 +34,9 @@ class OrderForm(forms.ModelForm):
         for field in self.fields:
             placeholder = placeholders.get(field, '')
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'form-control'
+            css = 'form-control'
+            # Highlight invalid fields with Bootstrap's is-invalid class
+            if self.is_bound and field in self.errors:
+                css += ' is-invalid'
+            self.fields[field].widget.attrs['class'] = css
             self.fields[field].label = labels.get(field, field)
