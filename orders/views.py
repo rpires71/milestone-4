@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 import stripe
 import uuid
 import json
+from datetime import timedelta
 
 from shop.models import Product
 from .models import Order, OrderLineItem
@@ -120,22 +121,32 @@ def checkout_success(request, order_number):
     """Display a confirmation page after successful checkout."""
     order = get_object_or_404(Order, order_number=order_number)
 
+    # Send the confirmation email. A mail failure (e.g. SMTP misconfiguration)
+    # must NOT break the confirmation page for a customer who has already paid,
+    # so any error is caught and logged rather than raised.
     try:
-        if not request.session.get(f'confirmation_email_sent_{order_number}'):
-            _send_confirmation_email(order)
-            request.session[f'confirmation_email_sent_{order_number}'] = True
-    except Exception as e:
-        messages.warning(
-            request,
-            "Your order was processed successfully, but the confirmation email could not be sent."
+        _send_confirmation_email(order)
+    except Exception as exc:  # noqa: BLE001 - deliberately broad; email is non-critical
+        import logging
+        logging.getLogger(__name__).error(
+            'Order confirmation email failed for %s: %s', order.order_number, exc
         )
 
     messages.success(
         request,
         f'Order successfully processed! Your order number is {order_number}.'
     )
+    # Estimated delivery window, calculated from the order date (3-5 days).
+    order_date = order.created_at
+    est_start = (order_date + timedelta(days=3)).strftime('%d %b %Y')
+    est_end = (order_date + timedelta(days=5)).strftime('%d %b %Y')
 
-    return render(request, 'orders/checkout_success.html', {'order': order})
+    context = {
+        'order': order,
+        'estimated_delivery_start': est_start,
+        'estimated_delivery_end': est_end,
+    }
+    return render(request, 'orders/checkout_success.html', context)
 
 
 def _send_confirmation_email(order):
