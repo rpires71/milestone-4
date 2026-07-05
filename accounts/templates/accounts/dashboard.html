@@ -1,115 +1,376 @@
 {% extends "base.html" %}
 
-{% block extra_title %}- My Dashboard{% endblock %}
+{% block extra_title %}- My Account{% endblock %}
 
 {% block content %}
 <main id="main-content" class="container py-5">
 
-  <!-- Welcome header -->
-  <div class="mb-4">
-    <h1 class="fw-bold mb-1">Welcome back, {{ user.username }}!</h1>
-    <p class="lead text-secondary mb-0">Here's an overview of your FitHub account.</p>
-  </div>
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Account</li>
+    </ol>
+  </nav>
 
-  <!-- Quick stat cards -->
-  <div class="row g-4 mb-4">
-    <div class="col-12 col-md-4">
-      <div class="card h-100 text-center p-4">
-        <div class="fs-1 mb-2">&#127947;</div>
-        <h2 class="h6 text-secondary mb-1">Current Plan</h2>
-        {% if active_subscription %}
-          <p class="fw-bold fs-5 mb-0">{{ active_subscription.plan.name }}</p>
-        {% else %}
-          <p class="fw-bold fs-5 mb-0">No active plan</p>
-        {% endif %}
-      </div>
-    </div>
-    <div class="col-12 col-md-4">
-      <div class="card h-100 text-center p-4">
-        <div class="fs-1 mb-2">&#128230;</div>
-        <h2 class="h6 text-secondary mb-1">Total Orders</h2>
-        <p class="fw-bold fs-5 mb-0">{{ order_count }}</p>
-      </div>
-    </div>
-    <div class="col-12 col-md-4">
-      <div class="card h-100 text-center p-4">
-        <div class="fs-1 mb-2">&#127919;</div>
-        <h2 class="h6 text-secondary mb-1">Fitness Goal</h2>
-        {% if profile.fitness_goal %}
-          <p class="fw-bold fs-5 mb-0">{{ profile.get_fitness_goal_display }}</p>
-        {% else %}
-          <p class="fw-bold fs-5 mb-0">Not set</p>
-        {% endif %}
-      </div>
-    </div>
+  <!-- Page header -->
+  <div class="mb-4">
+    <h1 class="fw-bold mb-1">My Account</h1>
+    <p class="text-secondary mb-0">Manage your profile, preferences, and activity.</p>
   </div>
 
   <div class="row g-4">
 
-    <!-- Subscription card -->
-    <div class="col-12 col-lg-6">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="h5 mb-3">My Subscription</h2>
+    <!-- Left column: profile summary, side navigation and account actions -->
+    <aside class="col-12 col-lg-3">
+
+      <!-- Profile summary card -->
+      <div class="card mb-4">
+        <div class="card-body text-center text-lg-start">
+          <div class="fs-1 mb-3" aria-hidden="true">&#128100;</div>
+
+          <h2 class="h5 mb-1">{{ user.get_full_name|default:user.email }}</h2>
+          <p class="text-secondary small mb-3">{{ user.email }}</p>
+
+          <p class="small mb-3">
+            Member since {{ user.date_joined|date:"M Y" }}
+          </p>
+
           {% if active_subscription %}
-            <p class="mb-2">
-              <span class="fw-semibold">Plan:</span> {{ active_subscription.plan.name }}
-              ({{ active_subscription.plan.get_billing_interval_display }})
-            </p>
-            <p class="mb-2">
-              <span class="fw-semibold">Status:</span>
-              <span class="badge bg-success">{{ active_subscription.get_status_display }}</span>
-            </p>
-            {% if active_subscription.current_period_end %}
-              <p class="mb-3">
-                <span class="fw-semibold">Renews on:</span>
-                {{ active_subscription.current_period_end|date:"j M Y" }}
-              </p>
-            {% endif %}
-            <a href="{% url 'plans' %}" class="btn btn-outline-dark">View Plans</a>
+            <span class="badge bg-warning-subtle text-warning-emphasis">
+              {{ active_subscription.plan.name }} Member
+            </span>
           {% else %}
-            <p class="text-secondary mb-3">You don't have an active subscription yet.</p>
-            <a href="{% url 'plans' %}" class="btn btn-danger">Browse Plans</a>
+            <span class="badge bg-light text-secondary">
+              No Active Plan
+            </span>
           {% endif %}
         </div>
       </div>
-    </div>
 
-    <!-- Recent orders card -->
-    <div class="col-12 col-lg-6">
-      <div class="card h-100">
+      <!-- Side container 4: account sections -->
+      <div class="card mb-4">
         <div class="card-body">
-          <h2 class="h5 mb-3">Recent Orders</h2>
-          {% if recent_orders %}
-            <div class="table-responsive">
-              <table class="table align-middle mb-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Order</th>
-                    <th scope="col">Date</th>
-                    <th scope="col" class="text-end">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for order in recent_orders %}
-                    <tr>
-                      <td class="small">{{ order.order_number|truncatechars:12 }}</td>
-                      <td class="small">{{ order.created_at|date:"j M Y" }}</td>
-                      <td class="text-end fw-semibold">&pound;{{ order.total }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-            <a href="{% url 'products' %}" class="btn btn-outline-dark">Shop Again</a>
-          {% else %}
-            <p class="text-secondary mb-3">You haven't placed any orders yet.</p>
-            <a href="{% url 'products' %}" class="btn btn-danger">Browse Shop</a>
-          {% endif %}
+          <h2 class="h6 mb-3">Account Sections</h2>
+
+          <div class="list-group" id="accountSideNav" role="tablist" aria-label="Account sections">
+            <button class="list-group-item list-group-item-action active"
+                    id="overview-side-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#overview-panel"
+                    type="button"
+                    role="tab"
+                    aria-controls="overview-panel"
+                    aria-selected="true">
+              &#128100; Overview
+            </button>
+
+            <button class="list-group-item list-group-item-action"
+                    id="details-side-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#details-panel"
+                    type="button"
+                    role="tab"
+                    aria-controls="details-panel"
+                    aria-selected="false">
+              &#9881; Account Details
+            </button>
+
+            <button class="list-group-item list-group-item-action"
+                    id="subscription-side-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#subscription-panel"
+                    type="button"
+                    role="tab"
+                    aria-controls="subscription-panel"
+                    aria-selected="false">
+              &#128179; Subscription
+            </button>
+
+            <button class="list-group-item list-group-item-action"
+                    id="orders-side-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#orders-panel"
+                    type="button"
+                    role="tab"
+                    aria-controls="orders-panel"
+                    aria-selected="false">
+              &#128230; Orders
+            </button>
+
+            <button class="list-group-item list-group-item-action"
+                    id="saved-community-side-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#saved-community-panel"
+                    type="button"
+                    role="tab"
+                    aria-controls="saved-community-panel"
+                    aria-selected="false">
+              &#128101; Saved Items &amp; Community
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
+      <!-- Account actions -->
+      <a href="{% url 'account_logout' %}" class="btn btn-outline-dark w-100 mb-3">
+        Log Out
+      </a>
+
+      <button type="button" class="btn btn-outline-danger w-100">
+        Delete Account
+      </button>
+
+    </aside>
+
+    <!-- Main account content -->
+    <section class="col-12 col-lg-9">
+
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Account tabs -->
+          <ul class="nav nav-tabs mb-4" id="accountTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                      data-bs-target="#overview-panel" type="button" role="tab"
+                      aria-controls="overview-panel" aria-selected="true">
+                Overview
+              </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="details-tab" data-bs-toggle="tab"
+                      data-bs-target="#details-panel" type="button" role="tab"
+                      aria-controls="details-panel" aria-selected="false">
+                Account Details
+              </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="subscription-tab" data-bs-toggle="tab"
+                      data-bs-target="#subscription-panel" type="button" role="tab"
+                      aria-controls="subscription-panel" aria-selected="false">
+                Subscription
+              </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="orders-tab" data-bs-toggle="tab"
+                      data-bs-target="#orders-panel" type="button" role="tab"
+                      aria-controls="orders-panel" aria-selected="false">
+                Orders
+              </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="saved-community-tab" data-bs-toggle="tab"
+                      data-bs-target="#saved-community-panel" type="button" role="tab"
+                      aria-controls="saved-community-panel" aria-selected="false">
+                Saved Items &amp; Community
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="accountTabsContent">
+
+            <!-- Overview tab -->
+            <div class="tab-pane fade show active" id="overview-panel" role="tabpanel"
+                 aria-labelledby="overview-tab" tabindex="0">
+
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start gap-3 mb-4">
+                <div>
+                  <h2 class="h4 mb-1">Welcome back, {{ user.get_full_name|default:user.email }}!</h2>
+                  <p class="text-secondary mb-0">Here's what's happening with your account.</p>
+                </div>
+                <button class="btn btn-outline-dark btn-sm" type="button"
+                        data-bs-toggle="tab" data-bs-target="#details-panel"
+                        aria-controls="details-panel">
+                  Edit Profile
+                </button>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-12 col-md-4">
+                  <div class="border rounded p-3 h-100 text-center">
+                    <div class="fs-3 mb-2" aria-hidden="true">&#127947;</div>
+                    <h3 class="h6 text-secondary mb-2">Current Plan</h3>
+                    {% if active_subscription %}
+                      <p class="fw-bold fs-5 mb-0">{{ active_subscription.plan.name }}</p>
+                    {% else %}
+                      <p class="fw-bold fs-5 mb-0">No active plan</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <div class="border rounded p-3 h-100 text-center">
+                    <div class="fs-3 mb-2" aria-hidden="true">&#128230;</div>
+                    <h3 class="h6 text-secondary mb-2">Total Orders</h3>
+                    <p class="fw-bold fs-5 mb-0">{{ order_count }}</p>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <div class="border rounded p-3 h-100 text-center">
+                    <div class="fs-3 mb-2" aria-hidden="true">&#127919;</div>
+                    <h3 class="h6 text-secondary mb-2">Fitness Goal</h3>
+                    {% if profile.fitness_goal %}
+                      <p class="fw-bold fs-5 mb-0">{{ profile.get_fitness_goal_display }}</p>
+                    {% else %}
+                      <p class="fw-bold fs-5 mb-0">Not set</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="border rounded p-3 mb-3">
+                <h3 class="h6 mb-1">&#127919; Fitness Goal</h3>
+                {% if profile.fitness_goal %}
+                  <p class="text-secondary mb-0">{{ profile.get_fitness_goal_display }}</p>
+                {% else %}
+                  <p class="text-secondary mb-0">Add your fitness goal.</p>
+                {% endif %}
+              </div>
+
+              <div class="border rounded p-3">
+                <h3 class="h6 mb-1">&#9819; Active Plan</h3>
+                {% if active_subscription %}
+                  <p class="mb-1">
+                    {{ active_subscription.plan.name }}
+                    ({{ active_subscription.plan.get_billing_interval_display }})
+                  </p>
+                  {% if active_subscription.current_period_end %}
+                    <p class="text-secondary small mb-0">
+                      Renews on {{ active_subscription.current_period_end|date:"j M Y" }}
+                    </p>
+                  {% endif %}
+                {% else %}
+                  <p class="text-secondary mb-0">You do not currently have an active plan.</p>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Account Details tab -->
+            <div class="tab-pane fade" id="details-panel" role="tabpanel"
+                 aria-labelledby="details-tab" tabindex="0">
+              <h2 class="h5 mb-3">Account Details</h2>
+
+              <dl class="row mb-0">
+                <dt class="col-sm-4">Display Name</dt>
+                <dd class="col-sm-8">{{ user.get_full_name|default:user.email }}</dd>
+
+                <dt class="col-sm-4">Username</dt>
+                <dd class="col-sm-8">{{ user.username }}</dd>
+
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">{{ user.email }}</dd>
+
+                <dt class="col-sm-4">Member Since</dt>
+                <dd class="col-sm-8">{{ user.date_joined|date:"j M Y" }}</dd>
+
+                <dt class="col-sm-4">Fitness Goal</dt>
+                <dd class="col-sm-8">
+                  {% if profile.fitness_goal %}
+                    {{ profile.get_fitness_goal_display }}
+                  {% else %}
+                    Not set
+                  {% endif %}
+                </dd>
+              </dl>
+            </div>
+
+            <!-- Subscription tab -->
+            <div class="tab-pane fade" id="subscription-panel" role="tabpanel"
+                 aria-labelledby="subscription-tab" tabindex="0">
+              <h2 class="h5 mb-3">Subscription</h2>
+
+              {% if active_subscription %}
+                <p class="mb-2">
+                  <span class="fw-semibold">Plan:</span>
+                  {{ active_subscription.plan.name }}
+                  ({{ active_subscription.plan.get_billing_interval_display }})
+                </p>
+                <p class="mb-2">
+                  <span class="fw-semibold">Status:</span>
+                  <span class="badge bg-success">{{ active_subscription.get_status_display }}</span>
+                </p>
+                {% if active_subscription.current_period_end %}
+                  <p class="mb-3">
+                    <span class="fw-semibold">Renews on:</span>
+                    {{ active_subscription.current_period_end|date:"j M Y" }}
+                  </p>
+                {% endif %}
+                <a href="{% url 'plans' %}" class="btn btn-outline-dark">
+                  Manage Subscription
+                </a>
+              {% else %}
+                <p class="text-secondary mb-3">You don't have an active subscription yet.</p>
+                <a href="{% url 'plans' %}" class="btn btn-danger">Browse Plans</a>
+              {% endif %}
+            </div>
+
+            <!-- Orders tab -->
+            <div class="tab-pane fade" id="orders-panel" role="tabpanel"
+                 aria-labelledby="orders-tab" tabindex="0">
+              <h2 class="h5 mb-3">Orders</h2>
+
+              {% if recent_orders %}
+                <div class="table-responsive">
+                  <table class="table align-middle mb-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order</th>
+                        <th scope="col">Date</th>
+                        <th scope="col" class="text-end">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for order in recent_orders %}
+                        <tr>
+                          <td class="small">{{ order.order_number|truncatechars:12 }}</td>
+                          <td class="small">{{ order.created_at|date:"j M Y" }}</td>
+                          <td class="text-end fw-semibold">&pound;{{ order.total }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <a href="{% url 'products' %}" class="btn btn-outline-dark">Shop Again</a>
+              {% else %}
+                <p class="text-secondary mb-3">You haven't placed any orders yet.</p>
+                <a href="{% url 'products' %}" class="btn btn-danger">Browse Shop</a>
+              {% endif %}
+            </div>
+
+            <!-- Saved Items & Community tab -->
+            <div class="tab-pane fade" id="saved-community-panel" role="tabpanel"
+                 aria-labelledby="saved-community-tab" tabindex="0">
+              <h2 class="h5 mb-3">Saved Items &amp; Community</h2>
+
+              <div class="border rounded p-3 mb-3">
+                <h3 class="h6 mb-1">Saved Items</h3>
+                <p class="text-secondary mb-0">
+                  Saved items can be added here later when wishlist functionality is implemented.
+                </p>
+              </div>
+
+              <div class="border rounded p-3">
+                <h3 class="h6 mb-1">Community</h3>
+                <p class="text-secondary mb-3">
+                  Visit the FitHub community to share progress and connect with other members.
+                </p>
+                <a href="{% url 'post_list' %}" class="btn btn-outline-dark">
+                  Go to Community
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
   </div>
 </main>
 {% endblock content %}
