@@ -199,3 +199,61 @@ class CheckoutViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'SUCCESS123')
+
+class OrderHistoryTest(TestCase):
+    """Tests for the order history list and detail views."""
+
+    def setUp(self):
+        from django.contrib.auth.models import User
+        self.user = User.objects.create_user('historyuser', password='testpass123')
+        self.other = User.objects.create_user('otheruser', password='testpass123')
+        self.product = Product.objects.create(
+            name='History Kettlebell', slug='history-kettlebell',
+            description='A test product.', price=25.00, stock=10,
+        )
+        self.order = Order.objects.create(
+            order_number='HISTTEST1', user=self.user, full_name='History User',
+            email='h@example.com', address_line1='1 Past Lane', town_city='Testville',
+            postcode='TE5 7ST', country='UK', subtotal=25.00, total=25.00,
+            status='delivered',
+        )
+        OrderLineItem.objects.create(
+            order=self.order, product=self.product, quantity=1, price=25.00,
+        )
+
+    def test_history_requires_login(self):
+        response = self.client.get(reverse('order_history'))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('login', response.url)
+
+    def test_history_lists_own_orders_only(self):
+        Order.objects.create(
+            order_number='OTHERORD1', user=self.other, full_name='Other',
+            email='o@example.com', address_line1='2 St', town_city='T',
+            postcode='P', country='UK', subtotal=5, total=5,
+        )
+        self.client.login(username='historyuser', password='testpass123')
+        response = self.client.get(reverse('order_history'))
+        self.assertContains(response, 'HISTTEST1')
+        self.assertNotContains(response, 'OTHERORD1')
+
+    def test_detail_shows_own_order(self):
+        self.client.login(username='historyuser', password='testpass123')
+        response = self.client.get(
+            reverse('order_detail', args=['HISTTEST1'])
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '1 Past Lane')
+
+    def test_detail_ownership_guard_404(self):
+        """Another user's order number returns 404, not their data."""
+        self.client.login(username='otheruser', password='testpass123')
+        response = self.client.get(
+            reverse('order_detail', args=['HISTTEST1'])
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def test_history_empty_state(self):
+        self.client.login(username='otheruser', password='testpass123')
+        response = self.client.get(reverse('order_history'))
+        self.assertContains(response, "placed any orders yet")
