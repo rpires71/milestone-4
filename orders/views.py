@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db import transaction
 from django.conf import settings
 from django.core.mail import send_mail
@@ -167,3 +169,34 @@ def _send_confirmation_email(order):
         [customer_email],
         fail_silently=True,
     )
+
+
+
+
+@login_required
+def order_history(request):
+    """List the logged-in user's past orders (read-only historical records)."""
+    orders = (
+        Order.objects.filter(user=request.user)
+        .order_by('-created_at')
+        .prefetch_related('line_items__product')
+    )
+    paginator = Paginator(orders, 10)
+    page_obj = paginator.get_page(request.GET.get('page'))
+
+    context = {'page_obj': page_obj}
+    return render(request, 'orders/order_history.html', context)
+
+
+@login_required
+def order_detail(request, order_number):
+    """Show one of the logged-in user's orders.
+
+    The ownership guard is baked into the query: filtering by user means another
+    user's order number returns 404 rather than exposing someone else's data.
+    """
+    order = get_object_or_404(
+        Order, order_number=order_number, user=request.user
+    )
+    context = {'order': order}
+    return render(request, 'orders/order_detail.html', context)

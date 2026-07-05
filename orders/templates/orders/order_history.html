@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load shop_extras %}
+
+{% block extra_title %}- Order History{% endblock %}
+
+{% block content %}
+<main id="main-content" class="container py-5">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">My Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Orders</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-1">Order History</h1>
+  <p class="text-secondary mb-4">View your past orders. Orders are read-only historical records.</p>
+
+  {% if page_obj.object_list %}
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">Order #</th>
+            <th scope="col">Date</th>
+            <th scope="col">Items</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="text-end">Total</th>
+            <th scope="col" class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in page_obj %}
+            <tr>
+              <td class="small fw-semibold">{{ order.order_number|truncatechars:12 }}</td>
+              <td class="small">{{ order.created_at|date:"j M Y" }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  {% for item in order.line_items.all|slice:":2" %}
+                    {% with img=item.product.slug|product_image %}
+                      {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}" class="rounded me-1" style="width:36px;height:36px;object-fit:cover;" alt="{{ item.product.name }}">
+                      {% elif img %}
+                        <img src="{{ img }}" class="rounded me-1" style="width:36px;height:36px;object-fit:cover;" alt="{{ item.product.name }}">
+                      {% endif %}
+                    {% endwith %}
+                  {% endfor %}
+                  {% if order.line_items.count > 2 %}
+                    <span class="small text-secondary ms-1">+{{ order.line_items.count|add:"-2" }}</span>
+                  {% endif %}
+                </div>
+              </td>
+              <td>
+                {% if order.status == 'delivered' %}
+                  <span class="badge text-bg-success">Delivered</span>
+                {% elif order.status == 'dispatched' %}
+                  <span class="badge text-bg-primary">Dispatched</span>
+                {% elif order.status == 'processing' %}
+                  <span class="badge text-bg-warning">Processing</span>
+                {% elif order.status == 'cancelled' %}
+                  <span class="badge text-bg-secondary">Cancelled</span>
+                {% elif order.status == 'refunded' %}
+                  <span class="badge text-bg-dark">Refunded</span>
+                {% else %}
+                  <span class="badge text-bg-light">{{ order.get_status_display }}</span>
+                {% endif %}
+              </td>
+              <td class="text-end fw-semibold">&pound;{{ order.total }}</td>
+              <td class="text-end">
+                <a href="{% url 'order_detail' order.order_number %}" class="btn btn-sm btn-outline-dark">
+                  View order {{ order.order_number|truncatechars:10 }}
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj.paginator.num_pages > 1 %}
+      <nav aria-label="Order history pages">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo; Prev</a></li>
+          {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+              <a class="page-link" href="?page={{ num }}" {% if num == page_obj.number %}aria-current="page"{% endif %}>{{ num }}</a>
+            </li>
+          {% endfor %}
+          {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next &raquo;</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+
+  {% else %}
+    <!-- Empty state -->
+    <div class="card text-center p-5">
+      <div class="fs-1 mb-2" aria-hidden="true">&#128717;</div>
+      <p class="fw-semibold mb-1">You haven't placed any orders yet.</p>
+      <p class="text-secondary mb-3">When you do, they'll appear here.</p>
+      <div>
+        <a href="{% url 'products' %}" class="btn btn-danger">Browse the Shop</a>
+      </div>
+    </div>
+  {% endif %}
+
+</main>
+{% endblock %}

@@ -122,10 +122,25 @@
     </div>
   </div>
 
+  <!-- Estimated Delivery (standalone container, shown on all breakpoints) -->
+  <div class="card mt-4">
+    <div class="card-body d-flex align-items-center">
+      <span class="me-3 fs-2" aria-hidden="true">&#128197;</span>
+      <div>
+        <div class="fw-semibold">Estimated Delivery</div>
+        <div class="text-secondary">
+          {{ estimated_delivery_start }} &ndash; {{ estimated_delivery_end }}
+          <span class="ms-2">(3&ndash;5 business days)</span>
+        </div>
+        <div class="small text-secondary">Delivery times may vary.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Primary actions -->
   <div class="d-flex flex-wrap gap-2 justify-content-center mt-5">
-    {% if user.is_authenticated %}
-      <a href="{% url 'dashboard' %}" class="btn btn-danger btn-lg">View my account</a>
+    {% if user.is_authenticated and order.user == user %}
+      <a href="{% url 'order_detail' order.order_number %}" class="btn btn-danger btn-lg">View order in My Account</a>
     {% endif %}
     <a href="{% url 'products' %}" class="btn btn-outline-dark btn-lg">Continue shopping</a>
   </div>

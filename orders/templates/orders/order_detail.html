@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load shop_extras %}
+
+{% block extra_title %}- Order {{ order.order_number|truncatechars:12 }}{% endblock %}
+
+{% block content %}
+<main id="main-content" class="container py-5">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">My Account</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'order_history' %}">Orders</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ order.order_number|truncatechars:12 }}</li>
+    </ol>
+  </nav>
+
+  <!-- Order header -->
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+    <h1 class="mb-0">Order {{ order.order_number|truncatechars:14 }}</h1>
+    {% if order.status == 'delivered' %}
+      <span class="badge text-bg-success fs-6">Delivered</span>
+    {% elif order.status == 'dispatched' %}
+      <span class="badge text-bg-primary fs-6">Dispatched</span>
+    {% elif order.status == 'processing' %}
+      <span class="badge text-bg-warning fs-6">Processing</span>
+    {% elif order.status == 'cancelled' %}
+      <span class="badge text-bg-secondary fs-6">Cancelled</span>
+    {% elif order.status == 'refunded' %}
+      <span class="badge text-bg-dark fs-6">Refunded</span>
+    {% endif %}
+  </div>
+  <p class="text-secondary mb-4">
+    Placed on {{ order.created_at|date:"j M Y" }} &middot;
+    Confirmation emailed to {{ order.email }}
+  </p>
+
+  <div class="row g-4">
+
+    <!-- Items -->
+    <div class="col-12 col-lg-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h6 text-uppercase mb-3">Items</h2>
+          {% for item in order.line_items.all %}
+            <div class="d-flex align-items-center mb-3">
+              {% with img=item.product.slug|product_image %}
+                {% if item.product.image %}
+                  <img src="{{ item.product.image.url }}" class="rounded me-3" style="width:56px;height:56px;object-fit:cover;" alt="{{ item.product.name }}">
+                {% elif img %}
+                  <img src="{{ img }}" class="rounded me-3" style="width:56px;height:56px;object-fit:cover;" alt="{{ item.product.name }}">
+                {% else %}
+                  <div class="bg-light rounded border me-3 d-flex align-items-center justify-content-center text-secondary" style="width:56px;height:56px;font-size:0.7rem;">Image</div>
+                {% endif %}
+              {% endwith %}
+              <div class="flex-grow-1">
+                <div class="fw-semibold">{{ item.product.name }}</div>
+                <div class="small text-secondary">Qty: {{ item.quantity }}</div>
+              </div>
+              <span>&pound;{{ item.price }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery to -->
+    <div class="col-12 col-lg-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h6 text-uppercase mb-3">Delivery To</h2>
+          <address class="small text-secondary mb-0">
+            {{ order.full_name }}<br>
+            {{ order.address_line1 }}<br>
+            {% if order.address_line2 %}{{ order.address_line2 }}<br>{% endif %}
+            {{ order.town_city }}, {{ order.postcode }}<br>
+            {{ order.country }}
+          </address>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order summary -->
+    <div class="col-12 col-lg-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h6 text-uppercase mb-3">Order Summary</h2>
+          <div class="d-flex justify-content-between">
+            <span class="text-secondary">Subtotal</span>
+            <span>&pound;{{ order.subtotal }}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="text-secondary">Delivery</span>
+            <span style="color: var(--success-green, #2e7d32);">FREE</span>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between fw-bold fs-5">
+            <span>Total</span>
+            <span>&pound;{{ order.total }}</span>
+          </div>
+          <p class="text-secondary small mb-0 mt-1">VAT included</p>
+          <hr>
+          <p class="small text-secondary mb-0">
+            Paid on {{ order.created_at|date:"j M Y" }} &middot; processed securely by Stripe
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <a href="{% url 'order_history' %}" class="btn btn-outline-dark">&larr; Back to Order History</a>
+  </div>
+
+</main>
+{% endblock %}
