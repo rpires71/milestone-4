@@ -12,9 +12,29 @@
       <div class="row align-items-center g-4">
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold mb-3">Membership Plans</h1>
-          <p class="lead text-secondary mb-0">
+          <p class="lead text-secondary mb-3">
             Choose the plan that fits your goals. Cancel or change anytime.
           </p>
+          <p class="text-secondary mb-4">
+            From getting started to going pro, every FitHub membership gives you
+            full access to our plans, community and shop &mdash; with secure
+            checkout and the freedom to change or cancel whenever you like.
+          </p>
+          <ul class="list-unstyled mb-4">
+            <li class="d-flex align-items-center mb-2">
+              <span class="me-2" style="color: var(--success-green, #2e7d32);" aria-hidden="true">&#10003;</span>
+              <span>Secure checkout powered by Stripe</span>
+            </li>
+            <li class="d-flex align-items-center mb-2">
+              <span class="me-2" style="color: var(--success-green, #2e7d32);" aria-hidden="true">&#10003;</span>
+              <span>Cancel or change your plan anytime</span>
+            </li>
+            <li class="d-flex align-items-center mb-2">
+              <span class="me-2" style="color: var(--success-green, #2e7d32);" aria-hidden="true">&#10003;</span>
+              <span>Plans for every level, from beginner to advanced</span>
+            </li>
+          </ul>
+          <a href="#plans-grid" class="btn btn-danger btn-lg">View Plans</a>
         </div>
         <div class="col-lg-6">
           <img src="{% static 'images/hero-plans.webp' %}"
@@ -27,7 +47,7 @@
   
 
   {% if plans %}
-    <div class="row g-4">
+    <div class="row g-4" id="plans-grid">
       {% for plan in plans %}
         <div class="col-12 col-md-6 col-lg-3">
           <div class="card h-100">
