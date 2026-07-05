@@ -120,15 +120,22 @@ def checkout_success(request, order_number):
     """Display a confirmation page after successful checkout."""
     order = get_object_or_404(Order, order_number=order_number)
 
-    # Send the confirmation email
-    _send_confirmation_email(order)
+    try:
+        if not request.session.get(f'confirmation_email_sent_{order_number}'):
+            _send_confirmation_email(order)
+            request.session[f'confirmation_email_sent_{order_number}'] = True
+    except Exception as e:
+        messages.warning(
+            request,
+            "Your order was processed successfully, but the confirmation email could not be sent."
+        )
 
     messages.success(
         request,
         f'Order successfully processed! Your order number is {order_number}.'
     )
-    context = {'order': order}
-    return render(request, 'orders/checkout_success.html', context)
+
+    return render(request, 'orders/checkout_success.html', {'order': order})
 
 
 def _send_confirmation_email(order):
@@ -147,5 +154,5 @@ def _send_confirmation_email(order):
         body,
         settings.DEFAULT_FROM_EMAIL,
         [customer_email],
-        fail_silently=False,
+        fail_silently=True,
     )
