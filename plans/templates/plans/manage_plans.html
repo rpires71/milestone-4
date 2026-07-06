@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block extra_title %}- Manage Plans{% endblock %}
+
+{% block content %}
+<main id="main-content" class="container py-5">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Manage Plans</li>
+    </ol>
+  </nav>
+
+  <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-4">
+    <div>
+      <h1 class="mb-1">Manage Plans</h1>
+      <p class="text-secondary mb-0">Create, edit and manage membership plans. Staff only.</p>
+    </div>
+    <a href="{% url 'plan_create' %}" class="btn btn-danger">+ Create new plan</a>
+  </div>
+
+  {% if plans %}
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">Plan</th>
+            <th scope="col">Tier / Level</th>
+            <th scope="col">Price</th>
+            <th scope="col">Billing</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for plan in plans %}
+            <tr>
+              <td class="fw-semibold">{{ plan.name }}</td>
+              <td>{{ plan.get_tier_display }}</td>
+              <td>&pound;{{ plan.price }}</td>
+              <td>{{ plan.get_billing_interval_display }}</td>
+              <td>
+                {% if plan.status == 'published' %}
+                  <span class="badge text-bg-success">Published</span>
+                {% elif plan.status == 'draft' %}
+                  <span class="badge text-bg-secondary">Draft</span>
+                {% else %}
+                  <span class="badge text-bg-warning">Archived</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <a href="{% url 'plan_edit' plan.slug %}" class="btn btn-sm btn-outline-dark">
+                  Edit plan
+                </a>
+                <a href="{% url 'plan_archive' plan.slug %}" class="btn btn-sm btn-outline-danger">
+                  Archive plan
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-secondary small">Showing {{ plans|length }} plan{{ plans|length|pluralize }}.</p>
+  {% else %}
+    <!-- Empty state -->
+    <div class="card text-center p-5">
+      <div class="fs-1 mb-2" aria-hidden="true">&#128188;</div>
+      <p class="fw-semibold mb-1">No plans yet.</p>
+      <p class="text-secondary mb-3">Create your first plan.</p>
+      <div>
+        <a href="{% url 'plan_create' %}" class="btn btn-danger">+ Create new plan</a>
+      </div>
+    </div>
+  {% endif %}
+
+</main>
+{% endblock %}

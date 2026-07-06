@@ -207,3 +207,97 @@ class SubscriptionSuccessViewTests(TestCase):
             user=self.user, plan=self.plan
         ).count()
         self.assertEqual(count, 1)
+
+
+class PlanManagementTest(TestCase):
+    """Tests for the staff-only plan management CRUD."""
+
+    def setUp(self):
+        from django.contrib.auth.models import User
+        self.staff = User.objects.create_user(
+            'staffmember', password='testpass123', is_staff=True
+        )
+        self.member = User.objects.create_user(
+            'regularmember', password='testpass123'
+        )
+        self.plan = Plan.objects.create(
+            name='Manage Me', slug='manage-me', tier='beginner',
+            price=9.99, status='published',
+        )
+
+    def test_non_staff_gets_403(self):
+        """Direct URL access by non-staff (and anonymous) returns 403."""
+        urls = [
+            reverse('manage_plans'),
+            reverse('plan_create'),
+            reverse('plan_edit', args=['manage-me']),
+            reverse('plan_archive', args=['manage-me']),
+        ]
+        for url in urls:
+            self.assertEqual(self.client.get(url).status_code, 403)
+        self.client.login(username='regularmember', password='testpass123')
+        for url in urls:
+            self.assertEqual(self.client.get(url).status_code, 403)
+
+    def test_staff_sees_all_statuses(self):
+        Plan.objects.create(
+            name='Hidden Draft', slug='hidden-draft', tier='beginner',
+            price=5, status='draft',
+        )
+        self.client.login(username='staffmember', password='testpass123')
+        response = self.client.get(reverse('manage_plans'))
+        self.assertContains(response, 'Hidden Draft')
+        self.assertContains(response, 'Manage Me')
+
+    def test_staff_can_create_plan_with_features(self):
+        self.client.login(username='staffmember', password='testpass123')
+        response = self.client.post(reverse('plan_create'), {
+            'name': 'Created Plan', 'description': 'A new plan.',
+            'tier': 'advanced', 'price': '19.99',
+            'billing_interval': 'monthly', 'status': 'published',
+            'features_text': 'First feature\nSecond feature',
+        })
+        self.assertEqual(response.status_code, 302)
+        plan = Plan.objects.get(name='Created Plan')
+        self.assertEqual(plan.slug, 'created-plan')
+        self.assertEqual(plan.features.count(), 2)
+
+    def test_negative_price_rejected(self):
+        self.client.login(username='staffmember', password='testpass123')
+        response = self.client.post(reverse('plan_create'), {
+            'name': 'Bad Price', 'description': 'x', 'tier': 'beginner',
+            'price': '-5', 'billing_interval': 'monthly', 'status': 'draft',
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'positive number')
+        self.assertFalse(Plan.objects.filter(name='Bad Price').exists())
+
+    def test_staff_can_edit_plan(self):
+        self.client.login(username='staffmember', password='testpass123')
+        response = self.client.post(
+            reverse('plan_edit', args=['manage-me']),
+            {
+                'name': 'Manage Me', 'description': 'Updated description.',
+                'tier': 'intermediate', 'price': '14.99',
+                'billing_interval': 'monthly', 'status': 'published',
+                'features_text': 'Updated feature',
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+        self.plan.refresh_from_db()
+        self.assertEqual(self.plan.tier, 'intermediate')
+        self.assertEqual(self.plan.features.count(), 1)
+
+    def test_archive_is_soft_delete(self):
+        """Archiving sets status rather than deleting the row."""
+        self.client.login(username='staffmember', password='testpass123')
+        response = self.client.post(reverse('plan_archive', args=['manage-me']))
+        self.assertEqual(response.status_code, 302)
+        self.plan.refresh_from_db()
+        self.assertEqual(self.plan.status, 'archived')
+
+    def test_archived_plan_hidden_from_public(self):
+        self.plan.status = 'archived'
+        self.plan.save()
+        response = self.client.get(reverse('plans'))
+        self.assertNotContains(response, 'Manage Me')

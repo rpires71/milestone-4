@@ -44,6 +44,9 @@
                   Basket{% if product_count %} (£{{ total }}){% endif %}
                 </a>
               </li>
+              {% if user.is_staff %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'manage_plans' %}">Manage</a></li>
+              {% endif %}
               {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Hi, {{ user.username }}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>

@@ -1,9 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.utils.text import slugify
+from functools import wraps
 from django.contrib import messages
 from django.conf import settings
 import stripe
-from .models import Plan, Subscription
+from .models import Plan, PlanFeature, Subscription
+from .forms import PlanForm
 
 def all_plans(request):
     """Display all published membership plans."""
@@ -60,3 +64,101 @@ def subscription_success(request):
     )
     messages.success(request, f'You are now subscribed to {plan.name}!')
     return render(request, 'plans/subscription_success.html', {'plan': plan})
+
+def staff_required(view_func):
+    """Allow staff only; anyone else gets a 403 (direct URL access included)."""
+    @wraps(view_func)
+    def _wrapped(request, *args, **kwargs):
+        if not request.user.is_authenticated or not request.user.is_staff:
+            raise PermissionDenied
+        return view_func(request, *args, **kwargs)
+    return _wrapped
+
+
+def _unique_slug(name, instance=None):
+    """Build a slug from the name, ensuring uniqueness."""
+    base = slugify(name) or 'plan'
+    slug = base
+    n = 2
+    qs = Plan.objects.all()
+    if instance is not None and instance.pk:
+        qs = qs.exclude(pk=instance.pk)
+    while qs.filter(slug=slug).exists():
+        slug = f'{base}-{n}'
+        n += 1
+    return slug
+
+
+def _sync_features(plan, features_text):
+    """Replace the plan's feature lines from the textarea (one per line)."""
+    plan.features.all().delete()
+    lines = [line.strip() for line in (features_text or '').splitlines() if line.strip()]
+    for order, text in enumerate(lines):
+        PlanFeature.objects.create(plan=plan, text=text, display_order=order)
+
+
+@staff_required
+def manage_plans(request):
+    """Staff-only list of ALL plans (published, draft and archived)."""
+    plans = Plan.objects.all().order_by('name')
+    return render(request, 'plans/manage_plans.html', {'plans': plans})
+
+
+@staff_required
+def plan_create(request):
+    """Create a new plan (staff only). Shares its form with plan_edit."""
+    if request.method == 'POST':
+        form = PlanForm(request.POST)
+        if form.is_valid():
+            plan = form.save(commit=False)
+            plan.slug = _unique_slug(plan.name)
+            plan.save()
+            _sync_features(plan, form.cleaned_data.get('features_text'))
+            messages.success(request, f'Plan "{plan.name}" created.')
+            return redirect('manage_plans')
+        messages.error(request, 'Please correct the highlighted fields below.')
+    else:
+        form = PlanForm()
+    context = {'form': form, 'heading': 'Create New Plan'}
+    return render(request, 'plans/plan_form.html', context)
+
+
+@staff_required
+def plan_edit(request, slug):
+    """Edit an existing plan (staff only). Shares its form with plan_create."""
+    plan = get_object_or_404(Plan, slug=slug)
+    if request.method == 'POST':
+        form = PlanForm(request.POST, instance=plan)
+        if form.is_valid():
+            form.save()
+            _sync_features(plan, form.cleaned_data.get('features_text'))
+            messages.success(request, f'Plan "{plan.name}" updated.')
+            return redirect('manage_plans')
+        messages.error(request, 'Please correct the highlighted fields below.')
+    else:
+        initial_features = '\n'.join(
+            plan.features.values_list('text', flat=True)
+        )
+        form = PlanForm(instance=plan, initial={'features_text': initial_features})
+    context = {'form': form, 'heading': f'Edit Plan: {plan.name}', 'plan': plan}
+    return render(request, 'plans/plan_form.html', context)
+
+
+@staff_required
+def plan_archive(request, slug):
+    """Archive a plan (soft delete, staff only, behind a confirmation).
+
+    Archiving rather than deleting protects existing subscriptions, which
+    reference plans with on_delete=PROTECT.
+    """
+    plan = get_object_or_404(Plan, slug=slug)
+    if request.method == 'POST':
+        plan.status = 'archived'
+        plan.save()
+        messages.success(
+            request,
+            f'Plan "{plan.name}" archived. It is removed from new sign-ups; '
+            'existing subscriptions are not affected.'
+        )
+        return redirect('manage_plans')
+    return render(request, 'plans/plan_confirm_archive.html', {'plan': plan})

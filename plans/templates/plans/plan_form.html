@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block extra_title %}- {{ heading }}{% endblock %}
+
+{% block content %}
+<main id="main-content" class="container py-5">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'manage_plans' %}">Manage Plans</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{% if plan %}Edit{% else %}Create{% endif %}</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-4">{{ heading }}</h1>
+
+  <form method="POST" novalidate>
+    {% csrf_token %}
+
+    {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Please correct the highlighted fields below before saving.
+      </div>
+    {% endif %}
+
+    <div class="row g-4">
+
+      <!-- Plan details -->
+      <div class="col-12 col-lg-6">
+        <fieldset class="border rounded p-4 h-100">
+          <legend class="h5 mb-3">Plan details</legend>
+
+          <div class="mb-3">
+            <label for="{{ form.name.id_for_label }}" class="form-label">Plan name <span class="text-danger">*</span></label>
+            {{ form.name }}
+            {% for error in form.name.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label">Description <span class="text-danger">*</span></label>
+            {{ form.description }}
+            {% for error in form.description.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+          </div>
+
+          <div class="mb-0">
+            <label for="{{ form.features_text.id_for_label }}" class="form-label">Features (what's included)</label>
+            {{ form.features_text }}
+            <div class="form-text">One feature per line.</div>
+            {% for error in form.features_text.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Pricing + status -->
+      <div class="col-12 col-lg-6">
+        <fieldset class="border rounded p-4 mb-4">
+          <legend class="h5 mb-3">Pricing</legend>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="{{ form.price.id_for_label }}" class="form-label">Price (&pound;) <span class="text-danger">*</span></label>
+              {{ form.price }}
+              {% for error in form.price.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.billing_interval.id_for_label }}" class="form-label">Billing <span class="text-danger">*</span></label>
+              {{ form.billing_interval }}
+              {% for error in form.billing_interval.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+            </div>
+            <div class="col-12">
+              <label for="{{ form.tier.id_for_label }}" class="form-label">Tier / difficulty <span class="text-danger">*</span></label>
+              {{ form.tier }}
+              {% for error in form.tier.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border rounded p-4">
+          <legend class="h5 mb-3">Status</legend>
+          {{ form.status }}
+          {% for error in form.status.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+          <div class="form-text">Published plans are visible to members. Draft and archived plans are hidden.</div>
+        </fieldset>
+      </div>
+    </div>
+
+    <p class="text-secondary small mt-3 mb-3"><span class="text-danger">*</span> Required fields &middot; All validation performed server-side.</p>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-danger btn-lg">Save plan</button>
+      <a href="{% url 'manage_plans' %}" class="btn btn-outline-dark btn-lg">Cancel</a>
+    </div>
+  </form>
+
+</main>
+{% endblock %}
