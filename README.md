@@ -55,8 +55,19 @@
   - [Django Framework Setup and Configuration](#django-framework-setup-and-configuration)
   - [Database Models Implementation](#database-models-implementation)
   - [Django Admin Configuration and Sample Data](#django-admin-configuration-and-sample-data)
-  - [Testing](#testing)
-    - [Automated Testing](#automated-testing)
+  - [Test Plan](#test-plan)
+    - [Testing Overview](#testing-overview)
+    - [1. Functionality and Content Accuracy Testing](#1-functionality-and-content-accuracy-testing)
+    - [2. Security and Access Control Testing](#2-security-and-access-control-testing)
+    - [3. Payment and Integration Testing](#3-payment-and-integration-testing)
+    - [4. Usability and Typography Testing](#4-usability-and-typography-testing)
+    - [5. Responsiveness Testing](#5-responsiveness-testing)
+    - [6. Accessibility Testing](#6-accessibility-testing)
+    - [7. Performance Testing](#7-performance-testing)
+    - [8. Regression Testing](#8-regression-testing)
+    - [9. Python/Django Automated Testing](#9-pythondjango-automated-testing)
+    - [10. Code Validation and Static Analysis](#10-code-validation-and-static-analysis)
+    - [11. Defect Log](#11-defect-log)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -5348,6 +5359,371 @@ Rather than being created manually, sample orders were produced through the comp
 - Customers can access only their own order history, with ownership protection returning a 404 response if another user's order number is requested.
 
 **Rationale:** Creating sample orders through the authentic checkout and Stripe webhook workflows validated the complete purchasing process, including payment processing, order creation, inventory updates, webhook idempotency and access control. This approach provided significantly more meaningful testing than manually inserting order records into the database (Vincent, 2020, Chapter 4).
+
+---
+
+## Test Plan
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Testing Overview
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+### Testing Strategy
+
+This project adopts an **automated-first, risk-driven testing strategy**. The project's suite of 89 automated Django tests serves as the foundation for regression testing, with every functional modification verified against the suite before being committed. Manual testing complements the automated tests by evaluating aspects that cannot be reliably automated, including visual layout, cross-browser compatibility, accessibility using assistive technologies and complete end-to-end payment workflows on the live deployment.
+
+**Testing Priorities (highest risk first):**
+
+1. **Payment processing integrity** (Stripe Checkout, subscriptions, webhooks and order generation)
+2. **Stock and data integrity** (quantity limits, stock deduction and oversell prevention)
+3. **Security and access control** (ownership protection, staff-only functionality and webhook signature validation)
+4. **Core application functionality** (authentication, shopping basket, order history and membership plan management)
+5. **User experience** (site navigation, forms and responsive behaviour)
+6. **Code quality** (validation rules and adherence to Django best practices)
+7. **Accessibility** (compliance with WCAG 2.1 guidelines)
+8. **Performance** (page loading efficiency and database query optimisation)
+
+**Rationale:** Within an e-commerce platform, the most significant risks relate to financial transactions and data integrity, such as payments being processed without corresponding orders, inventory being oversold or sensitive customer information being exposed. Consequently, testing resources have been prioritised according to the potential impact of each risk.
+
+### Testing Environment
+
+- **Development:** Windows 11, Python 3.12, Django 4.2.23
+- **Database:** SQLite for development and PostgreSQL for the production deployment on Heroku
+- **Deployment:** Heroku (`https://fithub-rp-90631f751ed4.herokuapp.com/`), Gunicorn and WhiteNoise
+- **Payments:** Stripe Test Mode (Stripe Elements for one-off purchases and Stripe Checkout for subscriptions), together with Stripe CLI v1.4x for local webhook testing
+- **Browsers:** Latest versions of Chrome, Edge and Firefox
+- **Devices:** Desktop (1920×1080), Tablet (768×1024) and Mobile (375×667)
+
+### Traceability
+
+The **Notes** column within each manual test case references the corresponding user story (US*n*) and, where appropriate, the automated test or tests that validate the same functionality. This provides bidirectional traceability between project requirements, manual testing evidence and the automated regression suite.
+
+---
+
+#### 1. FUNCTIONALITY AND CONTENT ACCURACY TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### 1.1 User Authentication
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 001 | Register using valid account details | New account created; verification email issued; "Verify your email" page displayed | ☐ | |
+| 002 | Attempt registration with an existing email address | Appropriate validation error displayed | ☐ | |
+| 003 | Confirm account using the email verification link | Account verified successfully; user able to log in | ☐ | |
+| 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | ☐ | |
+| 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | ☐ | |
+| 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | ☐ | |
+| 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | ☐ | Fixed defect D1 — authentication errors were previously not displayed |
+| 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | ☐ | |
+| 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | ☐ | Failed in Milestone 3; implemented and page-width issue corrected in this project (D2) |
+| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | ☐ | |
+| 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
+
+#### 1.2 Membership Plans and Subscriptions
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 012 | Display published membership plans | Four published plans shown in a uniform grid with image, tier, price and billing interval | ☐ | |
+| 013 | Hide draft and archived plans from members | Only published plans are visible on `/plans/` | ☐ | Automated: `test_archived_plan_hidden_from_public` |
+| 014 | Plan detail page displays the correct features | "What's included" section lists only that plan's associated features | ☐ | |
+| 015 | Access a draft plan directly via URL | Custom 404 page displayed | ☐ | Automated: `test_draft_plan_detail_returns_404` |
+| 016 | Subscription requires authentication | Unauthenticated users are prompted to log in | ☐ | |
+| 017 | Subscribe redirects to Stripe Checkout | Stripe-hosted checkout opens with the correct membership plan and price | ☐ | |
+| 018 | Successful subscription recorded | Subscription appears on the dashboard with the correct plan and status | ☐ | |
+| 019 | Subscription success page remains idempotent | Refreshing the page does not generate a duplicate subscription | ☐ | |
+
+#### 1.3 Shop and Product Browsing
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 020 | Browse all available products | Twelve products displayed with images, names, prices and stock availability | ☐ | |
+| 021 | Open a product detail page | Full product information displayed, including image, description, price, stock level and related products | ☐ | |
+| 022 | View an unavailable product directly | Custom 404 page returned | ☐ | Automated: `test_unavailable_product_detail_returns_404` |
+| 023 | Add an out-of-stock product to the basket | Product cannot be added; "Out of stock" message displayed | ☐ | Automated: `test_add_out_of_stock_product_not_added` |
+| 024 | Display related products | "Customers Also Viewed" section presents relevant products | ☐ | |
+
+#### 1.4 Basket
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 025 | Add a selected quantity from the shop to the basket | Product added successfully; confirmation message includes a functional "View basket" link | ☐ | |
+| 026 | Display basket contents | Product images, quantities, line totals and overall basket total shown correctly | ☐ | |
+| 027 | Exceed available stock when adding a product | Quantity automatically limited to available stock with a warning message | ☐ | Automated: `test_add_caps_at_available_stock` |
+| 028 | Increase basket quantity beyond stock availability | Quantity adjusted to the available stock level | ☐ | Automated: `test_adjust_caps_at_available_stock` |
+| 029 | Change basket quantity to zero | Product removed and basket totals updated | ☐ | |
+| 030 | Remove an item from the basket | Product removed successfully with confirmation feedback | ☐ | |
+| 031 | Display an empty basket | "Your basket is empty" message displayed together with a link to browse products | ☐ | |
+| 032 | Enter an invalid basket quantity | Invalid input handled safely without crashing; default behaviour applied | ☐ | Verified within the automated basket test suite |
+
+#### 1.5 Checkout
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 033 | Attempt checkout with an empty basket | User redirected to the shop with an explanatory message | ☐ | |
+| 034 | Display checkout order summary | Products, quantities, prices and totals accurately match the basket | ☐ | |
+| 035 | Display delivery form correctly | All fields labelled; mandatory fields marked with *; phone number and Address Line 2 identified as optional | ☐ | |
+| 036 | Submit an incomplete checkout form | Error summary displayed; invalid fields highlighted with field-level messages; no order created | ☐ | Fixed defect D7; automated: `test_checkout_invalid_form_shows_errors` |
+| 037 | Submit an invalid email address | Field displays "Enter a valid email address." validation message | ☐ | |
+| 038 | Complete a successful checkout | Order and line items stored; user redirected to the confirmation page | ☐ | Automated: `test_checkout_post_creates_order` |
+| 039 | Verify stock deduction after purchase | Product stock reduced by the quantity ordered | ☐ | Fixed defect D6; automated: `test_checkout_deducts_stock` |
+| 040 | Prevent negative stock values | Stock level clamped at zero when oversell scenarios occur | ☐ | Automated: `test_checkout_stock_never_negative` |
+
+#### 1.6 Order Confirmation and Order History
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 041 | Display successful order confirmation | Confirmation page shows checkmark icon, personalised message, order number and email address | ☐ | |
+| 042 | Display complete order summary | Ordered items, quantities, subtotal, FREE delivery and total displayed with images | ☐ | |
+| 043 | Display delivery address | Delivery details entered during checkout shown correctly | ☐ | |
+| 044 | Calculate estimated delivery dates | Delivery estimate calculated dynamically as order date +3 to +5 days | ☐ | Dynamic calculation rather than hard-coded values |
+| 045 | Open an order from "My Account" | Button opens the selected order for the logged-in owner only | ☐ | |
+| 046 | Send confirmation email | Customer receives an email containing complete order details | ☐ | Requires `EMAIL_HOST_USER` and `EMAIL_HOST_PASS` on Heroku |
+| 047 | Display order history | Order number, date, thumbnails, status badge, total and view link shown; pagination activates after 10 orders | ☐ | |
+| 048 | Display order details | Complete order record shown, including images, delivery address, summary and status | ☐ | |
+| 049 | Display empty order history | "You haven't placed any orders yet" message shown with a Browse the Shop link | ☐ | Automated: `test_history_empty_state` |
+| 050 | Access order history from the dashboard | Order numbers open the correct detail page; "View All Orders" opens the history page | ☐ | |
+
+#### 1.7 Staff Plan Management (Front-End CRUD)
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 051 | Staff users see the "Manage" navigation link | Visible only to staff; hidden from members and visitors | ☐ | |
+| 052 | Display all plan statuses | Published, Draft and Archived badges shown for every plan | ☐ | Automated: `test_staff_sees_all_statuses` |
+| 053 | Create a new membership plan | Plan saved successfully; slug generated automatically; plan appears in the list | ☐ | Automated: `test_staff_can_create_plan_with_features` |
+| 054 | Synchronise plan features | One `PlanFeature` created for each line and displayed correctly on the public plan page | ☐ | |
+| 055 | Reject negative pricing | "Price must be a positive number." displayed; no record saved | ☐ | Automated: `test_negative_price_rejected` |
+| 056 | Reject blank required fields | Error summary and field-level validation displayed; no changes saved | ☐ | |
+| 057 | Edit an existing plan | Changes saved successfully; associated features synchronised | ☐ | Automated: `test_staff_can_edit_plan` |
+| 058 | Confirm archive operation | Confirmation page explains the consequences before archiving | ☐ | |
+| 059 | Archive using soft deletion | Plan marked as Archived, retained in the database and removed from public view | ☐ | Automated: `test_archive_is_soft_delete`; protects subscriptions (`on_delete=PROTECT`) |
+| 060 | Display empty Manage Plans page | "No plans yet" message displayed with a "Create your first plan" prompt | ☐ | |
+
+#### 1.8 Community and Reviews
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 061 | Display community posts | Posts listed with title, author and publication date | ☐ | |
+| 062 | Require authentication to create a post | Anonymous users redirected to the login page | ☐ | |
+| 063 | Create a community post | Newly created post appears in the community list | ☐ | |
+| 064 | Edit or delete own community post | Changes saved successfully or post removed | ☐ | |
+| 065 | Submit a product review with a rating | Review displayed on the relevant product page | ☐ | |
+| 066 | Reject an invalid review rating | Validation error displayed for ratings outside the permitted range | ☐ | Automated: `test_rating_too_high_is_invalid` |
+| 067 | Edit or delete own review | Updates saved successfully or review removed | ☐ | |
+
+---
+
+#### 2. SECURITY AND ACCESS CONTROL TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 068 | Access order history without authentication | Anonymous users redirected to the login page | ☐ | Automated: `test_history_requires_login` |
+| 069 | Verify users can view only their own orders | Orders belonging to other users are never displayed | ☐ | Automated: `test_history_lists_own_orders_only` |
+| 070 | Attempt to access another user's order details | Request returns a 404 response, preventing data disclosure | ☐ | Automated: `test_detail_ownership_guard_404` |
+| 071 | Prevent visitors from accessing plan management | Anonymous requests to `/plans/manage/` return HTTP 403 | ☐ | Automated: `test_non_staff_gets_403` |
+| 072 | Prevent non-staff members from accessing plan management | Authenticated non-staff users receive HTTP 403 across all four management routes, including direct URL access | ☐ | Automated: `test_non_staff_gets_403` |
+| 073 | Attempt to edit another user's community post | Action blocked successfully | ☐ | Automated: `test_user_cannot_edit_another_users_post` |
+| 074 | Attempt to delete another user's product review | Action prevented successfully | ☐ | Automated: `test_user_cannot_delete_another_users_review` |
+| 075 | Submit a webhook request with an invalid signature | Forged request to `/orders/wh/` returns HTTP 400 and no order is created | ☐ | Automated: `test_bad_signature_rejected` |
+| 076 | Verify CSRF protection on application forms | All forms include CSRF tokens; POST requests without a valid token are rejected | ☐ | Protected by Django middleware; the webhook is intentionally `csrf_exempt` because Stripe's signed webhook provides the authenticity guarantee instead of CSRF protection |
+| 077 | Confirm secrets are stored securely | No API keys or passwords present in the repository; `env.py` excluded from version control; Heroku Config Vars used | ☐ | Verify repository and `heroku config` |
+| 078 | Confirm `DEBUG` is disabled in production | Generic 404 and 500 error pages displayed instead of configuration details or stack traces | ☐ | |
+| 079 | Verify payment card details never reach the server | Card information handled exclusively by the Stripe Elements iframe; no payment fields included in Django POST requests | ☐ | Architecture-level verification; confirm no card data is submitted to Django |
+
+---
+
+#### 3. PAYMENT AND INTEGRATION TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### 3.1 Stripe Test Card Matrix (One-Time Purchases)
+
+| Test ID | Card | Test Case | Expected Result | Status | Notes |
+|---------|------|-----------|-----------------|--------|-------|
+| 080 | 4242 4242 4242 4242 | Process a successful payment | Payment completed successfully; order created; confirmation page displayed | ☐ | |
+| 081 | 4000 0000 0000 0002 | Attempt payment with a declined card | "Your card was declined." message displayed; payment form re-enabled; no order generated | ☐ | |
+| 082 | 4000 0025 0000 3155 | Complete 3D Secure authentication | Authentication dialogue displayed; payment succeeds after verification | ☐ | |
+| 083 | 4242 with incorrect CVC format | Validate card details on the client side | Stripe Elements displays an inline validation error while the user enters card details | ☐ | |
+| 084 | — | Prevent duplicate form submission | Submit button and Stripe card element disabled while payment is being processed | ☐ | |
+
+#### 3.2 Stripe Webhook
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 085 | Receive webhook events on the local endpoint (Stripe CLI) | `stripe trigger payment_intent.succeeded` successfully delivered; server logs `POST /orders/wh/ 200` | PASS | Confirmed during development through multiple successful `stripe listen` forwarding events |
+| 086 | Receive webhook events on the production endpoint (Heroku) | Stripe Workbench records successful event delivery (HTTP 200) following a live test checkout | PASS | Verified through Heroku router logs showing `POST /orders/wh/ 200` requests from Stripe |
+| 087 | Verify webhook idempotency | Replayed webhook event does not create a duplicate order | ☐ | Automated: `test_duplicate_event_is_idempotent` |
+| 088 | Skip webhook processing when checkout has already created the order | Existing order retained; duplicate order not created; stock deducted only once | ☐ | Automated: `test_webhook_skips_when_order_already_exists` |
+| 089 | Create an order when checkout does not complete | Order reconstructed from `PaymentIntent` metadata with accurate details and correct stock deduction | ☐ | Automated: `test_valid_event_creates_order` — provides protection if the browser is closed immediately after payment |
+
+#### 3.3 Email Integration
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 090 | Deliver order confirmation email in production | Confirmation email successfully received by the customer | ☐ | Requires Gmail App Password configuration variables |
+| 091 | Handle email delivery failure gracefully | Confirmation page continues to render even if email delivery fails; error recorded in the logs | PASS | Fixed defect D9 and verified: page returns HTTP 200 when the email backend is forced to fail |
+| 092 | Verify account verification and password reset emails | Emails delivered successfully and links operate correctly | ☐ | |
+
+---
+
+#### 4. USABILITY AND TYPOGRAPHY TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 093 | Verify consistent navigation across the website | Navigation links function correctly; active page indicators are visible; basket counter updates accurately | ☐ | |
+| 094 | Confirm breadcrumb navigation on secondary pages | Shop, checkout, order confirmation, order history and management pages display accurate breadcrumb trails | ☐ | |
+| 095 | Display user feedback for all key actions | Visible feedback messages shown for adding, updating or removing basket items, placing orders, saving or archiving plans, and authentication errors | ☐ | |
+| 096 | Verify consistent typographic hierarchy | Each page contains a single H1 heading; heading levels follow the correct sequence; font sizes remain clear and readable | ☐ | |
+| 097 | Ensure buttons and links use descriptive labels | Generic phrases such as "click here" are avoided; order links identify the specific order (e.g. "View order FH-…") | ☐ | |
+| 098 | Preserve form data after validation errors | Previously entered values remain populated when a form is redisplayed following validation failures | ☐ | |
+| 099 | Verify helpful empty-state pages | Empty basket, order history and Manage Plans pages provide clear guidance and an appropriate next action | ☐ | |
+| 100 | Confirm custom 404 page usability | Branded 404 page displayed with a clear navigation route back into the application | ☐ | |
+
+---
+
+#### 5. RESPONSIVENESS TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+The following pages were tested across each responsive breakpoint: Home, Plans, Plan Detail, Shop, Product Detail, Basket, Checkout, Order Confirmation, Order History, Dashboard and Manage Plans.
+
+| Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
+|---------|------------|-----------|-----------------|--------|-------|
+| 101 | Mobile (375×667) | Verify all pages display correctly without horizontal scrolling | Content stacks appropriately; navigation collapses into a hamburger menu; touch targets remain suitably sized | ☐ | |
+| 102 | Mobile | Confirm checkout functionality on small screens | Delivery form fields display in a single column; order summary remains accessible; Stripe payment element functions correctly | ☐ | |
+| 103 | Tablet (768×1024) | Verify responsive layout across all pages | Intended two-column layouts displayed correctly; tables either reflow or provide horizontal scrolling where necessary | ☐ | |
+| 104 | Desktop (1920×1080) | Confirm efficient use of available screen width | Grid layouts display the maximum number of columns; checkout page retains a sticky order summary | ☐ | |
+| 105 | Small screens | Verify usability of order-related tables | Order History and Manage Plans tables remain fully accessible using horizontal scrolling within a responsive table container (`table-responsive`) | ☐ | |
+
+---
+
+#### 6. ACCESSIBILITY TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 106 | Verify all form controls have associated labels | Every input field is linked to a `<label for>` element and all mandatory fields are clearly identified | ☐ | Implemented throughout the checkout and plan management interfaces |
+| 107 | Confirm validation errors are communicated in text | Error messages displayed as text rather than relying solely on colour; error summary visible | ☐ | |
+| 108 | Verify status information is communicated using text and colour | Order and plan status badges include descriptive text instead of colour-only indicators | ☐ | |
+| 109 | Confirm images include alternative text | Product and membership plan images contain meaningful `alt` attributes | ☐ | |
+| 110 | Verify keyboard accessibility | All interactive elements can be reached and operated using only the keyboard; skip-to-content link functions correctly | ☐ | |
+| 111 | Verify `aria-live` region on the order confirmation page | Confirmation heading is announced correctly by screen readers | ☐ | |
+| 112 | Confirm colour contrast complies with WCAG AA | Lighthouse and axe audits report no colour contrast failures | ☐ | |
+| 113 | Perform WAVE accessibility evaluation | No accessibility errors detected on key application pages | ☐ | |
+| 114 | Verify Lighthouse Accessibility score | Accessibility score of **90 or above** achieved on key pages | ☐ | |
+
+---
+
+#### 7. PERFORMANCE TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 115 | Evaluate Home page performance with Lighthouse | Performance score recorded with no critical issues identified | ☐ | |
+| 116 | Evaluate Shop page performance with Lighthouse | Performance score recorded; product images correctly optimised using the WebP format | ☐ | |
+| 117 | Evaluate Checkout page performance with Lighthouse | Performance score successfully recorded | ☐ | |
+| 118 | Verify efficient delivery of static assets | WhiteNoise serves hashed, cacheable static files in the production environment | ☐ | |
+| 119 | Verify database query efficiency on listing pages | Order History page uses `prefetch_related` for line items, preventing N+1 query issues | ☐ | Implemented; validate using the Django Debug Toolbar or database query logging |
+
+---
+
+#### 8. REGRESSION TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+**Strategy:** The complete automated test suite (89 tests) is executed before every commit, with any failed test preventing the code from being pushed to the repository. In addition, manual regression testing is performed on areas potentially affected by each change to ensure existing functionality remains unaffected.
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 120 | Verify the complete test suite after each new feature | `python manage.py test` → OK, 0 test failures | PASS | Performed consistently throughout development; the automated suite expanded from 67 to 89 tests as new functionality was introduced |
+| 121 | Confirm checkout functionality after webhook modifications | Existing checkout process continues to operate correctly following webhook enhancements | ☐ | Automated test suite and live checkout verification |
+| 122 | Verify the public Plans page after management updates | Only published membership plans remain visible to members after the introduction of staff CRUD functionality | ☐ | |
+| 123 | Confirm order confirmation page after email-related fix | Successful live checkout returns an HTTP 200 response instead of the previous HTTP 500 error | PASS | Verified on Heroku following implementation of defect fix D9 |
+| 124 | Verify basket behaviour after stock quantity capping | Standard basket operations (add, update and remove) continue to function correctly alongside stock capping rules | ☐ | |
+
+---
+
+#### 9. PYTHON/DJANGO AUTOMATED TESTING
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+**Test Suite Size:** **89 automated tests, all successfully passing.**
+
+```bash
+python manage.py test
+# Found 89 test(s).
+# Ran 89 tests — OK
+```
+
+<!-- Screenshot: terminal showing "Ran 89 tests ... OK" -->
+
+| App | Tests | Coverage Focus |
+|-----|-------|----------------|
+| accounts | 5 | Profile model, one-to-one user relationship and default values |
+| cart | 11 | Basket add/update/remove operations, stock quantity limits, out-of-stock protection and context processor totals |
+| orders | 19 | Order and line-item models, checkout workflow, stock deduction and clamping, validation error handling, order history, ownership protection and **Stripe webhook functionality (signature verification, idempotency, order creation and duplicate prevention)** |
+| shop | 9 | Product and category models, product listings, availability checks and 404 responses |
+| plans | 23 | Membership plan model and features, public plan filtering, Stripe subscription flow, idempotent success handling and **staff CRUD functionality (403 access control, create, edit, archive and validation)** |
+| community | 11 | Community post model and form, authentication-protected creation, owner-only editing and deletion |
+| reviews | 11 | Review model and form, rating validation and owner-only editing and deletion |
+| **Total** | **89** | |
+
+**Testing Techniques Demonstrated:**
+
+- **External service mocking** — Stripe `PaymentIntent` creation is mocked during checkout testing, allowing the automated suite to execute deterministically without requiring an internet connection.
+- **Signed event simulation** — Webhook tests generate correctly HMAC-signed Stripe events, exercising the application's genuine signature verification process.
+- **Negative-path testing** — Validation includes invalid form submissions, forged webhook signatures, oversell scenarios and attempts to access resources belonging to other users.
+- **Security verification** — Ownership protection and HTTP 403 access control are asserted directly within the automated test suite.
+
+---
+
+#### 10. CODE VALIDATION AND STATIC ANALYSIS
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Test ID | Tool | Test Case | Expected Result | Status | Notes |
+|---------|------|-----------|-----------------|--------|-------|
+| 125 | W3C HTML Validator | Validate the rendered HTML source of every page (using **View Source**, not Django templates) | No validation errors | ☐ | Validate authenticated pages by pasting the rendered source |
+| 126 | W3C Jigsaw Validator | Validate the project's CSS | No validation errors | ☐ | |
+| 127 | JSHint | Validate custom JavaScript, including the Stripe checkout integration | No validation errors | ☐ | |
+| 128 | flake8 | Verify PEP 8 compliance for each application | No warnings reported (or documented exceptions where applicable) | ☐ | |
+| 129 | Pylint | Assess code quality for each application | Score greater than **8.0/10** for every app | ☐ | Record individual application scores following the Milestone 3 format |
+| 130 | isort | Verify import ordering for each application | `isort <app> --check` returns exit code **0** | ☐ | |
+| 131 | Lighthouse | Perform the **Best Practices** audit | Best Practices score recorded for each key page | ☐ | |
+
+<!-- Paste tool outputs beneath each row, following the Milestone 3 convention -->
+
+---
+
+#### 11. DEFECT LOG
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+The following table documents the defects identified during development, together with their underlying causes and the solutions implemented. Where appropriate, each fix is supported by automated regression tests to prevent future reoccurrence.
+
+| ID | Defect | Root Cause | Fix | Status |
+|----|--------|-----------|-----|--------|
+| D1 | No error message displayed after an unsuccessful login | The form template failed to render `non_field_errors` | Added support for displaying non-field errors within the shared allauth form component, resolving the issue across all authentication forms | FIXED |
+| D2 | Password reset and email-related pages displayed at full width | Template overrides were located in a directory ignored by allauth (`templates/allauth/account/`) | Relocated the template overrides to `templates/account/` | FIXED |
+| D3 | Step 2 profile setup appeared after every login | Login redirection always pointed to the profile setup page without checking completion status | Updated the login flow to redirect users to the dashboard while performing completion checks in both directions | FIXED |
+| D4 | Product and membership plan images failed to display | Templates relied solely on the empty model image field | Integrated the static image-map template filters | FIXED |
+| D5 | Basket allowed unrestricted quantities | Basket views did not validate `product.stock` | Introduced stock quantity limits, prevented out-of-stock additions and clamped stock values at zero | FIXED |
+| D6 | Stock levels remained unchanged after successful purchases | Checkout created orders without updating inventory | Implemented stock deduction within `transaction.atomic()`, ensuring values are clamped at zero where necessary | FIXED |
+| D7 | Checkout validation errors were not visible | Invalid POST requests discarded the bound form, preventing field errors from being rendered | Re-rendered the bound form with an error summary, field-level validation messages and `is-invalid` styling | FIXED |
+| D8 | Orders could be lost if the browser closed immediately after payment | Order creation relied entirely on the client-side checkout process | Implemented a signature-verified, idempotent Stripe webhook to create orders server-side | FIXED |
+| D9 | Production order confirmation page returned an HTTP 500 error after payment | Confirmation email was sent with `fail_silently=False`, allowing Gmail SMTP failures on Heroku to interrupt page rendering | Wrapped email sending within a `try/except` block so failures are logged without affecting the customer's confirmation page | FIXED |
+
+**Rationale:** Recording defects alongside their root causes and corresponding resolutions demonstrates an authentic iterative development process rather than suggesting the project was free from defects. Furthermore, several corrections (D5–D9) resulted in permanent additions to the automated regression test suite, reducing the likelihood of similar issues recurring in future development.
+
+---
 
 ---
 
