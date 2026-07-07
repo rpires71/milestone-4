@@ -68,6 +68,27 @@
     - [9. Python/Django Automated Testing](#9-pythondjango-automated-testing)
     - [10. Code Validation and Static Analysis](#10-code-validation-and-static-analysis)
     - [11. Defect Log](#11-defect-log)
+- [Heroku Deployment](#heroku-deployment)
+  - [Introduction](#introduction)
+  - [Live Application](#live-application)
+  - [Deployment Configuration](#deployment-configuration)
+  - [Deployment Process](#deployment-process)
+  - [Project Files for Deployment](#project-files-for-deployment)
+  - [Static Files Handling](#static-files-handling)
+  - [Database](#database)
+  - [Stripe Configuration](#stripe-configuration)
+  - [Stripe Webhook Configuration](#stripe-webhook-configuration)
+  - [Email Configuration](#email-configuration)
+  - [Deployment Checklist](#deployment-checklist)
+  - [Deployment Verification](#deployment-verification)
+  - [Monitoring and Logs](#monitoring-and-logs)
+  - [Performance Optimisation](#performance-optimisation)
+  - [Security Configuration](#security-configuration)
+  - [Deployment Commands Reference](#deployment-commands-reference)
+  - [Troubleshooting](#troubleshooting)
+  - [Continuous Deployment](#continuous-deployment)
+  - [Production Environment Validation](#production-environment-validation)
+  - [Conclusion](#conclusion)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -5724,6 +5745,620 @@ The following table documents the defects identified during development, togethe
 **Rationale:** Recording defects alongside their root causes and corresponding resolutions demonstrates an authentic iterative development process rather than suggesting the project was free from defects. Furthermore, several corrections (D5–D9) resulted in permanent additions to the automated regression test suite, reducing the likelihood of similar issues recurring in future development.
 
 ---
+
+## Heroku Deployment
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+---
+
+### Introduction
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+This section outlines the deployment process used to move the FitHub fitness subscription and e-commerce application from the local development environment in Visual Studio Code to its live production deployment on Heroku. Unlike a standard Django application, deploying an e-commerce platform introduces additional technical considerations. These include securely managing payment credentials across different environments, configuring and validating a server-to-server Stripe webhook endpoint, and ensuring that transactional emails operate reliably in the production environment.
+
+#### Purpose of Deployment
+
+##### 1. **Production Environment Validation**
+
+Deploying the application verifies that it operates correctly within a live production environment rather than only during local development. This includes validating production-specific components such as the PostgreSQL database, SMTP email delivery, WhiteNoise static asset serving, and—most importantly for this project—Stripe payment processing together with secure webhook communication over the public internet.
+
+##### 2. **Portfolio Demonstration**
+
+Hosting the application on a publicly accessible URL allows assessors to evaluate the complete purchasing and subscription workflows using Stripe test payment cards. This provides clear evidence of full-stack development skills and successful third-party payment integration.
+
+##### 3. **Production Configuration Management**
+
+The deployment demonstrates good environment management practices by maintaining separate configuration values for development and production. This includes distinct Stripe webhook signing secrets, disabling `DEBUG` in the live environment, and centralising database configuration through the `DATABASE_URL` environment variable, allowing the underlying database service to be changed with minimal effort.
+
+##### 4. **DevOps Experience**
+
+The deployment process provided practical experience of modern DevOps practices, including Platform-as-a-Service (PaaS) deployment, Heroku's automated release phase for running database migrations, and the configuration, registration and verification of a secure webhook endpoint with the Stripe platform.
+
+##### 5. **Assessment Requirements**
+
+The completed deployment satisfies the requirements of Milestone Project 4 by delivering a fully operational, cloud-hosted e-commerce application that incorporates online payment processing and can be accessed, tested and evaluated by assessors.
+
+### Live Application
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+**Production URL:** https://fithub-rp-90631f751ed4.herokuapp.com/
+
+**Deployment Status:** Live and Operational
+
+---
+
+### Deployment Configuration
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Application Details
+
+| Setting | Value |
+|---------|-------|
+| **App Name** | fithub-rp |
+| **Region** | <!-- paste from `heroku apps:info` --> |
+| **Stack** | <!-- paste from `heroku apps:info` (e.g. heroku-24) --> |
+| **Buildpack** | heroku/python |
+| **Python Version** | <!-- paste from `heroku run "python --version"` --> |
+| **Web Process** | Gunicorn WSGI Server |
+
+**Note:** The application was initially provisioned using a Heroku-generated application name before being renamed to `fithub-rp` with `heroku apps:rename fithub-rp`. Following the rename, the Git remote was updated using `heroku git:remote -a fithub-rp`. This step is documented because changing the application name also modifies both the public deployment URL and the associated Git remote. Anyone recreating the deployment should create the Heroku application using its final name from the outset.
+
+#### Environment Configuration
+
+**Config Vars (Heroku Dashboard → Settings → Config Vars):**
+
+| Variable | Purpose | Status |
+|----------|---------|--------|
+| `DATABASE_URL` | Connection string for the PostgreSQL production database (automatically configured by the Heroku Postgres add-on) | Set |
+| `SECRET_KEY` | Django application secret key | Set |
+| `STRIPE_PUBLIC_KEY` | Stripe publishable API key (test mode, `pk_test_...`) | Set |
+| `STRIPE_SECRET_KEY` | Stripe secret API key (test mode, `sk_test_...`) | Set |
+| `STRIPE_WH_SECRET` | Stripe webhook signing secret for the **production webhook endpoint** (`whsec_...`) | Set |
+| `EMAIL_HOST_USER` | Gmail account used for sending transactional emails | Set |
+| `EMAIL_HOST_PASS` | Gmail App Password (16-character password requiring two-factor authentication) | Set |
+
+**Note:** Sensitive configuration values are intentionally concealed for security reasons and are never committed to the Git repository. During local development, the same environment variables are supplied through `env.py`, which is excluded from version control via `.gitignore`. The local `STRIPE_WH_SECRET` is different from its production counterpart, as explained in the [Stripe Webhook Configuration](#stripe-webhook-configuration) section.
+
+#### Heroku Add-ons
+
+| Add-on | Plan | Purpose |
+|--------|------|---------|
+| **Heroku Postgres** | <!-- paste from `heroku addons` --> | Production PostgreSQL database |
+
+---
+
+### Deployment Process
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Initial Deployment
+
+**Method:** Deployment performed by pushing the project to the Heroku Git remote.
+
+**Commands Used:**
+
+```bash
+# Log in to Heroku
+heroku login
+
+# Create the Heroku application (or rename an existing app)
+heroku create fithub-rp
+
+# Provision a PostgreSQL database
+heroku addons:create heroku-postgresql:essential-0
+
+# Configure environment variables
+heroku config:set SECRET_KEY="your-secret-key"
+heroku config:set STRIPE_PUBLIC_KEY="pk_test_..."
+heroku config:set STRIPE_SECRET_KEY="sk_test_..."
+heroku config:set STRIPE_WH_SECRET="whsec_..."   # Production webhook secret — see webhook section
+heroku config:set EMAIL_HOST_USER="youraddress@gmail.com"
+heroku config:set EMAIL_HOST_PASS="your-gmail-app-password"
+
+# Deploy the application
+git push heroku main
+
+# Create an administrative user
+heroku run python manage.py createsuperuser
+```
+
+**Automatic Database Migrations:** Unlike Milestone 3, database migrations are not executed manually following each deployment. Instead, the `Procfile` defines a **release phase** (`release: python manage.py migrate`), which Heroku automatically runs before the newly deployed application becomes live. This ensures that the production database schema remains synchronised with the latest application code while also executing the idempotent data migration responsible for seeding the additional catalogue products.
+
+#### Recent Deployment
+
+**Latest Deployment:** <!-- date -->  
+**Commit:** <!-- `git log --oneline -1` -->  
+**Build Status:** Successful  
+**Release Version:** <!-- from the push output, e.g. v84 -->
+
+**Deployment Output:**
+
+```text
+<!-- Paste the final section of your latest `git push heroku main` output here,
+     including the "Running release command: python manage.py migrate"
+     messages that confirm the Heroku release phase executed successfully. -->
+```
+
+---
+
+### Project Files for Deployment
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### 1. Procfile
+
+**Location:** Project root
+
+**Purpose:** Defines how the application is executed on Heroku.
+
+```text
+release: python manage.py migrate
+web: gunicorn fithub.wsgi --log-file -
+```
+
+**Explanation:**
+
+- `release:` — Specifies a Heroku **release phase** command that is executed automatically during every deployment before the new release begins serving traffic. Running `migrate` at this stage keeps the production database schema and data migrations synchronised with the deployed code, representing a significant improvement over the manual migration process used in Milestone 3.
+- `web:` — Defines the application's web dyno process.
+- `gunicorn fithub.wsgi` — Launches the production WSGI application using the Gunicorn server.
+- `--log-file -` — Directs application logs to standard output, allowing them to be captured by `heroku logs`.
+
+#### 2. requirements.txt
+
+**Location:** Project root
+
+**Purpose:** Records every Python package required by the application.
+
+**Key Dependencies:**
+
+```txt
+Django==4.2.23
+django-allauth==65.18.0
+stripe==15.2.1
+gunicorn
+psycopg2-binary
+dj-database-url
+whitenoise
+```
+
+**Total Packages:** <!-- paste from `(Get-Content requirements.txt).Count` or `pip freeze | measure` -->
+
+Before submitting the project, regenerate the file to ensure it accurately reflects the installed environment:
+
+```bash
+pip freeze > requirements.txt
+```
+
+#### 3. .python-version
+
+**Location:** Project root
+
+**Purpose:** Specifies the Python version used by Heroku during deployment.
+
+```text
+3.12
+```
+
+<!-- Verify this file exists in your project root (it replaced the deprecated
+     runtime.txt). If your project still uses runtime.txt, document that
+     instead, or migrate to .python-version. -->
+
+#### 4. Django Settings Configuration
+
+**File:** `fithub/settings.py`
+
+The project uses a single **`DEVELOPMENT` environment variable** to determine whether the application is running locally or in production, while all sensitive configuration values are loaded from environment variables.
+
+- **`SECRET_KEY`** — Retrieved from the environment and never hard-coded within the project.
+- **`DEBUG`** — Enabled only during local development when `DEVELOPMENT` is defined; automatically disabled in production.
+- **`ALLOWED_HOSTS`** — Configured as `['localhost', '127.0.0.1', '.herokuapp.com']`.
+- **Database** — `dj_database_url` reads the `DATABASE_URL` environment variable when available, connecting to the Heroku PostgreSQL database. If absent, the application automatically falls back to SQLite for local development. This centralises database configuration within a single environment variable, making future database changes straightforward.
+- **Email** — Uses Django's console email backend during development, with emails written to the terminal, while the production deployment uses Gmail SMTP configured through `EMAIL_HOST_USER` and `EMAIL_HOST_PASS`.
+- **Stripe** — The `STRIPE_PUBLIC_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_CURRENCY` (`gbp`) and `STRIPE_WH_SECRET` settings are all read directly from the environment.
+
+During local development these variables are supplied through the gitignored `env.py` file, whereas the production deployment retrieves the same variables from Heroku Config Vars. Using identical variable names across both environments removes the need for code modifications when deploying the application.
+
+---
+
+### Static Files Handling
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+- **WhiteNoise** middleware delivers static assets directly from the Heroku dyno, removing the need for a separate static file hosting service.
+- During each Heroku build, `python manage.py collectstatic` is executed automatically.
+- WhiteNoise's compressed manifest storage generates hashed filenames (for example, `kettlebell-16kg.c4ec98bd.webp`), allowing long-term browser caching while providing reliable cache invalidation whenever files change.
+- Product and membership plan images are supplied as pre-optimised `.webp` static assets.
+
+---
+
+### Database
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Environment | Database | Configuration |
+|-------------|----------|---------------|
+| Development | SQLite (`db.sqlite3`) | Default database used whenever `DATABASE_URL` is not defined |
+| Production | Heroku PostgreSQL | `DATABASE_URL` environment variable parsed using `dj_database_url` |
+
+Using `DATABASE_URL` as the single source of database configuration allows the application to switch between development and production databases without requiring any code changes. In addition, both schema and data migrations are applied automatically to the production database during Heroku's release phase.
+
+---
+
+### Stripe Configuration
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+FitHub integrates Stripe in **test mode** through **two separate payment workflows**, each serving a different purpose within the application.
+
+| Integration | Used for | Technology |
+|-------------|----------|------------|
+| **Stripe Elements + PaymentIntents** | One-off shop purchases (basket checkout) | Embedded card element within the checkout page; payments confirmed client-side using `confirmCardPayment`; orders created server-side |
+| **Stripe Checkout** | Membership subscriptions | Stripe-hosted checkout page; subscription recorded when the customer returns to the application |
+
+#### Keys and Environments
+
+| Variable | Development (`env.py`) | Production (Heroku Config Var) |
+|----------|------------------------|--------------------------------|
+| `STRIPE_PUBLIC_KEY` | Test publishable key | Same test publishable key |
+| `STRIPE_SECRET_KEY` | Test secret key | Same test secret key |
+| `STRIPE_WH_SECRET` | **Stripe CLI** webhook signing secret | **Stripe Workbench endpoint** webhook signing secret (different value — see below) |
+
+**Security Notes:**
+
+- Payment card details are entered through a Stripe-hosted iframe provided by Stripe Elements and **never pass through the Django application**. Consequently, card information is never included in POST requests, application logs or the database.
+- The application stores only the PaymentIntent identifier (`stripe_payment_intent_id` on the order), providing support for webhook idempotency without retaining sensitive payment data.
+- All Stripe credentials operate exclusively in **test mode**, meaning the application does not process live customer card payments.
+
+**Test Cards** (use any future expiry date and any CVC):
+
+| Card | Behaviour |
+|------|-----------|
+| `4242 4242 4242 4242` | Successful payment |
+| `4000 0000 0000 0002` | Payment declined |
+| `4000 0025 0000 3155` | Triggers 3D Secure authentication |
+
+---
+
+### Stripe Webhook Configuration
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Purpose
+
+Whenever a payment is successfully completed, Stripe sends a server-to-server `payment_intent.succeeded` event to the application. Because this communication takes place independently of the customer's browser, **orders are still recorded even if the customer closes their browser immediately after payment**—a scenario that cannot be handled reliably by the standard client-driven checkout flow alone.
+
+The webhook implementation incorporates several important security and reliability features:
+
+- **Signature verification** — Every incoming request is authenticated using the endpoint's webhook signing secret through `stripe.Webhook.construct_event()`. Requests with invalid or forged signatures are rejected with an HTTP 400 response.
+- **Idempotent processing** — Orders are matched using the `stripe_payment_intent_id`, ensuring that replayed or duplicate webhook events never generate duplicate orders or perform stock deductions more than once.
+- **Intentional CSRF exemption** — As Stripe cannot provide a Django CSRF token, the cryptographic webhook signature serves as the authenticity mechanism in place of CSRF protection.
+
+**Endpoint:** `/orders/wh/` → `https://fithub-rp-90631f751ed4.herokuapp.com/orders/wh/`
+
+**Subscribed Event:** `payment_intent.succeeded`
+
+#### Two Signing Secrets — One Environment Variable
+
+To avoid a common source of confusion, it is important to note that **two separate webhook signing secrets** are used, although both are assigned to the same `STRIPE_WH_SECRET` environment variable within their respective environments.
+
+| Environment | Source of the Signing Secret | Where It Is Configured |
+|-------------|------------------------------|------------------------|
+| Local development | Generated each time `stripe listen` is started via the Stripe CLI | `env.py` |
+| Production | Displayed for the webhook endpoint in **Stripe Workbench → Webhooks** | Heroku Config Var |
+
+#### Local Webhook Testing (Stripe CLI)
+
+```bash
+# Terminal 1 — forward Stripe events to the local application
+stripe listen --forward-to localhost:8000/orders/wh/
+# → outputs: "Your webhook signing secret is whsec_..." → copy this into env.py
+
+# Terminal 2 — start the Django development server
+python manage.py runserver
+
+# Terminal 3 — trigger a test webhook event
+stripe trigger payment_intent.succeeded
+```
+
+**Verified Result:** The Stripe CLI reports that the webhook event has been forwarded successfully, while the Django development server logs `POST /orders/wh/ HTTP/1.1 200`, confirming that the endpoint is reachable and the webhook signature has been successfully validated.
+
+**Note:** The Stripe CLI generates a **new webhook signing secret each time** `stripe listen` is started. Consequently, the value stored in `env.py` must be updated whenever a new CLI session begins.
+
+#### Production Webhook Configuration (Stripe Workbench)
+
+Webhook management within Stripe is now handled through **Workbench**, replacing the previous Developers Dashboard.
+
+1. Sign in to the Stripe Dashboard in **test mode (sandbox)** and navigate to **Workbench → Webhooks**.
+2. Create a new **Webhook endpoint** as the event destination.
+3. Configure the **Endpoint URL** as `https://fithub-rp-90631f751ed4.herokuapp.com/orders/wh/`.
+4. Select **Your account** as the event source and subscribe to the `payment_intent.succeeded` event.
+5. Once the endpoint has been created, reveal its webhook signing secret (`whsec_...`).
+6. Store the signing secret on Heroku:
+
+```bash
+heroku config:set STRIPE_WH_SECRET=whsec_... -a fithub-rp
+```
+
+Setting or updating a Heroku Config Var automatically restarts the application's dyno.
+
+**Verified Result:** Following a successful payment using Stripe Test Mode, the Heroku router logs record `POST /orders/wh/ ... status=200` requests originating from Stripe. At the same time, the Stripe Workbench delivery log confirms that the webhook event was delivered and processed successfully.
+
+<!-- Screenshot: Workbench endpoint delivery log showing payment_intent.succeeded → 200 -->
+<!-- Screenshot: heroku logs showing POST /orders/wh/ 200 -->
+
+**Important:** The webhook endpoint must be created within the **same Stripe mode** as the API keys used by the application. A webhook signing secret generated in **test mode** cannot validate events originating from **live mode**, and the reverse is equally true.
+
+---
+
+### Email Configuration
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+| Environment | Backend | Behaviour |
+|-------------|---------|-----------|
+| Development | Console | Emails are written to the terminal, eliminating the possibility of delivery failures during development |
+| Production | Gmail SMTP | Transactional emails are sent using `EMAIL_HOST_USER` and `EMAIL_HOST_PASS` (a Gmail **App Password**, requiring two-factor authentication on the associated Google account) |
+
+**Built-in Resilience:** The order confirmation email is dispatched within a `try/except` block so that any email delivery failure—for example, invalid SMTP credentials—is recorded in the application logs without interrupting the user experience. As a result, customers who have successfully completed payment always receive the order confirmation page, even if the email cannot be delivered.
+
+This design decision originated from an actual production issue (see **Defect Log D9**). Initially, the confirmation email was sent before the page rendered with `fail_silently=False`. Consequently, a Gmail SMTP failure on Heroku caused the success page to return an HTTP 500 error, despite the payment, order creation and Stripe webhook having completed successfully.
+
+---
+
+### Deployment Checklist
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+- [ ] Confirm `env.py` is included in `.gitignore` and that no secrets are committed to the repository.
+- [ ] Verify `DEBUG` is disabled in production (the `DEVELOPMENT` environment variable is not configured on Heroku).
+- [ ] Ensure all required Config Vars are configured: `SECRET_KEY`, `DATABASE_URL`, `STRIPE_PUBLIC_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WH_SECRET`, `EMAIL_HOST_USER` and `EMAIL_HOST_PASS`.
+- [ ] Regenerate `requirements.txt` using `pip freeze > requirements.txt`.
+- [ ] Verify that the `Procfile` exists and defines both the release phase and the web process.
+- [ ] Create the Stripe Workbench webhook endpoint for the production URL and configure its signing secret on Heroku.
+- [ ] Confirm `git push heroku main` completes successfully and that the Heroku release phase applies all migrations.
+- [ ] Create a production superuser using `heroku run python manage.py createsuperuser`.
+- [ ] Complete and verify a full end-to-end checkout using the Stripe test card `4242...`, including successful order creation, webhook delivery (HTTP 200), confirmation page rendering and email dispatch.
+- [ ] Verify that the deployed application matches the latest commit in the GitHub repository.
+
+---
+
+### Deployment Verification
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+The following functionality was verified after deployment on the live production environment:
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| **Home page loads** | ☐ | |
+| **User registration and email verification** | ☐ | |
+| **User login and logout** | ☐ | |
+| **Membership plans listing and detail pages** | ☐ | |
+| **Stripe subscription checkout** | ☐ | |
+| **Shop, basket and stock quantity limiting** | ☐ | |
+| **Checkout payment (Stripe Elements)** | Pass | Verified using a Stripe test card following implementation of defect D9 — confirmation page returned HTTP 200 |
+| **Live webhook delivery** | Pass | Heroku logs confirmed successful `POST /orders/wh/ 200` requests from Stripe |
+| **Order confirmation page** | Pass | Correctly renders complete order details following the D9 fix |
+| **Order history and ownership protection** | ☐ | |
+| **Staff plan management and HTTP 403 protection for non-staff users** | ☐ | |
+| **Django admin interface** | ☐ | |
+| **Static assets (CSS, JavaScript and images)** | ☐ | |
+| **Responsive layout** | ☐ | |
+
+---
+
+### Monitoring and Logs
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+```bash
+# Display a live stream of recent application logs
+heroku logs --tail -a fithub-rp
+
+# Display the latest 100 log entries
+heroku logs -n 100 -a fithub-rp
+
+# Stream logs from the web dyno only
+heroku logs --tail --dyno web -a fithub-rp
+```
+
+Successful webhook requests appear within the Heroku router logs in the following format:
+
+```text
+heroku[router]: at=info method=POST path="/orders/wh/" ... status=200
+```
+
+```bash
+# View dyno status, restart the application or inspect app details
+heroku ps -a fithub-rp
+heroku restart -a fithub-rp
+heroku apps:info -a fithub-rp
+```
+
+---
+
+### Performance Optimisation
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+1. **Compressed static assets** — WhiteNoise delivers compressed, hash-versioned static files together with long-term browser caching headers.
+2. **Optimised images** — Product and membership plan images are supplied in the `.webp` format to reduce page load times.
+3. **Efficient database queries** — The Order History view uses `prefetch_related('line_items__product')`, preventing N+1 query issues when rendering product thumbnails.
+4. **Automatic release-phase migrations** — Database schema updates are applied before new application code receives traffic, eliminating mixed-version deployment issues.
+
+---
+
+### Security Configuration
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+1. **Environment variables** — All sensitive configuration values, including the Django secret key, database connection string, Stripe API keys, webhook signing secret and email credentials, are stored securely within Heroku Config Vars or the gitignored `env.py` file. No secrets are committed to source control.
+2. **Production debug settings** — `DEBUG` is disabled in the production environment, ensuring that error pages never expose sensitive configuration details or stack traces.
+3. **Allowed hosts** — Application access is restricted to `localhost` and the `.herokuapp.com` domain.
+4. **HTTPS enforcement** — Secure HTTPS connections are provided through Heroku's SSL infrastructure.
+5. **CSRF protection** — Django's CSRF middleware safeguards all application forms. The Stripe webhook endpoint is intentionally marked `csrf_exempt` because webhook authenticity is guaranteed through Stripe's cryptographic signature verification instead of CSRF tokens.
+6. **Webhook signature validation** — Invalid, forged or modified webhook requests are rejected with an HTTP 400 response. This behaviour is verified by the automated test suite.
+7. **Payment card isolation** — Card details are entered exclusively within Stripe's secure iframe, ensuring that sensitive payment information never reaches the Django application.
+8. **Access control** — Ownership protection prevents users from accessing other users' orders (returning HTTP 404 where appropriate), management routes are secured with `staff_required` (HTTP 403), and community posts and product reviews can only be edited or deleted by their respective owners.
+9. **SQL injection protection** — Database queries are executed through Django's ORM, which automatically parameterises queries to protect against SQL injection attacks.
+
+---
+
+### Deployment Commands Reference
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+```bash
+# Deploy the latest application version
+# (database migrations are executed automatically during the Heroku release phase)
+git push heroku main
+
+# Create a production superuser account
+heroku run python manage.py createsuperuser -a fithub-rp
+
+# Launch the deployed application in the browser
+heroku open -a fithub-rp
+
+# Stream live application logs
+heroku logs --tail -a fithub-rp
+
+# View and manage configuration variables
+heroku config -a fithub-rp
+heroku config:set VARIABLE_NAME=value -a fithub-rp
+heroku config:get STRIPE_WH_SECRET -a fithub-rp
+
+# View and manage dynos
+heroku ps -a fithub-rp
+heroku restart -a fithub-rp
+
+# Open the Django shell or connect to the production database
+heroku run python manage.py shell -a fithub-rp
+heroku pg:psql -a fithub-rp
+```
+
+---
+
+### Troubleshooting
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+##### Issue: HTTP 500 on the Order Confirmation Page (Payment Successful)
+
+This was a genuine production defect encountered during development (D9). Although payment processing, order creation and Stripe webhook processing all completed successfully, the request to `GET /orders/checkout/success/...` returned an HTTP 500 error.
+
+**Cause:** Before rendering the confirmation page, the application attempted to send the confirmation email using `fail_silently=False`. On Heroku, a Gmail SMTP failure (typically caused by a missing or outdated App Password) raised an exception, preventing the page from loading.
+
+**Solution:** The email-sending process was wrapped in a `try/except` block so that any email failure is logged without interrupting the customer journey. In addition, valid `EMAIL_HOST_USER` and `EMAIL_HOST_PASS` configuration variables must be present to enable successful email delivery.
+
+```bash
+heroku config -a fithub-rp        # Verify both email configuration variables exist
+heroku logs -n 100 -a fithub-rp   # Check for "confirmation email failed" log entries
+```
+
+##### Issue: Webhook Requests Return HTTP 400
+
+**Cause:** The `STRIPE_WH_SECRET` configured on Heroku does not match the webhook endpoint's signing secret. This commonly occurs when the local Stripe CLI secret is mistakenly used instead of the Stripe Workbench webhook secret, or when the webhook endpoint has been created in the incorrect mode (live instead of test, or vice versa).
+
+**Solution:** Reveal the webhook signing secret within **Stripe Workbench → Webhooks** (Test Mode) and update the Heroku configuration accordingly.
+
+```bash
+heroku config:set STRIPE_WH_SECRET=whsec_... -a fithub-rp
+```
+
+##### Issue: General Application Error (HTTP 500)
+
+```bash
+heroku logs --tail -a fithub-rp
+
+# Common causes include:
+# - Missing or incorrect configuration variables
+# - Failed release-phase database migrations
+```
+
+##### Issue: Static Assets Fail to Load
+
+Static assets are collected automatically during the Heroku build process using `collectstatic`. If CSS, JavaScript or images are missing, inspect the build logs and confirm that the WhiteNoise middleware is positioned immediately after `SecurityMiddleware` within the `MIDDLEWARE` setting.
+
+##### Issue (Windows/OneDrive): `.git/objects` Deletion Prompts During Git Push
+
+When a Git repository is stored inside a OneDrive-synchronised folder, pushing changes may generate repeated messages such as `Deletion of directory '.git/objects/..' failed`. This occurs because OneDrive temporarily locks Git's internal object files while synchronising.
+
+**Solution:** Pause OneDrive synchronisation before running Git push operations. If the prompts appear, selecting `n` is harmless because the repository data has already been transferred successfully. As a long-term solution, store Git repositories outside folders synchronised by OneDrive.
+
+---
+
+### Continuous Deployment
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+```bash
+# 1. Make local changes and execute the automated test suite
+python manage.py test        # All 89 tests must pass before deployment
+
+# 2. Stage, commit and push changes to GitHub
+git add <files>
+git commit -m "feat: description of change"
+git push origin main
+
+# 3. Deploy the latest version to Heroku
+git push heroku main
+
+# During deployment, Heroku automatically:
+# - Installs project dependencies
+# - Executes collectstatic
+# - Runs the release phase (python manage.py migrate)
+# - Restarts the application dynos
+```
+
+---
+
+### Production Environment Validation
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+```bash
+heroku run "python --version" -a fithub-rp
+# Output: <!-- paste -->
+
+heroku run python manage.py --version -a fithub-rp
+# Output: 4.2.23
+
+heroku pg:info -a fithub-rp
+# Output:
+# <!-- paste (plan, status, PostgreSQL version, data size, tables) -->
+
+heroku ps -a fithub-rp
+# Output: <!-- paste -->
+```
+
+---
+
+### Conclusion
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+**Deployment Status:** **SUCCESSFUL**
+
+The FitHub application has been successfully deployed to Heroku and is fully operational in the production environment. Key production features include:
+
+- Secure user authentication with email verification and a two-step profile registration process.
+- Membership subscriptions processed through Stripe Checkout.
+- A complete e-commerce platform featuring a shopping basket, stock integrity controls and Stripe Elements for secure one-off payments.
+- A signature-verified, idempotent Stripe webhook that guarantees orders are recorded even if a customer closes their browser immediately after payment, verified in production through successful `POST /orders/wh/ 200` requests.
+- Transactional order confirmation emails with graceful error handling to prevent email failures from affecting the customer experience.
+- Secure order history protected by ownership checks together with staff-only membership plan management.
+- A fully responsive user interface delivered using optimised static assets.
+
+**Live Application:** https://fithub-rp-90631f751ed4.herokuapp.com/
+
+**Last Updated:** <!-- date -->  
+**Release Version:** <!-- vNN -->  
+**Deployment Method:** Git push to Heroku with automatic release-phase database migrations  
+**Status:** Active and Operational
 
 ---
 
