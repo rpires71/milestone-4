@@ -82,7 +82,7 @@
   - [Deployment Checklist](#deployment-checklist)
   - [Deployment Verification](#deployment-verification)
   - [Monitoring and Logs](#monitoring-and-logs)
-  - [Performance Optimisation](#performance-optimisation)
+  - [Deployment Performance Optimisation](#deployment-performance-optimisation)
   - [Security Configuration](#security-configuration)
   - [Deployment Commands Reference](#deployment-commands-reference)
   - [Troubleshooting](#troubleshooting)
@@ -6181,7 +6181,7 @@ heroku apps:info -a fithub-rp
 
 ---
 
-### Performance Optimisation
+### Deployment Performance Optimisation
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
