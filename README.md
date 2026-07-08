@@ -5799,10 +5799,10 @@ The completed deployment satisfies the requirements of Milestone Project 4 by de
 | Setting | Value |
 |---------|-------|
 | **App Name** | fithub-rp |
-| **Region** | <!-- paste from `heroku apps:info` --> |
-| **Stack** | <!-- paste from `heroku apps:info` (e.g. heroku-24) --> |
+| **Region** | United States (us) |
+| **Stack** | Heroku-24 |
 | **Buildpack** | heroku/python |
-| **Python Version** | <!-- paste from `heroku run "python --version"` --> |
+| **Python Version** | 3.12.13 |
 | **Web Process** | Gunicorn WSGI Server |
 
 **Note:** The application was initially provisioned using a Heroku-generated application name before being renamed to `fithub-rp` with `heroku apps:rename fithub-rp`. Following the rename, the Git remote was updated using `heroku git:remote -a fithub-rp`. This step is documented because changing the application name also modifies both the public deployment URL and the associated Git remote. Anyone recreating the deployment should create the Heroku application using its final name from the outset.
@@ -5827,7 +5827,7 @@ The completed deployment satisfies the requirements of Milestone Project 4 by de
 
 | Add-on | Plan | Purpose |
 |--------|------|---------|
-| **Heroku Postgres** | <!-- paste from `heroku addons` --> | Production PostgreSQL database |
+| **Heroku Postgres** | Essential-0 | Production PostgreSQL database |
 
 ---
 
@@ -5870,19 +5870,37 @@ heroku run python manage.py createsuperuser
 
 #### Recent Deployment
 
-**Latest Deployment:** <!-- date -->  
-**Commit:** <!-- `git log --oneline -1` -->  
+**Latest Deployment:** 7 July 2026  
+**Commit:** 0a8c199  
 **Build Status:** Successful  
-**Release Version:** <!-- from the push output, e.g. v84 -->
+**Release Version:** v96
 
 **Deployment Output:**
 
 ```text
-<!-- Paste the final section of your latest `git push heroku main` output here,
-     including the "Running release command: python manage.py migrate"
-     messages that confirm the Heroku release phase executed successfully. -->
+-----> Building on the Heroku-24 stack
+-----> Using buildpack: heroku/python
+-----> Python app detected
+-----> Using Python 3.12 specified in .python-version
+-----> Installing dependencies using 'pip install -r requirements.txt'
+-----> $ python manage.py collectstatic --noinput
+       156 static files copied to '/tmp/build_87b1e5f2/staticfiles', 412 post-processed.
+-----> Discovering process types
+       Procfile declares types -> release, web
+-----> Compressing...
+       Done: 66.9M
+-----> Launching...
+ !     Release command declared: this new release will not be available until the command succeeds.
+       Released v96
+       https://fithub-rp-90631f751ed4.herokuapp.com/ deployed to Heroku
+Verifying deploy... done.
+Running release command...
+Operations to perform:
+  Apply all migrations: account, accounts, admin, auth, community, contenttypes, orders, plans, reviews, sessions, shop, sites
+Running migrations:
+  No migrations to apply.
+Waiting for release.... done.
 ```
-
 ---
 
 ### Project Files for Deployment
