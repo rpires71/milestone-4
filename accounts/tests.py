@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 
+from accounts.forms import CustomSignupForm
 from accounts.models import Profile
 
 
@@ -46,3 +47,15 @@ class ProfileModelTest(TestCase):
         from django.db import IntegrityError
         with self.assertRaises(IntegrityError):
             Profile.objects.create(user=self.user)
+
+    def test_signup_form_requires_and_saves_names(self):
+        """The custom signup form collects first and last name onto the user."""
+        from accounts.forms import CustomSignupForm
+        form = CustomSignupForm(data={
+            'email': 'named@example.com',
+            'password1': 'a-Str0ng-passw0rd!',
+            'first_name': '',
+            'last_name': '',
+        })
+        self.assertFalse(form.is_valid())
+        self.assertIn('first_name', form.errors)

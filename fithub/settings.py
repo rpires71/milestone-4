@@ -154,6 +154,7 @@ ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'email2*', 'password1*', 'passwo
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/dashboard/profile-setup/"
+ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = "/dashboard/profile-setup/"
