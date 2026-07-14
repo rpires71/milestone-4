@@ -5431,16 +5431,123 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 001 | Register using valid account details | New account created; verification email issued; "Verify your email" page displayed | ☐ | |
-| 002 | Attempt registration with an existing email address | Appropriate validation error displayed | ☐ | |
-| 003 | Confirm account using the email verification link | Account verified successfully; user able to log in | ☐ | |
-| 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | ☐ | |
-| 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | ☐ | |
-| 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | ☐ | |
-| 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | ☐ | Fixed defect D1 — authentication errors were previously not displayed |
-| 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | ☐ | |
-| 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | ☐ | Failed in Milestone 3; implemented and page-width issue corrected in this project (D2) |
-| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | ☐ | |
+| 001 | Register using valid account details | New account created; verification email issued; "Verify your email" page displayed | PASS | New account created; verification email issued; "Verify your email" page displayed |
+
+<details>
+<summary>📸 Evidence for 001 (click to expand)</summary>
+<img width="1064" height="846" alt="image" src="https://github.com/user-attachments/assets/c7d91a4a-d15a-46c4-a73e-880f79316b77" />
+<img width="1071" height="573" alt="image" src="https://github.com/user-attachments/assets/19a59801-2521-4f4a-97eb-57ba75ce9cf8" />
+<img width="1389" height="673" alt="image" src="https://github.com/user-attachments/assets/3c3282e5-46d2-4a25-a930-053f91efc3af" />
+<img width="1330" height="676" alt="image" src="https://github.com/user-attachments/assets/34031194-d152-44b1-8bdc-ab3f4ca39fb2" />
+<img width="1334" height="749" alt="image" src="https://github.com/user-attachments/assets/bef897b5-260a-439c-89a6-97d7b32e4ac3" />
+<img width="1346" height="763" alt="image" src="https://github.com/user-attachments/assets/ce101673-5b84-4088-909c-41485e37fc66" />
+<img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" />
+<img width="1645" height="436" alt="image" src="https://github.com/user-attachments/assets/6cc8e62c-409a-4d80-b389-3c9ad8481246" />
+<img width="1739" height="929" alt="image" src="https://github.com/user-attachments/assets/b2bdcca8-42cd-40fe-9984-c6087188cd51" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 002 | Attempt registration with an existing email address | Appropriate validation error displayed | PASS | Appropriate validation error displayed |
+
+<details>
+<summary>📸 Evidence for 002 (click to expand)</summary>
+<img width="1057" height="874" alt="image" src="https://github.com/user-attachments/assets/8f1e9d10-8872-4a24-a225-5b7d95b59ec5" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 003 | Confirm account using the email verification link | Account verified successfully; user able to log in | PASS | Account verified successfully; user able to log in (verified in Test ID 001) |
+
+<details>
+<summary>📸 Evidence for 003 (click to expand)</summary>
+<img width="1071" height="573" alt="image" src="https://github.com/user-attachments/assets/19a59801-2521-4f4a-97eb-57ba75ce9cf8" />
+<img width="1389" height="673" alt="image" src="https://github.com/user-attachments/assets/3c3282e5-46d2-4a25-a930-053f91efc3af" />
+<img width="1330" height="676" alt="image" src="https://github.com/user-attachments/assets/34031194-d152-44b1-8bdc-ab3f4ca39fb2" />
+<img width="1334" height="749" alt="image" src="https://github.com/user-attachments/assets/bef897b5-260a-439c-89a6-97d7b32e4ac3" />
+<img width="1346" height="763" alt="image" src="https://github.com/user-attachments/assets/ce101673-5b84-4088-909c-41485e37fc66" />
+<img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | PASS | Profile form displayed with all four fields on first login (verified during the 001/003 registration flow) — see 004.png |
+
+<details>
+<summary>📸 Evidence for 004 (click to expand)</summary>
+<img width="1334" height="749" alt="image" src="https://github.com/user-attachments/assets/bef897b5-260a-439c-89a6-97d7b32e4ac3" />
+<img width="1346" height="763" alt="image" src="https://github.com/user-attachments/assets/ce101673-5b84-4088-909c-41485e37fc66" />
+<img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | PASS | Step 2 profile setup is skipped on future logins and user is redirected directly to the dashboard rather than the profile form |
+
+<details>
+<summary>📸 Evidence for 005 (click to expand)</summary>
+<img width="1261" height="914" alt="image" src="https://github.com/user-attachments/assets/8ecb0e11-758c-46ae-a1b1-0e73aac7b8c4" />
+<img width="1228" height="920" alt="image" src="https://github.com/user-attachments/assets/42f8bad5-fda1-4c22-82bc-4da0c23b7203" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | PASS | Log in with valid credentials and user authenticated and redirected to the dashboard |
+
+<details>
+<summary>📸 Evidence for 006 (click to expand)</summary>
+<img width="1191" height="840" alt="image" src="https://github.com/user-attachments/assets/8d96b483-cab0-46ef-a15a-30b8b064da20" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | PASS | Fixed defect D1 — authentication errors were previously not displayed |
+
+<details>
+<summary>📸 Evidence for 007 (click to expand)</summary>
+<img width="1228" height="741" alt="image" src="https://github.com/user-attachments/assets/260a0bb2-0884-4962-b391-961849f0349f" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | PASS | Log out successfully. User signed out; confirmation message displayed; session terminated |
+
+<details>
+<summary>📸 Evidence for 008 (click to expand)</summary>
+<img width="1254" height="572" alt="image" src="https://github.com/user-attachments/assets/1b6b8ea5-3033-4409-8bf6-8f98639bc157" />
+<img width="1232" height="604" alt="image" src="https://github.com/user-attachments/assets/c6fbc221-65ea-46a1-99df-9b2ac3397af0" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | PASS | Password reset process functions correctly and password reset email received; password successfully reset using the email link. |
+
+<details>
+<summary>📸 Evidence for 009 (click to expand)</summary>
+<img width="1239" height="540" alt="image" src="https://github.com/user-attachments/assets/88abaefc-7669-4074-8aac-79bdf44f203d" />
+<img width="1258" height="597" alt="image" src="https://github.com/user-attachments/assets/95db8563-c8b9-42ca-b8bd-5c35d1773175" />
+<img width="1813" height="196" alt="image" src="https://github.com/user-attachments/assets/17d5ea93-9284-4502-8f0c-7da25e0de507" />
+<img width="976" height="487" alt="image" src="https://github.com/user-attachments/assets/cacb7175-c518-43c9-85af-e0313bade4b4" />
+<img width="1318" height="499" alt="image" src="https://github.com/user-attachments/assets/e5229554-5d3d-4857-b9e5-6da164991237" />
+<img width="1846" height="702" alt="image" src="https://github.com/user-attachments/assets/67bf24cf-ea90-4d49-85bf-4c62df107efe" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | FAIL | Dashboard doesn't display all profile data correctly across the account dashboard tabs |
+
+<details>
+<summary>📸 Evidence for 010 (click to expand)</summary>
+<img width="1252" height="775" alt="image" src="https://github.com/user-attachments/assets/c045702e-cb9a-4553-8a50-ec0d55f8be65" />
+<img width="1008" height="750" alt="image" src="https://github.com/user-attachments/assets/bdf02136-10a2-41dc-bb4b-4bbb50574bc4" />
+<img width="1203" height="737" alt="image" src="https://github.com/user-attachments/assets/44e03e02-f0b4-4356-a7fe-68e39c4b9230" />
+<img width="1197" height="746" alt="image" src="https://github.com/user-attachments/assets/d282edb4-af1a-4606-a350-3e36e302f6d8" />
+<img width="1183" height="752" alt="image" src="https://github.com/user-attachments/assets/a13b149a-89f4-4148-93c7-5501fc40b682" />
+<img width="1228" height="831" alt="image" src="https://github.com/user-attachments/assets/06fd9cf1-e4e6-4d67-acb1-7e9400ff5005" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
 
 #### 1.2 Membership Plans and Subscriptions
