@@ -5518,7 +5518,22 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1232" height="604" alt="image" src="https://github.com/user-attachments/assets/c6fbc221-65ea-46a1-99df-9b2ac3397af0" />
 </details>
 
-| 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | ☐ | Failed in Milestone 3; implemented and page-width issue corrected in this project (D2) |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | PASS | Password reset process functions correctly and password reset email received; password successfully reset using the email link. |
+
+<details>
+<summary>📸 Evidence for 009 (click to expand)</summary>
+<img width="1239" height="540" alt="image" src="https://github.com/user-attachments/assets/88abaefc-7669-4074-8aac-79bdf44f203d" />
+<img width="1258" height="597" alt="image" src="https://github.com/user-attachments/assets/95db8563-c8b9-42ca-b8bd-5c35d1773175" />
+<img width="1813" height="196" alt="image" src="https://github.com/user-attachments/assets/17d5ea93-9284-4502-8f0c-7da25e0de507" />
+<img width="976" height="487" alt="image" src="https://github.com/user-attachments/assets/cacb7175-c518-43c9-85af-e0313bade4b4" />
+<img width="1318" height="499" alt="image" src="https://github.com/user-attachments/assets/e5229554-5d3d-4857-b9e5-6da164991237" />
+<img width="1846" height="702" alt="image" src="https://github.com/user-attachments/assets/67bf24cf-ea90-4d49-85bf-4c62df107efe" />
+
+
+</details>
+
 | 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | ☐ | |
 | 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
 
