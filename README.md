@@ -5508,7 +5508,16 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1228" height="741" alt="image" src="https://github.com/user-attachments/assets/260a0bb2-0884-4962-b391-961849f0349f" />
 </details>
 
-| 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | ☐ | |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | PASS | Log out successfully. User signed out; confirmation message displayed; session terminated |
+
+<details>
+<summary>📸 Evidence for 008 (click to expand)</summary>
+<img width="1254" height="572" alt="image" src="https://github.com/user-attachments/assets/1b6b8ea5-3033-4409-8bf6-8f98639bc157" />
+<img width="1232" height="604" alt="image" src="https://github.com/user-attachments/assets/c6fbc221-65ea-46a1-99df-9b2ac3397af0" />
+</details>
+
 | 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | ☐ | Failed in Milestone 3; implemented and page-width issue corrected in this project (D2) |
 | 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | ☐ | |
 | 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
