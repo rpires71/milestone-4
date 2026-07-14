@@ -5469,7 +5469,17 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" />
 </details>
 
-| 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | ☐ | |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | PASS | Profile form displayed with all four fields on first login (verified during the 001/003 registration flow) — see 004.png |
+
+<details>
+<summary>📸 Evidence for 004 (click to expand)</summary>
+<img width="1334" height="749" alt="image" src="https://github.com/user-attachments/assets/bef897b5-260a-439c-89a6-97d7b32e4ac3" />
+<img width="1346" height="763" alt="image" src="https://github.com/user-attachments/assets/ce101673-5b84-4088-909c-41485e37fc66" />
+<img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" />
+</details>
+
 | 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | ☐ | |
 | 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | ☐ | |
 | 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | ☐ | Fixed defect D1 — authentication errors were previously not displayed |
