@@ -5480,7 +5480,16 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" />
 </details>
 
-| 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | ☐ | |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | PASS | Step 2 profile setup is skipped on future logins and user is redirected directly to the dashboard rather than the profile form |
+
+<details>
+<summary>📸 Evidence for 005 (click to expand)</summary>
+<img width="1261" height="914" alt="image" src="https://github.com/user-attachments/assets/8ecb0e11-758c-46ae-a1b1-0e73aac7b8c4" />
+<img width="1228" height="920" alt="image" src="https://github.com/user-attachments/assets/42f8bad5-fda1-4c22-82bc-4da0c23b7203" />
+</details>
+
 | 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | ☐ | |
 | 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | ☐ | Fixed defect D1 — authentication errors were previously not displayed |
 | 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | ☐ | |
