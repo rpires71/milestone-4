@@ -5530,11 +5530,26 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="976" height="487" alt="image" src="https://github.com/user-attachments/assets/cacb7175-c518-43c9-85af-e0313bade4b4" />
 <img width="1318" height="499" alt="image" src="https://github.com/user-attachments/assets/e5229554-5d3d-4857-b9e5-6da164991237" />
 <img width="1846" height="702" alt="image" src="https://github.com/user-attachments/assets/67bf24cf-ea90-4d49-85bf-4c62df107efe" />
-
-
 </details>
 
-| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | ☐ | |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | PASS | Dashboard displays accurate profile information and all profile data correctly presented across the account dashboard tabs |
+
+<details>
+<summary>📸 Evidence for 010 (click to expand)</summary>
+<img width="1346" height="930" alt="image" src="https://github.com/user-attachments/assets/d315161c-ae1d-4438-8590-78edb5ff486c" />
+<img width="1368" height="961" alt="image" src="https://github.com/user-attachments/assets/3d1bfb03-1978-4c38-8818-484ba9acc7ed" />
+<img width="1393" height="912" alt="image" src="https://github.com/user-attachments/assets/52af963d-156a-4480-a7de-4d316a022b1c" />
+<img width="1347" height="930" alt="image" src="https://github.com/user-attachments/assets/aff9e951-5d19-4adc-b5e1-a8ea595de083" />
+<img width="1376" height="907" alt="image" src="https://github.com/user-attachments/assets/ffef10b4-956f-415e-9e0f-0418f8bdb673" />
+<img width="1390" height="932" alt="image" src="https://github.com/user-attachments/assets/5cc98afa-5934-4daa-9ea3-e0c3acd648c4" />
+<img width="1341" height="922" alt="image" src="https://github.com/user-attachments/assets/25956471-7090-47e0-a51a-30827841e236" />
+<img width="1332" height="925" alt="image" src="https://github.com/user-attachments/assets/75b6187f-4cb8-4797-a7a3-8b23c1021fb9" />
+<img width="1346" height="926" alt="image" src="https://github.com/user-attachments/assets/8bd918e2-df0a-459b-9663-1269b86421da" />
+<img width="1356" height="916" alt="image" src="https://github.com/user-attachments/assets/6b0552be-a63d-4265-b7a8-0fdd66a91deb" />
+</details>
+
 | 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
 
 #### 1.2 Membership Plans and Subscriptions
