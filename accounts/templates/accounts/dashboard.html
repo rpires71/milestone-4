@@ -256,7 +256,7 @@
                  aria-labelledby="details-tab" tabindex="0">
               <h2 class="h5 mb-3">Account Details</h2>
 
-              <dl class="row mb-0">
+              <dl class="row mb-4">
                 <dt class="col-sm-4">Display Name</dt>
                 <dd class="col-sm-8">{{ user.get_full_name|default:user.email }}</dd>
 
@@ -268,16 +268,56 @@
 
                 <dt class="col-sm-4">Member Since</dt>
                 <dd class="col-sm-8">{{ user.date_joined|date:"j M Y" }}</dd>
-
-                <dt class="col-sm-4">Fitness Goal</dt>
-                <dd class="col-sm-8">
-                  {% if profile.fitness_goal %}
-                    {{ profile.get_fitness_goal_display }}
-                  {% else %}
-                    Not set
-                  {% endif %}
-                </dd>
               </dl>
+
+              <hr class="mb-4">
+
+              <h3 class="h6 mb-3">Fitness Profile</h3>
+
+              <form method="POST" action="{% url 'profile_edit' %}" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-3">
+                  <label class="form-label d-block">Fitness Goal</label>
+                  {% for radio in profile_form.fitness_goal %}
+                    <div class="form-check form-check-inline">
+                      {{ radio.tag }}
+                      <label class="form-check-label" for="{{ radio.id_for_label }}">
+                        {{ radio.choice_label }}
+                      </label>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label d-block">Experience Level</label>
+                  {% for radio in profile_form.experience_level %}
+                    <div class="form-check form-check-inline">
+                      {{ radio.tag }}
+                      <label class="form-check-label" for="{{ radio.id_for_label }}">
+                        {{ radio.choice_label }}
+                      </label>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-6">
+                    <label for="{{ profile_form.height_cm.id_for_label }}" class="form-label">
+                      Height (cm)
+                    </label>
+                    {{ profile_form.height_cm }}
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="{{ profile_form.weight_kg.id_for_label }}" class="form-label">
+                      Weight (kg)
+                    </label>
+                    {{ profile_form.weight_kg }}
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-fithub-primary">Save Changes</button>
+              </form>
             </div>
 
             <!-- Subscription tab -->
@@ -409,5 +449,16 @@
       trigger.setAttribute('aria-selected', isTarget ? 'true' : 'false');
     });
   });
+
+  {% if active_tab %}
+  // Reopen the tab the user was on after profile_edit redirects back here
+  // (e.g. ?tab=details), so changes are visible without an extra click.
+  document.addEventListener('DOMContentLoaded', function () {
+    const trigger = document.querySelector('#accountTabs [data-bs-target="#{{ active_tab }}-panel"]');
+    if (trigger) {
+      bootstrap.Tab.getOrCreateInstance(trigger).show();
+    }
+  });
+  {% endif %}
 </script>
 {% endblock %}

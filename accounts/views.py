@@ -1,8 +1,15 @@
 # accounts/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.urls import reverse
 from .forms import FitnessProfileForm
 from .models import Profile
+
+# Tab IDs the dashboard is allowed to reopen via ?tab=<value> after a
+# redirect. Whitelisted server-side so the query param can't be used to
+# inject an arbitrary selector into the page.
+DASHBOARD_TABS = {'overview', 'details', 'subscription', 'orders', 'saved-community'}
 
 
 def profile_is_complete(profile):
@@ -30,6 +37,10 @@ def dashboard(request):
 
     # Profile (created via OneToOne; may not exist yet)
     profile = getattr(user, 'profile', None)
+    profile_form = FitnessProfileForm(instance=profile)
+
+    requested_tab = request.GET.get('tab')
+    active_tab = requested_tab if requested_tab in DASHBOARD_TABS else None
 
     context = {
         'active_subscription': active_subscription,
@@ -38,6 +49,8 @@ def dashboard(request):
         'recent_orders': recent_orders,
         'order_count': orders.count(),
         'profile': profile,
+        'profile_form': profile_form,
+        'active_tab': active_tab,
     }
     return render(request, 'accounts/dashboard.html', context)
 
@@ -59,3 +72,29 @@ def profile_setup(request):
         form = FitnessProfileForm(instance=profile)
 
     return render(request, "accounts/profile_setup.html", {"form": form})
+
+
+@login_required
+def profile_edit(request):
+    """Update an existing member's fitness profile from the dashboard.
+
+    Unlike profile_setup (the one-time Step 2 flow after registration),
+    this is reachable at any time from the Account Details tab and always
+    redirects back to the dashboard rather than gating access to it.
+    """
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    dashboard_details_url = f"{reverse('dashboard')}?tab=details"
+
+    if request.method != "POST":
+        return redirect(dashboard_details_url)
+
+    form = FitnessProfileForm(request.POST, instance=profile)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Profile updated successfully.")
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(request, error)
+
+    return redirect(dashboard_details_url)
