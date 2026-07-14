@@ -5534,22 +5534,20 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | PASS | Dashboard displays accurate profile information and all profile data correctly presented across the account dashboard tabs |
+| 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | FAIL | Dashboard doesn't display all profile data correctly across the account dashboard tabs |
 
 <details>
 <summary>📸 Evidence for 010 (click to expand)</summary>
-<img width="1346" height="930" alt="image" src="https://github.com/user-attachments/assets/d315161c-ae1d-4438-8590-78edb5ff486c" />
-<img width="1368" height="961" alt="image" src="https://github.com/user-attachments/assets/3d1bfb03-1978-4c38-8818-484ba9acc7ed" />
-<img width="1393" height="912" alt="image" src="https://github.com/user-attachments/assets/52af963d-156a-4480-a7de-4d316a022b1c" />
-<img width="1347" height="930" alt="image" src="https://github.com/user-attachments/assets/aff9e951-5d19-4adc-b5e1-a8ea595de083" />
-<img width="1376" height="907" alt="image" src="https://github.com/user-attachments/assets/ffef10b4-956f-415e-9e0f-0418f8bdb673" />
-<img width="1390" height="932" alt="image" src="https://github.com/user-attachments/assets/5cc98afa-5934-4daa-9ea3-e0c3acd648c4" />
-<img width="1341" height="922" alt="image" src="https://github.com/user-attachments/assets/25956471-7090-47e0-a51a-30827841e236" />
-<img width="1332" height="925" alt="image" src="https://github.com/user-attachments/assets/75b6187f-4cb8-4797-a7a3-8b23c1021fb9" />
-<img width="1346" height="926" alt="image" src="https://github.com/user-attachments/assets/8bd918e2-df0a-459b-9663-1269b86421da" />
-<img width="1356" height="916" alt="image" src="https://github.com/user-attachments/assets/6b0552be-a63d-4265-b7a8-0fdd66a91deb" />
+<img width="1252" height="775" alt="image" src="https://github.com/user-attachments/assets/c045702e-cb9a-4553-8a50-ec0d55f8be65" />
+<img width="1008" height="750" alt="image" src="https://github.com/user-attachments/assets/bdf02136-10a2-41dc-bb4b-4bbb50574bc4" />
+<img width="1203" height="737" alt="image" src="https://github.com/user-attachments/assets/44e03e02-f0b4-4356-a7fe-68e39c4b9230" />
+<img width="1197" height="746" alt="image" src="https://github.com/user-attachments/assets/d282edb4-af1a-4606-a350-3e36e302f6d8" />
+<img width="1183" height="752" alt="image" src="https://github.com/user-attachments/assets/a13b149a-89f4-4148-93c7-5501fc40b682" />
+<img width="1228" height="831" alt="image" src="https://github.com/user-attachments/assets/06fd9cf1-e4e6-4d67-acb1-7e9400ff5005" />
 </details>
 
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
 
 #### 1.2 Membership Plans and Subscriptions
