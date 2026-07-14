@@ -5431,7 +5431,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 001 | Register using valid account details | New account created; verification email issued; "Verify your email" page displayed | ☐ | |
+| 001 | Register using valid account details | New account created; verification email issued; "Verify your email" page displayed | PASS | New account created; verification email issued; "Verify your email" page displayed |
+| <img width="1064" height="846" alt="image" src="https://github.com/user-attachments/assets/c7d91a4a-d15a-46c4-a73e-880f79316b77" /> |
+| <img width="1071" height="573" alt="image" src="https://github.com/user-attachments/assets/19a59801-2521-4f4a-97eb-57ba75ce9cf8" /> |
+| <img width="1389" height="673" alt="image" src="https://github.com/user-attachments/assets/3c3282e5-46d2-4a25-a930-053f91efc3af" /> |
+| <img width="1330" height="676" alt="image" src="https://github.com/user-attachments/assets/34031194-d152-44b1-8bdc-ab3f4ca39fb2" /> |
+| <img width="1334" height="749" alt="image" src="https://github.com/user-attachments/assets/bef897b5-260a-439c-89a6-97d7b32e4ac3" /> |
+| <img width="1346" height="763" alt="image" src="https://github.com/user-attachments/assets/ce101673-5b84-4088-909c-41485e37fc66" /> |
+| <img width="1363" height="920" alt="image" src="https://github.com/user-attachments/assets/11855c6c-3707-4758-9c50-334d00a05bff" /> |
+| <img width="1645" height="436" alt="image" src="https://github.com/user-attachments/assets/6cc8e62c-409a-4d80-b389-3c9ad8481246" /> |
+| <img width="1739" height="929" alt="image" src="https://github.com/user-attachments/assets/b2bdcca8-42cd-40fe-9984-c6087188cd51" /> |
 | 002 | Attempt registration with an existing email address | Appropriate validation error displayed | ☐ | |
 | 003 | Confirm account using the email verification link | Account verified successfully; user able to log in | ☐ | |
 | 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | ☐ | |
