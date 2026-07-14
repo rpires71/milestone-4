@@ -378,4 +378,36 @@
     </section>
   </div>
 </main>
-{% endblock content %}
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+  /* Defect D11 fix: the dashboard has two navigations (side menu + top tabs)
+     plus quick-action buttons that all target the same tab panes. Bootstrap
+     only deactivates panes and triggers within the clicked nav group, so
+     switching section from a different group stacked the panes. This
+     synchronises them: whenever any tab is shown, every other pane is hidden
+     and every trigger's active state is updated to match. */
+  document.addEventListener('show.bs.tab', function (event) {
+    const targetSelector = event.target.getAttribute('data-bs-target');
+    if (!targetSelector) return;
+
+    // Hide every pane except the one being shown.
+    document.querySelectorAll('#accountTabsContent .tab-pane').forEach(function (pane) {
+      if ('#' + pane.id !== targetSelector) {
+        pane.classList.remove('show', 'active');
+      }
+    });
+
+    // Sync the highlight state of both navigations.
+    document.querySelectorAll(
+      '#accountSideNav [data-bs-toggle="tab"], #accountTabs [data-bs-toggle="tab"]'
+    ).forEach(function (trigger) {
+      const isTarget = trigger.getAttribute('data-bs-target') === targetSelector;
+      trigger.classList.toggle('active', isTarget);
+      trigger.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+    });
+  });
+</script>
+{% endblock %}
