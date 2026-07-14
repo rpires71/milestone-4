@@ -5548,6 +5548,19 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
+| 010 (FIX)| Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | PASS | Dashboard displays all profile data correctly across the account dashboard tabs |
+
+<details>
+<summary>📸 Evidence for 010 Fix (click to expand)</summary>
+<img width="1202" height="746" alt="image" src="https://github.com/user-attachments/assets/0325249e-5421-44f0-a78f-fff9f1bbd44f" />
+<img width="1203" height="757" alt="image" src="https://github.com/user-attachments/assets/56163aca-5906-411a-989d-64627ed88347" />
+<img width="958" height="746" alt="image" src="https://github.com/user-attachments/assets/256a9088-1523-4f13-aba8-02fbcd6e4947" />
+<img width="1192" height="746" alt="image" src="https://github.com/user-attachments/assets/34a4fc27-6e55-4b44-b817-6dae294e5e0b" />
+<img width="1167" height="751" alt="image" src="https://github.com/user-attachments/assets/151803d3-7a3b-4b6c-b573-0a6863d807b7" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
 
 #### 1.2 Membership Plans and Subscriptions
