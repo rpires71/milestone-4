@@ -5432,6 +5432,7 @@ The **Notes** column within each manual test case references the corresponding u
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
 | 001 | Register using valid account details | New account created; verification email issued; "Verify your email" page displayed | PASS | New account created; verification email issued; "Verify your email" page displayed |
+
 <details>
 <summary>📸 Evidence for 001 (click to expand)</summary>
 <img width="1064" height="846" alt="image" src="https://github.com/user-attachments/assets/c7d91a4a-d15a-46c4-a73e-880f79316b77" />
@@ -5445,7 +5446,15 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1739" height="929" alt="image" src="https://github.com/user-attachments/assets/b2bdcca8-42cd-40fe-9984-c6087188cd51" />
 </details>
 
-| 002 | Attempt registration with an existing email address | Appropriate validation error displayed | ☐ | |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 002 | Attempt registration with an existing email address | Appropriate validation error displayed | PASS | Appropriate validation error displayed |
+
+<details>
+<summary>📸 Evidence for 002 (click to expand)</summary>
+<img width="1057" height="874" alt="image" src="https://github.com/user-attachments/assets/8f1e9d10-8872-4a24-a225-5b7d95b59ec5" />
+</details>
+
 | 003 | Confirm account using the email verification link | Account verified successfully; user able to log in | ☐ | |
 | 004 | Initial login redirects to the Step 2 profile setup | Profile form displayed (fitness goal, experience level, height and weight) | ☐ | |
 | 005 | Step 2 profile setup is skipped on future logins | User is redirected directly to the dashboard rather than the profile form | ☐ | |
