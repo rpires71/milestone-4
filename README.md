@@ -5490,8 +5490,24 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1228" height="920" alt="image" src="https://github.com/user-attachments/assets/42f8bad5-fda1-4c22-82bc-4da0c23b7203" />
 </details>
 
-| 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | ☐ | |
-| 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | ☐ | Fixed defect D1 — authentication errors were previously not displayed |
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 006 | Log in with valid credentials | User authenticated and redirected to the dashboard | PASS | Log in with valid credentials and user authenticated and redirected to the dashboard |
+
+<details>
+<summary>📸 Evidence for 006 (click to expand)</summary>
+<img width="1191" height="840" alt="image" src="https://github.com/user-attachments/assets/8d96b483-cab0-46ef-a15a-30b8b064da20" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 007 | Log in with an incorrect password | Error message displayed ("The username and/or password you specified are not correct.") | PASS | Fixed defect D1 — authentication errors were previously not displayed |
+
+<details>
+<summary>📸 Evidence for 007 (click to expand)</summary>
+<img width="1228" height="741" alt="image" src="https://github.com/user-attachments/assets/260a0bb2-0884-4962-b391-961849f0349f" />
+</details>
+
 | 008 | Log out successfully | User signed out; confirmation message displayed; session terminated | ☐ | |
 | 009 | Password reset process functions correctly | Password reset email received; password successfully reset using the email link | ☐ | Failed in Milestone 3; implemented and page-width issue corrected in this project (D2) |
 | 010 | Dashboard displays accurate profile information | All profile data correctly presented across the account dashboard tabs | ☐ | |
