@@ -5561,7 +5561,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | ☐ | |
+| 011 | Update profile information | Changes saved successfully and immediately reflected on the dashboard | FAIL | Update profile information changes saved successfully and immediately reflected on the dashboard but EDIT PROFILE button doesn't redirect to Account Details - Fitness Profile interface  |
+
+<details>
+<summary>📸 Evidence for 011 (click to expand)</summary>
+<img width="1190" height="833" alt="image" src="https://github.com/user-attachments/assets/a9ad8427-45ef-4c9a-9c52-749a508981f2" />
+<img width="1610" height="522" alt="image" src="https://github.com/user-attachments/assets/5d61c37d-453c-47a6-beb4-924350d6078c" />
+<img width="1214" height="834" alt="image" src="https://github.com/user-attachments/assets/48a820b4-c420-4e33-8d07-808f79660584" />
+</details>
+
+
 
 #### 1.2 Membership Plans and Subscriptions
 
