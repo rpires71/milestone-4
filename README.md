@@ -5594,7 +5594,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 013 | Hide draft and archived plans from members | Only published plans are visible on `/plans/` | ☐ | Automated: `test_archived_plan_hidden_from_public` |
+| 013 | Hide draft and archived plans from members | Only published plans are visible on `/plans/` | PASS | Automated: `test_archived_plan_hidden_from_public` |
+
+<details>
+<summary>📸 Evidence for 013 (click to expand)</summary>
+<img width="1299" height="374" alt="image" src="https://github.com/user-attachments/assets/a7082251-bc51-4567-9ee4-3ee1a3dc7476" />
+<img width="1076" height="784" alt="image" src="https://github.com/user-attachments/assets/94b17819-574a-4918-8818-10fe1461faff" />
+</details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
