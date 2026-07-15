@@ -5604,7 +5604,19 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 014 | Plan detail page displays the correct features | "What's included" section lists only that plan's associated features | ☐ | |
+| 014 | Plan detail page displays the correct features | "What's included" section lists only that plan's associated features | PASS | Plan detail page displays the correct features - "What's included" section lists only that plan's associated features in priority order |
+
+<details>
+<summary>📸 Evidence for 014 (click to expand)</summary>
+<img width="1133" height="854" alt="image" src="https://github.com/user-attachments/assets/70305007-c049-4232-b250-4f50b638fe8d" />
+<img width="1009" height="737" alt="image" src="https://github.com/user-attachments/assets/f387c5e9-49aa-48be-b6b0-3dea8effd006" />
+<img width="673" height="855" alt="image" src="https://github.com/user-attachments/assets/110197c4-fc10-4a07-803d-d23afee56fdb" />
+<img width="1020" height="762" alt="image" src="https://github.com/user-attachments/assets/509dc815-c1d2-4ead-a884-bb5dee3b9ecf" />
+<img width="1148" height="843" alt="image" src="https://github.com/user-attachments/assets/ffe30b16-4f03-4e4f-9c7f-d1e7596a0608" />
+<img width="1011" height="739" alt="image" src="https://github.com/user-attachments/assets/93e10549-05ec-461e-a2a8-72f4f804695d" />
+<img width="1158" height="811" alt="image" src="https://github.com/user-attachments/assets/98883832-455a-41c5-80dd-15a5952b169e" />
+<img width="1007" height="728" alt="image" src="https://github.com/user-attachments/assets/63ed2428-6664-4c5c-8622-ce37b7fa085e" />
+</details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
