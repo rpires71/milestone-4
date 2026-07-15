@@ -184,7 +184,7 @@
                   <p class="text-secondary mb-0">Here's what's happening with your account.</p>
                 </div>
                 <button class="btn btn-outline-dark btn-sm" type="button"
-                        data-bs-toggle="tab" data-bs-target="#details-panel"
+                        id="overview-edit-profile-btn"
                         aria-controls="details-panel">
                   Edit Profile
                 </button>
@@ -460,5 +460,21 @@
     }
   });
   {% endif %}
+
+  // The Overview panel's "Edit Profile" quick-action button lives outside
+  // both #accountTabs (.nav) and #accountSideNav (.list-group). Bootstrap's
+  // tab plugin requires a .nav/.list-group ancestor to resolve its target,
+  // so a bare data-bs-toggle="tab" on this button silently does nothing.
+  // Delegate the click to the properly-parented "Account Details" tab
+  // trigger instead, so the same tested show/sync logic above handles it.
+  document.addEventListener('DOMContentLoaded', function () {
+    const quickEditBtn = document.getElementById('overview-edit-profile-btn');
+    const detailsTab = document.querySelector('#accountTabs [data-bs-target="#details-panel"]');
+    if (quickEditBtn && detailsTab) {
+      quickEditBtn.addEventListener('click', function () {
+        bootstrap.Tab.getOrCreateInstance(detailsTab).show();
+      });
+    }
+  });
 </script>
 {% endblock %}
