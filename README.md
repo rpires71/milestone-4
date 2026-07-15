@@ -5570,7 +5570,16 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1214" height="834" alt="image" src="https://github.com/user-attachments/assets/48a820b4-c420-4e33-8d07-808f79660584" />
 </details>
 
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 011 (FIX)| Update profile information | Changes saved successfully and immediately reflected on the dashboard | PASS | Update profile information - Changes saved successfully and immediately reflected on the dashboard   |
 
+<details>
+<summary>📸 Evidence for 011 Fix (click to expand)</summary>
+<img width="1234" height="849" alt="image" src="https://github.com/user-attachments/assets/517ef473-5145-4dc9-a086-9f78f94946a4" />
+<img width="1317" height="935" alt="image" src="https://github.com/user-attachments/assets/4c770a7d-0b09-47e6-a1ec-c2170681ecec" />
+<img width="1554" height="563" alt="image" src="https://github.com/user-attachments/assets/cb46d981-ff09-47ef-8c9b-4ce3e5782430" />
+</details>
 
 #### 1.2 Membership Plans and Subscriptions
 
