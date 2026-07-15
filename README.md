@@ -5585,13 +5585,39 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 012 | Display published membership plans | Four published plans shown in a uniform grid with image, tier, price and billing interval | ☐ | |
+| 012 | Display published membership plans | Four published plans shown in a uniform grid with image, tier, price and billing interval | PASS | Display published membership plans - Four published plans shown in a uniform grid with image, tier, price and billing interval |
+
+<details>
+<summary>📸 Evidence for 012 (click to expand)</summary>
+<img width="1111" height="820" alt="image" src="https://github.com/user-attachments/assets/6d5a0f7f-65f9-4650-9c39-0c6c0d9db4ed" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 013 | Hide draft and archived plans from members | Only published plans are visible on `/plans/` | ☐ | Automated: `test_archived_plan_hidden_from_public` |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 014 | Plan detail page displays the correct features | "What's included" section lists only that plan's associated features | ☐ | |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 015 | Access a draft plan directly via URL | Custom 404 page displayed | ☐ | Automated: `test_draft_plan_detail_returns_404` |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 016 | Subscription requires authentication | Unauthenticated users are prompted to log in | ☐ | |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 017 | Subscribe redirects to Stripe Checkout | Stripe-hosted checkout opens with the correct membership plan and price | ☐ | |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 018 | Successful subscription recorded | Subscription appears on the dashboard with the correct plan and status | ☐ | |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 019 | Subscription success page remains idempotent | Refreshing the page does not generate a duplicate subscription | ☐ | |
 
 #### 1.3 Shop and Product Browsing
