@@ -5811,10 +5811,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 029 | Change basket quantity to zero | Product removed and basket totals updated | ☐ | |
+| 029 | Change basket quantity to zero | Product removed and basket totals updated | PASS | Changed basket quantity to zero and products removed and basket totals updated |
 
 <details>
 <summary>📸 Evidence for 029 (click to expand)</summary>
+<img width="1051" height="635" alt="image" src="https://github.com/user-attachments/assets/d7d6681b-fc00-48e4-9daf-b47147822274" />
+<img width="1007" height="593" alt="image" src="https://github.com/user-attachments/assets/290bd181-9430-45f3-87d6-29548a7f9bfe" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
