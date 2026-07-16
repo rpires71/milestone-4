@@ -6209,10 +6209,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 063 | Create a community post | Newly created post appears in the community list | ☐ | |
+| 063 | Create a community post | Newly created post appears in the community list | PASS | Created a new post via the community form - post saved and appeared at the top of the community list with the correct author and date |
 
 <details>
 <summary>📸 Evidence for 063 (click to expand)</summary>
+<img width="934" height="482" alt="image" src="https://github.com/user-attachments/assets/0b7ce0d6-e311-4d03-81a9-39864396f84b" />
+<img width="936" height="558" alt="image" src="https://github.com/user-attachments/assets/c78e46e7-721a-42a9-a80a-5b828ab34c4f" />
+<img width="869" height="529" alt="image" src="https://github.com/user-attachments/assets/64ffc319-6f25-45ca-9168-eb9bf457c180" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
