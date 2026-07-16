@@ -5649,12 +5649,21 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1017" height="561" alt="image" src="https://github.com/user-attachments/assets/13cc348f-d1ba-4d3a-8b17-fb41be4dd103" />
 <img width="1016" height="725" alt="image" src="https://github.com/user-attachments/assets/36697061-7b3a-4bde-9899-c50a83fb53bf" />
 <img width="1066" height="757" alt="image" src="https://github.com/user-attachments/assets/f9bcd3f6-b581-4589-b39e-19c241598aa7" />
-
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 017 | Subscribe redirects to Stripe Checkout | Stripe-hosted checkout opens with the correct membership plan and price | ☐ | |
+| 017 | Subscribe redirects to Stripe Checkout | Stripe-hosted checkout opens with the correct membership plan and price | PASS | Subscribe redirects to Stripe Checkout and Stripe-hosted checkout opens with the correct membership plan and price |
+
+<details>
+<summary>📸 Evidence for 017 (click to expand)</summary>
+<img width="1080" height="725" alt="image" src="https://github.com/user-attachments/assets/10b69c79-6ddc-4db3-aee3-073129e268a9" />
+<img width="1032" height="936" alt="image" src="https://github.com/user-attachments/assets/f4b6d6e2-6e7c-4271-af66-a8c1f338caf0" />
+<img width="1018" height="325" alt="image" src="https://github.com/user-attachments/assets/5abf5e53-591a-4241-90cd-2e552316ab31" />
+<img width="1354" height="427" alt="image" src="https://github.com/user-attachments/assets/42acd036-1a4e-4607-ab2e-14987f4e94d3" />
+<img width="1028" height="703" alt="image" src="https://github.com/user-attachments/assets/687ca816-c024-4dea-862c-bbfe657e3d8c" />
+<img width="1001" height="698" alt="image" src="https://github.com/user-attachments/assets/9a3ee43c-8751-44ac-ab2d-5af91f8dc334" />
+</details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
