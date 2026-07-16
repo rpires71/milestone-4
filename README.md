@@ -6082,10 +6082,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 053 | Create a new membership plan | Plan saved successfully; slug generated automatically; plan appears in the list | ☐ | Automated: `test_staff_can_create_plan_with_features` |
+| 053 | Create a new membership plan | Plan saved successfully; slug generated automatically; plan appears in the list | PASS | Automated: `test_staff_can_create_plan_with_features` — created "Foundation" plan via the staff form; slug auto-generated and plan listed |
 
 <details>
 <summary>📸 Evidence for 053 (click to expand)</summary>
+<img width="1042" height="392" alt="image" src="https://github.com/user-attachments/assets/1e51eed7-fd92-4679-a601-9f5b7a447fff" />
+<img width="1041" height="742" alt="image" src="https://github.com/user-attachments/assets/4a5a313c-643e-416c-b3ed-eac19307ed50" />
+<img width="1006" height="482" alt="image" src="https://github.com/user-attachments/assets/ebf1c06f-c934-47a2-b067-03afa858a936" />
+<img width="1288" height="309" alt="image" src="https://github.com/user-attachments/assets/52b4e142-6bd1-4cb3-b587-d9fa1731897e" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
