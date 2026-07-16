@@ -5789,18 +5789,23 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 027 | Exceed available stock when adding a product | Quantity automatically limited to available stock with a warning message | ☐ | Automated: `test_add_caps_at_available_stock` |
+| 027 | Exceed available stock when adding a product | Quantity automatically limited to available stock with a warning message | PASS | Exceeded available stock when adding a product and quantity automatically limited to available stock with a warning message |
 
 <details>
 <summary>📸 Evidence for 027 (click to expand)</summary>
+<img width="587" height="524" alt="image" src="https://github.com/user-attachments/assets/038aa3ba-acb5-4d04-866b-83af59058d38" />
+<img width="1278" height="551" alt="image" src="https://github.com/user-attachments/assets/cd7b88cc-2390-42d6-8153-324b77726391" />
+<img width="921" height="377" alt="image" src="https://github.com/user-attachments/assets/9b5b07de-481a-41db-9f12-7e4ec385a0ea" />
+<img width="381" height="407" alt="image" src="https://github.com/user-attachments/assets/3117483e-365e-44a2-bf0a-5ea4430bcd24" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 028 | Increase basket quantity beyond stock availability | Quantity adjusted to the available stock level | ☐ | Automated: `test_adjust_caps_at_available_stock` |
+| 028 | Increase basket quantity beyond stock availability | Quantity adjusted to the available stock level | PASS | Increased basket quantity beyond stock availability and quantity adjusted to the available stock level |
 
 <details>
 <summary>📸 Evidence for 028 (click to expand)</summary>
+
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
