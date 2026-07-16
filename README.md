@@ -6009,10 +6009,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 047 | Display order history | Order number, date, thumbnails, status badge, total and view link shown; pagination activates after 10 orders | ☐ | |
+| 047 | Display order history | Order number, date, thumbnails, status badge, total and view link shown; pagination activates after 10 orders | PASS | Displayed order history with order number, date, thumbnails, status badge, total and view link shown; pagination activates after 10 orders |
 
 <details>
 <summary>📸 Evidence for 047 (click to expand)</summary>
+<img width="995" height="903" alt="image" src="https://github.com/user-attachments/assets/87f41030-1ea8-4397-b839-9e41bbe03201" />
+<img width="1016" height="678" alt="image" src="https://github.com/user-attachments/assets/cd932184-7f32-42e0-b8fd-71d27cc38c75" />
+<img width="1026" height="801" alt="image" src="https://github.com/user-attachments/assets/e2ffdf93-b589-4542-8970-d4128c127a16" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
