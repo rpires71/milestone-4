@@ -6044,10 +6044,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 050 | Access order history from the dashboard | Order numbers open the correct detail page; "View All Orders" opens the history page | ☐ | |
+| 050 | Access order history from the dashboard | Order numbers open the correct detail page; "View All Orders" opens the history page | PASS | Accessed order history from the dashboard and order numbers open the correct detail page; "View All Orders" opens the history page |
 
 <details>
 <summary>📸 Evidence for 050 (click to expand)</summary>
+<img width="992" height="639" alt="image" src="https://github.com/user-attachments/assets/dd7d0618-b706-4763-8c15-a471396b8dba" />
+<img width="1006" height="659" alt="image" src="https://github.com/user-attachments/assets/1572c08a-b43a-4582-9319-6ea269015407" />
+<img width="998" height="648" alt="image" src="https://github.com/user-attachments/assets/2bbcb09a-8d34-45d9-9a32-419a6292ba9c" />
+<img width="1017" height="905" alt="image" src="https://github.com/user-attachments/assets/35468553-9a74-422f-859b-d619164f3ce4" />
 </details>
 
 #### 1.7 Staff Plan Management (Front-End CRUD)
