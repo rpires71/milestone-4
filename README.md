@@ -5748,10 +5748,22 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 024 | Display related products | "Customers Also Viewed" section presents relevant products | ☐ | |
+| 024 | Display related products | "Customers Also Viewed" section presents relevant products | PASS | Display related products - "Customers Also Viewed" section presents relevant products |
 
 <details>
 <summary>📸 Evidence for 024 (click to expand)</summary>
+<img width="886" height="921" alt="image" src="https://github.com/user-attachments/assets/5962ae8e-0781-436b-97e2-79f5914d9a9d" />
+<img width="892" height="930" alt="image" src="https://github.com/user-attachments/assets/0aa89895-be52-4b1e-a269-c00eea6ac077" />
+<img width="886" height="923" alt="image" src="https://github.com/user-attachments/assets/4c24afef-ea62-49c0-9a8c-c49289aeab75" />
+<img width="885" height="923" alt="image" src="https://github.com/user-attachments/assets/5dc3a1f6-f6df-4651-bc9d-3bf9b1ff8c70" />
+<img width="914" height="916" alt="image" src="https://github.com/user-attachments/assets/a7c47927-6bcd-49ad-8bb5-560ea17b4877" />
+<img width="900" height="912" alt="image" src="https://github.com/user-attachments/assets/f9d1855a-bb04-4eb7-86b2-5e0582d89b95" />
+<img width="893" height="918" alt="image" src="https://github.com/user-attachments/assets/64734813-3858-4d79-a073-4c10ff3a0ed9" />
+<img width="887" height="911" alt="image" src="https://github.com/user-attachments/assets/beff6190-6d7f-4d96-bcdd-e507e3ce4341" />
+<img width="879" height="937" alt="image" src="https://github.com/user-attachments/assets/400ff44b-22bf-4068-a5ec-998f99534251" />
+<img width="893" height="932" alt="image" src="https://github.com/user-attachments/assets/d742217b-6e9f-4029-98a0-b1a939a12dba" />
+<img width="884" height="919" alt="image" src="https://github.com/user-attachments/assets/22f97daa-7d86-44db-a456-96eda4461b87" />
+<img width="881" height="916" alt="image" src="https://github.com/user-attachments/assets/77095703-5876-46aa-a89f-5733312662d6" />
 </details>
 
 #### 1.4 Basket
