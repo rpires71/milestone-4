@@ -5886,10 +5886,15 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 036 | Submit an incomplete checkout form | Error summary displayed; invalid fields highlighted with field-level messages; no order created | ☐ | Fixed defect D7; automated: `test_checkout_invalid_form_shows_errors` |
+| 036 | Submit an incomplete checkout form | Error summary displayed; invalid fields highlighted with field-level messages; no order created | PASS | Submitted an incomplete checkout form an an error summary is displayed; invalid fields highlighted with field-level messages; no order created |
 
 <details>
 <summary>📸 Evidence for 036 (click to expand)</summary>
+<img width="991" height="864" alt="image" src="https://github.com/user-attachments/assets/9422b19e-b910-4f87-b84e-acc38f651639" />
+<img width="978" height="850" alt="image" src="https://github.com/user-attachments/assets/30ce7fff-277a-4e91-9f0f-08b789b820b2" />
+<img width="991" height="848" alt="image" src="https://github.com/user-attachments/assets/bf74fea9-ed24-4c17-8075-45dbef96d520" />
+<img width="1017" height="852" alt="image" src="https://github.com/user-attachments/assets/8a557c8e-f517-48a4-ba9e-1f32f42e3ba6" />
+<img width="1007" height="853" alt="image" src="https://github.com/user-attachments/assets/b2fce4dd-de82-444d-b8a2-77f278cca3b4" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
