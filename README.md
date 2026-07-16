@@ -6195,10 +6195,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 062 | Require authentication to create a post | Anonymous users redirected to the login page | ☐ | |
+| 062 | Require authentication to create a post | Anonymous users redirected to the login page | PASS | Attempted to create a post while logged out - redirected to the login page with a next parameter, and logging in returned to the post form |
 
 <details>
 <summary>📸 Evidence for 062 (click to expand)</summary>
+<img width="912" height="678" alt="image" src="https://github.com/user-attachments/assets/a57bc61c-5f27-4201-94e9-395fd72bb01e" />
+<img width="899" height="869" alt="image" src="https://github.com/user-attachments/assets/4a8b2c1d-f0fc-46ac-aa39-db03de6334c6" />
+<img width="1152" height="413" alt="image" src="https://github.com/user-attachments/assets/8a300a8b-a217-4fb7-a849-185739c13788" />
+<img width="887" height="907" alt="image" src="https://github.com/user-attachments/assets/f4ccf560-ac2e-4f45-bf51-a62c2bbd923d" />
+<img width="907" height="370" alt="image" src="https://github.com/user-attachments/assets/4ad52181-2ffe-41c7-bd16-ad3fe33824dc" />
+<img width="663" height="869" alt="image" src="https://github.com/user-attachments/assets/336ed8dd-8f12-4f0c-87fa-eeccc85deef9" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
