@@ -5908,10 +5908,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 038 | Complete a successful checkout | Order and line items stored; user redirected to the confirmation page | ☐ | Automated: `test_checkout_post_creates_order` |
+| 038 | Complete a successful checkout | Order and line items stored; user redirected to the confirmation page | PASS | Completed a successful checkout and order and line items stored; user redirected to the confirmation page |
 
 <details>
 <summary>📸 Evidence for 038 (click to expand)</summary>
+<img width="1322" height="625" alt="image" src="https://github.com/user-attachments/assets/30ed4a3e-e22f-416a-9c75-9bd4e9d51168" />
+<img width="687" height="926" alt="image" src="https://github.com/user-attachments/assets/79bfc563-d3b6-4a3d-a5a4-8a5911bffdff" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
@@ -5920,6 +5922,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 039 (click to expand)</summary>
+<img width="1322" height="625" alt="image" src="https://github.com/user-attachments/assets/30ed4a3e-e22f-416a-9c75-9bd4e9d51168" />
+<img width="687" height="926" alt="image" src="https://github.com/user-attachments/assets/79bfc563-d3b6-4a3d-a5a4-8a5911bffdff" />
+<img width="1492" height="171" alt="image" src="https://github.com/user-attachments/assets/724801ed-068b-4d89-871f-fc2b95b93f76" />
+<img width="834" height="749" alt="image" src="https://github.com/user-attachments/assets/73cac1e6-e181-4802-8b6a-3dbaf9405420" />
+<img width="1313" height="402" alt="image" src="https://github.com/user-attachments/assets/5abfa87f-87a6-41fe-9ab4-0f3b3e4fd57b" />
+<img width="1261" height="641" alt="image" src="https://github.com/user-attachments/assets/c319b4e7-02e7-4319-8848-48edc2a24957" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
