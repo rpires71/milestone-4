@@ -5857,14 +5857,69 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 033 | Attempt checkout with an empty basket | User redirected to the shop with an explanatory message | ☐ | |
+| 033 | Attempt checkout with an empty basket | User redirected to the shop with an explanatory message | PASS | Attempted checkout with an empty basket and verified the user redirected to the shop with an explanatory message |
+
+<details>
+<summary>📸 Evidence for 033 (click to expand)</summary>
+<img width="1027" height="753" alt="image" src="https://github.com/user-attachments/assets/b61bbb0a-ec22-4e26-ba0d-c83ca023914b" />
+<img width="1372" height="838" alt="image" src="https://github.com/user-attachments/assets/490cd5c9-6cca-4b44-aefa-eb3c6125cfeb" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 034 | Display checkout order summary | Products, quantities, prices and totals accurately match the basket | ☐ | |
+
+<details>
+<summary>📸 Evidence for 034 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 035 | Display delivery form correctly | All fields labelled; mandatory fields marked with *; phone number and Address Line 2 identified as optional | ☐ | |
+
+<details>
+<summary>📸 Evidence for 035 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 036 | Submit an incomplete checkout form | Error summary displayed; invalid fields highlighted with field-level messages; no order created | ☐ | Fixed defect D7; automated: `test_checkout_invalid_form_shows_errors` |
+
+<details>
+<summary>📸 Evidence for 036 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 037 | Submit an invalid email address | Field displays "Enter a valid email address." validation message | ☐ | |
+
+<details>
+<summary>📸 Evidence for 037 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 038 | Complete a successful checkout | Order and line items stored; user redirected to the confirmation page | ☐ | Automated: `test_checkout_post_creates_order` |
+
+<details>
+<summary>📸 Evidence for 038 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 039 | Verify stock deduction after purchase | Product stock reduced by the quantity ordered | ☐ | Fixed defect D6; automated: `test_checkout_deducts_stock` |
+
+<details>
+<summary>📸 Evidence for 039 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 040 | Prevent negative stock values | Stock level clamped at zero when oversell scenarios occur | ☐ | Automated: `test_checkout_stock_never_negative` |
+
+<details>
+<summary>📸 Evidence for 040 (click to expand)</summary>
+</details>
 
 #### 1.6 Order Confirmation and Order History
 
