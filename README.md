@@ -5842,10 +5842,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 032 | Enter an invalid basket quantity | Invalid input handled safely without crashing; default behaviour applied | ☐ | Verified within the automated basket test suite |
+| 032 | Enter an invalid basket quantity | Invalid input handled safely without crashing; default behaviour applied | PASS |  Verified manually via DevTools bypass and by four automated tests covering non-numeric and negative quantities on add and adjust (add defaults to 1; adjust treats invalid as 0 and removes the item) |
 
 <details>
 <summary>📸 Evidence for 032 (click to expand)</summary>
+<img width="1120" height="547" alt="image" src="https://github.com/user-attachments/assets/f631959f-73e1-4a66-bcfd-ef872bd35302" />
+<img width="1450" height="534" alt="image" src="https://github.com/user-attachments/assets/b880da4e-e59a-4da3-a4a2-6ae8fe72a8f4" />
+<img width="1564" height="546" alt="image" src="https://github.com/user-attachments/assets/48de277d-2c06-4350-8d1a-b66955cc4c17" />
+<img width="984" height="487" alt="image" src="https://github.com/user-attachments/assets/ce757a65-4c1a-4c4c-b7a0-f8c2668fb66d" />
 </details>
 
 
