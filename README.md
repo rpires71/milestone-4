@@ -5979,10 +5979,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 044 | Calculate estimated delivery dates | Delivery estimate calculated dynamically as order date +3 to +5 days | ☐ | Dynamic calculation rather than hard-coded values |
+| 044 | Calculate estimated delivery dates | Delivery estimate calculated dynamically as order date +3 to +5 days | PASS | Dynamic calculation rather than hard-coded values. Calculated estimated delivery dates and delivery estimate calculated dynamically as order date +3 to +5 days |
 
 <details>
 <summary>📸 Evidence for 044 (click to expand)</summary>
+<img width="934" height="500" alt="image" src="https://github.com/user-attachments/assets/e6709d16-ca2c-4d24-a0ed-6c4e8b2e22da" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
