@@ -5706,7 +5706,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 021 (click to expand)</summary>
-<img width="1013" height="687" alt="image" src="https://github.com/user-attachments/assets/dd09a5cb-f041-454b-9a8d-bbf8fefc1a47" />
+<img width="886" height="941" alt="image" src="https://github.com/user-attachments/assets/f0928eb2-2582-4aed-8aaf-2c6e4b2020d2" />
 <img width="1011" height="958" alt="image" src="https://github.com/user-attachments/assets/0113480b-8552-4da0-943d-ac3e17aaee9b" />
 <img width="908" height="926" alt="image" src="https://github.com/user-attachments/assets/6d2a48b7-58a5-45f4-823f-97d3472626ae" />
 <img width="893" height="936" alt="image" src="https://github.com/user-attachments/assets/b6869e6a-4b16-46ce-8b64-18916164e8e6" />
@@ -5726,6 +5726,10 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 022 (click to expand)</summary>
+<img width="590" height="548" alt="image" src="https://github.com/user-attachments/assets/3e0d98d1-a20f-494d-a2bd-95410bfd46c1" />
+<img width="1332" height="473" alt="image" src="https://github.com/user-attachments/assets/56c5ab1d-2102-4e0d-88fe-3960ab7bd157" />
+<img width="673" height="950" alt="image" src="https://github.com/user-attachments/assets/bb36466d-980e-411b-86b5-1ccc4df06886" />
+<img width="1039" height="555" alt="image" src="https://github.com/user-attachments/assets/4e8b6de9-840e-4423-bb46-e150de23ff22" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
