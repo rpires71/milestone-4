@@ -5952,16 +5952,84 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 041 | Display successful order confirmation | Confirmation page shows checkmark icon, personalised message, order number and email address | ☐ | |
+| 041 | Display successful order confirmation | Confirmation page shows checkmark icon, personalised message, order number and email address | PASS | Displayed successful order and confirmation page shows checkmark icon, personalised message, order number and email address |
+
+<details>
+<summary>📸 Evidence for 041 (click to expand)</summary>
+<img width="1192" height="942" alt="image" src="https://github.com/user-attachments/assets/40802b0d-218a-4205-84a7-086191c681f7" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 042 | Display complete order summary | Ordered items, quantities, subtotal, FREE delivery and total displayed with images | ☐ | |
+
+<details>
+<summary>📸 Evidence for 042 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 043 | Display delivery address | Delivery details entered during checkout shown correctly | ☐ | |
+
+<details>
+<summary>📸 Evidence for 043 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 044 | Calculate estimated delivery dates | Delivery estimate calculated dynamically as order date +3 to +5 days | ☐ | Dynamic calculation rather than hard-coded values |
+
+<details>
+<summary>📸 Evidence for 044 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 045 | Open an order from "My Account" | Button opens the selected order for the logged-in owner only | ☐ | |
+
+<details>
+<summary>📸 Evidence for 045 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 046 | Send confirmation email | Customer receives an email containing complete order details | ☐ | Requires `EMAIL_HOST_USER` and `EMAIL_HOST_PASS` on Heroku |
+
+<details>
+<summary>📸 Evidence for 046 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 047 | Display order history | Order number, date, thumbnails, status badge, total and view link shown; pagination activates after 10 orders | ☐ | |
+
+<details>
+<summary>📸 Evidence for 047 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 048 | Display order details | Complete order record shown, including images, delivery address, summary and status | ☐ | |
+
+<details>
+<summary>📸 Evidence for 048 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 049 | Display empty order history | "You haven't placed any orders yet" message shown with a Browse the Shop link | ☐ | Automated: `test_history_empty_state` |
+
+<details>
+<summary>📸 Evidence for 049 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 050 | Access order history from the dashboard | Order numbers open the correct detail page; "View All Orders" opens the history page | ☐ | |
+
+<details>
+<summary>📸 Evidence for 050 (click to expand)</summary>
+</details>
 
 #### 1.7 Staff Plan Management (Front-End CRUD)
 
