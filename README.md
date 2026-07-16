@@ -6132,10 +6132,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 057 | Edit an existing plan | Changes saved successfully; associated features synchronised | ☐ | Automated: `test_staff_can_edit_plan` |
+| 057 | Edit an existing plan | Changes saved successfully; associated features synchronised | PASS | Automated: `test_staff_can_edit_plan` — edited plan fields via the pre-filled staff form; changes saved and reflected in the manage list, public page and admin, with features synchronised |
 
 <details>
 <summary>📸 Evidence for 057 (click to expand)</summary>
+<img width="1006" height="686" alt="image" src="https://github.com/user-attachments/assets/af7e8ee0-8090-4f54-bbff-ec2745aa0407" />
+<img width="1029" height="494" alt="image" src="https://github.com/user-attachments/assets/a248eeda-7580-49dd-a581-99bf529db317" />
+<img width="1302" height="342" alt="image" src="https://github.com/user-attachments/assets/366c6fd8-e61c-4740-a5da-b0718fc11c8f" />
+<img width="684" height="583" alt="image" src="https://github.com/user-attachments/assets/3a659890-94b4-47f9-8753-ab8499b22aa2" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
