@@ -5877,10 +5877,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 035 | Display delivery form correctly | All fields labelled; mandatory fields marked with *; phone number and Address Line 2 identified as optional | ☐ | |
+| 035 | Display delivery form correctly | All fields labelled; mandatory fields marked with *; phone number and Address Line 2 identified as optional | PASS | Displayed delivery form correctly with all fields labelled; mandatory fields marked with *; phone number and Address Line 2 identified as optional |
 
 <details>
 <summary>📸 Evidence for 035 (click to expand)</summary>
+<img width="1003" height="858" alt="image" src="https://github.com/user-attachments/assets/8ae98ed6-4f4e-4f82-87d0-945f644b2cd0" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
