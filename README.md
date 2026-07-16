@@ -6172,10 +6172,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 060 | Display empty Manage Plans page | "No plans yet" message displayed with a "Create your first plan" prompt | ☐ | |
+| 060 | Display empty Manage Plans page | "No plans yet" message displayed with a "Create your first plan" prompt | PASS | Verified locally with an emptied plans table (staging this on production would require deleting live subscription data) - "No plans yet" message and working "Create your first plan" prompt displayed; production data restored afterwards from a Heroku dumpdata fixture |
 
 <details>
 <summary>📸 Evidence for 060 (click to expand)</summary>
+<img width="1241" height="505" alt="image" src="https://github.com/user-attachments/assets/036064e0-32db-413a-bf4a-c203c5f11986" />
+<img width="1396" height="892" alt="image" src="https://github.com/user-attachments/assets/633e8245-eddd-406c-a011-9cf7f0185009" />
+<img width="1320" height="887" alt="image" src="https://github.com/user-attachments/assets/6a52b267-3860-4d36-8da4-d6a3352658b9" />
 </details>
 
 #### 1.8 Community and Reviews
