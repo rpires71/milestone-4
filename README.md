@@ -5770,14 +5770,71 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 025 | Add a selected quantity from the shop to the basket | Product added successfully; confirmation message includes a functional "View basket" link | ☐ | |
+| 025 | Add a selected quantity from the shop to the basket | Product added successfully; confirmation message includes a functional "View basket" link | PASS | Added a selected quantity from the shop to the basket and products added successfully; confirmation message includes a functional "View basket" link |
+
+<details>
+<summary>📸 Evidence for 025 (click to expand)</summary>
+<img width="909" height="894" alt="image" src="https://github.com/user-attachments/assets/40c0f31a-f762-4ff6-809f-66177a600f16" />
+<img width="923" height="617" alt="image" src="https://github.com/user-attachments/assets/b21076f9-a6d7-4d2c-8ee9-8cddfb11979c" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 026 | Display basket contents | Product images, quantities, line totals and overall basket total shown correctly | ☐ | |
+
+<details>
+<summary>📸 Evidence for 026 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 027 | Exceed available stock when adding a product | Quantity automatically limited to available stock with a warning message | ☐ | Automated: `test_add_caps_at_available_stock` |
+
+<details>
+<summary>📸 Evidence for 027 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 028 | Increase basket quantity beyond stock availability | Quantity adjusted to the available stock level | ☐ | Automated: `test_adjust_caps_at_available_stock` |
+
+<details>
+<summary>📸 Evidence for 028 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 029 | Change basket quantity to zero | Product removed and basket totals updated | ☐ | |
+
+<details>
+<summary>📸 Evidence for 029 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 030 | Remove an item from the basket | Product removed successfully with confirmation feedback | ☐ | |
+
+<details>
+<summary>📸 Evidence for 030 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 031 | Display an empty basket | "Your basket is empty" message displayed together with a link to browse products | ☐ | |
+
+<details>
+<summary>📸 Evidence for 031 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 032 | Enter an invalid basket quantity | Invalid input handled safely without crashing; default behaviour applied | ☐ | Verified within the automated basket test suite |
+
+<details>
+<summary>📸 Evidence for 032 (click to expand)</summary>
+</details>
+
 
 #### 1.5 Checkout
 
