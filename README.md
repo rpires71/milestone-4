@@ -6020,10 +6020,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 048 | Display order details | Complete order record shown, including images, delivery address, summary and status | ☐ | |
+| 048 | Display order details | Complete order record shown, including images, delivery address, summary and status | PASS | Displayed order details and complete order record shown, including images, delivery address, summary and status |
 
 <details>
 <summary>📸 Evidence for 048 (click to expand)</summary>
+<img width="1034" height="803" alt="image" src="https://github.com/user-attachments/assets/bad3d882-6bc8-468f-bd94-cb74790d842a" />
+<img width="1098" height="760" alt="image" src="https://github.com/user-attachments/assets/5fd1c046-2a46-4787-abac-28b1ce2be240" />
+<img width="472" height="686" alt="image" src="https://github.com/user-attachments/assets/b833eaed-bed0-4402-81a7-8719b8af40a0" />
+<img width="437" height="437" alt="image" src="https://github.com/user-attachments/assets/f51a3a59-ba7a-4c58-9f9a-2ee8af37dd77" />
+<img width="508" height="309" alt="image" src="https://github.com/user-attachments/assets/0702ddad-6fbd-4324-9e1d-c2a15fab4980" />
+<img width="539" height="313" alt="image" src="https://github.com/user-attachments/assets/6ebe1f3a-19f8-4bcc-be01-9258b6c383b2" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
