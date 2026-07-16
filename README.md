@@ -5693,11 +5693,56 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 020 | Browse all available products | Twelve products displayed with images, names, prices and stock availability | ☐ | |
+| 020 | Browse all available products | Twelve products displayed with images, names, prices and stock availability | PASS | Browsed all available products and twelve products displayed with images, names, prices and stock availability |
+
+<details>
+<summary>📸 Evidence for 020 (click to expand)</summary>
+<img width="665" height="947" alt="image" src="https://github.com/user-attachments/assets/d69870bc-91cd-48e8-9377-df0d8b8a07fe" />
+<img width="1013" height="687" alt="image" src="https://github.com/user-attachments/assets/dd09a5cb-f041-454b-9a8d-bbf8fefc1a47" />
+<img width="1011" height="958" alt="image" src="https://github.com/user-attachments/assets/0113480b-8552-4da0-943d-ac3e17aaee9b" />
+<img width="908" height="926" alt="image" src="https://github.com/user-attachments/assets/6d2a48b7-58a5-45f4-823f-97d3472626ae" />
+<img width="893" height="936" alt="image" src="https://github.com/user-attachments/assets/b6869e6a-4b16-46ce-8b64-18916164e8e6" />
+<img width="891" height="918" alt="image" src="https://github.com/user-attachments/assets/1889d279-3509-4382-95fe-85a95f3710ae" />
+<img width="887" height="913" alt="image" src="https://github.com/user-attachments/assets/9909994c-cd0a-4de4-9d9d-bae52931fe76" />
+<img width="890" height="912" alt="image" src="https://github.com/user-attachments/assets/a8b24c39-5f6b-414b-a47b-b2b41ef73414" />
+<img width="895" height="910" alt="image" src="https://github.com/user-attachments/assets/2e5c4330-6980-447d-9724-cd1a6ddf699b" />
+<img width="905" height="941" alt="image" src="https://github.com/user-attachments/assets/1b020f24-0f73-411b-b851-af836b70e72d" />
+<img width="892" height="935" alt="image" src="https://github.com/user-attachments/assets/61c0e7cc-0ac0-469a-9fe5-7a4fdc8e5a00" />
+<img width="904" height="923" alt="image" src="https://github.com/user-attachments/assets/70159789-4c9e-41bc-bffe-09a728f630a6" />
+<img width="893" height="923" alt="image" src="https://github.com/user-attachments/assets/6c71d1d1-5dc8-485c-8c3d-2078f163a84e" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 021 | Open a product detail page | Full product information displayed, including image, description, price, stock level and related products | ☐ | |
+
+<details>
+<summary>📸 Evidence for 021 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 022 | View an unavailable product directly | Custom 404 page returned | ☐ | Automated: `test_unavailable_product_detail_returns_404` |
+
+<details>
+<summary>📸 Evidence for 022 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 023 | Add an out-of-stock product to the basket | Product cannot be added; "Out of stock" message displayed | ☐ | Automated: `test_add_out_of_stock_product_not_added` |
+
+<details>
+<summary>📸 Evidence for 023 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 024 | Display related products | "Customers Also Viewed" section presents relevant products | ☐ | |
+
+<details>
+<summary>📸 Evidence for 024 (click to expand)</summary>
+</details>
 
 #### 1.4 Basket
 
