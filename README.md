@@ -5638,10 +5638,19 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1175" height="572" alt="image" src="https://github.com/user-attachments/assets/93a10d36-bc8e-44dc-b346-6c57ef175bdc" />
 </details>
 
-
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 016 | Subscription requires authentication | Unauthenticated users are prompted to log in | ☐ | |
+| 016 | Subscription requires authentication | Unauthenticated users are prompted to log in | PASS | Subscription requires authentication and unauthenticated users are prompted to log in |
+
+<details>
+<summary>📸 Evidence for 016 (click to expand)</summary>
+<img width="1045" height="759" alt="image" src="https://github.com/user-attachments/assets/aa4cb4df-3b04-49fc-a110-1fcf38503386" />
+<img width="1009" height="754" alt="image" src="https://github.com/user-attachments/assets/1b342b10-668a-4427-ad38-cd115c398069" />
+<img width="1017" height="561" alt="image" src="https://github.com/user-attachments/assets/13cc348f-d1ba-4d3a-8b17-fb41be4dd103" />
+<img width="1016" height="725" alt="image" src="https://github.com/user-attachments/assets/36697061-7b3a-4bde-9899-c50a83fb53bf" />
+<img width="1066" height="757" alt="image" src="https://github.com/user-attachments/assets/f9bcd3f6-b581-4589-b39e-19c241598aa7" />
+
+</details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
