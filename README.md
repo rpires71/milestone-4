@@ -5796,7 +5796,7 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="587" height="524" alt="image" src="https://github.com/user-attachments/assets/038aa3ba-acb5-4d04-866b-83af59058d38" />
 <img width="1278" height="551" alt="image" src="https://github.com/user-attachments/assets/cd7b88cc-2390-42d6-8153-324b77726391" />
 <img width="921" height="377" alt="image" src="https://github.com/user-attachments/assets/9b5b07de-481a-41db-9f12-7e4ec385a0ea" />
-<img width="381" height="407" alt="image" src="https://github.com/user-attachments/assets/3117483e-365e-44a2-bf0a-5ea4430bcd24" />
+
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
@@ -5805,7 +5805,8 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 028 (click to expand)</summary>
-
+<img width="381" height="407" alt="image" src="https://github.com/user-attachments/assets/3117483e-365e-44a2-bf0a-5ea4430bcd24" />
+<img width="1058" height="723" alt="image" src="https://github.com/user-attachments/assets/9e235326-5158-4bb0-b5e6-5a23edc8615d" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
