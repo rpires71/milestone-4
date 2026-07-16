@@ -5970,10 +5970,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 043 | Display delivery address | Delivery details entered during checkout shown correctly | ☐ | |
+| 043 | Display delivery address | Delivery details entered during checkout shown correctly | PASS | Displayed delivery address and details entered during checkout shown correctly |
 
 <details>
 <summary>📸 Evidence for 043 (click to expand)</summary>
+<img width="1002" height="588" alt="image" src="https://github.com/user-attachments/assets/96659667-8400-4b28-ab89-5a7a0a34edf3" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
