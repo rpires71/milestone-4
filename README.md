@@ -6185,13 +6185,61 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 061 | Display community posts | Posts listed with title, author and publication date | ☐ | |
+| 061 | Display community posts | Posts listed with title, author and publication date | PASS | Displayed community posts from multiple authors, each listed with title, author username and publication date, newest first |
+
+<details>
+<summary>📸 Evidence for 061 (click to expand)</summary>
+<img width="889" height="910" alt="image" src="https://github.com/user-attachments/assets/2ac50d09-f65a-4a1b-b9d6-85c49726067a" />
+<img width="677" height="729" alt="image" src="https://github.com/user-attachments/assets/5f9ff69c-3c4e-4721-b246-2f106c6108d4" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 062 | Require authentication to create a post | Anonymous users redirected to the login page | ☐ | |
+
+<details>
+<summary>📸 Evidence for 062 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 063 | Create a community post | Newly created post appears in the community list | ☐ | |
+
+<details>
+<summary>📸 Evidence for 063 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 064 | Edit or delete own community post | Changes saved successfully or post removed | ☐ | |
+
+<details>
+<summary>📸 Evidence for 064 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 065 | Submit a product review with a rating | Review displayed on the relevant product page | ☐ | |
+
+<details>
+<summary>📸 Evidence for 065 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 066 | Reject an invalid review rating | Validation error displayed for ratings outside the permitted range | ☐ | Automated: `test_rating_too_high_is_invalid` |
+
+<details>
+<summary>📸 Evidence for 066 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 067 | Edit or delete own review | Updates saved successfully or review removed | ☐ | |
+
+<details>
+<summary>📸 Evidence for 066 (click to expand)</summary>
+</details>
 
 ---
 
