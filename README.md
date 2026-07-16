@@ -5867,10 +5867,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 034 | Display checkout order summary | Products, quantities, prices and totals accurately match the basket | ☐ | |
+| 034 | Display checkout order summary | Products, quantities, prices and totals accurately match the basket | PASS | Displayed checkout order summary with products, quantities, prices and totals accurately in the basket |
 
 <details>
 <summary>📸 Evidence for 034 (click to expand)</summary>
+<img width="1008" height="938" alt="image" src="https://github.com/user-attachments/assets/8201cb73-0013-4aa7-b9b1-58cd1a625c61" />
+<img width="999" height="848" alt="image" src="https://github.com/user-attachments/assets/ca4ea75d-8bec-4e8f-8582-82781d682c79" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
