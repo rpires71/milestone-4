@@ -5594,7 +5594,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 013 | Hide draft and archived plans from members | Only published plans are visible on `/plans/` | PASS | Automated: `test_archived_plan_hidden_from_public` |
+| 013 | Hide draft and archived plans from members | Only published plans are visible on `/plans/` | PASS | Hide draft and archived plans from members and only published plans are visible on `/plans/`  |
 
 <details>
 <summary>📸 Evidence for 013 (click to expand)</summary>
@@ -5604,7 +5604,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 014 | Plan detail page displays the correct features | "What's included" section lists only that plan's associated features | PASS | Plan detail page displays the correct features - "What's included" section lists only that plan's associated features in priority order |
+| 014 | Plan detail page displays the correct features | "What's included" section lists only that plan's associated features | PASS | Plan detail page displays the correct features and "What's included" section lists only that plan's associated features in priority order |
 
 <details>
 <summary>📸 Evidence for 014 (click to expand)</summary>
@@ -5620,7 +5620,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 015 | Access a draft plan directly via URL | Custom 404 page displayed | ☐ | Automated: `test_draft_plan_detail_returns_404` |
+| 015 | Access a draft plan directly via URL | Custom 404 page displayed | FAIL | Access a draft plan directly via URL but there is no custom 404 page displayed |
+
+<details>
+<summary>📸 Evidence for 015 (click to expand)</summary>
+<img width="1296" height="326" alt="image" src="https://github.com/user-attachments/assets/de534ead-96f9-4f7b-a2d5-ef38bcff2555" />
+<img width="654" height="180" alt="image" src="https://github.com/user-attachments/assets/a83c2742-9bf5-4d95-b49b-e2dc5e4b540f" />
+</details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
