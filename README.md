@@ -6220,10 +6220,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 064 | Edit or delete own community post | Changes saved successfully or post removed | ☐ | |
+| 064 | Edit or delete own community post | Changes saved successfully or post removed | PASS | Edited own post via the pre-filled form and changes saved correctly; deleted a second post via the confirmation page and it was removed from the list |
 
 <details>
 <summary>📸 Evidence for 064 (click to expand)</summary>
+<img width="877" height="454" alt="image" src="https://github.com/user-attachments/assets/b448a5d4-1343-4e57-9138-e397886453ba" />
+<img width="887" height="321" alt="image" src="https://github.com/user-attachments/assets/34efc25a-e1b2-4d1a-9713-fd247cf7cbd9" />
+<img width="918" height="518" alt="image" src="https://github.com/user-attachments/assets/5943e7b7-82cc-4366-8fda-1b026af6acb0" />
+<img width="869" height="583" alt="image" src="https://github.com/user-attachments/assets/177e747e-8714-4733-be88-d12dbbec8e2e" />
+<img width="961" height="440" alt="image" src="https://github.com/user-attachments/assets/ef0274f6-0e9c-458f-8c62-6fead584e997" />
+<img width="886" height="569" alt="image" src="https://github.com/user-attachments/assets/5cf812cb-91dc-4a6a-b9af-f59549cfeea8" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
