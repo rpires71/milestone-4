@@ -5999,10 +5999,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 046 | Send confirmation email | Customer receives an email containing complete order details | ☐ | Requires `EMAIL_HOST_USER` and `EMAIL_HOST_PASS` on Heroku |
+| 046 | Send confirmation email | Customer receives an email containing complete order details | PASS | Confirmation email sent and customer receives an email containing complete order details |
 
 <details>
 <summary>📸 Evidence for 046 (click to expand)</summary>
+<img width="1576" height="138" alt="image" src="https://github.com/user-attachments/assets/23d0b462-72c6-41bc-b0d7-8d90e117ed36" />
+<img width="1603" height="718" alt="image" src="https://github.com/user-attachments/assets/8790f595-a50a-4dd6-b6b6-b437995c4c71" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
