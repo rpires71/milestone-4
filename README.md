@@ -6108,10 +6108,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 055 | Reject negative pricing | "Price must be a positive number." displayed; no record saved | ☐ | Automated: `test_negative_price_rejected` |
+| 055 | Reject negative pricing | "Price must be a positive number." displayed; no record saved | PASS | Automated: `test_negative_price_rejected` — negative and zero prices both rejected with the field-level message; confirmed no plan record was created |
 
 <details>
 <summary>📸 Evidence for 055 (click to expand)</summary>
+<img width="1019" height="525" alt="image" src="https://github.com/user-attachments/assets/ee60e8d5-34c7-45c9-9f46-7f4232fc426e" />
+<img width="1023" height="739" alt="image" src="https://github.com/user-attachments/assets/cf0c61f6-ec0e-4bc9-ba80-26bf919a22dc" />
+<img width="1022" height="827" alt="image" src="https://github.com/user-attachments/assets/2e16f08d-74dd-4975-aff9-de61f4a2830e" />
+<img width="480" height="377" alt="image" src="https://github.com/user-attachments/assets/1e39cf4d-e2c0-4c01-a7af-df82743eb23b" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
