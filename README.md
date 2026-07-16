@@ -5961,10 +5961,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 042 | Display complete order summary | Ordered items, quantities, subtotal, FREE delivery and total displayed with images | ☐ | |
+| 042 | Display complete order summary | Ordered items, quantities, subtotal, FREE delivery and total displayed with images | PASS | Displayed complete order summary with ordered items, quantities, subtotal, FREE delivery and total displayed with images |
 
 <details>
 <summary>📸 Evidence for 042 (click to expand)</summary>
+<img width="684" height="921" alt="image" src="https://github.com/user-attachments/assets/4ab7449a-526b-4e20-b1aa-6a1fb7bf7193" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
