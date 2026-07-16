@@ -5681,7 +5681,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 019 | Subscription success page remains idempotent | Refreshing the page does not generate a duplicate subscription | ☐ | |
+| 019 | Subscription success page remains idempotent | Refreshing the page does not generate a duplicate subscription | PASS | Subscription success page remains idempotent and refreshing the page does not generate a duplicate subscription |
+
+<details>
+<summary>📸 Evidence for 019 (click to expand)</summary>
+<img width="1481" height="597" alt="image" src="https://github.com/user-attachments/assets/3eb45002-f660-4d18-b8fb-762326c30dbd" />
+<img width="1656" height="278" alt="image" src="https://github.com/user-attachments/assets/fcb79eb1-9381-42c6-bea7-937af19a3d36" />
+</details>
 
 #### 1.3 Shop and Product Browsing
 
