@@ -5780,10 +5780,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 026 | Display basket contents | Product images, quantities, line totals and overall basket total shown correctly | ☐ | |
+| 026 | Display basket contents | Product images, quantities, line totals and overall basket total shown correctly | PASS | Displays basket contents and product images, quantities, line totals and overall basket total shown correctly |
 
 <details>
 <summary>📸 Evidence for 026 (click to expand)</summary>
+<img width="911" height="762" alt="image" src="https://github.com/user-attachments/assets/4e32b2d0-c322-4f04-b937-60e21369827a" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
