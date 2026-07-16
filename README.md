@@ -5918,7 +5918,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 039 | Verify stock deduction after purchase | Product stock reduced by the quantity ordered | ☐ | Fixed defect D6; automated: `test_checkout_deducts_stock` |
+| 039 | Verify stock deduction after purchase | Product stock reduced by the quantity ordered | PASS | Verified stock deduction after purchase - Product stock reduced by the quantity ordered |
 
 <details>
 <summary>📸 Evidence for 039 (click to expand)</summary>
