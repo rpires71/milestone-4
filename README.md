@@ -5698,6 +5698,14 @@ The **Notes** column within each manual test case references the corresponding u
 <details>
 <summary>📸 Evidence for 020 (click to expand)</summary>
 <img width="665" height="947" alt="image" src="https://github.com/user-attachments/assets/d69870bc-91cd-48e8-9377-df0d8b8a07fe" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
+| 021 | Open a product detail page | Full product information displayed, including image, description, price, stock availability and related products | PASS | Opened all product detail pages and verified that full product information is displayed, including image, description, price, stock availability and related products |
+
+<details>
+<summary>📸 Evidence for 021 (click to expand)</summary>
 <img width="1013" height="687" alt="image" src="https://github.com/user-attachments/assets/dd09a5cb-f041-454b-9a8d-bbf8fefc1a47" />
 <img width="1011" height="958" alt="image" src="https://github.com/user-attachments/assets/0113480b-8552-4da0-943d-ac3e17aaee9b" />
 <img width="908" height="926" alt="image" src="https://github.com/user-attachments/assets/6d2a48b7-58a5-45f4-823f-97d3472626ae" />
@@ -5710,14 +5718,6 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="892" height="935" alt="image" src="https://github.com/user-attachments/assets/61c0e7cc-0ac0-469a-9fe5-7a4fdc8e5a00" />
 <img width="904" height="923" alt="image" src="https://github.com/user-attachments/assets/70159789-4c9e-41bc-bffe-09a728f630a6" />
 <img width="893" height="923" alt="image" src="https://github.com/user-attachments/assets/6c71d1d1-5dc8-485c-8c3d-2078f163a84e" />
-</details>
-
-| Test ID | Test Case | Expected Result | Status | Notes |
-|---------|-----------|-----------------|--------|-------|
-| 021 | Open a product detail page | Full product information displayed, including image, description, price, stock level and related products | ☐ | |
-
-<details>
-<summary>📸 Evidence for 021 (click to expand)</summary>
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
