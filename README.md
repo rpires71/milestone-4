@@ -5630,6 +5630,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
+| 015 (FIX) | Access a draft plan directly via URL | Custom 404 page displayed | PASS | Access a draft plan directly via URL but there is no custom 404 page displayed |
+
+<details>
+<summary>📸 Evidence for 015 Fix (click to expand)</summary>
+<img width="1568" height="400" alt="image" src="https://github.com/user-attachments/assets/09bea93a-2572-49bb-881a-9ddbb879b71d" />
+<img width="1175" height="572" alt="image" src="https://github.com/user-attachments/assets/93a10d36-bc8e-44dc-b346-6c57ef175bdc" />
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 016 | Subscription requires authentication | Unauthenticated users are prompted to log in | ☐ | |
 
 | Test ID | Test Case | Expected Result | Status | Notes |
