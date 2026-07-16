@@ -6068,10 +6068,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 052 | Display all plan statuses | Published, Draft and Archived badges shown for every plan | ☐ | Automated: `test_staff_sees_all_statuses` |
+| 052 | Display all plan statuses | Published, Draft and Archived badges shown for every plan | PASS | Displayed all plan statuses - Published, Draft and Archived badges shown for every plan |
 
 <details>
 <summary>📸 Evidence for 052 (click to expand)</summary>
+<img width="1310" height="275" alt="image" src="https://github.com/user-attachments/assets/38edae08-0b18-465d-a436-861add4c34bb" />
+<img width="996" height="388" alt="image" src="https://github.com/user-attachments/assets/2a74edae-5f13-4bcc-a0c5-c02a8257454f" />
+<img width="654" height="592" alt="image" src="https://github.com/user-attachments/assets/6953b81a-4deb-47c6-a264-6ae449739a86" />
+<img width="655" height="601" alt="image" src="https://github.com/user-attachments/assets/4b5f93ef-cb15-420c-8e1d-130c8d23eef5" />
+<img width="1400" height="348" alt="image" src="https://github.com/user-attachments/assets/7c715c72-27a0-4a0b-a9a6-103d0daaab9d" />
+<img width="1001" height="697" alt="image" src="https://github.com/user-attachments/assets/31ff6399-0899-4792-a6b6-91aec66ede1c" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
