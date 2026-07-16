@@ -6090,14 +6090,20 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1041" height="742" alt="image" src="https://github.com/user-attachments/assets/4a5a313c-643e-416c-b3ed-eac19307ed50" />
 <img width="1006" height="482" alt="image" src="https://github.com/user-attachments/assets/ebf1c06f-c934-47a2-b067-03afa858a936" />
 <img width="1288" height="309" alt="image" src="https://github.com/user-attachments/assets/52b4e142-6bd1-4cb3-b587-d9fa1731897e" />
+<img width="1111" height="883" alt="image" src="https://github.com/user-attachments/assets/3d0ed8a3-ca20-440c-bc68-8f21da240291" />
+
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 054 | Synchronise plan features | One `PlanFeature` created for each line and displayed correctly on the public plan page | ☐ | |
+| 054 | Synchronise plan features | One `PlanFeature` created for each line and displayed correctly on the public plan page | PASS | Synchronised plan features via the edit form - reordered, removed and added lines in one save; public page matched exactly and blank lines were skipped |
 
 <details>
 <summary>📸 Evidence for 054 (click to expand)</summary>
+<img width="1132" height="819" alt="image" src="https://github.com/user-attachments/assets/8cd42b3f-1252-4550-8631-2681f9bce64b" />
+<img width="1057" height="421" alt="image" src="https://github.com/user-attachments/assets/bfa97d8e-dc03-456f-9761-b52a113d772d" />
+<img width="1042" height="581" alt="image" src="https://github.com/user-attachments/assets/c93c7d7c-70bb-4894-87cf-497d7009a117" />
+<img width="1026" height="381" alt="image" src="https://github.com/user-attachments/assets/ffbe1fbe-7462-4a01-b67f-ab65292f2d81" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
