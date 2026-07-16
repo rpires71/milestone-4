@@ -6034,10 +6034,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 049 | Display empty order history | "You haven't placed any orders yet" message shown with a Browse the Shop link | ☐ | Automated: `test_history_empty_state` |
+| 049 | Display empty order history | "You haven't placed any orders yet" message shown with a Browse the Shop link | PASS | Displayed empty order history and "You haven't placed any orders yet" message shown with a Browse the Shop link |
 
 <details>
 <summary>📸 Evidence for 049 (click to expand)</summary>
+<img width="1029" height="778" alt="image" src="https://github.com/user-attachments/assets/bb1ba98d-d127-4e21-befb-23d7120c7a53" />
+<img width="1019" height="950" alt="image" src="https://github.com/user-attachments/assets/5e7d7018-129e-4ae1-805d-937f2ad1dc65" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
