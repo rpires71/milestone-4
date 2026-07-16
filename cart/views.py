@@ -62,7 +62,7 @@ def adjust_cart(request, product_id):
 
     if quantity <= 0:
         cart.pop(str(product_id), None)
-        messages.success(request, f'Removed {product.name} from your cart.')
+        messages.success(request, f'Removed {product.name} from your basket.')
     elif quantity > product.stock:
         # Requested more than available: cap at stock.
         cart[str(product_id)] = product.stock
@@ -85,5 +85,5 @@ def remove_from_cart(request, product_id):
     cart = request.session.get('cart', {})
     cart.pop(str(product_id), None)
     request.session['cart'] = cart
-    messages.success(request, f'Removed {product.name} from your cart.')
+    messages.success(request, f'Removed {product.name} from your basket.')
     return redirect('view_cart')

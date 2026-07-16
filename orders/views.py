@@ -26,7 +26,7 @@ def checkout(request):
 
     cart = request.session.get('cart', {})
     if not cart:
-        messages.error(request, "There's nothing in your cart at the moment")
+        messages.error(request, "There's nothing in your basket at the moment")
         return redirect(reverse('products'))
 
     if request.method == 'POST':
