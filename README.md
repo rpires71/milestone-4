@@ -6144,10 +6144,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 058 | Confirm archive operation | Confirmation page explains the consequences before archiving | ☐ | |
+| 058 | Confirm archive operation | Confirmation page explains the consequences before archiving | PASS | Archive action shows a confirmation page naming the plan and explaining consequences (removed from new sign-ups; existing subscriptions unaffected); cancelling leaves the plan unchanged and only confirming archives it |
 
 <details>
 <summary>📸 Evidence for 058 (click to expand)</summary>
+<img width="1041" height="520" alt="image" src="https://github.com/user-attachments/assets/3ffb4863-d23d-4f86-829d-78773e9c0434" />
+<img width="1067" height="503" alt="image" src="https://github.com/user-attachments/assets/3a938b88-a1d5-44d2-bc39-b28d26a89d09" />
+<img width="1011" height="531" alt="image" src="https://github.com/user-attachments/assets/5793f139-150e-494b-9823-09cadcd61338" />
+<img width="1286" height="348" alt="image" src="https://github.com/user-attachments/assets/bf954399-b0af-4ecc-976d-3cd0ae2a676f" />
+<img width="647" height="606" alt="image" src="https://github.com/user-attachments/assets/43c01d15-79ad-4bb2-ae36-2c294c7a94bd" />
+<img width="1010" height="745" alt="image" src="https://github.com/user-attachments/assets/192b2080-28c9-49f2-a73f-a5901a7084ea" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
