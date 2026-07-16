@@ -5722,22 +5722,28 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 022 | View an unavailable product directly | Custom 404 page returned | ☐ | Automated: `test_unavailable_product_detail_returns_404` |
+| 022 | View an unavailable product directly | Custom 404 page returned | PASS | Viewed an unavailable product directly and custom 404 page returned` |
 
 <details>
 <summary>📸 Evidence for 022 (click to expand)</summary>
 <img width="590" height="548" alt="image" src="https://github.com/user-attachments/assets/3e0d98d1-a20f-494d-a2bd-95410bfd46c1" />
 <img width="1332" height="473" alt="image" src="https://github.com/user-attachments/assets/56c5ab1d-2102-4e0d-88fe-3960ab7bd157" />
 <img width="673" height="950" alt="image" src="https://github.com/user-attachments/assets/bb36466d-980e-411b-86b5-1ccc4df06886" />
-<img width="1039" height="555" alt="image" src="https://github.com/user-attachments/assets/4e8b6de9-840e-4423-bb46-e150de23ff22" />
+<img width="1430" height="619" alt="image" src="https://github.com/user-attachments/assets/57710322-4099-4190-9b9a-a362c76380ed" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 023 | Add an out-of-stock product to the basket | Product cannot be added; "Out of stock" message displayed | ☐ | Automated: `test_add_out_of_stock_product_not_added` |
+| 023 | Add an out-of-stock product to the basket | Product cannot be added; "Out of stock" message displayed | PASS | Add an out-of-stock product to the basket - Product cannot be added; "Out of stock" message displayed |
 
 <details>
 <summary>📸 Evidence for 023 (click to expand)</summary>
+<img width="629" height="604" alt="image" src="https://github.com/user-attachments/assets/c0b44d78-374a-4c7a-8d46-bfecb0053384" />
+<img width="1284" height="511" alt="image" src="https://github.com/user-attachments/assets/30e721a0-58cd-4250-bf1e-58627d267d61" />
+<img width="657" height="888" alt="image" src="https://github.com/user-attachments/assets/4c826b60-5e18-404f-8998-66695ddab83d" />
+<img width="246" height="359" alt="image" src="https://github.com/user-attachments/assets/d3ec0446-0ac3-48f1-bac3-a92b6833d43b" />
+<img width="1000" height="950" alt="image" src="https://github.com/user-attachments/assets/4c25d1d8-2981-4e0d-ac96-b755206b92d4" />
+
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
