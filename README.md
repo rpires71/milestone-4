@@ -6058,16 +6058,85 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 051 | Staff users see the "Manage" navigation link | Visible only to staff; hidden from members and visitors | ☐ | |
+| 051 | Staff users see the "Manage" navigation link | Visible only to staff; hidden from members and visitors | PASS | Staff users see the "Manage" navigation link and visible only to staff; hidden from members and visitors |
+
+<details>
+<summary>📸 Evidence for 051 (click to expand)</summary>
+<img width="344" height="194" alt="image" src="https://github.com/user-attachments/assets/da56f4b6-e595-4083-be62-5397867a1a7c" />
+<img width="1322" height="371" alt="image" src="https://github.com/user-attachments/assets/dec78b44-886f-409a-bfed-6b6e2dcfe7dd" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 052 | Display all plan statuses | Published, Draft and Archived badges shown for every plan | ☐ | Automated: `test_staff_sees_all_statuses` |
+
+<details>
+<summary>📸 Evidence for 052 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 053 | Create a new membership plan | Plan saved successfully; slug generated automatically; plan appears in the list | ☐ | Automated: `test_staff_can_create_plan_with_features` |
+
+<details>
+<summary>📸 Evidence for 053 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 054 | Synchronise plan features | One `PlanFeature` created for each line and displayed correctly on the public plan page | ☐ | |
+
+<details>
+<summary>📸 Evidence for 054 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 055 | Reject negative pricing | "Price must be a positive number." displayed; no record saved | ☐ | Automated: `test_negative_price_rejected` |
+
+<details>
+<summary>📸 Evidence for 055 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 056 | Reject blank required fields | Error summary and field-level validation displayed; no changes saved | ☐ | |
+
+<details>
+<summary>📸 Evidence for 056 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 057 | Edit an existing plan | Changes saved successfully; associated features synchronised | ☐ | Automated: `test_staff_can_edit_plan` |
+
+<details>
+<summary>📸 Evidence for 057 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 058 | Confirm archive operation | Confirmation page explains the consequences before archiving | ☐ | |
+
+<details>
+<summary>📸 Evidence for 058 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 059 | Archive using soft deletion | Plan marked as Archived, retained in the database and removed from public view | ☐ | Automated: `test_archive_is_soft_delete`; protects subscriptions (`on_delete=PROTECT`) |
+
+<details>
+<summary>📸 Evidence for 059 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 060 | Display empty Manage Plans page | "No plans yet" message displayed with a "Create your first plan" prompt | ☐ | |
+
+<details>
+<summary>📸 Evidence for 060 (click to expand)</summary>
+</details>
 
 #### 1.8 Community and Reviews
 
