@@ -6158,10 +6158,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 059 | Archive using soft deletion | Plan marked as Archived, retained in the database and removed from public view | ☐ | Automated: `test_archive_is_soft_delete`; protects subscriptions (`on_delete=PROTECT`) |
+| 059 | Archive using soft deletion | Plan marked as Archived, retained in the database and removed from public view | PASS | Automated: `test_archive_is_soft_delete`; protects subscriptions (`on_delete=PROTECT`) — archived plan retained in admin with all data and existing subscriptions intact, absent from the public grid and detail URL |
 
 <details>
 <summary>📸 Evidence for 059 (click to expand)</summary>
+<img width="1289" height="342" alt="image" src="https://github.com/user-attachments/assets/8326ce6b-ded4-4c7c-88ea-026735b83322" />
+<img width="1111" height="844" alt="image" src="https://github.com/user-attachments/assets/4e7f55b1-eb95-46ba-803f-9c5ad198e65a" />
+<img width="1009" height="473" alt="image" src="https://github.com/user-attachments/assets/96515280-54e0-4b94-a780-0f15c75256aa" />
+<img width="1026" height="762" alt="image" src="https://github.com/user-attachments/assets/e05b25d1-da1a-4c84-99bf-aed68a6a9edb" />
+<img width="1438" height="614" alt="image" src="https://github.com/user-attachments/assets/cfff7c49-4eb9-48bd-bd61-7261a98e6641" />
+<img width="1053" height="612" alt="image" src="https://github.com/user-attachments/assets/dc90243e-3cc6-45d1-b5bc-8f60af3b7a82" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
