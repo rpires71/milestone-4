@@ -5667,7 +5667,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 018 | Successful subscription recorded | Subscription appears on the dashboard with the correct plan and status | ☐ | |
+| 018 | Successful subscription recorded | Subscription appears on the dashboard with the correct plan and status | PASS | Successful subscription recorded and subscription appears on the dashboard with the correct plan and status |
+
+<details>
+<summary>📸 Evidence for 018 (click to expand)</summary>
+<img width="1080" height="725" alt="image" src="https://github.com/user-attachments/assets/10b69c79-6ddc-4db3-aee3-073129e268a9" />
+<img width="1032" height="936" alt="image" src="https://github.com/user-attachments/assets/f4b6d6e2-6e7c-4271-af66-a8c1f338caf0" />
+<img width="1018" height="325" alt="image" src="https://github.com/user-attachments/assets/5abf5e53-591a-4241-90cd-2e552316ab31" />
+<img width="1354" height="427" alt="image" src="https://github.com/user-attachments/assets/42acd036-1a4e-4607-ab2e-14987f4e94d3" />
+<img width="1028" height="703" alt="image" src="https://github.com/user-attachments/assets/687ca816-c024-4dea-862c-bbfe657e3d8c" />
+<img width="1001" height="698" alt="image" src="https://github.com/user-attachments/assets/9a3ee43c-8751-44ac-ab2d-5af91f8dc334" />
+</details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
