@@ -122,6 +122,53 @@ class CartViewTest(TestCase):
         cart = self.client.session.get('cart', {})
         self.assertNotIn(str(self.product.id), cart)
 
+    def test_add_with_non_numeric_quantity_defaults_to_one(self):
+        """A non-numeric quantity does not crash; the default of 1 is applied."""
+        response = self.client.post(
+            reverse('add_to_cart', args=[self.product.id]),
+            {'quantity': 'abc', 'redirect_url': '/'},
+        )
+        self.assertEqual(response.status_code, 302)
+        cart = self.client.session['cart']
+        self.assertEqual(cart[str(self.product.id)], 1)
+
+    def test_add_with_negative_quantity_defaults_to_one(self):
+        """A negative quantity is clamped to the default of 1."""
+        response = self.client.post(
+            reverse('add_to_cart', args=[self.product.id]),
+            {'quantity': -5, 'redirect_url': '/'},
+        )
+        self.assertEqual(response.status_code, 302)
+        cart = self.client.session['cart']
+        self.assertEqual(cart[str(self.product.id)], 1)
+
+    def test_adjust_with_non_numeric_quantity_removes_item(self):
+        """A non-numeric adjustment does not crash; it falls back to 0 (removal)."""
+        session = self.client.session
+        session['cart'] = {str(self.product.id): 2}
+        session.save()
+
+        response = self.client.post(
+            reverse('adjust_cart', args=[self.product.id]),
+            {'quantity': 'abc'},
+        )
+        self.assertEqual(response.status_code, 302)
+        cart = self.client.session['cart']
+        self.assertNotIn(str(self.product.id), cart)
+
+    def test_adjust_with_negative_quantity_removes_item(self):
+        """A negative adjustment is treated as zero and removes the item."""
+        session = self.client.session
+        session['cart'] = {str(self.product.id): 2}
+        session.save()
+
+        self.client.post(
+            reverse('adjust_cart', args=[self.product.id]),
+            {'quantity': -3},
+        )
+        cart = self.client.session['cart']
+        self.assertNotIn(str(self.product.id), cart)
+
 
 class CartContextProcessorTest(TestCase):
     """Tests for the cart_contents context processor."""
