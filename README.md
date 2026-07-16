@@ -5932,10 +5932,20 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 040 | Prevent negative stock values | Stock level clamped at zero when oversell scenarios occur | ☐ | Automated: `test_checkout_stock_never_negative` |
+| 040 | Prevent negative stock values | Stock level clamped at zero when oversell scenarios occur | PASS | Automated: `test_checkout_stock_never_negative` — reproduced manually via a stale basket (stock reduced in admin after items added) and stock clamped at zero |
 
 <details>
 <summary>📸 Evidence for 040 (click to expand)</summary>
+<img width="1358" height="704" alt="image" src="https://github.com/user-attachments/assets/dd8e07d1-490f-410e-8cef-ee3fe783dad5" />
+<img width="1160" height="695" alt="image" src="https://github.com/user-attachments/assets/5520e27a-78c7-4bef-9848-10c65a5a5556" />
+<img width="1333" height="914" alt="image" src="https://github.com/user-attachments/assets/8e7d926a-8046-4b8c-9b2d-b7afb8e505a7" />
+<img width="1355" height="926" alt="image" src="https://github.com/user-attachments/assets/3be7be9c-a581-4e14-ada5-0a91baf75f04" />
+<img width="1345" height="363" alt="image" src="https://github.com/user-attachments/assets/01998677-9625-46d4-8c8d-d67686f7de1d" />
+<img width="1579" height="155" alt="image" src="https://github.com/user-attachments/assets/2cdd3081-cfa3-48e1-a45a-6e65dae1a846" />
+<img width="886" height="641" alt="image" src="https://github.com/user-attachments/assets/83721d1a-cd4c-41a4-b38c-045c7e2b3a1d" />
+<img width="1164" height="608" alt="image" src="https://github.com/user-attachments/assets/f1c3f631-e732-43cf-b4e0-7c7e01262087" />
+
+**NOTE:** One observation to keep in mind (not a defect for this test): in this scenario the customer is charged for more than the existing items — the clamp protects the stock counter, not the customer. Test 040 only asserts the clamping, which works, so PASS is legitimate.
 </details>
 
 #### 1.6 Order Confirmation and Order History
