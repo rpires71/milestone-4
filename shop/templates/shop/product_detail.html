@@ -35,7 +35,7 @@
       {% endwith %}
     </div>
 
-    <!-- RIGHT: details + add to cart -->
+    <!-- RIGHT: details + add to basket -->
     <div class="col-lg-6">
       <h1 class="mb-1">{{ product.name }}</h1>
       {% if product.brand %}
@@ -71,7 +71,7 @@
           <div class="input-group mb-3" style="max-width: 220px;">
             <input type="number" id="quantity" name="quantity" value="1" min="1"
                    max="{{ product.stock }}" class="form-control" aria-label="Quantity">
-            <button type="submit" class="btn btn-danger">Add to Cart</button>
+            <button type="submit" class="btn btn-danger">Add to Basket</button>
           </div>
           <input type="hidden" name="redirect_url" value="{{ request.path }}">
         </form>
