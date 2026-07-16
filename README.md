@@ -6120,10 +6120,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 056 | Reject blank required fields | Error summary and field-level validation displayed; no changes saved | ☐ | |
+| 056 | Reject blank required fields | Error summary and field-level validation displayed; no changes saved | PASS | Submitted the plan form with blank required fields - error summary and field-level messages displayed; confirmed no record was created or changed |
 
 <details>
 <summary>📸 Evidence for 056 (click to expand)</summary>
+<img width="990" height="835" alt="image" src="https://github.com/user-attachments/assets/3b7f8b7a-ebc4-4d84-b382-947f6590edec" />
+<img width="985" height="844" alt="image" src="https://github.com/user-attachments/assets/b4f2b53c-9d08-46b9-8d5f-9a013afafeed" />
+<img width="987" height="653" alt="image" src="https://github.com/user-attachments/assets/a356ecd3-e782-466c-b96e-30756509c279" />
+<img width="1030" height="402" alt="image" src="https://github.com/user-attachments/assets/12f0ccdd-505e-4f83-be24-e8ad50eda8e5" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
