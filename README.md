@@ -5988,10 +5988,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 045 | Open an order from "My Account" | Button opens the selected order for the logged-in owner only | ☐ | |
+| 045 | Open an order from "My Account" | Button opens the selected order for the logged-in owner only | PASS | Opened an order from "My Account" and button opens the selected order for the logged-in owner only |
 
 <details>
 <summary>📸 Evidence for 045 (click to expand)</summary>
+<img width="1004" height="713" alt="image" src="https://github.com/user-attachments/assets/592684cc-4575-4fd8-b635-a1c2a5e86b27" />
+<img width="1007" height="635" alt="image" src="https://github.com/user-attachments/assets/bae4ca9e-5c1e-44ff-96c8-1d6b9b4ef493" />
+<img width="1005" height="871" alt="image" src="https://github.com/user-attachments/assets/aa22ecfe-8b4f-4405-928b-5a3ba8818347" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
