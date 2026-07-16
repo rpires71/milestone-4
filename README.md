@@ -5821,10 +5821,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 030 | Remove an item from the basket | Product removed successfully with confirmation feedback | ☐ | |
+| 030 | Remove an item from the basket | Product removed successfully with confirmation feedback | PASS | Removed an item from the basket and product removed successfully with confirmation feedback  |
 
 <details>
 <summary>📸 Evidence for 030 (click to expand)</summary>
+<img width="1004" height="596" alt="image" src="https://github.com/user-attachments/assets/c5965828-f3e0-428b-831a-a018a293f4e6" />
+<img width="987" height="543" alt="image" src="https://github.com/user-attachments/assets/a7d899b3-7a21-4f6d-835d-f85f15022b2a" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
