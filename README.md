@@ -5831,10 +5831,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 031 | Display an empty basket | "Your basket is empty" message displayed together with a link to browse products | ☐ | |
+| 031 | Display an empty basket | "Your basket is empty" message displayed together with a link to browse products | PASS | Empty basket and "Your basket is empty" message displayed together with a link to browse products  |
 
 <details>
 <summary>📸 Evidence for 031 (click to expand)</summary>
+<img width="1064" height="785" alt="image" src="https://github.com/user-attachments/assets/3949ec6c-4f06-4b06-841f-08f1790ee86c" />
+<img width="1009" height="744" alt="image" src="https://github.com/user-attachments/assets/86a83fd9-38c3-422a-a921-15006884ff8d" />
 </details>
 
 
