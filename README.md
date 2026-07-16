@@ -5899,10 +5899,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 037 | Submit an invalid email address | Field displays "Enter a valid email address." validation message | ☐ | |
+| 037 | Submit an invalid email address | Field displays "Enter a valid email address." validation message | PASS | Submitted an invalid email address and as a result the field displayed "Enter a valid email address." validation message |
 
 <details>
 <summary>📸 Evidence for 037 (click to expand)</summary>
+<img width="1008" height="839" alt="image" src="https://github.com/user-attachments/assets/29703d43-4727-4cc7-b76b-750e8a4895a8" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
