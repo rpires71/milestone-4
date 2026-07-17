@@ -6315,10 +6315,15 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 071 | Prevent visitors from accessing plan management | Anonymous requests to `/plans/manage/` return HTTP 403 | ☐ | Automated: `test_non_staff_gets_403` |
+| 071 | Prevent visitors from accessing plan management | Anonymous requests to `/plans/manage/` return HTTP 403 | PASS | Automated: `test_non_staff_gets_403` — all four management URLs (list, create, edit, archive) return HTTP 403 for anonymous requests; deliberately a refusal rather than a login redirect |
 
 <details>
 <summary>📸 Evidence for 071 (click to expand)</summary>
+<img width="637" height="397" alt="image" src="https://github.com/user-attachments/assets/a4c4008f-ecf7-4cbf-ab13-1927a4991e4c" />
+<img width="632" height="286" alt="image" src="https://github.com/user-attachments/assets/45a9ff26-c688-482f-986e-75eee43a9a59" />
+<img width="666" height="302" alt="image" src="https://github.com/user-attachments/assets/58f57d87-960a-48da-a590-e575b2d319a9" />
+<img width="1063" height="333" alt="image" src="https://github.com/user-attachments/assets/46471f27-e3ac-4d43-832d-19bb0f0af8c2" />
+<img width="551" height="200" alt="image" src="https://github.com/user-attachments/assets/1d7e1202-9eb8-4b4b-9c1a-7574acf88982" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
