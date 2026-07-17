@@ -6358,14 +6358,18 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1032" height="847" alt="image" src="https://github.com/user-attachments/assets/708b15eb-f78a-422a-b261-59f868b88232" />
 <img width="474" height="114" alt="image" src="https://github.com/user-attachments/assets/07ca370d-380a-41a2-b590-43360b25010d" />
 <img width="993" height="766" alt="image" src="https://github.com/user-attachments/assets/e1d37fb4-c9d2-4b9e-8f82-d993e064a8cf" />
+<img width="987" height="763" alt="image" src="https://github.com/user-attachments/assets/52119490-c353-48fd-8a9b-d22ddb923a47" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 075 | Submit a webhook request with an invalid signature | Forged request to `/orders/wh/` returns HTTP 400 and no order is created | ☐ | Automated: `test_bad_signature_rejected` |
-
+| 075 | Submit a webhook request with an invalid signature | Forged request to `/orders/wh/` returns HTTP 400 and no order is created | PASS | Automated: `test_bad_signature_rejected` — forged POSTs to the live endpoint with an invalid signature and with no signature header both returned HTTP 400 ("Invalid signature") and no order was created |
 <details>
 <summary>📸 Evidence for 075 (click to expand)</summary>
+<img width="1096" height="350" alt="image" src="https://github.com/user-attachments/assets/85322308-b958-489b-934c-8dc666b0f9ff" />
+<img width="1102" height="187" alt="image" src="https://github.com/user-attachments/assets/c613126e-0419-47d6-9edf-02184def25b4" />
+<img width="1109" height="155" alt="image" src="https://github.com/user-attachments/assets/5200e01d-a576-4fad-ab01-a6b8300df4b2" />
+<img width="381" height="493" alt="image" src="https://github.com/user-attachments/assets/40c1f220-cc0a-49f8-b7bc-e3514c85d698" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
