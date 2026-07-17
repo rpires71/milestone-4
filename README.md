@@ -6494,10 +6494,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 083 | 4242 with incorrect CVC format | Validate card details on the client side | Stripe Elements displays an inline validation error while the user enters card details | ☐ | |
-
+| 083 | 4242 with incorrect CVC format | Validate card details on the client side | Stripe Elements displays an inline validation error while the user enters card details | PASS | Incomplete CVC produced an immediate inline "security code is incomplete" error from Stripe Elements without any server contact; the element also blocks non-numeric input, and submission is refused while the error stands |
 <details>
 <summary>📸 Evidence for 083 (click to expand)</summary>
+<img width="903" height="370" alt="image" src="https://github.com/user-attachments/assets/06c64afc-574d-4b6e-89d9-4dd12f5f8c32" />
+<img width="910" height="484" alt="image" src="https://github.com/user-attachments/assets/a472d850-977d-4fc0-80e5-8ff91f49c3b4" />
+<img width="892" height="853" alt="image" src="https://github.com/user-attachments/assets/7009a611-96e1-42fa-b96e-67308cac74b5" />
 </details>
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
