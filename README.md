@@ -6418,15 +6418,26 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1230" height="627" alt="image" src="https://github.com/user-attachments/assets/c504bca5-7538-4593-aaef-864a7d48e047" />
 
   **NOTE:**
-  #### Branded 404 renders on production (custom error templates only render when DEBUG=False, so this is direct evidence); DEBUG derives from the DEVELOPMENT env var's presence, absent from Heroku config vars; production 500s during defects D9/D10 showed the plain server error page with no stack trace
+  Branded 404 renders on production (custom error templates only render when DEBUG=False, so this is direct evidence); DEBUG derives from the DEVELOPMENT env var's presence, absent from Heroku config vars; production 500s during defects D9/D10 showed the plain server error page with no stack trace
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 079 | Verify payment card details never reach the server | Card information handled exclusively by the Stripe Elements iframe; no payment fields included in Django POST requests | ☐ | Architecture-level verification; confirm no card data is submitted to Django |
+| 079 | Verify payment card details never reach the server | Card information handled exclusively by the Stripe Elements iframe; no payment fields included in Django POST requests | PASS | Verified at both layers: card inputs render inside a js.stripe.com iframe isolated from the page DOM, and DevTools network capture of a live checkout shows card data posted only to api.stripe.com (PaymentIntent confirm), while the Django checkout POST carries just the CSRF token, client_secret reference and delivery fields; a network-wide search for the test card number matches Stripe requests only |
 
 <details>
 <summary>📸 Evidence for 079 (click to expand)</summary>
+<img width="498" height="197" alt="image" src="https://github.com/user-attachments/assets/5f299bb4-b718-4bbd-944f-d8b52d6e466c" />
+<img width="1099" height="887" alt="image" src="https://github.com/user-attachments/assets/05ebfbf4-6194-45b0-b13b-6dbec1b05559" />
+<img width="163" height="657" alt="image" src="https://github.com/user-attachments/assets/f17a63e0-6c9e-43eb-8fc2-ad9e32735409" />
+<img width="355" height="703" alt="image" src="https://github.com/user-attachments/assets/3fcda507-42e1-405a-9f55-c02d0c1fe68c" />
+<img width="575" height="722" alt="image" src="https://github.com/user-attachments/assets/6e30c4e5-4846-4def-9385-c0236d780eca" />
+<img width="1694" height="938" alt="image" src="https://github.com/user-attachments/assets/54edc2d5-9af6-445a-8583-bfe27ebff739" />
+<img width="940" height="817" alt="image" src="https://github.com/user-attachments/assets/b0949738-936f-4234-9029-f3f7ac8bbc13" />
+<img width="752" height="723" alt="image" src="https://github.com/user-attachments/assets/e9bdbfdf-99ac-4730-af5a-98169b7acc25" />
+<img width="772" height="564" alt="image" src="https://github.com/user-attachments/assets/97ab8513-e785-4107-bec8-eb41c67173df" />
+<img width="767" height="540" alt="image" src="https://github.com/user-attachments/assets/e265d4e0-f0ec-4fcc-a303-0b92a3e3be6c" />
+<img width="753" height="367" alt="image" src="https://github.com/user-attachments/assets/a00bde41-21cb-4a42-8728-bc322aa57b13" />
 </details>
 
 ---
