@@ -6328,10 +6328,14 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 072 | Prevent non-staff members from accessing plan management | Authenticated non-staff users receive HTTP 403 across all four management routes, including direct URL access | ☐ | Automated: `test_non_staff_gets_403` |
+| 072 | Prevent non-staff members from accessing plan management | Authenticated non-staff users receive HTTP 403 across all four management routes, including direct URL access | PASS | Automated: `test_non_staff_gets_403` — all four management URLs return HTTP 403 for a logged-in non-staff member; authentication alone grants no access, only staff status |
 
 <details>
 <summary>📸 Evidence for 072 (click to expand)</summary>
+<img width="520" height="143" alt="image" src="https://github.com/user-attachments/assets/a2c8dac4-b449-4d39-8426-39532cd6f853" />
+<img width="596" height="254" alt="image" src="https://github.com/user-attachments/assets/18f46f93-6854-499a-967e-b784d196ae79" />
+<img width="649" height="154" alt="image" src="https://github.com/user-attachments/assets/3a1bbf70-a9df-4bbb-911f-d94ffdf84fc6" />
+<img width="691" height="149" alt="image" src="https://github.com/user-attachments/assets/8f30e5dd-763b-4fc6-b60b-006885644fd7" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
