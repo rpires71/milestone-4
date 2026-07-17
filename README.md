@@ -6305,10 +6305,12 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 070 | Attempt to access another user's order details | Request returns a 404 response, preventing data disclosure | ☐ | Automated: `test_detail_ownership_guard_404` |
+| 070 | Attempt to access another user's order details | Request returns a 404 response, preventing data disclosure | PASS | Automated: `test_detail_ownership_guard_404` — direct URL access to another user's order returns the branded 404, identical to a nonexistent order, so the response does not disclose whether the order exists |
 
 <details>
 <summary>📸 Evidence for 070 (click to expand)</summary>
+<img width="1298" height="880" alt="image" src="https://github.com/user-attachments/assets/0cffdd11-96a9-46ed-bfe9-e1e14d443e94" />
+<img width="1411" height="647" alt="image" src="https://github.com/user-attachments/assets/b465907a-61ad-4760-9359-2ae985d25656" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
