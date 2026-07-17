@@ -6234,10 +6234,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 065 | Submit a product review with a rating | Review displayed on the relevant product page | ☐ | |
+| 065 | Submit a product review with a rating | Review displayed on the relevant product page | PASS | Submitted reviews with ratings on two products from different accounts - each review displayed on its own product page with username, star rating, comment and date, with no leakage to other products |
 
 <details>
 <summary>📸 Evidence for 065 (click to expand)</summary>
+<img width="879" height="640" alt="image" src="https://github.com/user-attachments/assets/281d302e-bd48-436d-a033-4789048bb32f" />
+<img width="894" height="337" alt="image" src="https://github.com/user-attachments/assets/3a1e63bb-db3c-4dc3-85a4-7dfb87e60aa2" />
+<img width="894" height="687" alt="image" src="https://github.com/user-attachments/assets/496e6c5e-9f66-4cdf-93ef-dd9f79a41fe5" />
+<img width="936" height="529" alt="image" src="https://github.com/user-attachments/assets/eee11545-60d2-4b0f-ad37-bc09bd43917a" />
+<img width="919" height="344" alt="image" src="https://github.com/user-attachments/assets/181202a7-db28-4e24-b780-d96dec8d53c7" />
+<img width="883" height="682" alt="image" src="https://github.com/user-attachments/assets/a5f8d445-5a79-4178-baea-71ff5811cf0c" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
