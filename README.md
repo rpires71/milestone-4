@@ -6351,10 +6351,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 074 | Attempt to delete another user's product review | Action prevented successfully | ☐ | Automated: `test_user_cannot_delete_another_users_review` |
+| 074 | Attempt to delete another user's product review | Action prevented successfully | PASS | Automated: `test_user_cannot_delete_another_users_review` — no delete controls shown on another user's review, and direct URL access redirected to the product page with a "You can only delete your own reviews." error, the review remaining intact; the automated test additionally confirms a forced POST leaves it in the database |
 
 <details>
 <summary>📸 Evidence for 074 (click to expand)</summary>
+<img width="1032" height="847" alt="image" src="https://github.com/user-attachments/assets/708b15eb-f78a-422a-b261-59f868b88232" />
+<img width="474" height="114" alt="image" src="https://github.com/user-attachments/assets/07ca370d-380a-41a2-b590-43360b25010d" />
+<img width="993" height="766" alt="image" src="https://github.com/user-attachments/assets/e1d37fb4-c9d2-4b9e-8f82-d993e064a8cf" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
