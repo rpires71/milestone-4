@@ -6292,10 +6292,15 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 069 | Verify users can view only their own orders | Orders belonging to other users are never displayed | ☐ | Automated: `test_history_lists_own_orders_only` |
+| 069 | Verify users can view only their own orders | Orders belonging to other users are never displayed | PASS | Automated: `test_history_lists_own_orders_only` — second account's history shows only its own orders, and direct URL access to another user's order returns the branded 404; also completes the manual ownership verification referenced in 045 |
 
 <details>
 <summary>📸 Evidence for 069 (click to expand)</summary>
+<img width="887" height="626" alt="image" src="https://github.com/user-attachments/assets/cafff150-5103-406c-86eb-37691412eceb" />
+<img width="994" height="779" alt="image" src="https://github.com/user-attachments/assets/2ba28956-7c5b-4a9b-908d-408185c34b83" />
+<img width="1402" height="776" alt="image" src="https://github.com/user-attachments/assets/7e46e31d-e209-4238-ab1a-695f3b52063a" />
+<img width="1337" height="873" alt="image" src="https://github.com/user-attachments/assets/d48196f3-df1f-4242-bb5f-16af1d99e19e" />
+<img width="1467" height="658" alt="image" src="https://github.com/user-attachments/assets/4a22c0fd-d6fd-4adf-9f31-7bd0b0d62c0c" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
