@@ -6374,10 +6374,19 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 076 | Verify CSRF protection on application forms | All forms include CSRF tokens; POST requests without a valid token are rejected | ☐ | Protected by Django middleware; the webhook is intentionally `csrf_exempt` because Stripe's signed webhook provides the authenticity guarantee instead of CSRF protection |
+| 076 | Verify CSRF protection on application forms | All forms include CSRF tokens; POST requests without a valid token are rejected | PASS | CSRF tokens confirmed in form markup across the application; POSTs without a valid token rejected with HTTP 403 by Django middleware. The webhook is intentionally `csrf_exempt` because Stripe's signed webhook provides the authenticity guarantee instead - demonstrated in row 075, where an unsigned POST returned 400 via signature verification rather than a CSRF 403 |
 
 <details>
 <summary>📸 Evidence for 076 (click to expand)</summary>
+<img width="1797" height="559" alt="image" src="https://github.com/user-attachments/assets/bb326330-280d-4934-8fe3-13e95847510f" />
+<img width="1766" height="948" alt="image" src="https://github.com/user-attachments/assets/04aeba74-bb8e-4cc2-9b53-58d6cca4f647" />
+<img width="1806" height="963" alt="image" src="https://github.com/user-attachments/assets/60366458-bfc3-43ea-8d0c-1e6f064cb11b" />
+<img width="1110" height="154" alt="image" src="https://github.com/user-attachments/assets/8cc34f1a-8a31-4b3c-86f4-b9c69e75c56a" />
+<img width="895" height="308" alt="image" src="https://github.com/user-attachments/assets/ef7c7e4c-692b-4c34-9ecd-6c3958e6c94f" />
+<img width="515" height="67" alt="image" src="https://github.com/user-attachments/assets/f30f0dd3-3e56-4574-9f07-e56265060392" />
+<img width="1099" height="699" alt="image" src="https://github.com/user-attachments/assets/581c08f7-803f-4e66-9d71-f6bfdb72a668" />
+<img width="480" height="138" alt="image" src="https://github.com/user-attachments/assets/eaf1d8f2-4d34-49db-be60-d6f19702491a" />
+<img width="1092" height="146" alt="image" src="https://github.com/user-attachments/assets/eb456704-a086-4677-81be-a05225dfe8be" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
