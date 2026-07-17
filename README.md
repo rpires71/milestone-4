@@ -6464,12 +6464,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 081 | 4000 0000 0000 0002 | Attempt payment with a declined card | "Your card was declined." message displayed; payment form re-enabled; no order generated | ☐ | |
-
-
+| 081 | 4000 0000 0000 0002 | Attempt payment with a declined card | "Your card was declined." message displayed; payment form re-enabled; no order generated | PASS | Declined card surfaced the "Your card was declined." message inline on the checkout page; the form re-enabled and a retry with the success card completed normally; the declined attempt generated no order, confirmed in admin, and shows as Failed in the Stripe Dashboard |
 
 <details>
 <summary>📸 Evidence for 081 (click to expand)</summary>
+<img width="920" height="736" alt="image" src="https://github.com/user-attachments/assets/6c17e4a3-726b-4807-a881-56f2104bea9d" />
+<img width="912" height="477" alt="image" src="https://github.com/user-attachments/assets/86a5928c-4973-4a44-aa40-2830d635b741" />
+<img width="904" height="826" alt="image" src="https://github.com/user-attachments/assets/24f88e40-5cab-4150-8c45-0b187a7dcb5a" />
+<img width="564" height="557" alt="image" src="https://github.com/user-attachments/assets/b0c8dd87-759c-4772-b244-2450da4df76f" />
+<img width="918" height="301" alt="image" src="https://github.com/user-attachments/assets/cca7f6a3-1db6-4da7-a5b5-337f680f19a0" />
+<img width="1168" height="302" alt="image" src="https://github.com/user-attachments/assets/a89319ed-e931-4fbf-ab9d-bc8f6a12935d" />
+<img width="1307" height="808" alt="image" src="https://github.com/user-attachments/assets/b92041d3-14d6-4be3-b91a-32135a3af017" />
 </details>
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
