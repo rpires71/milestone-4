@@ -6243,15 +6243,21 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="894" height="687" alt="image" src="https://github.com/user-attachments/assets/496e6c5e-9f66-4cdf-93ef-dd9f79a41fe5" />
 <img width="936" height="529" alt="image" src="https://github.com/user-attachments/assets/eee11545-60d2-4b0f-ad37-bc09bd43917a" />
 <img width="919" height="344" alt="image" src="https://github.com/user-attachments/assets/181202a7-db28-4e24-b780-d96dec8d53c7" />
-<img width="883" height="682" alt="image" src="https://github.com/user-attachments/assets/a5f8d445-5a79-4178-baea-71ff5811cf0c" />
+<img width="665" height="540" alt="image" src="https://github.com/user-attachments/assets/d977ea47-ae5a-4e1b-96f3-ea71cc70deb3" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 066 | Reject an invalid review rating | Validation error displayed for ratings outside the permitted range | ☐ | Automated: `test_rating_too_high_is_invalid` |
+| 066 | Reject an invalid review rating | Validation error displayed for ratings outside the permitted range | PASS | Automated: `test_rating_too_high_is_invalid` — bypassed the browser's min/max via DevTools and submitted out-of-range ratings; server-side validation rejected them with a field error and no review was saved |
 
 <details>
 <summary>📸 Evidence for 066 (click to expand)</summary>
+<img width="901" height="246" alt="image" src="https://github.com/user-attachments/assets/a5a55b86-b812-4f28-96c4-5435be6a67eb" />
+<img width="905" height="248" alt="image" src="https://github.com/user-attachments/assets/76027dbc-b927-4b74-a34f-344b25fac9b8" />
+<img width="894" height="245" alt="image" src="https://github.com/user-attachments/assets/72550887-74c2-4230-88c1-21141e7181d5" />
+<img width="1589" height="344" alt="image" src="https://github.com/user-attachments/assets/7133be44-4ee4-4228-97fa-802e98ff95c8" />
+<img width="554" height="124" alt="image" src="https://github.com/user-attachments/assets/e4c668a4-3e62-4225-8566-4c108e86a871" />
+<img width="525" height="146" alt="image" src="https://github.com/user-attachments/assets/7db435bf-125e-4880-a3e2-2e3d97d602f3" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
