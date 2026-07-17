@@ -6504,10 +6504,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 084 | — | Prevent duplicate form submission | Submit button and Stripe card element disabled while payment is being processed | ☐ | |
+| 084 | — | Prevent duplicate form submission | Submit button and Stripe card element disabled while payment is being processed | PASS | Submit button and card element disabled for the duration of payment processing - repeat clicks during processing had no effect and exactly one order was created; captured on video |
 
 <details>
 <summary>📸 Evidence for 084 (click to expand)</summary>
+https://github.com/user-attachments/assets/71049d10-2d58-4f83-962d-7e70a038535f
 </details>
 
 #### 3.2 Stripe Webhook
