@@ -6391,10 +6391,19 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 077 | Confirm secrets are stored securely | No API keys or passwords present in the repository; `env.py` excluded from version control; Heroku Config Vars used | ☐ | Verify repository and `heroku config` |
+| 077 | Confirm secrets are stored securely | No API keys or passwords present in the repository; `env.py` excluded from version control; Heroku Config Vars used | PASS | Repository audited via git: no secret patterns in tracked files, `env.py` absent from the entire git history, history searches for real key prefixes empty (only a fake test fixture and documentation placeholders reference secret formats); all sensitive settings read from environment variables held in Heroku Config Vars. Audit surfaced an unreplaced placeholder production SECRET_KEY; full credential rotation performed and verified end-to-end |
 
 <details>
 <summary>📸 Evidence for 077 (click to expand)</summary>
+<img width="1213" height="612" alt="image" src="https://github.com/user-attachments/assets/2bfb96ca-a6e7-4fd0-a575-ad62aa5d0dfd" />
+<img width="328" height="492" alt="image" src="https://github.com/user-attachments/assets/c40bddeb-11aa-4f80-a09d-7eee67b82cdf" />
+<img width="229" height="799" alt="image" src="https://github.com/user-attachments/assets/700621a6-56c8-4c1c-bd41-ab9a8ef1e5b0" />
+<img width="1015" height="113" alt="image" src="https://github.com/user-attachments/assets/7da8944c-d5df-4bad-9cbc-32d68f309a67" />
+<img width="725" height="152" alt="image" src="https://github.com/user-attachments/assets/3e6f0a48-8e5c-4cba-9817-e4b7df249b0a" />
+<img width="690" height="124" alt="image" src="https://github.com/user-attachments/assets/756fdc35-d422-4a1a-b165-c793567c3f9c" />
+<img width="896" height="754" alt="image" src="https://github.com/user-attachments/assets/4a523a0f-6648-4968-a895-e4fdc4fa9b88" />
+<img width="1105" height="435" alt="image" src="https://github.com/user-attachments/assets/d731643d-ec4d-4b68-9eb4-c3af64764731" />
+<img width="1107" height="632" alt="image" src="https://github.com/user-attachments/assets/fbe947c5-d5a6-4853-ba8e-2e1714d1a6b0" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
@@ -6403,6 +6412,9 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 078 (click to expand)</summary>
+
+
+
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
