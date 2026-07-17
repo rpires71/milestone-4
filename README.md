@@ -6262,10 +6262,16 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 067 | Edit or delete own review | Updates saved successfully or review removed | ☐ | |
+| 067 | Edit or delete own review | Updates saved successfully or review removed | PASS | Edited own review via the pre-filled form - rating and comment both updated on the product page; deleted a review from the other account via its confirmation step and it was removed |
 
 <details>
-<summary>📸 Evidence for 066 (click to expand)</summary>
+<summary>📸 Evidence for 067 (click to expand)</summary>
+<img width="908" height="611" alt="image" src="https://github.com/user-attachments/assets/4b5fbcbd-0545-4f66-b936-324566b8a38d" />
+<img width="894" height="253" alt="image" src="https://github.com/user-attachments/assets/42be1337-3825-4ee9-94aa-b64059025306" />
+<img width="928" height="259" alt="image" src="https://github.com/user-attachments/assets/1ba6919c-8fc9-45a1-afbd-78eb9188750c" />
+<img width="886" height="656" alt="image" src="https://github.com/user-attachments/assets/313c7c57-edab-4e62-a0fc-b7fcd62ef360" />
+<img width="689" height="216" alt="image" src="https://github.com/user-attachments/assets/86a41989-a859-4d74-bab8-3445fde31025" />
+<img width="676" height="478" alt="image" src="https://github.com/user-attachments/assets/bd81a21f-2a6c-4edc-a65a-bde5ce95a67a" />
 </details>
 
 ---
