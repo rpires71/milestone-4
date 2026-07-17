@@ -33,7 +33,7 @@ DEBUG = "DEVELOPMENT" in os.environ
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'peaceful-savannah-37284-affd33509fdb.herokuapp.com',
+    'fithub-rp-90631f751ed4.herokuapp.com',
     '.herokuapp.com',
 ]
 
