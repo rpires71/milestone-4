@@ -6282,18 +6282,101 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 068 | Access order history without authentication | Anonymous users redirected to the login page | ☐ | Automated: `test_history_requires_login` |
+| 068 | Access order history without authentication | Anonymous users redirected to the login page | PASS | Automated: `test_history_requires_login` — direct URL access while logged out redirected to the login page with a next parameter, and logging in returned to the order history |
+
+<details>
+<summary>📸 Evidence for 068 (click to expand)</summary>
+<img width="1298" height="806" alt="image" src="https://github.com/user-attachments/assets/4f76ae73-84ba-4311-b816-072c38c28708" />
+<img width="1278" height="968" alt="image" src="https://github.com/user-attachments/assets/e5318de7-c03a-4862-9fa3-ede5c80faafc" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 069 | Verify users can view only their own orders | Orders belonging to other users are never displayed | ☐ | Automated: `test_history_lists_own_orders_only` |
+
+<details>
+<summary>📸 Evidence for 069 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 070 | Attempt to access another user's order details | Request returns a 404 response, preventing data disclosure | ☐ | Automated: `test_detail_ownership_guard_404` |
+
+<details>
+<summary>📸 Evidence for 070 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 071 | Prevent visitors from accessing plan management | Anonymous requests to `/plans/manage/` return HTTP 403 | ☐ | Automated: `test_non_staff_gets_403` |
+
+<details>
+<summary>📸 Evidence for 071 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 072 | Prevent non-staff members from accessing plan management | Authenticated non-staff users receive HTTP 403 across all four management routes, including direct URL access | ☐ | Automated: `test_non_staff_gets_403` |
+
+<details>
+<summary>📸 Evidence for 072 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 073 | Attempt to edit another user's community post | Action blocked successfully | ☐ | Automated: `test_user_cannot_edit_another_users_post` |
+
+<details>
+<summary>📸 Evidence for 073 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 074 | Attempt to delete another user's product review | Action prevented successfully | ☐ | Automated: `test_user_cannot_delete_another_users_review` |
+
+<details>
+<summary>📸 Evidence for 074 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 075 | Submit a webhook request with an invalid signature | Forged request to `/orders/wh/` returns HTTP 400 and no order is created | ☐ | Automated: `test_bad_signature_rejected` |
+
+<details>
+<summary>📸 Evidence for 075 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 076 | Verify CSRF protection on application forms | All forms include CSRF tokens; POST requests without a valid token are rejected | ☐ | Protected by Django middleware; the webhook is intentionally `csrf_exempt` because Stripe's signed webhook provides the authenticity guarantee instead of CSRF protection |
+
+<details>
+<summary>📸 Evidence for 076 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 077 | Confirm secrets are stored securely | No API keys or passwords present in the repository; `env.py` excluded from version control; Heroku Config Vars used | ☐ | Verify repository and `heroku config` |
+
+<details>
+<summary>📸 Evidence for 077 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 078 | Confirm `DEBUG` is disabled in production | Generic 404 and 500 error pages displayed instead of configuration details or stack traces | ☐ | |
+
+<details>
+<summary>📸 Evidence for 078 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 079 | Verify payment card details never reach the server | Card information handled exclusively by the Stripe Elements iframe; no payment fields included in Django POST requests | ☐ | Architecture-level verification; confirm no card data is submitted to Django |
+
+<details>
+<summary>📸 Evidence for 079 (click to expand)</summary>
+</details>
 
 ---
 
