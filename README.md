@@ -6340,10 +6340,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 073 | Attempt to edit another user's community post | Action blocked successfully | ☐ | Automated: `test_user_cannot_edit_another_users_post` |
+| 073 | Attempt to edit another user's community post | Action blocked successfully | PASS | Automated: `test_user_cannot_edit_another_users_post` — no edit controls shown on another user's post, and direct URL access redirected to the community list with a "You can only edit your own posts." error; the automated test additionally confirms a forced POST leaves the post unchanged |
 
 <details>
 <summary>📸 Evidence for 073 (click to expand)</summary>
+<img width="686" height="819" alt="image" src="https://github.com/user-attachments/assets/efb13a3e-343f-460e-af89-81cd91c9db9a" />
+<img width="1027" height="476" alt="image" src="https://github.com/user-attachments/assets/4391727d-5c4b-4eb7-835e-2b65ae13c169" />
+<img width="989" height="286" alt="image" src="https://github.com/user-attachments/assets/2f6b4ab4-9957-49e3-bece-360540b90847" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
