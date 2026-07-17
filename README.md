@@ -6479,10 +6479,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 082 | 4000 0025 0000 3155 | Complete 3D Secure authentication | Authentication dialogue displayed; payment succeeds after verification | ☐ | |
+| 082 | 4000 0025 0000 3155 | Complete 3D Secure authentication | Authentication dialogue displayed; payment succeeds after verification | PASS | 3D Secure challenge modal displayed on submit; completing authentication resumed the payment, which succeeded with the order created and confirmation page shown; the Stripe Dashboard records the authentication step in the payment timeline |
 
 <details>
 <summary>📸 Evidence for 082 (click to expand)</summary>
+<img width="958" height="826" alt="image" src="https://github.com/user-attachments/assets/da7e20a3-785f-4fa4-860f-26994484e7f9" />
+<img width="890" height="782" alt="image" src="https://github.com/user-attachments/assets/780daf5c-acee-42c8-b4f5-644c054c2ebf" />
+<img width="677" height="708" alt="image" src="https://github.com/user-attachments/assets/ed06ef6b-1d99-4611-9c36-4c0fd14f4575" />
+<img width="936" height="855" alt="image" src="https://github.com/user-attachments/assets/896209b2-967c-4ce0-ba0e-fe0aadb1cc20" />
+<img width="783" height="592" alt="image" src="https://github.com/user-attachments/assets/6552d3ca-10bd-46c3-9a55-2d34ffb94fcb" />
+<img width="1223" height="319" alt="image" src="https://github.com/user-attachments/assets/12a4e2b8-5559-46b0-9bab-e11e582f2f87" />
+<img width="1307" height="765" alt="image" src="https://github.com/user-attachments/assets/5795f3f2-f939-4d02-ba58-aef2c79ea897" />
 </details>
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
