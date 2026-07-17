@@ -6450,11 +6450,51 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Card | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 080 | 4242 4242 4242 4242 | Process a successful payment | Payment completed successfully; order created; confirmation page displayed | ☐ | |
+| 080 | 4242 4242 4242 4242 | Process a successful payment | Payment completed successfully; order created; confirmation page displayed | PASS | Processed a payment with the standard success card - payment completed without challenge, order created with line items, confirmation page displayed, and the payment shows as Succeeded in the Stripe Dashboard |
+
+<details>
+<summary>📸 Evidence for 080 (click to expand)</summary>
+<img width="926" height="836" alt="image" src="https://github.com/user-attachments/assets/018439c5-fdf6-467c-a63b-34b3804c80e9" />
+<img width="911" height="839" alt="image" src="https://github.com/user-attachments/assets/17e0fb52-7bc2-4508-908a-760fbb83f893" />
+<img width="914" height="875" alt="image" src="https://github.com/user-attachments/assets/b59c778e-daa5-4329-9da0-8f03153a41c2" />
+<img width="813" height="713" alt="image" src="https://github.com/user-attachments/assets/3df1ee41-846e-4704-bd93-e16b819e84f0" />
+<img width="1334" height="132" alt="image" src="https://github.com/user-attachments/assets/05ae746e-2e45-4607-80ff-80dd8ebc3a27" />
+<img width="1715" height="865" alt="image" src="https://github.com/user-attachments/assets/776b2ec6-70a7-4536-b68d-04bbf2b4ccf5" />
+</details>
+
+| Test ID | Card | Test Case | Expected Result | Status | Notes |
+|---------|------|-----------|-----------------|--------|-------|
 | 081 | 4000 0000 0000 0002 | Attempt payment with a declined card | "Your card was declined." message displayed; payment form re-enabled; no order generated | ☐ | |
+
+
+
+<details>
+<summary>📸 Evidence for 081 (click to expand)</summary>
+</details>
+
+| Test ID | Card | Test Case | Expected Result | Status | Notes |
+|---------|------|-----------|-----------------|--------|-------|
 | 082 | 4000 0025 0000 3155 | Complete 3D Secure authentication | Authentication dialogue displayed; payment succeeds after verification | ☐ | |
+
+<details>
+<summary>📸 Evidence for 082 (click to expand)</summary>
+</details>
+
+| Test ID | Card | Test Case | Expected Result | Status | Notes |
+|---------|------|-----------|-----------------|--------|-------|
 | 083 | 4242 with incorrect CVC format | Validate card details on the client side | Stripe Elements displays an inline validation error while the user enters card details | ☐ | |
+
+<details>
+<summary>📸 Evidence for 083 (click to expand)</summary>
+</details>
+
+| Test ID | Card | Test Case | Expected Result | Status | Notes |
+|---------|------|-----------|-----------------|--------|-------|
 | 084 | — | Prevent duplicate form submission | Submit button and Stripe card element disabled while payment is being processed | ☐ | |
+
+<details>
+<summary>📸 Evidence for 084 (click to expand)</summary>
+</details>
 
 #### 3.2 Stripe Webhook
 
