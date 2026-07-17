@@ -6408,13 +6408,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 078 | Confirm `DEBUG` is disabled in production | Generic 404 and 500 error pages displayed instead of configuration details or stack traces | ☐ | |
+| 078 | Confirm `DEBUG` is disabled in production | Generic 404 and 500 error pages displayed instead of configuration details or stack traces | PASS | Branded 404 renders on production, which is direct evidence of DEBUG=False since custom error templates only render then; DEBUG derives from the DEVELOPMENT env var's presence, absent from Heroku config; production 500s during D9/D10 showed the plain server error page with no stack trace |
 
 <details>
 <summary>📸 Evidence for 078 (click to expand)</summary>
+<img width="1298" height="537" alt="image" src="https://github.com/user-attachments/assets/55e4e886-1528-4d2a-8bab-e0de36161a8a" />
+<img width="1404" height="979" alt="image" src="https://github.com/user-attachments/assets/f85e5cc4-b029-4920-ae12-7b88e562e850" />
+<img width="745" height="253" alt="image" src="https://github.com/user-attachments/assets/d2e07662-fe4a-47f2-9880-dceb5fbc7d99" />
+<img width="1230" height="627" alt="image" src="https://github.com/user-attachments/assets/c504bca5-7538-4593-aaef-864a7d48e047" />
 
-
-
+  **NOTE:**
+  #### Branded 404 renders on production (custom error templates only render when DEBUG=False, so this is direct evidence); DEBUG derives from the DEVELOPMENT env var's presence, absent from Heroku config vars; production 500s during defects D9/D10 showed the plain server error page with no stack trace
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
