@@ -6508,18 +6508,53 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 084 (click to expand)</summary>
-https://github.com/user-attachments/assets/71049d10-2d58-4f83-962d-7e70a038535f
+<video src="https://github.com/user-attachments/assets/71049d10-2d58-4f83-962d-7e70a038535f" controls width="700"></video>
 </details>
 
 #### 3.2 Stripe Webhook
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 085 | Receive webhook events on the local endpoint (Stripe CLI) | `stripe trigger payment_intent.succeeded` successfully delivered; server logs `POST /orders/wh/ 200` | PASS | Confirmed during development through multiple successful `stripe listen` forwarding events |
+| 085 | Receive webhook events on the local endpoint (Stripe CLI) | `stripe trigger payment_intent.succeeded` successfully delivered; server logs `POST /orders/wh/ 200` | PASS | Verified live: stripe listen forwarded all four triggered events (payment_intent.created/succeeded, charge.succeeded/updated) to the local endpoint with [200] responses, matched by POST /orders/wh/ 200 in the dev server log. Setup surfaced two real issues along the way: the CLI's cached pre-rotation API key had expired (refreshed via stripe login), and a stray leading character in the local signing secret caused signature-verification 400s until diagnosed by checking the loaded value's length |
+
+<details>
+<summary>📸 Evidence for 085 (click to expand)</summary>
+<img width="1110" height="176" alt="image" src="https://github.com/user-attachments/assets/2180f88e-ae7b-4896-93c2-d1e142535375" />
+<img width="1091" height="366" alt="image" src="https://github.com/user-attachments/assets/7f516bf3-6301-41a4-94d4-d7a71a72f436" />
+<img width="1108" height="337" alt="image" src="https://github.com/user-attachments/assets/9fa98b10-b87f-4b86-83f2-980a40c9c735" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 086 | Receive webhook events on the production endpoint (Heroku) | Stripe Workbench records successful event delivery (HTTP 200) following a live test checkout | PASS | Verified through Heroku router logs showing `POST /orders/wh/ 200` requests from Stripe |
+
+<details>
+<summary>📸 Evidence for 086 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 087 | Verify webhook idempotency | Replayed webhook event does not create a duplicate order | ☐ | Automated: `test_duplicate_event_is_idempotent` |
+
+<details>
+<summary>📸 Evidence for 087 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 088 | Skip webhook processing when checkout has already created the order | Existing order retained; duplicate order not created; stock deducted only once | ☐ | Automated: `test_webhook_skips_when_order_already_exists` |
+
+<details>
+<summary>📸 Evidence for 088 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 089 | Create an order when checkout does not complete | Order reconstructed from `PaymentIntent` metadata with accurate details and correct stock deduction | ☐ | Automated: `test_valid_event_creates_order` — provides protection if the browser is closed immediately after payment |
+
+<details>
+<summary>📸 Evidence for 089 (click to expand)</summary>
+</details>
 
 #### 3.3 Email Integration
 
