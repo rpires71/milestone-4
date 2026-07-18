@@ -6552,10 +6552,22 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 088 | Skip webhook processing when checkout has already created the order | Existing order retained; duplicate order not created; stock deducted only once | ☐ | Automated: `test_webhook_skips_when_order_already_exists` |
+| 088 | Skip webhook processing when checkout has already created the order | Existing order retained; duplicate order not created; stock deducted only once | PASS | Automated: `test_webhook_skips_when_order_already_exists` — fresh live purchase: checkout created the single order with its PaymentIntent id recorded, the subsequent webhook delivery arrived and returned 200 having skipped creation (Heroku logs show the Stripe POST), and stock reduced exactly once with no double deduction |
 
 <details>
 <summary>📸 Evidence for 088 (click to expand)</summary>
+<img width="683" height="652" alt="image" src="https://github.com/user-attachments/assets/d3e71d6e-3f6e-4532-adf8-682843071e79" />
+<img width="255" height="377" alt="image" src="https://github.com/user-attachments/assets/81738aa3-ac35-4cff-9043-1db8c94e9acc" />
+<img width="1061" height="394" alt="image" src="https://github.com/user-attachments/assets/24fff891-c7b9-4557-9b7a-2f1bf3972596" />
+<img width="1069" height="907" alt="image" src="https://github.com/user-attachments/assets/21f6bb2b-7268-467f-b828-c05517813350" />
+<img width="1489" height="994" alt="image" src="https://github.com/user-attachments/assets/8f957b63-ed09-4204-8ca2-03e900af4c13" />
+<img width="1113" height="417" alt="image" src="https://github.com/user-attachments/assets/147ca650-c6f2-4902-b821-d3990a4217cb" />
+<img width="1618" height="606" alt="image" src="https://github.com/user-attachments/assets/cfaa4c4e-2286-4dc4-ad2b-168969f449f8" />
+<img width="1032" height="319" alt="image" src="https://github.com/user-attachments/assets/a425b58f-4a3a-4639-b65e-fd7c12378832" />
+<img width="1351" height="759" alt="image" src="https://github.com/user-attachments/assets/fb9e35c7-fc4d-4170-ad3d-ae66bb2ce6e3" />
+<img width="736" height="643" alt="image" src="https://github.com/user-attachments/assets/051c6e3e-db1b-4445-a9bc-a9e65422dada" />
+<img width="1185" height="531" alt="image" src="https://github.com/user-attachments/assets/3aeb23e9-bdf3-4870-9321-a12aebd45694" />
+<img width="445" height="732" alt="image" src="https://github.com/user-attachments/assets/31f2e7cd-93d4-450b-b164-c3fb0847e398" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
