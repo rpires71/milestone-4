@@ -6537,10 +6537,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 087 | Verify webhook idempotency | Replayed webhook event does not create a duplicate order | ☐ | Automated: `test_duplicate_event_is_idempotent` |
+| 087 | Verify webhook idempotency | Replayed webhook event does not create a duplicate order | PASS | Automated: `test_duplicate_event_is_idempotent` — replayed a real production payment_intent.succeeded event (£92.96 order) via Workbench's manual Resend; the redelivery returned 200, and a production shell query confirmed the order count for that PaymentIntent remained exactly one. The proof is the database count rather than the response code, since the handler correctly acknowledges replays with 200 |
 
 <details>
 <summary>📸 Evidence for 087 (click to expand)</summary>
+<img width="928" height="517" alt="image" src="https://github.com/user-attachments/assets/15899f7b-2978-470f-8b9d-55413d98c0f2" />
+<img width="920" height="283" alt="image" src="https://github.com/user-attachments/assets/37360d5d-89ba-43ca-84de-f32a925894ac" />
+<img width="351" height="614" alt="image" src="https://github.com/user-attachments/assets/01319902-0b02-441f-9f83-18ae9130ac69" />
+<img width="1851" height="484" alt="image" src="https://github.com/user-attachments/assets/597b658b-e457-4b94-acf4-7015cd0a2a75" />
+<img width="897" height="538" alt="image" src="https://github.com/user-attachments/assets/393bce56-c212-4c55-af9e-f4c08efd0bf6" />
+<img width="321" height="630" alt="image" src="https://github.com/user-attachments/assets/270280d4-e469-4d5f-ae4c-c617b80b1c39" />
+<img width="1096" height="201" alt="image" src="https://github.com/user-attachments/assets/ebed3d2a-7954-40cc-a8cf-f430f2a9d89c" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
