@@ -6526,10 +6526,13 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 086 | Receive webhook events on the production endpoint (Heroku) | Stripe Workbench records successful event delivery (HTTP 200) following a live test checkout | PASS | Verified through Heroku router logs showing `POST /orders/wh/ 200` requests from Stripe |
+| 086 | Receive webhook events on the production endpoint (Heroku) | Stripe Workbench records successful event delivery (HTTP 200) following a live test checkout | PASS | Stripe Workbench's delivery log shows 200 OK for payment_intent.succeeded events from live test checkouts, corroborated by Heroku router logs recording the matching POST /orders/wh/ 200 requests |
 
 <details>
 <summary>📸 Evidence for 086 (click to expand)</summary>
+<img width="943" height="728" alt="image" src="https://github.com/user-attachments/assets/9d5768f4-5b7a-4ace-baa3-5f4bcca69134" />
+<img width="783" height="286" alt="image" src="https://github.com/user-attachments/assets/b25ff889-8672-4285-9959-7711b297eb2d" />
+<img width="892" height="607" alt="image" src="https://github.com/user-attachments/assets/ce090d3e-570d-4863-8ad8-14082b2ef69a" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
