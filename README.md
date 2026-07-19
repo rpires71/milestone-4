@@ -6634,7 +6634,7 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1004" height="809" alt="image" src="https://github.com/user-attachments/assets/93d9489b-02af-4731-a393-54c251209312" />
 <img width="1070" height="513" alt="image" src="https://github.com/user-attachments/assets/cb255584-03e1-49ce-ae3d-0903a81769fa" />
 <img width="1856" height="478" alt="image" src="https://github.com/user-attachments/assets/f830c082-3666-45d3-86b4-55d45919658b" />
-<img width="1080" height="304" alt="image" src="https://github.com/user-attachments/assets/1fca394c-dd8f-4df0-a8be-f13b80afc526" />
+<img width="1428" height="408" alt="image" src="https://github.com/user-attachments/assets/eced146e-e06d-4955-bddb-ddc87f07fc78" />
 <img width="1314" height="530" alt="image" src="https://github.com/user-attachments/assets/369cefbe-76fe-4237-8fa6-4d767bf7c0ec" />
 <img width="1354" height="761" alt="image" src="https://github.com/user-attachments/assets/e1b03384-6ecb-414e-b305-602214e33eab" />
 <img width="1330" height="789" alt="image" src="https://github.com/user-attachments/assets/7969ab0f-d592-43ae-b443-44d0796434b1" />
@@ -6655,14 +6655,85 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 093 | Verify consistent navigation across the website | Navigation links function correctly; active page indicators are visible; basket counter updates accurately | ☐ | |
+| 093 | Verify consistent navigation across the website | Navigation links function correctly; active page indicators are visible; basket counter updates accurately | PASS | Navigation verified across all three auth states (logged out, member, staff): links function correctly, the active page indicator reflects the current section, and the basket counter updates accurately as items are added, adjusted and removed |
+
+<details>
+<summary>📸 Evidence for 093 - Logged out</summary>
+<video src="https://github.com/user-attachments/assets/2d0a0419-7e32-48af-a7a3-462c216e2cc1" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 093 - Logged in as member</summary>
+<video src="https://github.com/user-attachments/assets/c400db5e-1973-45d8-8d02-8d449254b3b8" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 093 - Logged in as staff</summary>
+<video src="https://github.com/user-attachments/assets/25631ab3-81c4-4f97-8e28-433167911d97" controls width="700"></video>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 094 | Confirm breadcrumb navigation on secondary pages | Shop, checkout, order confirmation, order history and management pages display accurate breadcrumb trails | ☐ | |
+
+<details>
+<summary>📸 Evidence for 094 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 095 | Display user feedback for all key actions | Visible feedback messages shown for adding, updating or removing basket items, placing orders, saving or archiving plans, and authentication errors | ☐ | |
+
+<details>
+<summary>📸 Evidence for 095 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 096 | Verify consistent typographic hierarchy | Each page contains a single H1 heading; heading levels follow the correct sequence; font sizes remain clear and readable | ☐ | |
+
+<details>
+<summary>📸 Evidence for 096 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 097 | Ensure buttons and links use descriptive labels | Generic phrases such as "click here" are avoided; order links identify the specific order (e.g. "View order FH-…") | ☐ | |
+
+<details>
+<summary>📸 Evidence for 097 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 098 | Preserve form data after validation errors | Previously entered values remain populated when a form is redisplayed following validation failures | ☐ | |
+
+<details>
+<summary>📸 Evidence for 098 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 099 | Verify helpful empty-state pages | Empty basket, order history and Manage Plans pages provide clear guidance and an appropriate next action | ☐ | |
+
+<details>
+<summary>📸 Evidence for 099 (click to expand)</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 100 | Confirm custom 404 page usability | Branded 404 page displayed with a clear navigation route back into the application | ☐ | |
+
+<details>
+<summary>📸 Evidence for 100 (click to expand)</summary>
+</details>
+
 
 ---
 
