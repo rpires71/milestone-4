@@ -6702,10 +6702,17 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 095 | Display user feedback for all key actions | Visible feedback messages shown for adding, updating or removing basket items, placing orders, saving or archiving plans, and authentication errors | ☐ | |
+| 095 | Display user feedback for all key actions | Visible feedback messages shown for adding, updating or removing basket items, placing orders, saving or archiving plans, and authentication errors | PASS | Django messages verified across all key actions: basket add/update/remove, order placement, plan save and archive, and authentication errors (failed login) each display a visible, consistently styled feedback banner |
 
 <details>
 <summary>📸 Evidence for 095 (click to expand)</summary>
+<img width="1021" height="133" alt="image" src="https://github.com/user-attachments/assets/d256189c-b5f6-4a2e-ad8f-c532f6e63a3e" />
+<img width="1021" height="366" alt="image" src="https://github.com/user-attachments/assets/1d852586-11c7-4d95-b7b8-9b9b0143beb6" />
+<img width="1026" height="918" alt="image" src="https://github.com/user-attachments/assets/7b39aa8c-e17f-49e0-9d78-2798e94a8547" />
+<img width="1038" height="182" alt="image" src="https://github.com/user-attachments/assets/a3865a98-c23d-442e-998d-6f523f2dd0cb" />
+<img width="1023" height="301" alt="image" src="https://github.com/user-attachments/assets/3dae7fa2-dc95-4602-bf19-2fc638241435" />
+<img width="1024" height="130" alt="image" src="https://github.com/user-attachments/assets/5e2f05cb-b20f-4b2e-ae21-ecee6eb2ecdc" />
+<img width="886" height="687" alt="image" src="https://github.com/user-attachments/assets/767d77cf-2f72-4573-baeb-9b106ce731e3" />
 </details>
 
 
