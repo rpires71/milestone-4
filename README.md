@@ -6597,9 +6597,36 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 090 | Deliver order confirmation email in production | Confirmation email successfully received by the customer | ☐ | Requires Gmail App Password configuration variables |
+| 090 | Deliver order confirmation email in production | Confirmation email successfully received by the customer | PASS | Manual: Production purchase completed successfully with Gmail App Password configured. Confirmation email received immediately after payment with the correct order details and delivery information. |
+
+<details>
+<summary>📸 Evidence for 090 (click to expand)</summary>
+<img width="1246" height="502" alt="image" src="https://github.com/user-attachments/assets/9cf6b085-8ccc-4e07-a441-ed0f27dbfe71" />
+<img width="1049" height="923" alt="image" src="https://github.com/user-attachments/assets/e9104c31-30c5-481c-9284-fa64f4a1ccff" />
+<img width="944" height="922" alt="image" src="https://github.com/user-attachments/assets/6c8a255c-486e-41d1-a97c-a24d078f4adc" />
+<img width="702" height="931" alt="image" src="https://github.com/user-attachments/assets/6be8c31a-2491-46e2-9f1c-fc17c1dcebc0" />
+<img width="669" height="719" alt="image" src="https://github.com/user-attachments/assets/dd400f66-8836-4f22-8b70-9e033b4b04fd" />
+<img width="1135" height="310" alt="image" src="https://github.com/user-attachments/assets/4feafb53-93f8-43e7-a1eb-3318bbe7c525" />
+<img width="1305" height="770" alt="image" src="https://github.com/user-attachments/assets/a480e8f7-b1b2-4d13-aebc-c38ed6ea1d4b" />
+<img width="926" height="357" alt="image" src="https://github.com/user-attachments/assets/49d12f93-e3b2-4ad7-a5f3-5a687a75f1c0" />
+<img width="766" height="345" alt="image" src="https://github.com/user-attachments/assets/82791271-d4d1-4741-a62d-c8796e4cb2ab" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 091 | Handle email delivery failure gracefully | Confirmation page continues to render even if email delivery fails; error recorded in the logs | PASS | Fixed defect D9 and verified: page returns HTTP 200 when the email backend is forced to fail |
+
+<details>
+<summary>📸 Evidence for 091 (click to expand)</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 092 | Verify account verification and password reset emails | Emails delivered successfully and links operate correctly | ☐ | |
+
+<details>
+<summary>📸 Evidence for 092 (click to expand)</summary>
+</details>
 
 ---
 
