@@ -6572,10 +6572,25 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 089 | Create an order when checkout does not complete | Order reconstructed from `PaymentIntent` metadata with accurate details and correct stock deduction | ☐ | Automated: `test_valid_event_creates_order` — provides protection if the browser is closed immediately after payment |
+| 089 | Create an order when checkout does not complete | Order reconstructed from `PaymentIntent` metadata with accurate details and correct stock deduction | PASS | Automated: `orders.test_webhooks.PaymentIntentWebhookTests.test_valid_event_creates_order` passed successfully. Verified individually and as part of the full automated test suite (94 tests passed). Demonstrates that the webhook reconstructs the order from the `PaymentIntent` metadata without relying on the checkout success page. |
 
 <details>
 <summary>📸 Evidence for 089 (click to expand)</summary>
+<img width="1640" height="533" alt="image" src="https://github.com/user-attachments/assets/d02e5d1d-a193-4588-b162-0cf98cb7f28b" />
+<img width="222" height="373" alt="image" src="https://github.com/user-attachments/assets/c236a18c-ffbc-4848-9828-df985c33ab4f" />
+<img width="939" height="750" alt="image" src="https://github.com/user-attachments/assets/05c97979-2458-47f0-9f94-7c142b898f93" />
+<img width="928" height="793" alt="image" src="https://github.com/user-attachments/assets/011a6c33-3624-475c-9d5c-0f17960890c2" />
+<img width="923" height="940" alt="image" src="https://github.com/user-attachments/assets/7e92a6f0-af37-4132-937c-ca900c30f93e" />
+<img width="718" height="676" alt="image" src="https://github.com/user-attachments/assets/814d463a-aed0-4b59-a99e-5105d9942e94" />
+<img width="1202" height="421" alt="image" src="https://github.com/user-attachments/assets/73272bbe-25fd-4b39-a64a-9fa268f62ee8" />
+<img width="1197" height="307" alt="image" src="https://github.com/user-attachments/assets/19569cf3-b023-448d-846e-2b08c702de26" />
+<img width="1311" height="747" alt="image" src="https://github.com/user-attachments/assets/60f4f055-2c99-4983-9cfa-e826e371710f" />
+<img width="1591" height="478" alt="image" src="https://github.com/user-attachments/assets/bd13107e-d256-429d-9c08-9ff214ba5b75" />
+<img width="930" height="429" alt="image" src="https://github.com/user-attachments/assets/4919b524-32cc-4327-84ac-6c1fa3682c87" />
+<img width="1164" height="428" alt="image" src="https://github.com/user-attachments/assets/756f13e2-b4ff-4ea5-bdc5-620cde88bc37" />
+<img width="1107" height="256" alt="image" src="https://github.com/user-attachments/assets/11f9ebdb-3040-4d99-be35-5062efd7e94d" />
+<img width="1243" height="748" alt="image" src="https://github.com/user-attachments/assets/b57f9088-2c0c-47db-868f-d8881594c4e4" />
+<img width="1242" height="622" alt="image" src="https://github.com/user-attachments/assets/8ca7f0e2-07d7-4ed1-8cbb-f82d702342fc" />
 </details>
 
 #### 3.3 Email Integration
