@@ -6615,7 +6615,8 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 091 | Handle email delivery failure gracefully | Confirmation page continues to render even if email delivery fails; error recorded in the logs | PASS | Verified live with the SMTP backend forced local and a deliberately broken password: the success page returned HTTP 200 while the email failure was logged with the order number and full SMTPSenderRefused traceback. The manual test initially revealed failures were silently swallowed by fail_silently=True - fixed in 9f0511e so errors are now caught and logged, preserving the D9 page-render guarantee |
+| 091 | Handle email delivery failure gracefully | Confirmation page continues to render even if email delivery fails; error recorded in the logs | PASS | Verified locally with the SMTP backend temporarily forced on and a deliberately broken password: the success page returned HTTP 200 while the email failure was logged with the order number and full SMTPSenderRefused traceback. The manual test initially revealed failures were silently swallowed by fail_silently=True - fixed in 9f0511e so errors are now caught and logged, preserving the D9 page-render guarantee. The fix is deployed to production; the failure simulation was kept local by design |
+
 <details>
 <summary>📸 Evidence for 091 (click to expand)</summary>
 <img width="1065" height="402" alt="image" src="https://github.com/user-attachments/assets/2816e846-73db-418d-98b5-ba967ab9433e" />
