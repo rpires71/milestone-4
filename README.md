@@ -6627,10 +6627,24 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 092 | Verify account verification and password reset emails | Emails delivered successfully and links operate correctly | ☐ | |
+| 092 | Verify account verification and password reset emails | Emails delivered successfully and links operate correctly | PASS | Both flows verified on production: verification email received for a new registration with a working confirmation link, and password reset email received with a working reset link. The test surfaced a stale Sites-framework domain (the pre-rename Heroku URL) in email footers; the production Site record was corrected, and intermittent recurrence was traced to Django's per-worker Site cache serving pre-fix values - resolved with a dyno restart, after which repeated fresh emails were consistent |
 
 <details>
 <summary>📸 Evidence for 092 (click to expand)</summary>
+<img width="1004" height="809" alt="image" src="https://github.com/user-attachments/assets/93d9489b-02af-4731-a393-54c251209312" />
+<img width="1070" height="513" alt="image" src="https://github.com/user-attachments/assets/cb255584-03e1-49ce-ae3d-0903a81769fa" />
+<img width="1856" height="478" alt="image" src="https://github.com/user-attachments/assets/f830c082-3666-45d3-86b4-55d45919658b" />
+<img width="1080" height="304" alt="image" src="https://github.com/user-attachments/assets/1fca394c-dd8f-4df0-a8be-f13b80afc526" />
+<img width="1314" height="530" alt="image" src="https://github.com/user-attachments/assets/369cefbe-76fe-4237-8fa6-4d767bf7c0ec" />
+<img width="1354" height="761" alt="image" src="https://github.com/user-attachments/assets/e1b03384-6ecb-414e-b305-602214e33eab" />
+<img width="1330" height="789" alt="image" src="https://github.com/user-attachments/assets/7969ab0f-d592-43ae-b443-44d0796434b1" />
+<img width="1325" height="779" alt="image" src="https://github.com/user-attachments/assets/270e9d4c-bdbf-4148-8ae1-5d394ccf7b94" />
+<img width="1339" height="925" alt="image" src="https://github.com/user-attachments/assets/acc20820-2073-4900-a03e-82535be0a8cb" />
+<img width="1359" height="656" alt="image" src="https://github.com/user-attachments/assets/194d05c5-4b54-41f7-b725-2f28e3a67b93" />
+<img width="1388" height="450" alt="image" src="https://github.com/user-attachments/assets/f1eb8eb3-cd7a-4d5f-9190-7333e22336aa" />
+<img width="1433" height="584" alt="image" src="https://github.com/user-attachments/assets/396ce9c4-1af5-4d61-98fc-7a854426d067" />
+<img width="1853" height="287" alt="image" src="https://github.com/user-attachments/assets/f2a9fa8a-dad1-4e64-ae76-91b941d15901" />
+<img width="825" height="285" alt="image" src="https://github.com/user-attachments/assets/2d325a66-cd22-424f-8909-0c74bc398bad" />
 </details>
 
 ---
