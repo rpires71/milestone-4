@@ -6655,7 +6655,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 093 | Verify consistent navigation across the website | Navigation links function correctly; active page indicators are visible; basket counter updates accurately | PASS | Navigation verified across all three auth states (logged out, member, staff): links function correctly, the active page indicator reflects the current section, and the basket counter updates accurately as items are added, adjusted and removed |
+| 093 | Verify consistent navigation across the website | Navigation links function correctly; active page indicators are visible; basket counter updates accurately | PASS | Navigation verified across all three auth states (logged out, member, staff): links function correctly and the active page indicator reflects the current section |
 
 <details>
 <summary>📸 Evidence for 093 - Logged out</summary>
@@ -6674,10 +6674,29 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 094 | Confirm breadcrumb navigation on secondary pages | Shop, checkout, order confirmation, order history and management pages display accurate breadcrumb trails | ☐ | |
+| 094 | Confirm breadcrumb navigation on secondary pages | Shop, checkout, order confirmation, order history and management pages display accurate breadcrumb trails | PASS | Breadcrumbs verified on secondary pages (product detail, checkout, order confirmation, order history and plan management) with accurate trails and working parent links; management pages checked as staff. Correctly absent from top-level pages (Home, Plans, Shop listings) where no hierarchy exists to trace |
 
 <details>
 <summary>📸 Evidence for 094 (click to expand)</summary>
+<img width="592" height="435" alt="image" src="https://github.com/user-attachments/assets/563bef36-63f7-4769-8108-e7245a6c9531" />
+<img width="588" height="445" alt="image" src="https://github.com/user-attachments/assets/223ec79d-f212-471e-8ef1-c1b9eb41f434" />
+<img width="607" height="554" alt="image" src="https://github.com/user-attachments/assets/cc69be5f-97c1-4d05-8863-b9a23c613a7a" />
+<img width="578" height="442" alt="image" src="https://github.com/user-attachments/assets/9bc247c4-9f6f-42d4-9e1f-1eccaf2a0482" />
+<img width="1016" height="511" alt="image" src="https://github.com/user-attachments/assets/15a72582-5531-4689-987c-74c05e5e9d3f" />
+<img width="1015" height="517" alt="image" src="https://github.com/user-attachments/assets/68ca0264-39ef-43c1-9cfe-9c3895771200" />
+<img width="1029" height="514" alt="image" src="https://github.com/user-attachments/assets/515967b8-2871-46a9-b26a-e038935bebd2" />
+<img width="1083" height="553" alt="image" src="https://github.com/user-attachments/assets/cfc7181a-a6c0-4266-a7a2-216d911670d5" />
+<img width="1175" height="516" alt="image" src="https://github.com/user-attachments/assets/93c88d75-9baf-4e06-ad58-03df19c8424a" />
+<img width="1022" height="522" alt="image" src="https://github.com/user-attachments/assets/eca809b0-75c3-4e49-8d84-441f987b2a45" />
+<img width="1017" height="519" alt="image" src="https://github.com/user-attachments/assets/0f526254-a591-4614-9b2f-462d65f77601" />
+<img width="1068" height="534" alt="image" src="https://github.com/user-attachments/assets/0a176777-0f1e-4df7-8cb7-6beef5e8f3c1" />
+<img width="1064" height="550" alt="image" src="https://github.com/user-attachments/assets/ab68d8db-7d85-4097-8d26-90166b0577b2" />
+<img width="1078" height="577" alt="image" src="https://github.com/user-attachments/assets/ef9c5291-7d4e-485c-964b-134d9269daa2" />
+<img width="1039" height="536" alt="image" src="https://github.com/user-attachments/assets/26559b38-5ad6-4f2d-a725-384feedc792f" />
+<img width="1018" height="528" alt="image" src="https://github.com/user-attachments/assets/a0d7ac48-2d8c-4deb-9c6a-10f83bb3c13a" />
+<img width="1023" height="292" alt="image" src="https://github.com/user-attachments/assets/18ee027b-b1cc-4ef4-b545-409cd67b6742" />
+<img width="1032" height="446" alt="image" src="https://github.com/user-attachments/assets/816b821a-d7d4-4f87-91fb-7def8b168399" />
+<img width="1030" height="690" alt="image" src="https://github.com/user-attachments/assets/1ac49aff-9915-4398-943e-9b7e5bb14312" />
 </details>
 
 
