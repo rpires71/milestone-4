@@ -152,7 +152,12 @@ def checkout_success(request, order_number):
 
 
 def _send_confirmation_email(order):
-    """Send the customer an order confirmation email."""
+    """Send the customer an order confirmation email.
+
+    Failures are caught and logged rather than raised, so an email
+    problem can never break the checkout success page (defect D9),
+    while still leaving an operator-visible record in the logs.
+    """
     customer_email = order.email
     subject = render_to_string(
         'orders/confirmation_emails/confirmation_email_subject.txt',
@@ -162,13 +167,19 @@ def _send_confirmation_email(order):
         'orders/confirmation_emails/confirmation_email_body.txt',
         {'order': order},
     )
-    send_mail(
-        subject,
-        body,
-        settings.DEFAULT_FROM_EMAIL,
-        [customer_email],
-        fail_silently=True,
-    )
+    try:
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [customer_email],
+            fail_silently=False,
+        )
+    except Exception:
+        import logging
+        logging.getLogger(__name__).exception(
+            'Confirmation email failed for order %s', order.order_number
+        )
 
 
 
