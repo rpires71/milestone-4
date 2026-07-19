@@ -6610,14 +6610,18 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1305" height="770" alt="image" src="https://github.com/user-attachments/assets/a480e8f7-b1b2-4d13-aebc-c38ed6ea1d4b" />
 <img width="926" height="357" alt="image" src="https://github.com/user-attachments/assets/49d12f93-e3b2-4ad7-a5f3-5a687a75f1c0" />
 <img width="766" height="345" alt="image" src="https://github.com/user-attachments/assets/82791271-d4d1-4741-a62d-c8796e4cb2ab" />
+<img width="1397" height="328" alt="image" src="https://github.com/user-attachments/assets/cb923f6b-3012-4e20-bada-bca8253db789" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 091 | Handle email delivery failure gracefully | Confirmation page continues to render even if email delivery fails; error recorded in the logs | PASS | Fixed defect D9 and verified: page returns HTTP 200 when the email backend is forced to fail |
-
+| 091 | Handle email delivery failure gracefully | Confirmation page continues to render even if email delivery fails; error recorded in the logs | PASS | Verified live with the SMTP backend forced local and a deliberately broken password: the success page returned HTTP 200 while the email failure was logged with the order number and full SMTPSenderRefused traceback. The manual test initially revealed failures were silently swallowed by fail_silently=True - fixed in 9f0511e so errors are now caught and logged, preserving the D9 page-render guarantee |
 <details>
 <summary>📸 Evidence for 091 (click to expand)</summary>
+<img width="1065" height="402" alt="image" src="https://github.com/user-attachments/assets/2816e846-73db-418d-98b5-ba967ab9433e" />
+<img width="1030" height="936" alt="image" src="https://github.com/user-attachments/assets/f65c1274-984d-4a17-8575-ccdbf17e1106" />
+<img width="1005" height="877" alt="image" src="https://github.com/user-attachments/assets/c97794d3-c6fc-4196-930a-dc6219ce82e3" />
+<img width="1337" height="558" alt="image" src="https://github.com/user-attachments/assets/1c0f9616-29dd-4a74-85a6-624e8ad1b990" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
