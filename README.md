@@ -6718,10 +6718,19 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 096 | Verify consistent typographic hierarchy | Each page contains a single H1 heading; heading levels follow the correct sequence; font sizes remain clear and readable | ☐ | |
+| 096 | Verify consistent typographic hierarchy | Each page contains a single H1 heading; heading levels follow the correct sequence; font sizes remain clear and readable | PASS | Heading structure audited via a DevTools console script across eight representative pages (home, shop, plans, community, dashboard, basket, terms, privacy): each has exactly one H1 with heading levels descending in sequence and no skipped levels. Font sizing is consistent and readable throughout via the shared base template |
 
 <details>
 <summary>📸 Evidence for 096 (click to expand)</summary>
+<img width="1632" height="925" alt="image" src="https://github.com/user-attachments/assets/91e372f0-005f-4dcc-bf76-eb6ef4573048" />
+<img width="1621" height="878" alt="image" src="https://github.com/user-attachments/assets/399bf063-67d6-4288-ad7c-72824ed0779e" />
+<img width="1613" height="957" alt="image" src="https://github.com/user-attachments/assets/3618efb3-aaca-4fc2-8e5e-bf9d742a9598" />
+<img width="1624" height="845" alt="image" src="https://github.com/user-attachments/assets/1abb4c73-330e-4ea6-8c47-8a3d1be27290" />
+<img width="1612" height="793" alt="image" src="https://github.com/user-attachments/assets/aa591b48-f3f2-40be-aea6-84f8e2fcb970" />
+<img width="1617" height="671" alt="image" src="https://github.com/user-attachments/assets/9c336467-dcff-421b-b279-18aa511c3b1d" />
+<img width="1625" height="915" alt="image" src="https://github.com/user-attachments/assets/51c5d9b1-884c-4dce-b6ed-c6ae68e14b56" />
+<img width="1605" height="793" alt="image" src="https://github.com/user-attachments/assets/f5618289-d761-4d23-a0f7-71d07c9c09f9" />
+<img width="1699" height="796" alt="image" src="https://github.com/user-attachments/assets/6188b365-df18-485c-960d-fc759af638eb" />
 </details>
 
 
