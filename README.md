@@ -6863,10 +6863,16 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
 |---------|------------|-----------|-----------------|--------|-------|
-| 104 | Desktop (1920×1080) | Confirm efficient use of available screen width | Grid layouts display the maximum number of columns; checkout page retains a sticky order summary | ☐ | |
+| 104 | Desktop (1920×1080) | Confirm efficient use of available screen width | Grid layouts display the maximum number of columns; checkout page retains a sticky order summary | PASS | At desktop width (1920×1080) grid layouts display their maximum number of columns, using the full screen width efficiently, and the checkout page's order summary remains sticky - staying visible while the delivery form scrolls. Captured on video |
 
 <details>
-<summary>📸 Evidence for 104 (click to expand)</summary>
+<summary>📸 Evidence for 104 - PT 1 (1920×1080)</summary>
+<video src="https://github.com/user-attachments/assets/a57a2ed2-4187-4a12-a883-1eb0bb13ac66" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 104 - PT 2 (1920x1080)</summary>
+<video src="https://github.com/user-attachments/assets/463f32d4-8637-4243-ae29-b5a7b3ae4a42" controls width="700"></video>
 </details>
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
