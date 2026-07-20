@@ -6828,7 +6828,6 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 |---------|------------|-----------|-----------------|--------|-------|
 | 101 | Mobile (375×667) | Verify all pages display correctly without horizontal scrolling | Content stacks appropriately; navigation collapses into a hamburger menu; touch targets remain suitably sized | PASS | Pages verified at mobile width in both portrait (375×667) and landscape (667×375): content stacks into a single column, navigation collapses into a working hamburger menu, touch targets are suitably sized, and no page exhibits horizontal scrolling |
 
-
 <details>
 <summary>📸 Evidence for 101 - Mobile (375×667)</summary>
 <video src="https://github.com/user-attachments/assets/690f8073-af32-40c6-8278-9cc21ba143a5" controls width="700"></video>
@@ -6838,7 +6837,6 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 <summary>📸 Evidence for 101 - Mobile (667x375)</summary>
 <video src="https://github.com/user-attachments/assets/6593901c-970a-405a-b63d-d916e3ef74f0" controls width="700"></video>
 </details>
-
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
 |---------|------------|-----------|-----------------|--------|-------|
@@ -6856,10 +6854,11 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
 |---------|------------|-----------|-----------------|--------|-------|
-| 103 | Tablet (768×1024) | Verify responsive layout across all pages | Intended two-column layouts displayed correctly; tables either reflow or provide horizontal scrolling where necessary | ☐ | |
+| 103 | Tablet (768×1024) | Verify responsive layout across all pages | Intended two-column layouts displayed correctly; tables either reflow or provide horizontal scrolling where necessary | PASS | Pages verified at tablet width (768×1024): two-column layouts render correctly and tabular data (order history, plan management) remains usable without forcing whole-page horizontal scrolling. Captured on video |
 
 <details>
-<summary>📸 Evidence for 103 (click to expand)</summary>
+<summary>📸 Evidence for 103 (768x1024)</summary>
+<video src="https://github.com/user-attachments/assets/a03a2b9c-a4a3-4459-aab9-cdf99742630f" controls width="700"></video>
 </details>
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
