@@ -6892,15 +6892,90 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 106 | Verify all form controls have associated labels | Every input field is linked to a `<label for>` element and all mandatory fields are clearly identified | ☐ | Implemented throughout the checkout and plan management interfaces |
+| 106 | Verify all form controls have associated labels | Every input field is linked to a `<label for>` element and all mandatory fields are clearly identified | PASS | WAVE audit of the site's forms: checkout, community and auth forms all showed 0 missing-form-label errors with form-label features on each field. The review add/edit forms were found to have orphaned labels (present but not bound via `for`) - fixed by binding each label to its field id, then re-verified with WAVE showing the alerts cleared. Mandatory fields are marked with a red asterisk |
+
+<details>
+<summary>📸 Evidence for 106</summary>
+<img width="1393" height="819" alt="image" src="https://github.com/user-attachments/assets/e01d9b4e-8cf3-4084-8efc-54228e3dfe8a" />
+<img width="1837" height="977" alt="image" src="https://github.com/user-attachments/assets/5451f44e-9b1a-4c97-90fd-2e58eaff017b" />
+<img width="1633" height="946" alt="image" src="https://github.com/user-attachments/assets/0c90af3b-07e8-419f-9b69-ae2be1536f80" />
+<img width="1787" height="968" alt="image" src="https://github.com/user-attachments/assets/f05beb48-21b4-49ee-ab70-73d17a4ed1a8" />
+<img width="1586" height="973" alt="image" src="https://github.com/user-attachments/assets/a8dbad03-ff20-4c43-a846-2deb4a290717" />
+<img width="1623" height="793" alt="image" src="https://github.com/user-attachments/assets/f7610a03-e7da-48f9-95d4-de7550a9a60d" />
+<img width="1687" height="981" alt="image" src="https://github.com/user-attachments/assets/94607b70-773e-4ae5-bcd4-d9b5ef50520d" />
+<img width="1696" height="772" alt="image" src="https://github.com/user-attachments/assets/adb8ca2a-9f35-450a-9514-900bf9cbc967" />
+<img width="1663" height="880" alt="image" src="https://github.com/user-attachments/assets/e644f3ca-6519-49a4-9caf-5a8f8db2f21f" />
+<img width="1696" height="795" alt="image" src="https://github.com/user-attachments/assets/f7bf9489-b450-47de-a1bd-e2a9df956eae" />
+<img width="1598" height="980" alt="image" src="https://github.com/user-attachments/assets/60f1da1f-ce6f-419d-a2e5-b7ab1c55fe1c" />
+<img width="1602" height="987" alt="image" src="https://github.com/user-attachments/assets/57ebafcd-5d7e-4b66-a84d-14311abd9fd9" />
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 107 | Confirm validation errors are communicated in text | Error messages displayed as text rather than relying solely on colour; error summary visible | ☐ | |
+
+<details>
+<summary>📸 Evidence for 107</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 108 | Verify status information is communicated using text and colour | Order and plan status badges include descriptive text instead of colour-only indicators | ☐ | |
+
+<details>
+<summary>📸 Evidence for 108</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 109 | Confirm images include alternative text | Product and membership plan images contain meaningful `alt` attributes | ☐ | |
+
+<details>
+<summary>📸 Evidence for 109</summary>
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 110 | Verify keyboard accessibility | All interactive elements can be reached and operated using only the keyboard; skip-to-content link functions correctly | ☐ | |
+
+<details>
+<summary>📸 Evidence for 110</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 111 | Verify `aria-live` region on the order confirmation page | Confirmation heading is announced correctly by screen readers | ☐ | |
+
+<details>
+<summary>📸 Evidence for 111</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 112 | Confirm colour contrast complies with WCAG AA | Lighthouse and axe audits report no colour contrast failures | ☐ | |
+
+<details>
+<summary>📸 Evidence for 112</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 113 | Perform WAVE accessibility evaluation | No accessibility errors detected on key application pages | ☐ | |
+
+<details>
+<summary>📸 Evidence for 113</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 114 | Verify Lighthouse Accessibility score | Accessibility score of **90 or above** achieved on key pages | ☐ | |
+
+<details>
+<summary>📸 Evidence for 114</summary>
+</details>
 
 ---
 
