@@ -6736,10 +6736,56 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 097 | Ensure buttons and links use descriptive labels | Generic phrases such as "click here" are avoided; order links identify the specific order (e.g. "View order FH-…") | ☐ | |
+| 097 | Ensure buttons and links use descriptive labels | Generic phrases such as "click here" are avoided; order links identify the specific order (e.g. "View order FH-…") | PASS | Audited buttons and links across the site: no "click here" or similar generic phrasing; order links name the specific order ("View order <number>"). All calls-to-action use descriptive labels (Browse Plans, Shop Now, Add to Basket, etc.). The one borderline "Learn More" homepage link was made self-describing ("Explore the Community") during this test |
 
 <details>
 <summary>📸 Evidence for 097 (click to expand)</summary>
+
+**Homepage**
+
+<img width="1018" height="401" alt="image" src="https://github.com/user-attachments/assets/3b058db9-6faf-4692-b3df-69930c1e044c" />
+<img width="1004" height="880" alt="image" src="https://github.com/user-attachments/assets/dd8b1ae5-b2e4-404c-a77b-b68e28193239" />
+<img width="1060" height="633" alt="image" src="https://github.com/user-attachments/assets/835c9220-1054-4dda-af60-f0c1adc5ceac" />
+
+**Plans**
+
+<img width="997" height="755" alt="image" src="https://github.com/user-attachments/assets/3b60c247-8ab7-4477-b19e-63bb660db99d" />
+<img width="1058" height="595" alt="image" src="https://github.com/user-attachments/assets/5fb228b0-d278-48b6-9ac6-a8ea97b44226" />
+
+**Shop**
+
+<img width="1034" height="724" alt="image" src="https://github.com/user-attachments/assets/80466322-a1f2-40e5-aee9-0b15f741e5ad" />
+<img width="1058" height="759" alt="image" src="https://github.com/user-attachments/assets/ed70ff67-e64c-4a27-ace9-1a376328c671" />
+<img width="1058" height="242" alt="image" src="https://github.com/user-attachments/assets/04087ce8-f0d3-4c52-8d63-7a0ff9e0a06a" />
+
+**Basket**
+
+<img width="1003" height="674" alt="image" src="https://github.com/user-attachments/assets/54d79a77-7127-4e1c-8fb6-2a418108ef79" />
+
+**Manage**
+
+<img width="1035" height="759" alt="image" src="https://github.com/user-attachments/assets/7b9861f0-9cb3-4221-ade1-27f9306b5dbd" />
+
+**Dashboard**
+
+<img width="999" height="930" alt="image" src="https://github.com/user-attachments/assets/06a9963d-54ce-470f-9e94-560ee7aeb691" />
+<img width="762" height="520" alt="image" src="https://github.com/user-attachments/assets/75f05f28-d072-4191-b90a-b5b36c219ec9" />
+<img width="742" height="217" alt="image" src="https://github.com/user-attachments/assets/3d55fada-10ca-4787-81c2-4b6013f8612f" />
+<img width="747" height="365" alt="image" src="https://github.com/user-attachments/assets/955844d7-8ef2-43f6-a064-742c8b211855" />
+<img width="731" height="299" alt="image" src="https://github.com/user-attachments/assets/c38ac687-1c06-4a90-96ef-caca42771d52" />
+
+**Sign Out**
+
+<img width="1037" height="471" alt="image" src="https://github.com/user-attachments/assets/112f0e8b-087d-4458-b660-eee5953e1cc0" />
+
+**Login**
+
+<img width="1031" height="840" alt="image" src="https://github.com/user-attachments/assets/d10d0046-ad83-4cdc-a492-122bbbb7d4b4" />
+
+**Register**
+
+<img width="1011" height="817" alt="image" src="https://github.com/user-attachments/assets/ad00a477-6e60-44c2-ab3b-384db0780d96" />
+
 </details>
 
 
