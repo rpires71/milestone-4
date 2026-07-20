@@ -6842,10 +6842,16 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
 |---------|------------|-----------|-----------------|--------|-------|
-| 102 | Mobile | Confirm checkout functionality on small screens | Delivery form fields display in a single column; order summary remains accessible; Stripe payment element functions correctly | ☐ | |
+| 102 | Mobile | Confirm checkout functionality on small screens | Delivery form fields display in a single column; order summary remains accessible; Stripe payment element functions correctly | PASS | At mobile width (375×667) the delivery form displays in a single column, the order summary remains accessible, and the Stripe card element renders and accepts input - a full 4242 test payment completed through to the confirmation page. Captured on video |
 
 <details>
-<summary>📸 Evidence for 102 (click to expand)</summary>
+<summary>📸 Evidence for 102 - Form fill (375×667)</summary>
+<video src="https://github.com/user-attachments/assets/b0773dde-1e66-4b1d-8fd7-860c4f5f46d4" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 102 - Purchase confirmation (375x667)</summary>
+<video src="https://github.com/user-attachments/assets/ce0acf48-e98f-4aca-a3ff-42fc4e549fab" controls width="700"></video>
 </details>
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
