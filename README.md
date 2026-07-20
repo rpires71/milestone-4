@@ -6826,11 +6826,51 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
 |---------|------------|-----------|-----------------|--------|-------|
-| 101 | Mobile (375×667) | Verify all pages display correctly without horizontal scrolling | Content stacks appropriately; navigation collapses into a hamburger menu; touch targets remain suitably sized | ☐ | |
+| 101 | Mobile (375×667) | Verify all pages display correctly without horizontal scrolling | Content stacks appropriately; navigation collapses into a hamburger menu; touch targets remain suitably sized | PASS | Pages verified at mobile width in both portrait (375×667) and landscape (667×375): content stacks into a single column, navigation collapses into a working hamburger menu, touch targets are suitably sized, and no page exhibits horizontal scrolling |
+
+
+<details>
+<summary>📸 Evidence for 101 - Mobile (375×667)</summary>
+<video src="https://github.com/user-attachments/assets/690f8073-af32-40c6-8278-9cc21ba143a5" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 101 - Mobile (667x375)</summary>
+<video src="https://github.com/user-attachments/assets/6593901c-970a-405a-b63d-d916e3ef74f0" controls width="700"></video>
+</details>
+
+
+| Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
+|---------|------------|-----------|-----------------|--------|-------|
 | 102 | Mobile | Confirm checkout functionality on small screens | Delivery form fields display in a single column; order summary remains accessible; Stripe payment element functions correctly | ☐ | |
+
+<details>
+<summary>📸 Evidence for 102 (click to expand)</summary>
+</details>
+
+| Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
+|---------|------------|-----------|-----------------|--------|-------|
 | 103 | Tablet (768×1024) | Verify responsive layout across all pages | Intended two-column layouts displayed correctly; tables either reflow or provide horizontal scrolling where necessary | ☐ | |
+
+<details>
+<summary>📸 Evidence for 103 (click to expand)</summary>
+</details>
+
+| Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
+|---------|------------|-----------|-----------------|--------|-------|
 | 104 | Desktop (1920×1080) | Confirm efficient use of available screen width | Grid layouts display the maximum number of columns; checkout page retains a sticky order summary | ☐ | |
+
+<details>
+<summary>📸 Evidence for 104 (click to expand)</summary>
+</details>
+
+| Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
+|---------|------------|-----------|-----------------|--------|-------|
 | 105 | Small screens | Verify usability of order-related tables | Order History and Manage Plans tables remain fully accessible using horizontal scrolling within a responsive table container (`table-responsive`) | ☐ | |
+
+<details>
+<summary>📸 Evidence for 105 (click to expand)</summary>
+</details>
 
 ---
 
