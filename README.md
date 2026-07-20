@@ -6939,10 +6939,17 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 109 | Confirm images include alternative text | Product and membership plan images contain meaningful `alt` attributes | ☐ | |
+| 109 | Confirm images include alternative text | Product and membership plan images contain meaningful `alt` attributes | PASS | Product and plan images render a meaningful alt attribute tied to the item name (e.g. alt="Yoga Mat", alt="Elite"), including related-item thumbnails and the plans hero image ("FitHub members training together"). WAVE reported no missing-alternative-text errors on the shop and plans pages |
 
 <details>
 <summary>📸 Evidence for 109</summary>
+<img width="1560" height="809" alt="image" src="https://github.com/user-attachments/assets/c521a406-bc15-4700-a274-7974ea5981c8" />
+<img width="1567" height="977" alt="image" src="https://github.com/user-attachments/assets/1978b9e2-3196-471f-bf79-84c0d3718884" />
+<img width="1028" height="774" alt="image" src="https://github.com/user-attachments/assets/019857bd-b854-4940-a282-505c832baf9f" />
+<img width="1776" height="712" alt="image" src="https://github.com/user-attachments/assets/78ed038f-1bda-4ebe-b9b8-c52046c0fc0f" />
+<img width="1526" height="915" alt="image" src="https://github.com/user-attachments/assets/66b54699-dcf3-4d55-864f-8c43e623cf83" />
+<img width="933" height="814" alt="image" src="https://github.com/user-attachments/assets/250d355c-e6f1-4165-afb5-12ac4d75fdc1" />
+<img width="1577" height="978" alt="image" src="https://github.com/user-attachments/assets/2c556469-73f7-4516-beb4-500850ef78d9" />
 </details>
 
 
