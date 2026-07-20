@@ -6913,10 +6913,17 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 107 | Confirm validation errors are communicated in text | Error messages displayed as text rather than relying solely on colour; error summary visible | ☐ | |
+| 107 | Confirm validation errors are communicated in text | Error messages displayed as text rather than relying solely on colour; error summary visible | PASS | Validation errors render as text, not colour alone: an error summary alert (role="alert") appears at the top of the form when errors occur, and each field shows a specific text message. Demonstrated by evidence from tests 036 (incomplete checkout form — error summary and field-level text messages), 037 (invalid email — "Enter a valid email address.") and 083 (Stripe card field — inline text validation). Colour is used only as an additional cue |
 
 <details>
 <summary>📸 Evidence for 107</summary>
+<img width="991" height="864" alt="image" src="https://github.com/user-attachments/assets/9422b19e-b910-4f87-b84e-acc38f651639" />
+<img width="978" height="850" alt="image" src="https://github.com/user-attachments/assets/30ce7fff-277a-4e91-9f0f-08b789b820b2" />
+<img width="991" height="848" alt="image" src="https://github.com/user-attachments/assets/bf74fea9-ed24-4c17-8075-45dbef96d520" />
+<img width="1017" height="852" alt="image" src="https://github.com/user-attachments/assets/8a557c8e-f517-48a4-ba9e-1f32f42e3ba6" />
+<img width="1007" height="853" alt="image" src="https://github.com/user-attachments/assets/b2fce4dd-de82-444d-b8a2-77f278cca3b4" />
+<img width="1008" height="839" alt="image" src="https://github.com/user-attachments/assets/29703d43-4727-4cc7-b76b-750e8a4895a8" />
+<video src="https://github.com/user-attachments/assets/71049d10-2d58-4f83-962d-7e70a038535f" controls width="700"></video>
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
