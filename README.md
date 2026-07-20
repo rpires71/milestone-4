@@ -6746,6 +6746,7 @@ The **Notes** column within each manual test case references the corresponding u
 <img width="1018" height="401" alt="image" src="https://github.com/user-attachments/assets/3b058db9-6faf-4692-b3df-69930c1e044c" />
 <img width="1004" height="880" alt="image" src="https://github.com/user-attachments/assets/dd8b1ae5-b2e4-404c-a77b-b68e28193239" />
 <img width="1060" height="633" alt="image" src="https://github.com/user-attachments/assets/835c9220-1054-4dda-af60-f0c1adc5ceac" />
+<img width="1039" height="290" alt="image" src="https://github.com/user-attachments/assets/dd3fc944-7d7e-471e-8d4c-3a8b28bf47ac" />
 
 **Plans**
 
@@ -6785,16 +6786,18 @@ The **Notes** column within each manual test case references the corresponding u
 **Register**
 
 <img width="1011" height="817" alt="image" src="https://github.com/user-attachments/assets/ad00a477-6e60-44c2-ab3b-384db0780d96" />
-
 </details>
 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 098 | Preserve form data after validation errors | Previously entered values remain populated when a form is redisplayed following validation failures | ☐ | |
+| 098 | Preserve form data after validation errors | Previously entered values remain populated when a form is redisplayed following validation failures | PASS | Verified that forms redisplay with previously entered values intact after validation errors (checkout delivery details and other multi-field forms), so users needn't re-enter data. Password fields correctly clear on the registration form, as expected for security |
 
 <details>
 <summary>📸 Evidence for 098 (click to expand)</summary>
+<img width="1046" height="948" alt="image" src="https://github.com/user-attachments/assets/68eb9729-0467-4c3d-9f0a-30d9d01bdac8" />
+<img width="699" height="841" alt="image" src="https://github.com/user-attachments/assets/03730722-8485-4883-a501-51462d626fb2" />
+<img width="1021" height="882" alt="image" src="https://github.com/user-attachments/assets/bd1560eb-7408-459d-a368-5e248d5c08bb" />
 </details>
 
 
@@ -6804,6 +6807,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 <details>
 <summary>📸 Evidence for 099 (click to expand)</summary>
+
 </details>
 
 
