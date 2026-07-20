@@ -6808,10 +6808,11 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 100 | Confirm custom 404 page usability | Branded 404 page displayed with a clear navigation route back into the application | ☐ | |
+| 100 | Confirm custom 404 page usability | Branded 404 page displayed with a clear navigation route back into the application | PASS | A nonexistent URL on production renders the branded FitHub 404 page (nav and footer intact, not Django's default) with three clear routes back into the app - Back to Home, Browse Plans and Browse Products - all functional. Custom 404 templates render only under DEBUG=False, so this reflects production behaviour |
 
 <details>
 <summary>📸 Evidence for 100 (click to expand)</summary>
+<img width="1620" height="601" alt="image" src="https://github.com/user-attachments/assets/4a50d512-8923-4c36-89bd-83d260b80f16" />
 </details>
 
 
