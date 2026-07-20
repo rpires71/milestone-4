@@ -6803,12 +6803,7 @@ The **Notes** column within each manual test case references the corresponding u
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 099 | Verify helpful empty-state pages | Empty basket, order history and Manage Plans pages provide clear guidance and an appropriate next action | ☐ | |
-
-<details>
-<summary>📸 Evidence for 099 (click to expand)</summary>
-
-</details>
+| 099 | Verify helpful empty-state pages | Empty basket, order history and Manage Plans pages provide clear guidance and an appropriate next action | PASS | All three empty states were verified in earlier rows and each provides a clear message with a working next action: empty basket ("Your basket is empty" + Browse Products, row 031), empty order history ("You haven't placed any orders yet" + Browse the Shop, row 049, also covered by test_history_empty_state), and empty Manage Plans ("No plans yet" + Create your first plan, row 060, verified locally as staging an empty plans table on production would require deleting live subscription data) |
 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
