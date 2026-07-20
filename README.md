@@ -6928,10 +6928,12 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 108 | Verify status information is communicated using text and colour | Order and plan status badges include descriptive text instead of colour-only indicators | ☐ | |
+| 108 | Verify status information is communicated using text and colour | Order and plan status badges include descriptive text instead of colour-only indicators | PASS | All status badges carry descriptive text alongside colour: order badges (Processing, Dispatched, Delivered, Cancelled, Refunded) and plan badges (Published, Draft, Archived) each render the status word inside the coloured badge, so status is never conveyed by colour alone |
 
 <details>
 <summary>📸 Evidence for 108</summary>
+<img width="1107" height="705" alt="image" src="https://github.com/user-attachments/assets/83c92ed3-4884-42c2-98dd-8db2ac283f1a" />
+<img width="1043" height="528" alt="image" src="https://github.com/user-attachments/assets/2eae492c-5d7e-4a5c-82d9-38f093722a90" />
 </details>
 
 
