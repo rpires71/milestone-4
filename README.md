@@ -6877,10 +6877,11 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Breakpoint | Test Case | Expected Result | Status | Notes |
 |---------|------------|-----------|-----------------|--------|-------|
-| 105 | Small screens | Verify usability of order-related tables | Order History and Manage Plans tables remain fully accessible using horizontal scrolling within a responsive table container (`table-responsive`) | ☐ | |
+| 105 | Small screens | Verify usability of order-related tables | Order History and Manage Plans tables remain fully accessible using horizontal scrolling within a responsive table container (`table-responsive`) | PASS | Both the Order History and Manage Plans tables are wrapped in Bootstrap's table-responsive container; at 375px each table scrolls horizontally within its own area (swipe/drag left-right) to reveal all columns while the page itself does not scroll sideways. Captured on video |
 
 <details>
-<summary>📸 Evidence for 105 (click to expand)</summary>
+<summary>📸 Evidence for 105 (375x667)</summary>
+<video src="https://github.com/user-attachments/assets/b7f87834-466e-4018-b58f-11d93fdb2472" controls width="700"></video>
 </details>
 
 ---
