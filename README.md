@@ -7105,14 +7105,49 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/4eb1ac31-03c2-429e-aeb0-fd2bb0f88c18" />
 <img width="821" height="742" alt="image" src="https://github.com/user-attachments/assets/7d4d968c-2dbd-4f52-b70f-67157778efe5" />
 <img width="1800" height="987" alt="image" src="https://github.com/user-attachments/assets/a8be031a-758f-417c-83ae-ba80afa4ec5b" />
+<img width="1548" height="978" alt="image" src="https://github.com/user-attachments/assets/e4324a07-24b6-47aa-a696-750529d0789f" />
+<img width="1890" height="896" alt="image" src="https://github.com/user-attachments/assets/2115f4dd-7bdf-4bd7-9f3b-c376c5cdba8a" />
+<img width="1678" height="977" alt="image" src="https://github.com/user-attachments/assets/65ec24ec-7348-43bf-9d46-ee55ea84dc33" />
+<img width="1880" height="910" alt="image" src="https://github.com/user-attachments/assets/54221781-3b01-4fbd-ab47-2b614466cebc" />
+<img width="1871" height="959" alt="image" src="https://github.com/user-attachments/assets/1d21820b-cb97-4d06-913e-24163e5ce0e2" />
+<img width="1896" height="971" alt="image" src="https://github.com/user-attachments/assets/eb46857e-0c02-4e08-a8fe-c7239e3c42f9" />
+<img width="1879" height="966" alt="image" src="https://github.com/user-attachments/assets/b8b94eaa-43ed-4298-a82e-74bce0ce8f56" />
+<img width="1880" height="972" alt="image" src="https://github.com/user-attachments/assets/e8fe257d-0e33-4448-b90e-a0c743aea7e2" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 113 | Perform WAVE accessibility evaluation | No accessibility errors detected on key application pages | ☐ | |
+| 113 | Perform WAVE accessibility evaluation | No accessibility errors detected on key application pages | PASS | WAVE evaluated across all key pages (home, shop, product detail, plans, plan detail, basket, checkout, dashboard, order history, community, auth and content pages). The sweep surfaced and fixed several real issues along the way: low-contrast muted text and placeholders, low-contrast outline-secondary and outline-danger buttons, an empty table header in the basket totals, and (from rows 106-110) orphaned review labels and a broken skip link. After fixes, all key pages report 0 WAVE errors and 0 contrast errors; remaining items are non-blocking alerts (redundant links, possible headings) |
 
 <details>
 <summary>📸 Evidence for 113</summary>
+<img width="1589" height="384" alt="image" src="https://github.com/user-attachments/assets/66a1bb1a-420b-4ebd-8cdb-f79f20994bad" />
+<img width="1556" height="393" alt="image" src="https://github.com/user-attachments/assets/63350407-6431-4e54-89ce-f361f32e82a9" />
+<img width="1508" height="649" alt="image" src="https://github.com/user-attachments/assets/9f8799b9-42f8-4da5-95d3-daf12ff59e85" />
+<img width="1526" height="500" alt="image" src="https://github.com/user-attachments/assets/b3fb212b-84a9-4d83-985b-e10862410ee8" />
+<img width="1617" height="806" alt="image" src="https://github.com/user-attachments/assets/c2efed99-4c9f-4ea7-9e0f-436db11fbd56" />
+<img width="1513" height="535" alt="image" src="https://github.com/user-attachments/assets/1e959e31-5fe4-4123-b4f6-17e059c8d534" />
+<img width="1611" height="596" alt="image" src="https://github.com/user-attachments/assets/b22975c0-95cc-4fdc-be1b-58465b1e085b" />
+<img width="1561" height="808" alt="image" src="https://github.com/user-attachments/assets/208b9887-9613-4f75-8f2c-3fdb1543e05e" />
+<img width="1531" height="830" alt="image" src="https://github.com/user-attachments/assets/c38cad14-6177-4039-b6b1-d592fbe07e60" />
+<img width="1653" height="725" alt="image" src="https://github.com/user-attachments/assets/66376b02-40f1-4cdb-b540-d25af4623f98" />
+<img width="1556" height="660" alt="image" src="https://github.com/user-attachments/assets/9a1ffc3d-1c56-426c-a027-3883cb116213" />
+<img width="1559" height="880" alt="image" src="https://github.com/user-attachments/assets/37eadf18-d6af-48fd-8420-f1bb5f9e63c9" />
+<img width="1793" height="745" alt="image" src="https://github.com/user-attachments/assets/1c6f5b5a-ada4-4eb3-b239-545034ef01c3" />
+<img width="1478" height="885" alt="image" src="https://github.com/user-attachments/assets/8be52cea-3d0e-40fc-b676-4cea91e0ec92" />
+<img width="1435" height="850" alt="image" src="https://github.com/user-attachments/assets/b7527651-168a-4976-afec-034870b810e7" />
+<img width="1714" height="660" alt="image" src="https://github.com/user-attachments/assets/a90f7123-f8cd-4a6f-b27c-ce5b86b7504b" />
+<img width="1553" height="789" alt="image" src="https://github.com/user-attachments/assets/98cc039b-8ba7-4c39-925b-4a86def0cc7d" />
+<img width="1579" height="796" alt="image" src="https://github.com/user-attachments/assets/d4e8fbf2-1c0e-47f5-9667-27b685a5e278" />
+<img width="1534" height="850" alt="image" src="https://github.com/user-attachments/assets/9e99b72d-8fee-43dc-8b49-78283f373307" />
+<img width="1661" height="797" alt="image" src="https://github.com/user-attachments/assets/431a6e24-92b8-4c82-81bc-851849ecdc7d" />
+<img width="1553" height="908" alt="image" src="https://github.com/user-attachments/assets/263cf685-965f-46cb-987f-6caf98951af5" />
+<img width="1611" height="944" alt="image" src="https://github.com/user-attachments/assets/532757b1-7173-47ea-9fa3-38c011dd4423" />
+<img width="1532" height="945" alt="image" src="https://github.com/user-attachments/assets/e993cdf7-2628-4588-9284-d3d0319471de" />
+<img width="1599" height="960" alt="image" src="https://github.com/user-attachments/assets/b384ed45-7e24-40f4-bd8b-1a700f25d340" />
+<img width="1572" height="916" alt="image" src="https://github.com/user-attachments/assets/60265061-0287-4832-acdb-857e676c8a67" />
+<img width="1611" height="893" alt="image" src="https://github.com/user-attachments/assets/4415f3bd-a19d-4083-854f-d86396752808" />
+<img width="1584" height="927" alt="image" src="https://github.com/user-attachments/assets/dd73ce9e-9df5-494f-b5df-d7f4b38f172d" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
