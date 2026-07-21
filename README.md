@@ -7243,10 +7243,28 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 120 | Verify the complete test suite after each new feature | `python manage.py test` → OK, 0 test failures | PASS | Performed consistently throughout development; the automated suite expanded from 67 to 89 tests as new functionality was introduced |
+| 120 | Verify the complete test suite after each new feature | `python manage.py test` → OK, 0 test failures | PASS | Performed consistently throughout development; the automated suite expanded from 67 to 94 tests as new functionality was introduced. Final run confirms all 94 tests pass (Ran 94 tests, OK) with no failures or errors |
+
+<details>
+<summary>📸 Evidence for 120</summary>
+<img width="880" height="244" alt="image" src="https://github.com/user-attachments/assets/2a8e0297-8f6a-4014-a834-e5b14128b64f" />
+</details>
+
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 121 | Confirm checkout functionality after webhook modifications | Existing checkout process continues to operate correctly following webhook enhancements | ☐ | Automated test suite and live checkout verification |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 122 | Verify the public Plans page after management updates | Only published membership plans remain visible to members after the introduction of staff CRUD functionality | ☐ | |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 123 | Confirm order confirmation page after email-related fix | Successful live checkout returns an HTTP 200 response instead of the previous HTTP 500 error | PASS | Verified on Heroku following implementation of defect fix D9 |
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 124 | Verify basket behaviour after stock quantity capping | Standard basket operations (add, update and remove) continue to function correctly alongside stock capping rules | ☐ | |
 
 ---
