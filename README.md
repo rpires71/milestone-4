@@ -6958,7 +6958,7 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 | 110 | Verify keyboard accessibility | All interactive elements can be reached and operated using only the keyboard; skip-to-content link functions correctly | PASS | All interactive elements (nav, buttons, form fields including the Stripe card element) are reachable and operable by keyboard with a visible focus indicator, verified across the site. The skip-to-content link — found broken in rows 106-109 (pointed at a non-existent target) and fixed by adding a `<main id="main-content">` landmark — now appears on Tab and jumps focus to the main content; WAVE confirms 0 errors with both "Skip link" and "Skip link target" detected |
 
 <details>
-<summary>📸 Evidence for 110</summary>
+<summary>📸 Evidence for 110 - WAV Screenshots</summary>
 <img width="1649" height="989" alt="image" src="https://github.com/user-attachments/assets/6276860b-1597-4b8a-a3a8-b43a0de7bd93" />
 <img width="972" height="976" alt="image" src="https://github.com/user-attachments/assets/3771480d-0a34-4d54-84e0-d23eebadc9b3" />
 <img width="1864" height="986" alt="image" src="https://github.com/user-attachments/assets/b6c63ee2-0808-451c-87f5-e2bec7341d49" />
@@ -7089,10 +7089,11 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 111 | Verify `aria-live` region on the order confirmation page | Confirmation heading is announced correctly by screen readers | ☐ | |
+| 111 | Verify `aria-live` region on the order confirmation page | Confirmation heading is announced correctly by screen readers | PASS | The confirmation heading is wrapped in a region marked `aria-live="polite"` (confirmed in the rendered DOM), so its content is announced by screen readers when the page loads without interrupting. WAVE detects the live region as an ARIA feature on the confirmation page |
 
 <details>
 <summary>📸 Evidence for 111</summary>
+<img width="1561" height="884" alt="image" src="https://github.com/user-attachments/assets/a56c7ec4-e2aa-4477-a8b4-c5ed6f1503c7" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
