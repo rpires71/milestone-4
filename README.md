@@ -7203,10 +7203,14 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 117 | Evaluate Checkout page performance with Lighthouse | Performance score successfully recorded | ☐ | |
+| 117 | Evaluate Checkout page performance with Lighthouse | Performance score successfully recorded | PASS | Lighthouse Performance audit on the Checkout page recorded (see evidence). The page loads Stripe.js for PCI-compliant payment processing, which accounts for the third-party/render-blocking insights - a necessary and expected cost. No critical issues |
 
 <details>
 <summary>📸 Evidence for 117</summary>
+<img width="1865" height="976" alt="image" src="https://github.com/user-attachments/assets/fd816847-5cd8-421d-b694-106ca3aceb59" />
+<img width="1842" height="977" alt="image" src="https://github.com/user-attachments/assets/e405c414-8f5f-4e5e-bf1f-15beaa9c326f" />
+<img width="1835" height="968" alt="image" src="https://github.com/user-attachments/assets/b785c8a3-57ac-4c56-9ffb-68f444fc77ab" />
+<img width="1870" height="976" alt="image" src="https://github.com/user-attachments/assets/4caf68b6-b81f-48b2-b05d-b9818387675b" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
