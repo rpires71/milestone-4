@@ -7171,11 +7171,57 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 115 | Evaluate Home page performance with Lighthouse | Performance score recorded with no critical issues identified | ☐ | |
+| 115 | Evaluate Home page performance with Lighthouse | Performance score recorded with no critical issues identified | PASS | Lighthouse Performance audit on the Home page (desktop): FCP 0.7-0.9s, LCP 2.2-2.4s, Total Blocking Time 0ms, Speed Index 0.7-0.9s across runs. No critical issues. Cumulative Layout Shift varies (0.096-0.237) due to images lacking explicit width/height - identified as a non-critical optimisation opportunity; images are already served as WebP |
+
+<details>
+<summary>📸 Evidence for 115</summary>
+<img width="1866" height="979" alt="image" src="https://github.com/user-attachments/assets/2542bec9-93f1-4e8a-990b-06bfa08f8a6d" />
+<img width="1886" height="973" alt="image" src="https://github.com/user-attachments/assets/e40b1dca-be04-4b7d-b8df-98bc20550e98" />
+<img width="1884" height="970" alt="image" src="https://github.com/user-attachments/assets/c76c5ab2-8142-4866-ba22-ae22147ceaea" />
+<img width="1847" height="909" alt="image" src="https://github.com/user-attachments/assets/ed4450a3-d828-40ab-91ab-f8d2c087ae92" />
+<img width="1864" height="1028" alt="image" src="https://github.com/user-attachments/assets/8c04d8bf-bdcd-49a7-90a6-7a54107542e4" />
+<img width="1877" height="1005" alt="image" src="https://github.com/user-attachments/assets/1f1cc0a9-8f96-4946-a936-4fa1fea860aa" />
+<img width="1878" height="970" alt="image" src="https://github.com/user-attachments/assets/ad950c94-5486-4b41-896c-04dc49ca69c6" />
+<img width="1872" height="967" alt="image" src="https://github.com/user-attachments/assets/07ffb3c7-8165-4add-b610-694f2766f410" />
+<img width="1874" height="988" alt="image" src="https://github.com/user-attachments/assets/60a32046-7616-436f-8f47-3dfab169e49b" />
+<img width="1866" height="973" alt="image" src="https://github.com/user-attachments/assets/bf1a6517-2a8b-4c18-bb9d-cab52c9d88ea" />
+<img width="1871" height="979" alt="image" src="https://github.com/user-attachments/assets/0529c0d9-def0-4023-87af-6cf77296ac5c" />
+<img width="1891" height="976" alt="image" src="https://github.com/user-attachments/assets/3af41c9b-8715-4620-8e02-41b67ee77a94" />
+<img width="1879" height="1007" alt="image" src="https://github.com/user-attachments/assets/d74e752f-94ab-4c44-bb53-dde59c92c436" />
+<img width="1883" height="1025" alt="image" src="https://github.com/user-attachments/assets/863be03c-afe6-4dee-bfa5-8e35b5b584e6" />
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 116 | Evaluate Shop page performance with Lighthouse | Performance score recorded; product images correctly optimised using the WebP format | ☐ | |
+
+<details>
+<summary>📸 Evidence for 116</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 117 | Evaluate Checkout page performance with Lighthouse | Performance score successfully recorded | ☐ | |
+
+<details>
+<summary>📸 Evidence for 117</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 118 | Verify efficient delivery of static assets | WhiteNoise serves hashed, cacheable static files in the production environment | ☐ | |
+
+<details>
+<summary>📸 Evidence for 118</summary>
+</details>
+
+| Test ID | Test Case | Expected Result | Status | Notes |
+|---------|-----------|-----------------|--------|-------|
 | 119 | Verify database query efficiency on listing pages | Order History page uses `prefetch_related` for line items, preventing N+1 query issues | ☐ | Implemented; validate using the Django Debug Toolbar or database query logging |
+
+<details>
+<summary>📸 Evidence for 119</summary>
+</details>
 
 ---
 
