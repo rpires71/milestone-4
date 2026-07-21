@@ -7215,10 +7215,12 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 118 | Verify efficient delivery of static assets | WhiteNoise serves hashed, cacheable static files in the production environment | ☐ | |
+| 118 | Verify efficient delivery of static assets | WhiteNoise serves hashed, cacheable static files in the production environment | PASS | WhiteNoise is configured via middleware and `CompressedManifestStaticFilesStorage`, serving hashed, compressed static files in production. Live response headers on static assets show `Cache-Control: max-age=31536000, immutable` and gzip/brotli `Content-Encoding`, and page source references hashed filenames (e.g. style.<hash>.css), enabling long-term browser caching |
 
 <details>
 <summary>📸 Evidence for 118</summary>
+<img width="1858" height="956" alt="image" src="https://github.com/user-attachments/assets/b3fa50bb-9776-495f-8a5d-2c47e220e40d" />
+<img width="864" height="239" alt="image" src="https://github.com/user-attachments/assets/0ca505c4-da5a-470f-841b-6828e317c97b" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
