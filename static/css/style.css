@@ -307,6 +307,20 @@ textarea::placeholder,
   color: #fff;
 }
 
+/* Accessibility: Bootstrap's .btn-outline-danger red (#dc3545) only
+   reaches 4.15:1 on the mist-grey background. Use the darker brand red
+   so destructive-action buttons (e.g. Delete Account) pass AA. (Test 113) */
+.btn-outline-danger {
+  color: #A3151F;
+  border-color: #A3151F;
+}
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+  background-color: #A3151F;
+  border-color: #A3151F;
+  color: #fff;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 767px) {
