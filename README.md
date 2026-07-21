@@ -7098,10 +7098,13 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 112 | Confirm colour contrast complies with WCAG AA | Lighthouse and axe audits report no colour contrast failures | ☐ | |
+| 112 | Confirm colour contrast complies with WCAG AA | Lighthouse and axe audits report no colour contrast failures | PASS | Lighthouse initially flagged low-contrast muted text (`.text-secondary`/`.text-muted`); fixed by darkening to #565E6C (verified ≥5.9:1) and moving form inputs from low-contrast placeholders to visible labels. Both Lighthouse and WAVE now report 0 contrast errors on checkout, with WAVE scoring 10/10. The one remaining Lighthouse ARIA item is the third-party Stripe iframe, outside application control |
 
 <details>
 <summary>📸 Evidence for 112</summary>
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/4eb1ac31-03c2-429e-aeb0-fd2bb0f88c18" />
+<img width="821" height="742" alt="image" src="https://github.com/user-attachments/assets/7d4d968c-2dbd-4f52-b70f-67157778efe5" />
+<img width="1800" height="987" alt="image" src="https://github.com/user-attachments/assets/a8be031a-758f-417c-83ae-ba80afa4ec5b" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
