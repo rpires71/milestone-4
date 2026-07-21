@@ -7193,10 +7193,12 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 116 | Evaluate Shop page performance with Lighthouse | Performance score recorded; product images correctly optimised using the WebP format | ☐ | |
+| 116 | Evaluate Shop page performance with Lighthouse | Performance score recorded; product images correctly optimised using the WebP format | PASS | Lighthouse Performance audit on the Shop page recorded (see evidence). All 13 product images are served in WebP format (confirmed in the Network panel), satisfying the image-optimisation requirement. Being the most image-heavy page, it scores lower than Home; the remaining "image delivery" opportunity concerns further sizing/compression rather than format, and is non-critical |
 
 <details>
 <summary>📸 Evidence for 116</summary>
+<img width="1889" height="1027" alt="image" src="https://github.com/user-attachments/assets/db1ad52f-a1bd-4f94-bcb0-bac4a796d944" />
+<img width="1887" height="1010" alt="image" src="https://github.com/user-attachments/assets/6a262186-7499-44fc-b860-0651b15074f1" />
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
