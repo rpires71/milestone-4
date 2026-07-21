@@ -293,6 +293,20 @@ textarea::placeholder,
   opacity: 1 !important;
 }
 
+/* Accessibility: Bootstrap's .btn-outline-secondary uses #6c757d text,
+   which fails AA (4.3:1) on the mist-grey page background. Darken to the
+   accessible grey so Cancel/Back/Edit buttons pass. (Test 113) */
+.btn-outline-secondary {
+  color: #565E6C;
+  border-color: #565E6C;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  background-color: #565E6C;
+  border-color: #565E6C;
+  color: #fff;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 767px) {
