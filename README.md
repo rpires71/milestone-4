@@ -7152,10 +7152,15 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 114 | Verify Lighthouse Accessibility score | Accessibility score of **90 or above** achieved on key pages | ☐ | |
+| 114 | Verify Lighthouse Accessibility score | Accessibility score of **90 or above** achieved on key pages | PASS | Lighthouse Accessibility audits scored 90+ across key pages (home, shop, checkout, dashboard) following the accessibility fixes in rows 106-113. Checkout scored 97, with the only sub-100 item being the third-party Stripe iframe's aria-hidden input, outside application control |
 
 <details>
 <summary>📸 Evidence for 114</summary>
+<img width="1876" height="1006" alt="image" src="https://github.com/user-attachments/assets/572c7dee-68a5-4d9e-9a10-a39bcbde254b" />
+<img width="1884" height="979" alt="image" src="https://github.com/user-attachments/assets/a88ab69f-f05c-4ec3-9b5b-c8ffe3fe8f35" />
+<img width="1893" height="990" alt="image" src="https://github.com/user-attachments/assets/e0ffb5ac-7aee-44bd-a18e-4795ba83ff14" />
+<img width="1821" height="1004" alt="image" src="https://github.com/user-attachments/assets/de40fed1-1792-408c-848e-9d6d75b544c7" />
+<img width="1881" height="944" alt="image" src="https://github.com/user-attachments/assets/3e1b287d-cd28-46aa-9120-5c5f4f94f15b" />
 </details>
 
 ---
