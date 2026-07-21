@@ -6955,10 +6955,136 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 110 | Verify keyboard accessibility | All interactive elements can be reached and operated using only the keyboard; skip-to-content link functions correctly | ☐ | |
+| 110 | Verify keyboard accessibility | All interactive elements can be reached and operated using only the keyboard; skip-to-content link functions correctly | PASS | All interactive elements (nav, buttons, form fields including the Stripe card element) are reachable and operable by keyboard with a visible focus indicator, verified across the site. The skip-to-content link — found broken in rows 106-109 (pointed at a non-existent target) and fixed by adding a `<main id="main-content">` landmark — now appears on Tab and jumps focus to the main content; WAVE confirms 0 errors with both "Skip link" and "Skip link target" detected |
 
 <details>
 <summary>📸 Evidence for 110</summary>
+<img width="1649" height="989" alt="image" src="https://github.com/user-attachments/assets/6276860b-1597-4b8a-a3a8-b43a0de7bd93" />
+<img width="972" height="976" alt="image" src="https://github.com/user-attachments/assets/3771480d-0a34-4d54-84e0-d23eebadc9b3" />
+<img width="1864" height="986" alt="image" src="https://github.com/user-attachments/assets/b6c63ee2-0808-451c-87f5-e2bec7341d49" />
+<img width="1866" height="950" alt="image" src="https://github.com/user-attachments/assets/36311d51-abda-4933-af16-f9b6583c14fc" />
+<img width="1585" height="985" alt="image" src="https://github.com/user-attachments/assets/25a6ad47-6966-4773-9710-9544855977c4" />
+<img width="1882" height="985" alt="image" src="https://github.com/user-attachments/assets/c6ad6855-983d-455f-a02f-4ae1738dbc39" />
+<img width="1593" height="1010" alt="image" src="https://github.com/user-attachments/assets/7ee98439-2371-4887-8029-63de12b41130" />
+<img width="1869" height="981" alt="image" src="https://github.com/user-attachments/assets/696441d9-31c0-4627-8676-5ea4ce818acd" />
+<img width="1633" height="1006" alt="image" src="https://github.com/user-attachments/assets/01c7db05-0925-48fb-9f64-d334c5b60745" />
+<img width="1884" height="981" alt="image" src="https://github.com/user-attachments/assets/82ed3b32-277b-41ea-bc53-e65cf829e5dc" />
+<img width="1678" height="960" alt="image" src="https://github.com/user-attachments/assets/a7158072-bc8d-4c4b-a72c-559055a8efac" />
+<img width="1831" height="966" alt="image" src="https://github.com/user-attachments/assets/1c5b37dc-175b-466f-bef2-f12ffd68d556" />
+<img width="1689" height="976" alt="image" src="https://github.com/user-attachments/assets/3dec45f2-9679-4c8d-a19a-e44eebfcc469" />
+<img width="1681" height="1020" alt="image" src="https://github.com/user-attachments/assets/8ba936bb-4042-4888-9149-de3c810bd424" />
+<img width="1703" height="1010" alt="image" src="https://github.com/user-attachments/assets/0c13b700-96a3-4e08-96bd-faac5cf71503" />
+<img width="1659" height="976" alt="image" src="https://github.com/user-attachments/assets/0625f9bf-ef63-47a8-801c-063fa8ff1395" />
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 1</summary>
+<video src="https://github.com/user-attachments/assets/f112aeba-c208-4acd-907c-de4d9d2fd180" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 2</summary>
+<video src="https://github.com/user-attachments/assets/ee5f610f-d493-4a1b-bfc4-f606295fa530" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 3</summary>
+<video src="https://github.com/user-attachments/assets/aa019dca-9ef8-4054-b6d4-9a7a7ecf7559" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 4</summary>
+<video src="https://github.com/user-attachments/assets/165079c1-c0f2-4a66-9ab8-d88fa7a2efd0" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 5</summary>
+<video src="https://github.com/user-attachments/assets/dd89b2d0-6cbc-4d35-b609-cde287e05508" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 6</summary>
+<video src="https://github.com/user-attachments/assets/142f1c8e-9afd-47d2-b1f6-fa9f15750af2" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 7</summary>
+<video src="https://github.com/user-attachments/assets/b07dd4ac-4e5a-40f4-9757-3c6e86c9c291" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 8</summary>
+<video src="https://github.com/user-attachments/assets/199b8acd-8f83-4e9a-b4ba-4283800c63ee" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 9</summary>
+<video src="https://github.com/user-attachments/assets/2171928d-0a78-44c6-b178-95f38a99811a" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 10</summary>
+<video src="https://github.com/user-attachments/assets/f0ea87f3-131f-445f-9a81-1d67716f98c6" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 11</summary>
+<video src="https://github.com/user-attachments/assets/b6b08797-3df8-4370-8f54-d2dfc22d2c37" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 12</summary>
+<video src="https://github.com/user-attachments/assets/7b2cdccc-ce37-4b61-a33a-2ab4f420c10c" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 13</summary>
+<video src="https://github.com/user-attachments/assets/b68901fa-a4db-4626-82a8-f7c559bcc6c8" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 14</summary>
+<video src="https://github.com/user-attachments/assets/b20400ad-629d-40a9-bc18-81870e21a20f" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 15</summary>
+<video src="https://github.com/user-attachments/assets/22e399b9-fdb3-4bf3-b153-cd200505707d" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 16</summary>
+<video src="https://github.com/user-attachments/assets/8411ea48-03f5-4763-9313-4285e2fe47b4" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 17</summary>
+<video src="https://github.com/user-attachments/assets/15257678-f7e9-4f92-81cd-72a59a3774f7" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 18</summary>
+<video src="https://github.com/user-attachments/assets/bf8360a3-c0ff-4425-bbec-eaf395f490cf" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 19</summary>
+<video src="https://github.com/user-attachments/assets/21b25c71-2cb6-4e10-8ff1-4a609c71e7fb" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 20</summary>
+<video src="https://github.com/user-attachments/assets/4f7e4663-120e-4f74-ac38-aae2a1b8b9c8" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 21</summary>
+<video src="https://github.com/user-attachments/assets/a9329a4e-aea9-412c-88ba-1ef0ada988e0" controls width="700"></video>
+</details>
+
+<details>
+<summary>📸 Evidence for 110 - PT 22</summary>
+<video src="https://github.com/user-attachments/assets/19836a8a-57c8-4b26-a717-c9b88983dd37" controls width="700"></video>
 </details>
 
 | Test ID | Test Case | Expected Result | Status | Notes |
