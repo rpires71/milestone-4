@@ -248,10 +248,22 @@ a:hover {
         width: 100%;
     }
 }
+
 /* Accessibility: darken muted text so it meets WCAG AA (4.5:1) on light
    backgrounds. Bootstrap's default .text-secondary (#6c757d) and the
    project slate-grey (#6B7280) fall just under the threshold; #565E6C
    clears it while keeping the muted appearance. (Test 112) */
 .text-secondary {
   color: #565E6C !important;
+}
+
+/* Accessibility: also darken .text-muted and input placeholders, which
+   defaulted to ~#767676 and failed AA (4.15:1) on the mist-grey
+   background. #565E6C clears 4.5:1 on all app backgrounds. (Test 112) */
+.text-muted {
+  color: #565E6C !important;
+}
+::placeholder {
+  color: #565E6C !important;
+  opacity: 1;
 }
