@@ -7225,10 +7225,12 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 119 | Verify database query efficiency on listing pages | Order History page uses `prefetch_related` for line items, preventing N+1 query issues | ☐ | Implemented; validate using the Django Debug Toolbar or database query logging |
+| 119 | Verify database query efficiency on listing pages | Order History page uses `prefetch_related` for line items, preventing N+1 query issues | PASS | The order history view uses `.prefetch_related('line_items__product')` (orders/views.py line 193). Validated via database query logging: WITH prefetch_related the listing issues 3 queries; WITHOUT it issues 51 (one per line item and product) - a 17× reduction confirming the N+1 problem is prevented |
 
 <details>
 <summary>📸 Evidence for 119</summary>
+<img width="1221" height="234" alt="image" src="https://github.com/user-attachments/assets/0a22a81a-0fdf-43d9-bc97-2a26a45d4fd9" />
+<img width="1013" height="518" alt="image" src="https://github.com/user-attachments/assets/02f8f064-c180-4af4-8763-fd9315cc733a" />
 </details>
 
 ---
