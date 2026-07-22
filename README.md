@@ -7392,7 +7392,7 @@ python manage.py test
 <img width="955" height="253" alt="image" src="https://github.com/user-attachments/assets/b4db782f-4fcb-4048-b1fd-03e835bbea77" />
 </details>
 
-| **Total** | **94** | |
+| **Total** | **94** |
 
 **Testing Techniques Demonstrated:**
 
@@ -7409,10 +7409,35 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 125 | W3C HTML Validator | Validate the rendered HTML source of every page (using **View Source**, not Django templates) | No validation errors | ☐ | Validate authenticated pages by pasting the rendered source |
+| 125 | W3C HTML Validator | Validate the rendered HTML source of every page (using **View Source**, not Django templates) | No validation errors | PASS | Rendered HTML source validated for all key pages via the W3C Nu validator - public pages by URI and authenticated/staff pages by pasting the rendered source. No validation errors reported. (Staff-only pages return 403 to the validator's anonymous request, independently confirming access control, and were validated via pasted source.) A duplicate `<main>` element issue found during this validation was fixed before re-validation |
 
 <details>
 <summary>📸  Evidence for 125</summary>
+<img width="804" height="540" alt="image" src="https://github.com/user-attachments/assets/59036da8-f403-46f6-83a9-7ad0ab4e52ab" />
+<img width="904" height="580" alt="image" src="https://github.com/user-attachments/assets/0a10c20d-4197-404e-9f9b-890603e007b1" />
+<img width="984" height="589" alt="image" src="https://github.com/user-attachments/assets/6f527b05-754a-4700-b1a4-7e0646c31fc9" />
+<img width="858" height="529" alt="image" src="https://github.com/user-attachments/assets/440e0b5d-9050-4dd7-a6cd-02d48af9d95e" />
+<img width="906" height="576" alt="image" src="https://github.com/user-attachments/assets/9d390a0f-a197-4de7-9866-92ebab8c9fb5" />
+<img width="958" height="540" alt="image" src="https://github.com/user-attachments/assets/5174dd69-0133-4d86-bcbd-9174a956d03d" />
+<img width="846" height="594" alt="image" src="https://github.com/user-attachments/assets/f49f95d2-6d01-4b7f-9663-2ffac280b5ea" />
+<img width="933" height="578" alt="image" src="https://github.com/user-attachments/assets/935b67c2-d734-4d4b-8f4e-3ede9fce5c85" />
+<img width="1249" height="620" alt="image" src="https://github.com/user-attachments/assets/aea70c17-5600-4ff5-912e-08c8a88426b5" />
+<img width="954" height="678" alt="image" src="https://github.com/user-attachments/assets/ddd29bb8-b9fc-4492-b2f5-bd823cceb0bd" />
+<img width="1038" height="687" alt="image" src="https://github.com/user-attachments/assets/c676e7c5-4982-4796-85b4-ae53039982fb" />
+<img width="1076" height="683" alt="image" src="https://github.com/user-attachments/assets/a8eebd3b-8835-49af-a88d-2f3e85e45cf2" />
+<img width="876" height="632" alt="image" src="https://github.com/user-attachments/assets/90cedb9b-03c5-4e16-8565-3c2e95a3c063" />
+<img width="963" height="711" alt="image" src="https://github.com/user-attachments/assets/0870bfd0-8e23-432c-a3e6-2e87d1defd89" />
+<img width="879" height="580" alt="image" src="https://github.com/user-attachments/assets/87f37c30-8499-4a39-a34a-6ea28c4f9fa9" />
+<img width="1160" height="629" alt="image" src="https://github.com/user-attachments/assets/79833f30-0c83-4bfb-88f9-580bf1a57350" />
+<img width="1016" height="642" alt="image" src="https://github.com/user-attachments/assets/be530623-8990-4c1e-ac67-70d5170876a7" />
+<img width="870" height="554" alt="image" src="https://github.com/user-attachments/assets/37218df5-917f-4f10-aa26-8f79a90299c7" />
+<img width="907" height="556" alt="image" src="https://github.com/user-attachments/assets/77b8f6d3-e26d-48e1-bdc8-354ff5a0f8c8" />
+<img width="846" height="614" alt="image" src="https://github.com/user-attachments/assets/879636cb-63b5-477a-8b7e-3979685ab3e8" />
+<img width="843" height="562" alt="image" src="https://github.com/user-attachments/assets/a77329ea-28a3-4eef-b5e4-c47f2f0be614" />
+<img width="1092" height="616" alt="image" src="https://github.com/user-attachments/assets/2be90c89-88c2-4675-9f8d-3304aa2e30e9" />
+<img width="925" height="610" alt="image" src="https://github.com/user-attachments/assets/16bbc7d0-b037-4799-9696-34ce741c0da9" />
+<img width="927" height="628" alt="image" src="https://github.com/user-attachments/assets/45ced5ad-5e8e-4dfb-b962-20f2d8194c9a" />
+<img width="900" height="584" alt="image" src="https://github.com/user-attachments/assets/65d01491-2f07-4888-9a0c-e8f3d05c66af" />
 </details>
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
