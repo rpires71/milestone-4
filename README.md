@@ -7272,7 +7272,15 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 122 | Verify the public Plans page after management updates | Only published membership plans remain visible to members after the introduction of staff CRUD functionality | ☐ | |
+| 122 | Verify the public Plans page after management updates | Only published membership plans remain visible to members after the introduction of staff CRUD functionality | PASS | With staff CRUD in place, the staff Manage Plans list shows plans in all states (Published, Draft, Archived) while the public Plans page lists only Published plans - Draft and Archived plans are not exposed to members, consistent with test 052 |
+
+<details>
+<summary>📸 Evidence for 122</summary>
+<img width="1377" height="739" alt="image" src="https://github.com/user-attachments/assets/8e6039e1-a0db-474d-8375-d840b5c300cb" />
+<img width="1494" height="990" alt="image" src="https://github.com/user-attachments/assets/b0c77db2-d7e4-4b06-be2f-8ecdf2dba41d" />
+<img width="1442" height="672" alt="image" src="https://github.com/user-attachments/assets/3f799631-0755-43e9-9960-1bb08eec26b1" />
+</details>
+
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
