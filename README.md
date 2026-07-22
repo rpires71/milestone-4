@@ -7392,8 +7392,6 @@ python manage.py test
 <img width="955" height="253" alt="image" src="https://github.com/user-attachments/assets/b4db782f-4fcb-4048-b1fd-03e835bbea77" />
 </details>
 
-| **Total** | **94** |
-
 **Testing Techniques Demonstrated:**
 
 - **External service mocking** — Stripe `PaymentIntent` creation is mocked during checkout testing, allowing the automated suite to execute deterministically without requiring an internet connection.
@@ -7442,10 +7440,12 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 126 | W3C Jigsaw Validator | Validate the project's CSS | No validation errors | ☐ | |
+| 126 | W3C Jigsaw Validator | Validate the project's CSS | No validation errors | PASS | The project's custom stylesheet validated with the W3C Jigsaw CSS validator: "No Error Found" (validates as CSS level 3 + SVG). The 18 warnings are non-issues - informational notices that CSS custom properties (var(--...)) cannot be statically checked, and advisories where button background and border colours are intentionally identical |
 
 <details>
 <summary>📸  Evidence for 126</summary>
+<img width="1836" height="984" alt="image" src="https://github.com/user-attachments/assets/1ad1dfcf-5bff-4960-a4f1-817c93afd229" />
+<img width="1325" height="874" alt="image" src="https://github.com/user-attachments/assets/8d3c66cc-c5c8-42d9-b569-ae370b5d70db" />
 </details>
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
