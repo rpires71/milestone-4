@@ -4,7 +4,7 @@
 {% block extra_title %}- Order {{ order.order_number|truncatechars:12 }}{% endblock %}
 
 {% block content %}
-<main id="main-content" class="container py-5">
+<div class="container py-5">
 
   <!-- Breadcrumb -->
   <nav aria-label="breadcrumb">
@@ -113,5 +113,5 @@
     <a href="{% url 'order_history' %}" class="btn btn-outline-dark">&larr; Back to Order History</a>
   </div>
 
-</main>
+</div>
 {% endblock %}

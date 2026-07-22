@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="container py-5">
+<div class="container py-5">
   <h1 class="mb-4">Welcome aboard!</h1>
   <p>You are now subscribed to <strong>{{ plan.name }}</strong>.</p>
   <a href="{% url 'plans' %}" class="btn btn-danger mt-3">Back to plans</a>
-</main>
+</div>
 {% endblock %}
