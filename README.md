@@ -7253,7 +7253,22 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 121 | Confirm checkout functionality after webhook modifications | Existing checkout process continues to operate correctly following webhook enhancements | ☐ | Automated test suite and live checkout verification |
+| 121 | Confirm checkout functionality after webhook modifications | Existing checkout process continues to operate correctly following webhook enhancements | PASS | Checkout confirmed working alongside the webhook enhancements: the full automated suite (94 tests, row 120) covers webhook handling and checkout/order creation and passes together, and a fresh live checkout completed end-to-end - payment accepted, confirmation page rendered, order recorded in history, with the corresponding webhook event delivered successfully |
+
+<details>
+<summary>📸 Evidence for 121</summary>
+<img width="880" height="244" alt="image" src="https://github.com/user-attachments/assets/2a8e0297-8f6a-4014-a834-e5b14128b64f" />
+<img width="1250" height="654" alt="image" src="https://github.com/user-attachments/assets/6eeb947b-4abf-4daf-8c85-20c258efb0f3" />
+<img width="1073" height="917" alt="image" src="https://github.com/user-attachments/assets/d9c6fc7b-6b9b-472d-a0e6-58ab6039e9a4" />
+<img width="1128" height="938" alt="image" src="https://github.com/user-attachments/assets/814693d7-bc35-4de3-bece-0577df51880a" />
+<img width="1061" height="746" alt="image" src="https://github.com/user-attachments/assets/02715153-c4b0-4414-9233-6aa89e1ebbf4" />
+<img width="1033" height="589" alt="image" src="https://github.com/user-attachments/assets/bed20178-ae74-4bd9-8619-c62706820962" />
+<img width="1384" height="365" alt="image" src="https://github.com/user-attachments/assets/1da7495f-9e93-4be2-b4f3-e67d142a1571" />
+<img width="1554" height="856" alt="image" src="https://github.com/user-attachments/assets/ed0446d5-8f34-4121-842d-48189c2fd7e7" />
+<img width="1832" height="717" alt="image" src="https://github.com/user-attachments/assets/b3590714-3fcb-4436-8fd6-d5873fd4564b" />
+<img width="1376" height="424" alt="image" src="https://github.com/user-attachments/assets/697d0ae9-f308-47c3-ae8c-94b37867abd4" />
+</details>
+
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
