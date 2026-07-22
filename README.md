@@ -7299,7 +7299,19 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 124 | Verify basket behaviour after stock quantity capping | Standard basket operations (add, update and remove) continue to function correctly alongside stock capping rules | ☐ | |
+| 124 | Verify basket behaviour after stock quantity capping | Standard basket operations (add, update and remove) continue to function correctly alongside stock capping rules | PASS | Basket operations verified alongside stock capping: items add correctly with accurate totals, quantities update within available stock, requests exceeding available stock are capped as designed, items remove correctly and the empty-basket state displays as expected. Stock capping and standard basket behaviour coexist without regression |
+
+<details>
+<summary>📸 Evidence for 124</summary>
+<img width="1354" height="539" alt="image" src="https://github.com/user-attachments/assets/1e8bdb9a-18cf-4607-8c89-42a757cf903f" />
+<img width="1312" height="787" alt="image" src="https://github.com/user-attachments/assets/86adeef6-e8ca-4b10-92a9-488f016a552a" />
+<img width="1342" height="667" alt="image" src="https://github.com/user-attachments/assets/f1f2f645-cd8b-4870-b2c2-1f3efc7847d9" />
+<img width="960" height="714" alt="image" src="https://github.com/user-attachments/assets/67fd49bc-bb2a-4d97-8627-d093a7aa7a40" />
+<img width="750" height="603" alt="image" src="https://github.com/user-attachments/assets/ac2e1776-01c9-4d51-8dc9-9480024a397e" />
+<img width="1337" height="850" alt="image" src="https://github.com/user-attachments/assets/d89fe6a6-6e83-495f-b774-27ff657f5626" />
+<img width="1457" height="824" alt="image" src="https://github.com/user-attachments/assets/0281a607-c601-4410-b4cc-fa9d9f1bde28" />
+<img width="1420" height="850" alt="image" src="https://github.com/user-attachments/assets/71aa0f3d-33a2-40e5-b6b8-9bfa046e0659" />
+</details>
 
 ---
 
