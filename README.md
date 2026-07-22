@@ -7284,7 +7284,18 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 123 | Confirm order confirmation page after email-related fix | Successful live checkout returns an HTTP 200 response instead of the previous HTTP 500 error | PASS | Verified on Heroku following implementation of defect fix D9 |
+| 123 | Confirm order confirmation page after email-related fix | Successful live checkout returns an HTTP 200 response instead of the previous HTTP 500 error | PASS | Verified on Heroku following defect fix D9: a live checkout POSTs to /orders/checkout/ (302 redirect) and the confirmation page at /orders/checkout/success/<order_number>/ returns HTTP 200, where it previously returned 500 when confirmation email sending failed. The behaviour was later strengthened (D14) so email failures are logged rather than silently swallowed, while preserving the guarantee that the confirmation page always renders |
+
+<details>
+<summary>📸 Evidence for 123</summary>
+<img width="1261" height="974" alt="image" src="https://github.com/user-attachments/assets/cb098cc4-b574-4925-8708-b808be7fed68" />
+<img width="1777" height="957" alt="image" src="https://github.com/user-attachments/assets/045608a5-4f32-4858-8c63-181d66411ddf" />
+<img width="1810" height="958" alt="image" src="https://github.com/user-attachments/assets/ed8a11c7-0919-468a-a2da-f47f8f812e73" />
+<img width="1870" height="1011" alt="image" src="https://github.com/user-attachments/assets/aae6167f-dcbf-493c-8a5a-34b69fcb3ac3" />
+<img width="1841" height="814" alt="image" src="https://github.com/user-attachments/assets/0b5141e5-cafc-4769-8a0e-a333fba8a16b" />
+<img width="734" height="595" alt="image" src="https://github.com/user-attachments/assets/74f03881-15c4-4f20-9ed8-39e433346060" />
+</details>
+
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
