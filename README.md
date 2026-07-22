@@ -7319,26 +7319,52 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
-**Test Suite Size:** **89 automated tests, all successfully passing.**
+**Test Suite Size:** **94 automated tests, all successfully passing.**
 
 ```bash
 python manage.py test
-# Found 89 test(s).
-# Ran 89 tests — OK
+# Found 94 test(s).
+# Ran 94 tests — OK
 ```
 
-<!-- Screenshot: terminal showing "Ran 89 tests ... OK" -->
+<img width="893" height="231" alt="image" src="https://github.com/user-attachments/assets/67f97b21-3db2-440d-842c-87c980365460" />
 
 | App | Tests | Coverage Focus |
 |-----|-------|----------------|
-| accounts | 5 | Profile model, one-to-one user relationship and default values |
-| cart | 11 | Basket add/update/remove operations, stock quantity limits, out-of-stock protection and context processor totals |
+
+| accounts | 6 | Profile model, one-to-one user relationship and default values |
+| cart | 15 | Basket add/update/remove operations, stock quantity limits, out-of-stock protection and context processor totals |
 | orders | 19 | Order and line-item models, checkout workflow, stock deduction and clamping, validation error handling, order history, ownership protection and **Stripe webhook functionality (signature verification, idempotency, order creation and duplicate prevention)** |
 | shop | 9 | Product and category models, product listings, availability checks and 404 responses |
 | plans | 23 | Membership plan model and features, public plan filtering, Stripe subscription flow, idempotent success handling and **staff CRUD functionality (403 access control, create, edit, archive and validation)** |
 | community | 11 | Community post model and form, authentication-protected creation, owner-only editing and deletion |
 | reviews | 11 | Review model and form, rating validation and owner-only editing and deletion |
-| **Total** | **89** | |
+| **Total** | **94** | |
+
+<details>
+<summary>📸 Per-app test run evidence</summary>
+  
+**accounts**
+<img width="961" height="256" alt="image" src="https://github.com/user-attachments/assets/5086c374-56f6-464d-aa27-dd5c433f7141" />
+
+**cart**
+<img width="931" height="251" alt="image" src="https://github.com/user-attachments/assets/b1a4650a-65f9-46ec-ae7f-4fe93b207879" />
+
+**orders**
+<img width="944" height="246" alt="image" src="https://github.com/user-attachments/assets/50c02c21-e38f-4332-aad0-0e35d2ef94a5" />
+
+**shop**
+<img width="947" height="251" alt="image" src="https://github.com/user-attachments/assets/dade51fe-41f5-4b2a-9967-499a272f9247" />
+
+**plans**
+<img width="952" height="254" alt="image" src="https://github.com/user-attachments/assets/5a54e2f4-8835-4369-bffd-5ce6a4c2baa7" />
+
+**community**
+<img width="962" height="267" alt="image" src="https://github.com/user-attachments/assets/5dd7507f-cc21-4827-b905-604ffc6f3ab1" />
+
+**reviews**
+<img width="955" height="253" alt="image" src="https://github.com/user-attachments/assets/b4db782f-4fcb-4048-b1fd-03e835bbea77" />
+</details>
 
 **Testing Techniques Demonstrated:**
 
