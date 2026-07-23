@@ -1,6 +1,7 @@
-from .models import Product
-from django.shortcuts import render, get_object_or_404
 from django.db.models import Avg, Count
+from django.shortcuts import get_object_or_404, render
+
+from .models import Product
 
 
 def all_products(request):

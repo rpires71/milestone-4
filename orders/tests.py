@@ -1,11 +1,12 @@
 """Tests for the orders app: checkout, stock handling and order history."""
 
 from unittest.mock import patch
+
 from django.test import TestCase
 from django.urls import reverse
 
-from shop.models import Product
 from orders.models import Order, OrderLineItem
+from shop.models import Product
 
 
 class OrderModelTest(TestCase):
@@ -200,6 +201,7 @@ class CheckoutViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'SUCCESS123')
+
 
 class OrderHistoryTest(TestCase):
     """Tests for the order history list and detail views."""

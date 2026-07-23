@@ -1,7 +1,8 @@
 """Models for orders and their line items."""
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 from shop.models import Product
 
 

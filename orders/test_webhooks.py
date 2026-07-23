@@ -1,14 +1,14 @@
-"""Tests for the Stripe webhook handler."""
+"""Tests for Stripe webhook signature verification and order creation."""
+import hashlib
+import hmac
 import json
 import time
-import hmac
-import hashlib
 
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from shop.models import Product, ProductCategory
 from orders.models import Order
+from shop.models import Product, ProductCategory
 
 WH_SECRET = 'whsec_test_secret_for_tests'
 
@@ -45,7 +45,6 @@ def _event(pid, cart):
         }},
     })
 
-"""Tests for Stripe webhook signature verification and order creation."""
 
 @override_settings(STRIPE_WH_SECRET=WH_SECRET)
 class StripeWebhookTest(TestCase):

@@ -1,8 +1,9 @@
 """Views for adding, updating and removing basket items."""
 
-from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.utils.html import format_html
+
 from shop.models import Product
 
 

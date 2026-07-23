@@ -1,8 +1,8 @@
 """URL routes for the orders app."""
 
 from django.urls import path
-from . import views
-from . import webhooks
+
+from . import views, webhooks
 
 urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),

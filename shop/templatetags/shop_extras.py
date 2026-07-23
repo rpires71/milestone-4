@@ -1,7 +1,7 @@
 """Custom template tags/filters for the shop app."""
 from django import template
-from django.templatetags.static import static
 from django.contrib.staticfiles import finders
+from django.templatetags.static import static
 
 register = template.Library()
 

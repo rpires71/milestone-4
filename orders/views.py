@@ -1,23 +1,23 @@
 """Views for the checkout flow, order confirmation and order history."""
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.db import transaction
-from django.conf import settings
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-
-
-import stripe
-import uuid
 import json
+import uuid
 from datetime import timedelta
 
+import stripe
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.core.paginator import Paginator
+from django.db import transaction
+from django.shortcuts import get_object_or_404, redirect, render, reverse
+from django.template.loader import render_to_string
+
 from shop.models import Product
-from .models import Order, OrderLineItem
+
 from .forms import OrderForm
+from .models import Order, OrderLineItem
 
 
 def checkout(request):

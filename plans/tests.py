@@ -1,9 +1,11 @@
-from unittest.mock import patch, Mock
 from decimal import Decimal
-from django.test import TestCase
+from unittest.mock import Mock, patch
+
 from django.contrib.auth.models import User
+from django.test import TestCase
 from django.urls import reverse
-from .models import Plan, Subscription, PlanFeature
+
+from .models import Plan, PlanFeature, Subscription
 
 
 class PlanModelTest(TestCase):

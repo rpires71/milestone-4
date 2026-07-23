@@ -3,8 +3,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from shop.models import Product
 from cart.contexts import cart_contents
+from shop.models import Product
 
 
 class CartViewTest(TestCase):

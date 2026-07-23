@@ -1,8 +1,8 @@
 """Tests for the accounts app: profile model and signup form."""
 
-from django.test import TestCase
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.test import TestCase
 
 from accounts.forms import CustomSignupForm
 from accounts.models import Profile
