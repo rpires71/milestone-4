@@ -7450,10 +7450,12 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 127 | JSHint | Validate custom JavaScript, including the Stripe checkout integration | No validation errors | ☐ | |
+| 127 | JSHint | Validate custom JavaScript, including the Stripe checkout integration | No validation errors | PASS | Both custom inline scripts validated with JSHint (ES6, browser environment): the Stripe checkout integration and the dashboard tab-synchronisation script. No errors or warnings in either. External globals (Stripe, bootstrap) are declared via /* global */ directives as they are provided by third-party libraries; the project contains no standalone JavaScript files |
 
 <details>
 <summary>📸  Evidence for 127</summary>
+<img width="1030" height="621" alt="image" src="https://github.com/user-attachments/assets/2a80c457-56f5-48f9-bd4f-bc264c38b9dc" />
+<img width="1002" height="619" alt="image" src="https://github.com/user-attachments/assets/8a7035e7-45e8-459a-af33-901ea0cb2c45" />
 </details>
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
