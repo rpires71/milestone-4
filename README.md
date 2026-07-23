@@ -7485,10 +7485,31 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 129 | Pylint | Assess code quality for each application | Score greater than **8.0/10** for every app | ☐ | Record individual application scores following the Milestone 3 format |
+| 129 | Pylint | Assess code quality for each application | Score greater than **8.0/10** for every app | PASS | Per-app Pylint scores (run with pylint-django; configuration documented in `.pylintrc`): accounts 10.00, cart 10.00, orders 9.33, shop 8.97, plans 9.34, community 9.10, reviews 9.38 — every app exceeds the 8.0 threshold. Remaining advisories in `orders` are deliberate design decisions rather than defects: the broad exception handling around confirmation-email sending is intentional (defect fixes D9/D14 — a mail failure must not break order confirmation), and the flagged duplication between the checkout view and webhook handler exists by design so the webhook can rebuild an order independently of the browser flow |
 
 <details>
 <summary>📸  Evidence for 129</summary>
+<img width="996" height="734" alt="image" src="https://github.com/user-attachments/assets/665588a3-3f75-45ec-9159-d7b25d99eb60" />
+<img width="1212" height="408" alt="image" src="https://github.com/user-attachments/assets/c787d505-ce85-40b1-92b0-3cb367da21c1" />
+<img width="1216" height="597" alt="image" src="https://github.com/user-attachments/assets/8990868b-ce64-455c-8e62-a39b1accdbfd" />
+<img width="1094" height="234" alt="image" src="https://github.com/user-attachments/assets/2d671353-a8ec-4c62-9415-a82a57daec2a" />
+<img width="1045" height="649" alt="image" src="https://github.com/user-attachments/assets/cdbb9f66-4ecb-4b66-a587-ac5caaf83f59" />
+<img width="866" height="312" alt="image" src="https://github.com/user-attachments/assets/b2fc736f-ad97-4aaa-9c36-a8c5c952af65" />
+<img width="969" height="366" alt="image" src="https://github.com/user-attachments/assets/b1236806-abc0-4042-be1a-fd98faacdccb" />
+<img width="969" height="183" alt="image" src="https://github.com/user-attachments/assets/3763808c-6c87-49d3-9d21-39d5db5841e7" />
+<img width="799" height="347" alt="image" src="https://github.com/user-attachments/assets/90a9632b-60d4-4261-902c-ce2ee898c9f0" />
+<img width="1215" height="336" alt="image" src="https://github.com/user-attachments/assets/1962cc91-48d8-4975-b42a-11a9e1ce7b19" />
+<img width="811" height="157" alt="image" src="https://github.com/user-attachments/assets/a06877aa-766f-4add-9515-68e788fe6cfc" />
+<img width="922" height="227" alt="image" src="https://github.com/user-attachments/assets/d603934c-91ba-428b-892a-2578a80580f8" />
+<img width="1211" height="803" alt="image" src="https://github.com/user-attachments/assets/521460a4-b84e-43d2-bcea-30e8e8f20697" />
+<img width="1204" height="574" alt="image" src="https://github.com/user-attachments/assets/0c7514e6-d06a-4303-9577-9ffb73a074c4" />
+<img width="1215" height="758" alt="image" src="https://github.com/user-attachments/assets/45b78ae4-74cb-4c0b-bd5f-4c2fa9561756" />
+<img width="1215" height="402" alt="image" src="https://github.com/user-attachments/assets/1a2d807a-1661-41d9-b069-669ded4a1072" />
+<img width="1213" height="552" alt="image" src="https://github.com/user-attachments/assets/6563b423-c0f8-4bfb-abc4-2f35f019b2b8" />
+<img width="1209" height="718" alt="image" src="https://github.com/user-attachments/assets/59e713db-ab41-4de7-a836-d21013c0888e" />
+<img width="678" height="97" alt="image" src="https://github.com/user-attachments/assets/d6ac2cd0-6327-4a2f-9c5b-ca1f6828511c" />
+<img width="895" height="558" alt="image" src="https://github.com/user-attachments/assets/91aade9f-3f55-4d16-a1bc-f207b8729723" />
+<img width="829" height="490" alt="image" src="https://github.com/user-attachments/assets/c96b1784-585d-47a3-89b0-db30de951602" />
 </details>
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
