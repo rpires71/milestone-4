@@ -7529,10 +7529,14 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 131 | Lighthouse | Perform the **Best Practices** audit | Best Practices score recorded for each key page | ☐ | |
+| 131 | Lighthouse | Perform the **Best Practices** audit | Best Practices score recorded for each key page | PASS | Lighthouse Best Practices scores: Home 100, Shop 100, Checkout 77. Across all pages HTTPS is enforced with no browser console errors, deprecated APIs or image-handling issues. The checkout deduction is entirely attributable to the third-party Stripe integration - two third-party cookies (js.stripe.com and Stripe's hCaptcha bot protection) and associated Stripe/hCaptcha resources flagged in the Issues panel - which are required for PCI-compliant payment processing and outside the application's control. Lighthouse also lists three unscored hardening advisories (Content Security Policy, HSTS, Trusted Types), recorded as future improvements since a CSP must be scoped carefully around the Stripe integration |
 
 <details>
 <summary>📸  Evidence for 131</summary>
+<img width="892" height="354" alt="image" src="https://github.com/user-attachments/assets/073fd2a0-c4ba-426a-b995-76fc50109c88" />
+<img width="1885" height="1030" alt="image" src="https://github.com/user-attachments/assets/da6b67d2-9677-4235-a59c-9e8b45ed6618" />
+<img width="1851" height="964" alt="image" src="https://github.com/user-attachments/assets/d12b7d6e-40db-48bd-9ef1-c3a8e9c7e856" />
+<img width="1874" height="982" alt="image" src="https://github.com/user-attachments/assets/d7b5cc0e-ff42-4146-839b-de7e7136fa02" />
 </details>
 
 ---
