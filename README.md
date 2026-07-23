@@ -7460,10 +7460,27 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 128 | flake8 | Verify PEP 8 compliance for each application | No warnings reported (or documented exceptions where applicable) | ☐ | |
+| 128 | flake8 | Verify PEP 8 compliance for each application | No warnings reported (or documented exceptions where applicable) | PASS | flake8 reports zero warnings across all applications. Issues found during this test were fixed: unused imports removed, blank-line spacing corrected, trailing whitespace and missing end-of-file newlines resolved. A `setup.cfg` documents the project's flake8 configuration - excluding third-party and generated code (venv, migrations, staticfiles) and the local secrets file, with max-line-length set to 100, a conventional relaxation for Django projects |
 
 <details>
 <summary>📸  Evidence for 128</summary>
+<img width="1215" height="619" alt="image" src="https://github.com/user-attachments/assets/cea33b7f-e959-4396-9f6d-73e885d9faf9" />
+<img width="779" height="563" alt="image" src="https://github.com/user-attachments/assets/584771e9-27f6-4151-8100-14fcdc07b728" />
+<img width="841" height="609" alt="image" src="https://github.com/user-attachments/assets/f0f8fb5c-3c9e-472d-af4b-dc6d5ba0283a" />
+<img width="839" height="575" alt="image" src="https://github.com/user-attachments/assets/e1d0acc9-b718-4274-8029-e3c52ecb10a6" />
+<img width="901" height="527" alt="image" src="https://github.com/user-attachments/assets/23c1c1d9-b393-43d7-a254-bf89a408388c" />
+<img width="802" height="502" alt="image" src="https://github.com/user-attachments/assets/87d80793-d519-4e54-b62b-e209b032e5c8" />
+<img width="811" height="645" alt="image" src="https://github.com/user-attachments/assets/733f62cf-3196-4f10-8d6b-7e10f96d8309" />
+<img width="926" height="754" alt="image" src="https://github.com/user-attachments/assets/e0244414-13d4-4129-b4b9-5a6cb1633ead" />
+<img width="839" height="702" alt="image" src="https://github.com/user-attachments/assets/d19579a7-f88c-40d4-86c2-5d02db76eb06" />
+<img width="1200" height="664" alt="image" src="https://github.com/user-attachments/assets/9974c66a-4a07-4054-8471-fc514688bbf6" />
+<img width="979" height="605" alt="image" src="https://github.com/user-attachments/assets/b788f290-e8b8-44eb-b009-60b384a154d2" />
+<img width="876" height="270" alt="image" src="https://github.com/user-attachments/assets/c5cf5ee2-6340-4ab4-ba1d-0ec6d7dd04bd" />
+<img width="847" height="385" alt="image" src="https://github.com/user-attachments/assets/fe972449-4709-417d-bcb9-0588fa7ca509" />
+<img width="879" height="372" alt="image" src="https://github.com/user-attachments/assets/cbe6a9cb-6aae-4a65-907b-5a3fb3fd281f" />
+<img width="870" height="347" alt="image" src="https://github.com/user-attachments/assets/741bf1c3-3abc-4a27-820c-bbf50f0569e2" />
+<img width="747" height="234" alt="image" src="https://github.com/user-attachments/assets/62b22399-a304-403c-b273-6f1961f9d90d" />
+<img width="931" height="312" alt="image" src="https://github.com/user-attachments/assets/08d8e494-b4da-40e2-b82e-b05965534943" />
 </details>
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
