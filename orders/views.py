@@ -182,8 +182,6 @@ def _send_confirmation_email(order):
         )
 
 
-
-
 @login_required
 def order_history(request):
     """List the logged-in user's past orders (read-only historical records)."""

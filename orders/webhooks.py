@@ -61,6 +61,7 @@ def _handle_payment_succeeded(intent):
 
     metadata = intent['metadata'] if 'metadata' in intent else {}
     # metadata is a StripeObject; normalise access
+
     def meta(key, default=''):
         try:
             return metadata[key]

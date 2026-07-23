@@ -85,7 +85,6 @@ class CartViewTest(TestCase):
         response = self.client.get(reverse('view_cart'))
         self.assertEqual(response.status_code, 200)
 
-
     def test_add_caps_at_available_stock(self):
         """Adding more than the available stock caps the quantity at stock."""
         self.product.stock = 5

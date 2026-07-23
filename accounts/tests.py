@@ -50,7 +50,6 @@ class ProfileModelTest(TestCase):
 
     def test_signup_form_requires_and_saves_names(self):
         """The custom signup form collects first and last name onto the user."""
-        from accounts.forms import CustomSignupForm
         form = CustomSignupForm(data={
             'email': 'named@example.com',
             'password1': 'a-Str0ng-passw0rd!',

@@ -9,6 +9,7 @@ import stripe
 from .models import Plan, PlanFeature, Subscription
 from .forms import PlanForm
 
+
 def all_plans(request):
     """Display all published membership plans."""
     plans = Plan.objects.filter(status='published')
@@ -64,6 +65,7 @@ def subscription_success(request):
     )
     messages.success(request, f'You are now subscribed to {plan.name}!')
     return render(request, 'plans/subscription_success.html', {'plan': plan})
+
 
 def staff_required(view_func):
     """Allow staff only; anyone else gets a 403 (direct URL access included)."""
