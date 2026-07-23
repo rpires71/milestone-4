@@ -1,3 +1,5 @@
+"""Views for the member dashboard and profile editing."""
+
 # accounts/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -57,7 +59,8 @@ def dashboard(request):
 
 @login_required
 def profile_setup(request):
-    profile, created = Profile.objects.get_or_create(user=request.user)
+    """Collect fitness details in the one-time Step 2 flow after registration."""
+    profile, _ = Profile.objects.get_or_create(user=request.user)
 
     # If they've already completed step 2, don't show it again.
     if profile_is_complete(profile) and request.method != "POST":
@@ -82,7 +85,7 @@ def profile_edit(request):
     this is reachable at any time from the Account Details tab and always
     redirects back to the dashboard rather than gating access to it.
     """
-    profile, created = Profile.objects.get_or_create(user=request.user)
+    profile, _ = Profile.objects.get_or_create(user=request.user)
     dashboard_details_url = f"{reverse('dashboard')}?tab=details"
 
     if request.method != "POST":
@@ -93,7 +96,7 @@ def profile_edit(request):
         form.save()
         messages.success(request, "Profile updated successfully.")
     else:
-        for field, errors in form.errors.items():
+        for _, errors in form.errors.items():
             for error in errors:
                 messages.error(request, error)
 

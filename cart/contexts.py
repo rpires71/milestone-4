@@ -1,3 +1,5 @@
+"""Context processor exposing basket contents to all templates."""
+
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
 from shop.models import Product

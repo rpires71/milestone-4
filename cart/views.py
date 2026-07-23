@@ -1,6 +1,8 @@
+"""Views for adding, updating and removing basket items."""
+
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from shop.models import Product
 
 
@@ -19,7 +21,7 @@ def add_to_cart(request, product_id):
     except (TypeError, ValueError):
         quantity = 1
     if quantity < 1:
-        quantity = 1
+        quantity = max(quantity, 1)
 
     cart = request.session.get('cart', {})
     current = cart.get(str(product_id), 0)
@@ -40,9 +42,11 @@ def add_to_cart(request, product_id):
     else:
         cart[str(product_id)] = requested
         basket_url = reverse('view_cart')
-        messages.success(request, mark_safe(
-            f'Added {product.name} to your basket. '
-            f'<a href="{basket_url}" class="alert-link">View basket</a>'
+        messages.success(request, format_html(
+            'Added {} to your basket. '
+            '<a href="{}" class="alert-link">View basket</a>',
+            product.name,
+            basket_url,
         ))
 
     request.session['cart'] = cart

@@ -1,3 +1,5 @@
+"""Tests for the cart app: basket operations and stock limits."""
+
 from django.test import TestCase
 from django.urls import reverse
 

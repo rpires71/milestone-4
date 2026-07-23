@@ -45,6 +45,7 @@ def _event(pid, cart):
         }},
     })
 
+"""Tests for Stripe webhook signature verification and order creation."""
 
 @override_settings(STRIPE_WH_SECRET=WH_SECRET)
 class StripeWebhookTest(TestCase):

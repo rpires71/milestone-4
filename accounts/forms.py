@@ -1,3 +1,5 @@
+"""Forms for user signup and profile editing."""
+
 from django import forms
 from allauth.account.forms import SignupForm
 
@@ -32,6 +34,8 @@ class CustomSignupForm(SignupForm):
 
 
 class FitnessProfileForm(forms.ModelForm):
+    """Form for editing a user's fitness profile."""
+
     class Meta:
         model = Profile
         fields = [

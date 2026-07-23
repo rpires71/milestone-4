@@ -1,5 +1,8 @@
+"""Tests for the accounts app: profile model and signup form."""
+
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 from accounts.forms import CustomSignupForm
 from accounts.models import Profile
@@ -44,7 +47,6 @@ class ProfileModelTest(TestCase):
 
     def test_one_profile_per_user(self):
         """The OneToOne constraint prevents a second profile for a user."""
-        from django.db import IntegrityError
         with self.assertRaises(IntegrityError):
             Profile.objects.create(user=self.user)
 

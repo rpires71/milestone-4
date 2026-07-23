@@ -1,3 +1,5 @@
+"""Models for user profiles and fitness details."""
+
 from django.db import models
 from django.contrib.auth.models import User
 
