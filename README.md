@@ -7514,10 +7514,17 @@ python manage.py test
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
 |---------|------|-----------|-----------------|--------|-------|
-| 130 | isort | Verify import ordering for each application | `isort <app> --check` returns exit code **0** | ☐ | |
+| 130 | isort | Verify import ordering for each application | `isort <app> --check` returns exit code **0** | PASS | isort applied across all seven applications; `isort accounts cart orders shop plans community reviews --check` returns exit code 0 and a `--check-only --diff` run reports no remaining differences, confirming imports are correctly grouped and ordered (standard library, then third-party, then local). All 94 automated tests continue to pass and flake8 remains clean after the reordering |
 
 <details>
 <summary>📸  Evidence for 130</summary>
+<img width="1167" height="683" alt="image" src="https://github.com/user-attachments/assets/d091775c-e292-489c-b027-823a8c416d60" />
+<img width="958" height="464" alt="image" src="https://github.com/user-attachments/assets/72ad7bc4-c1d6-4689-9f4b-367efdcc0445" />
+<img width="1213" height="177" alt="image" src="https://github.com/user-attachments/assets/42409600-4295-4410-b37e-88a14307866b" />
+<img width="1207" height="664" alt="image" src="https://github.com/user-attachments/assets/b44af9f2-aaec-49ce-9096-5e1db060c15a" />
+<img width="1183" height="696" alt="image" src="https://github.com/user-attachments/assets/c1308dcb-e715-4665-957f-5817a7c471a5" />
+<img width="1132" height="637" alt="image" src="https://github.com/user-attachments/assets/f9559f20-d327-4799-8834-6f205cf17cb3" />
+<img width="1165" height="96" alt="image" src="https://github.com/user-attachments/assets/0d25907f-526f-4401-84bd-2946d7ddf88c" />
 </details>
 
 | Test ID | Tool | Test Case | Expected Result | Status | Notes |
