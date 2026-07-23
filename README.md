@@ -2205,35 +2205,35 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Registration Form Accessible to Visitors
 
-- [ ] Given that a user is not authenticated, when they navigate to the registration page, then a clearly labelled account registration form is displayed.
+- [X] Given that a user is not authenticated, when they navigate to the registration page, then a clearly labelled account registration form is displayed.
 
 ##### AC2 – Restricted Access for Authenticated Users
 
-- [ ] Given that a user is already logged in, when they attempt to access the registration page, then they are redirected to an appropriate page (such as their dashboard) instead of being shown the registration form.
+- [X] Given that a user is already logged in, when they attempt to access the registration page, then they are redirected to an appropriate page (such as their dashboard) instead of being shown the registration form.
 
 ##### AC3 – Validation of Mandatory Fields
 
-- [ ] Given that a visitor submits the registration form with incomplete or invalid information, when the form is processed, then submission is prevented and clear field-specific validation messages are displayed.
+- [X] Given that a visitor submits the registration form with incomplete or invalid information, when the form is processed, then submission is prevented and clear field-specific validation messages are displayed.
 
 ##### AC4 – Password Strength and Confirmation Requirements
 
-- [ ] Given that a visitor enters a password during registration, when the form is submitted, then the password must meet the defined security requirements and match the confirmation field before the account can be created.
+- [X] Given that a visitor enters a password during registration, when the form is submitted, then the password must meet the defined security requirements and match the confirmation field before the account can be created.
 
 ##### AC5 – Prevention of Duplicate Registrations
 
-- [ ] Given that an email address is already associated with an existing account, when a visitor attempts to register using that email address, then the registration request is rejected and an appropriate notification is displayed.
+- [X] Given that an email address is already associated with an existing account, when a visitor attempts to register using that email address, then the registration request is rejected and an appropriate notification is displayed.
 
 ##### AC6 – Registration Success Confirmation
 
-- [ ] Given that valid registration details are submitted, when the account is successfully created, then the system displays a confirmation message and, where applicable, sends an account verification email.
+- [X] Given that valid registration details are submitted, when the account is successfully created, then the system displays a confirmation message and, where applicable, sends an account verification email.
 
 ##### AC7 – Secure Storage of User Credentials
 
-- [ ] Given that a new account has been created, when user credentials are stored, then passwords are securely hashed and no sensitive credentials, secret keys, or authentication data are exposed within the source code or repository.
+- [X] Given that a new account has been created, when user credentials are stored, then passwords are securely hashed and no sensitive credentials, secret keys, or authentication data are exposed within the source code or repository.
 
 ##### AC8 – Accessibility and Responsive Design Compliance
 
-- [ ] Given that a visitor accesses the registration form using a desktop, tablet, mobile device, or assistive technology, when interacting with the form, then all controls are keyboard accessible, screen-reader compatible, responsive, and supported by meaningful labels and accessible error messaging.
+- [X] Given that a visitor accesses the registration form using a desktop, tablet, mobile device, or assistive technology, when interacting with the form, then all controls are keyboard accessible, screen-reader compatible, responsive, and supported by meaningful labels and accessible error messaging.
 
 ---
 
@@ -2247,31 +2247,31 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Login Form Available to Unauthenticated Users
 
-- [ ] Given that a user is not logged in, when they navigate to the login page, then a clearly labelled authentication form is displayed.
+- [X] Given that a user is not logged in, when they navigate to the login page, then a clearly labelled authentication form is displayed.
 
 ##### AC2 – Restricted Access to Authentication Pages
 
-- [ ] Given that a user is already authenticated, when they attempt to access the login or registration pages, then they are redirected to an appropriate location rather than being shown the authentication forms.
+- [X] Given that a user is already authenticated, when they attempt to access the login or registration pages, then they are redirected to an appropriate location rather than being shown the authentication forms.
 
 ##### AC3 – Successful User Authentication
 
-- [ ] Given that a member enters valid login credentials, when the authentication form is submitted, then access is granted and the user is redirected to their dashboard or the originally requested page.
+- [X] Given that a member enters valid login credentials, when the authentication form is submitted, then access is granted and the user is redirected to their dashboard or the originally requested page.
 
 ##### AC4 – Feedback for Invalid Credentials
 
-- [ ] Given that a member enters incorrect login details, when the authentication attempt fails, then the system displays a clear and generic error message without indicating whether the email address or password was incorrect.
+- [X] Given that a member enters incorrect login details, when the authentication attempt fails, then the system displays a clear and generic error message without indicating whether the email address or password was incorrect.
 
 ##### AC5 – Secure Logout Functionality
 
-- [ ] Given that a user is authenticated, when they select the logout option, then their session is terminated, access to protected resources is revoked, and a logout confirmation message is displayed.
+- [X] Given that a user is authenticated, when they select the logout option, then their session is terminated, access to protected resources is revoked, and a logout confirmation message is displayed.
 
 ##### AC6 – Authentication Required for Protected Content
 
-- [ ] Given that a visitor attempts to access a restricted page directly via its URL, when they are not authenticated, then they are redirected to the login page and prevented from viewing protected content.
+- [X] Given that a visitor attempts to access a restricted page directly via its URL, when they are not authenticated, then they are redirected to the login page and prevented from viewing protected content.
 
 ##### AC7 – Accessible and Responsive Authentication Experience
 
-- [ ] Given that a user accesses the authentication system from a desktop, tablet, mobile device, or assistive technology, when logging in or out, then the process is fully responsive, keyboard accessible, screen-reader compatible, and provides clear user feedback throughout.
+- [X] Given that a user accesses the authentication system from a desktop, tablet, mobile device, or assistive technology, when logging in or out, then the process is fully responsive, keyboard accessible, screen-reader compatible, and provides clear user feedback throughout.
 
 ---
 
@@ -2285,11 +2285,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Published Plans Retrieved from the Database
 
-- [ ] Given that fitness plans are available, when a user accesses the Plans page, then all published plans are retrieved from the database and displayed in a clear and organised card-based layout.
+- [X] Given that fitness plans are available, when a user accesses the Plans page, then all published plans are retrieved from the database and displayed in a clear and organised card-based layout.
 
 ##### AC2 – Essential Plan Information Displayed
 
-- [ ] Given that plans are displayed on the Plans page, when a user views an individual plan card, then the card includes, at a minimum, the plan name, difficulty level or tier, subscription price, and billing frequency.
+- [X] Given that plans are displayed on the Plans page, when a user views an individual plan card, then the card includes, at a minimum, the plan name, difficulty level or tier, subscription price, and billing frequency.
 
 ##### AC3 – Filtering and Sorting Functionality
 
@@ -2301,11 +2301,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC5 – Empty State Management
 
-- [ ] Given that no plans match the selected filters, or no plans are currently published, when the Plans page is displayed, then a clear and user-friendly message is presented instead of an empty or incomplete interface.
+- [X] Given that no plans match the selected filters, or no plans are currently published, when the Plans page is displayed, then a clear and user-friendly message is presented instead of an empty or incomplete interface.
 
 ##### AC6 – Responsive Layout Across Devices
 
-- [ ] Given that a user accesses the Plans page from a desktop, tablet, or mobile device, when the page is rendered, then the layout adapts appropriately to the available screen size without requiring horizontal scrolling.
+- [X] Given that a user accesses the Plans page from a desktop, tablet, or mobile device, when the page is rendered, then the layout adapts appropriately to the available screen size without requiring horizontal scrolling.
 
 ##### AC7 – Accessibility Compliance
 
@@ -2313,7 +2313,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC8 – Graceful Error Handling
 
-- [ ] Given that plan information cannot be retrieved from the database, when the Plans page attempts to load, then a clear and user-friendly error message is displayed instead of exposing a system or server error.
+- [X] Given that plan information cannot be retrieved from the database, when the Plans page attempts to load, then a clear and user-friendly error message is displayed instead of exposing a system or server error.
 
 ---
 
@@ -2327,7 +2327,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Comprehensive Plan Details Displayed
 
-- [ ] Given that a user selects a fitness plan, when the plan detail page loads, then a comprehensive overview is displayed, including the plan description, difficulty level, key features, and an appropriate call-to-action for subscribing or accessing content.
+- [X] Given that a user selects a fitness plan, when the plan detail page loads, then a comprehensive overview is displayed, including the plan description, difficulty level, key features, and an appropriate call-to-action for subscribing or accessing content.
 
 ##### AC2 – Content Restriction for Non-Subscribers
 
@@ -2335,11 +2335,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC3 – Full Access for Eligible Subscribers
 
-- [ ] Given that a member has an active subscription that includes the selected fitness plan, when they access the plan detail page, then the complete plan content is made available.
+- [X] Given that a member has an active subscription that includes the selected fitness plan, when they access the plan detail page, then the complete plan content is made available.
 
 ##### AC4 – Server-Side Access Control Enforcement
 
-- [ ] Given that protected plan content is requested, when access permissions are evaluated, then authorisation is enforced on the server side to prevent non-subscribers from accessing restricted content through URL manipulation, browser tools, or modified requests.
+- [X] Given that protected plan content is requested, when access permissions are evaluated, then authorisation is enforced on the server side to prevent non-subscribers from accessing restricted content through URL manipulation, browser tools, or modified requests.
 
 ##### AC5 – Context-Aware Calls to Action
 
@@ -2347,11 +2347,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC6 – Accessibility and Responsive Design Compliance
 
-- [ ] Given that a user accesses the plan detail page using any device or assistive technology, when interacting with the page, then the content remains readable, headings follow a logical hierarchy, and all controls are fully keyboard accessible and screen-reader compatible.
+- [X] Given that a user accesses the plan detail page using any device or assistive technology, when interacting with the page, then the content remains readable, headings follow a logical hierarchy, and all controls are fully keyboard accessible and screen-reader compatible.
 
 ##### AC7 – Graceful Handling of Missing or Invalid Plans
 
-- [ ] Given that a user requests a fitness plan that does not exist, when the request is processed, then a user-friendly "Plan Not Found" message is displayed together with a navigation option that allows the user to return to the Plans page.
+- [X] Given that a user requests a fitness plan that does not exist, when the request is processed, then a user-friendly "Plan Not Found" message is displayed together with a navigation option that allows the user to return to the Plans page.
 
 ---
 
@@ -2365,11 +2365,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Secure Subscription Checkout for Authenticated Members
 
-- [ ] Given that a member is logged into the platform, when they choose a subscription plan and billing option (monthly or annual), then they are redirected to a secure Stripe checkout process for the selected subscription.
+- [X] Given that a member is logged into the platform, when they choose a subscription plan and billing option (monthly or annual), then they are redirected to a secure Stripe checkout process for the selected subscription.
 
 ##### AC2 – Secure Payment Processing via Stripe
 
-- [ ] Given that a member enters payment information during checkout, when the transaction is processed, then Stripe securely handles the payment and no payment card information is stored, processed, or exposed by the application.
+- [X] Given that a member enters payment information during checkout, when the transaction is processed, then Stripe securely handles the payment and no payment card information is stored, processed, or exposed by the application.
 
 ##### AC3 – Subscription Confirmation Through Webhooks
 
@@ -2381,7 +2381,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC5 – Helpful Payment Failure Handling
 
-- [ ] Given that a payment is declined or cannot be completed, when the transaction fails, then the system displays a clear and informative error message and allows the member to retry the payment process without losing their progress.
+- [X] Given that a payment is declined or cannot be completed, when the transaction fails, then the system displays a clear and informative error message and allows the member to retry the payment process without losing their progress.
 
 ##### AC6 – Immediate Subscription Status Updates
 
@@ -2393,7 +2393,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC8 – Accessible and Responsive Subscription Experience
 
-- [ ] Given that a member completes the subscription process on a desktop, tablet, mobile device, or through assistive technologies, when progressing through the checkout journey, then all functionality remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback at every stage.
+- [X] Given that a member completes the subscription process on a desktop, tablet, mobile device, or through assistive technologies, when progressing through the checkout journey, then all functionality remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback at every stage.
 
 ---
 
@@ -2449,31 +2449,31 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Add Products from Listing and Detail Pages
 
-- [ ] Given that a member is viewing a product from either the shop catalogue or an individual product page, when they select a quantity and choose **Add to Cart**, then the selected item is added to their shopping cart.
+- [X] Given that a member is viewing a product from either the shop catalogue or an individual product page, when they select a quantity and choose **Add to Cart**, then the selected item is added to their shopping cart.
 
 ##### AC2 – Cart Contents Persist Throughout the Session
 
-- [ ] Given that a member has added one or more items to their cart, when they continue browsing the application, then the cart contents remain available and unchanged throughout their active session.
+- [X] Given that a member has added one or more items to their cart, when they continue browsing the application, then the cart contents remain available and unchanged throughout their active session.
 
 ##### AC3 – Stock Availability Validation
 
-- [ ] Given that a member attempts to add a quantity greater than the available stock level, when the request is processed, then the system limits the quantity to the maximum available amount and displays an informative message explaining the restriction.
+- [X] Given that a member attempts to add a quantity greater than the available stock level, when the request is processed, then the system limits the quantity to the maximum available amount and displays an informative message explaining the restriction.
 
 ##### AC4 – Real-Time Cart Indicator Updates
 
-- [ ] Given that a product has been successfully added to the shopping cart, when the action is completed, then the cart quantity indicator displayed within the navigation bar updates immediately to reflect the change.
+- [X] Given that a product has been successfully added to the shopping cart, when the action is completed, then the cart quantity indicator displayed within the navigation bar updates immediately to reflect the change.
 
 ##### AC5 – Clear User Feedback Following Cart Updates
 
-- [ ] Given that an item has been added to the cart, when the operation succeeds, then the member receives a clear confirmation message indicating that the product has been successfully added.
+- [X] Given that an item has been added to the cart, when the operation succeeds, then the member receives a clear confirmation message indicating that the product has been successfully added.
 
 ##### AC6 – Separation of Product Purchases and Subscriptions
 
-- [ ] Given that a member adds items to their cart, when the cart is updated, then only one-time purchasable products are included, while recurring subscription plans continue to be processed through the dedicated subscription workflow.
+- [X] Given that a member adds items to their cart, when the cart is updated, then only one-time purchasable products are included, while recurring subscription plans continue to be processed through the dedicated subscription workflow.
 
 ##### AC7 – Accessible and Responsive Cart Functionality
 
-- [ ] Given that a member interacts with shopping cart functionality using a desktop, tablet, mobile device, or assistive technology, when adding products to the cart, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+- [X] Given that a member interacts with shopping cart functionality using a desktop, tablet, mobile device, or assistive technology, when adding products to the cart, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
@@ -2487,11 +2487,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Quantity Updates with Real-Time Price Recalculation
 
-- [ ] Given that a member changes the quantity of an item within their shopping cart, when the update is applied, then the corresponding line total and overall order total are recalculated immediately, and the change is announced to assistive technologies using an appropriate live region.
+- [X] Given that a member changes the quantity of an item within their shopping cart, when the update is applied, then the corresponding line total and overall order total are recalculated immediately, and the change is announced to assistive technologies using an appropriate live region.
 
 ##### AC2 – Remove Products from the Shopping Cart
 
-- [ ] Given that a member chooses to remove an item from their cart, when the action is confirmed, then the product is removed and all pricing totals are recalculated accordingly.
+- [X] Given that a member chooses to remove an item from their cart, when the action is confirmed, then the product is removed and all pricing totals are recalculated accordingly.
 
 ##### AC3 – Save Items for Later Purchase
 
@@ -2499,11 +2499,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC4 – Stock Availability Enforcement
 
-- [ ] Given that a member attempts to increase a product quantity beyond the available stock level, when the update is submitted, then the system prevents the change and displays the maximum quantity currently available.
+- [X] Given that a member attempts to increase a product quantity beyond the available stock level, when the update is submitted, then the system prevents the change and displays the maximum quantity currently available.
 
 ##### AC5 – Empty Cart State Handling
 
-- [ ] Given that no products remain in the shopping cart, when the cart page is displayed, then a clear and user-friendly empty-cart message is shown together with a prominent link directing the member back to the shop.
+- [X] Given that no products remain in the shopping cart, when the cart page is displayed, then a clear and user-friendly empty-cart message is shown together with a prominent link directing the member back to the shop.
 
 ##### AC6 – Accurate Order Calculations
 
@@ -2511,7 +2511,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC7 – Accessible and Responsive Cart Management
 
-- [ ] Given that a member manages their cart using a desktop, tablet, mobile device, or assistive technology, when interacting with quantity controls and action buttons, then all controls remain responsive, keyboard accessible, screen-reader compatible, and include descriptive labels.
+- [X] Given that a member manages their cart using a desktop, tablet, mobile device, or assistive technology, when interacting with quantity controls and action buttons, then all controls remain responsive, keyboard accessible, screen-reader compatible, and include descriptive labels.
 
 ---
 
@@ -2525,27 +2525,27 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Delivery Information Validation
 
-- [ ] Given that a member proceeds to the checkout page, when delivery information is entered and submitted, then all required fields are validated on the server side before payment processing can begin.
+- [X] Given that a member proceeds to the checkout page, when delivery information is entered and submitted, then all required fields are validated on the server side before payment processing can begin.
 
 ##### AC2 – Secure Payment Collection Through Stripe
 
-- [ ] Given that a member enters payment details during checkout, when card information is provided, then the payment field is delivered through **Stripe Elements**, ensuring that card data is processed securely by Stripe and never reaches the application server.
+- [X] Given that a member enters payment details during checkout, when card information is provided, then the payment field is delivered through **Stripe Elements**, ensuring that card data is processed securely by Stripe and never reaches the application server.
 
 ##### AC3 – Prevention of Duplicate Payment Submissions
 
-- [ ] Given that a member submits a payment request, when the transaction is being processed, then a loading or processing state is displayed and further submissions are temporarily disabled to prevent duplicate charges.
+- [X] Given that a member submits a payment request, when the transaction is being processed, then a loading or processing state is displayed and further submissions are temporarily disabled to prevent duplicate charges.
 
 ##### AC4 – Order Confirmation Through Webhooks
 
-- [ ] Given that a payment has been successfully authorised, when the `payment_intent.succeeded` webhook event is received from Stripe, then the corresponding order is created or confirmed within the application's database, ensuring reliability even if the user closes their browser before redirection completes.
+- [X] Given that a payment has been successfully authorised, when the `payment_intent.succeeded` webhook event is received from Stripe, then the corresponding order is created or confirmed within the application's database, ensuring reliability even if the user closes their browser before redirection completes.
 
 ##### AC5 – Successful Checkout Confirmation
 
-- [ ] Given that payment has been processed successfully, when the checkout process is completed, then the member is presented with a clear confirmation message and redirected to an order confirmation page.
+- [X] Given that payment has been processed successfully, when the checkout process is completed, then the member is presented with a clear confirmation message and redirected to an order confirmation page.
 
 ##### AC6 – Payment Failure Recovery
 
-- [ ] Given that a payment attempt is declined or encounters an error, when the transaction fails, then a clear inline error message is displayed and the member is able to correct the issue and retry without losing their cart contents.
+- [X] Given that a payment attempt is declined or encounters an error, when the transaction fails, then a clear inline error message is displayed and the member is able to correct the issue and retry without losing their cart contents.
 
 ##### AC7 – Accurate Pricing and Order Totals
 
@@ -2557,7 +2557,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC9 – Accessible and Responsive Checkout Experience
 
-- [ ] Given that a member completes the checkout process using a desktop, tablet, mobile device, or assistive technology, when interacting with the checkout form, then the interface remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback for validation errors and payment outcomes.
+- [X] Given that a member completes the checkout process using a desktop, tablet, mobile device, or assistive technology, when interacting with the checkout form, then the interface remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback for validation errors and payment outcomes.
 
 ---
 
@@ -2571,11 +2571,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Order Confirmation Displayed Following Successful Payment
 
-- [ ] Given that a member's payment has been successfully processed, when the transaction is completed, then an order confirmation page is displayed.
+- [X] Given that a member's payment has been successfully processed, when the transaction is completed, then an order confirmation page is displayed.
 
 ##### AC2 – Display of Essential Order Information
 
-- [ ] Given that an order confirmation page is shown, when the member reviews the confirmation, then it includes the order reference number, purchased items, order total, delivery information, and confirmation that an order email has been sent.
+- [X] Given that an order confirmation page is shown, when the member reviews the confirmation, then it includes the order reference number, purchased items, order total, delivery information, and confirmation that an order email has been sent.
 
 ##### AC3 – Confirmation Data Sourced from the Verified Order Record
 
@@ -2587,7 +2587,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC5 – Ownership and Authorisation Controls
 
-- [ ] Given that a member attempts to access an order confirmation page, when the request is processed, then only orders associated with their account are accessible, and any attempt to view another user's order results in an appropriate not-found or permission-denied response.
+- [X] Given that a member attempts to access an order confirmation page, when the request is processed, then only orders associated with their account are accessible, and any attempt to view another user's order results in an appropriate not-found or permission-denied response.
 
 ##### AC6 – Confirmation Email Guidance and Support
 
@@ -2595,7 +2595,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC7 – Accessible and Responsive Confirmation Experience
 
-- [ ] Given that a member accesses the order confirmation page using a desktop, tablet, mobile device, or assistive technology, when viewing the confirmation details, then the order number remains selectable text, headings follow a logical hierarchy, and the layout adapts appropriately to different screen sizes while remaining fully accessible.
+- [X] Given that a member accesses the order confirmation page using a desktop, tablet, mobile device, or assistive technology, when viewing the confirmation details, then the order number remains selectable text, headings follow a logical hierarchy, and the layout adapts appropriately to different screen sizes while remaining fully accessible.
 
 ---
 
