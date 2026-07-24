@@ -483,7 +483,7 @@ A range of additional features demonstrate sound development practice, including
  
 [⬆ Back to Table of Contents](#table-of-contents)
  
-A **user-centred design methodology** underpins the UX strategy for **FitHub**, ensuring that the application effectively addresses the practical requirements of fitness enthusiasts, coaches, community participants, and administrators while maintaining accessibility, intuitiveness, engagement, and operational efficiency (Interaction Design Foundation, 2023).
+A **user-centred design methodology** underpins the UX strategy for **FitHub**, ensuring that the application addresses the practical requirements of fitness enthusiasts, coaches, community participants, and administrators while maintaining accessibility, intuitiveness, engagement, and operational efficiency (Interaction Design Foundation, 2025).
  
 Three core phases form the foundation of the strategy:
  
@@ -491,8 +491,8 @@ Three core phases form the foundation of the strategy:
 - Design Principles
 - Testing and Feedback
 
-Throughout the development process, particular emphasis is placed on **accessibility**, **clarity**, **responsiveness**, **community participation**, **data integrity**, and **ease of use**. These priorities align with the principles outlined within the **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA** and recognised contemporary usability standards (W3C, 2023).
-
+Throughout the development process, particular emphasis is placed on **accessibility**, **clarity**, **responsiveness**, **community participation**, **data integrity**, and **ease of use**. These priorities align with the principles outlined within the **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA** and recognised contemporary usability standards (W3C, 2018).
+ 
 ### Research and Planning
  
 [⬆ Back to Table of Contents](#table-of-contents)
@@ -510,152 +510,137 @@ An understanding of user requirements, expectations, and objectives is developed
  
 - Browsing exercise and nutrition plans according to fitness goals and difficulty levels
 - Evaluating subscription options and making informed purchasing decisions
-- Registering accounts and creating personalised fitness profiles
+- Registering accounts and creating fitness profiles
 - Completing payment transactions for plans and merchandise
-- Accessing the subscriber-exclusive community and sharing success stories
-- Engaging with peer-generated content through comments and support
-- Managing subscription status and membership cancellations
-- Creating, updating, and administering plans and products (coaches and administrators)
+- Accessing the community feed and sharing posts
+- Managing profile information
+- Creating, updating, and administering membership plans (administrators)
 
 Key areas of research include:
  
 - User expectations when discovering and purchasing fitness plans online
 - The information required before committing to a subscription service
-- The role of community functionality in promoting engagement and user retention
-- Methods used by coaches to manage multiple plans and monitor subscriber activity
+- The role of community functionality in promoting engagement and retention
 - Payment processes that increase user confidence and minimise checkout abandonment
-- The contribution of inclusive and accessible design to supporting users from diverse backgrounds and with varying abilities
+- The contribution of inclusive and accessible design to supporting users with varying abilities
 
-To ensure relevance and usability across all user groups, features and content are prioritised according to user requirements. As a result, plan descriptions, pricing information, reviews, community functionality, checkout workflows, and administrative dashboards are presented clearly and structured for ease of understanding (Code Institute, 2025).
-
+To ensure relevance and usability across all user groups, features and content are prioritised according to user requirements. As a result, plan descriptions, pricing information, reviews, community functionality, checkout workflows, and administrative interfaces are presented clearly and structured for ease of understanding (Code Institute, 2025).
+ 
 ### Design Principles
  
 [⬆ Back to Table of Contents](#table-of-contents)
  
 #### Accessibility
-
-Accessibility throughout the application is supported through the use of **Semantic HTML5**, logical heading structures, and inclusive design practices. Clear form labels, placeholder text, and validation messages are incorporated to assist screen-reader users and those relying on keyboard-only navigation. Interactive components utilise ARIA labels and roles to improve compatibility with assistive technologies. Compliance with WCAG AA colour-contrast requirements (4.5:1 for text) is maintained, while readable typography contributes to an inclusive user experience across plan browsing, checkout workflows, and community interactions (W3C, 2023).
-
+ 
+Accessibility is supported through the use of **Semantic HTML5**, logical heading structures, and inclusive design practices. Clear form labels and validation messages assist screen-reader users and those relying on keyboard-only navigation, and a skip-to-content link is provided. ARIA labels and roles improve compatibility with assistive technologies. Compliance with WCAG AA colour-contrast requirements (4.5:1 for text) is maintained, verified using the WAVE evaluation tool and Lighthouse, while readable typography contributes to an inclusive user experience across plan browsing, checkout, and community interactions (W3C, 2018).
+ 
 #### Responsiveness
-
-Consistent usability across desktop, tablet, and mobile devices is achieved through a mobile-first design strategy implemented using the **Bootstrap 5 CSS framework**, **CSS Grid**, **Flexbox**, and **media queries** (Bootstrap Documentation, 2024; Mozilla Developer Network, 2024). Plans, products, community content, checkout forms, and navigation components adapt seamlessly to varying screen sizes and device orientations.
-
+ 
+Consistent usability across desktop, tablet, and mobile devices is achieved through a mobile-first design strategy implemented using the **Bootstrap 5 CSS framework**, **Flexbox**, and **media queries** (Bootstrap, 2025; Mozilla, 2025). Plans, products, community content, checkout forms, and navigation components adapt to varying screen sizes and orientations.
+ 
 #### Navigation
-
-Intuitive movement between major application areas, including **Home**, **Dashboard**, **Plans**, **Shop**, **Community**, and **Account Settings**, is facilitated through a clear and consistent navigation structure. Public content remains accessible to anonymous users, while subscriber-exclusive functionality is revealed through conditional navigation controls. User journeys are structured to minimise friction between registration, subscription, and community participation activities (Interaction Design Foundation, 2023).
-
+ 
+Intuitive movement between major application areas, including **Home**, **Dashboard**, **Plans**, **Shop**, **Community**, and **Account** settings, is facilitated through a clear and consistent navigation structure. Public content remains accessible to anonymous users, while member-only actions are revealed through conditional navigation controls. User journeys are structured to minimise friction between registration, subscription, and community participation (Interaction Design Foundation, 2025).
+ 
 #### Visual Hierarchy
-
-User attention is directed towards key actions, such as subscribing, purchasing plans, completing transactions, participating within the community, and managing subscriptions, through the strategic application of typography, spacing, colour, and layout consistency. White space is utilised effectively to reduce cognitive load, improve readability, and highlight important information (Mozilla Developer Network, 2024).
-
+ 
+User attention is directed towards key actions — such as subscribing, purchasing plans, completing transactions, and participating in the community — through the application of typography, spacing, colour, and layout consistency. White space is used to reduce cognitive load, improve readability, and highlight important information (Mozilla, 2025).
+ 
 #### Information Architecture
-
-A logical organisational structure is applied to plans and products by grouping content according to category, difficulty level, and pricing. Community content is presented chronologically and supplemented with filtering capabilities. Information is prioritised according to user needs, ensuring that primary actions, such as subscribing and browsing plans, remain prominent, while secondary actions, including account management and support resources, remain easily accessible without creating visual clutter.
-
+ 
+A logical organisational structure is applied to plans and products by grouping content according to category and difficulty level. Community content is presented chronologically. Information is prioritised according to user needs, ensuring that primary actions such as subscribing and browsing plans remain prominent, while secondary actions such as account management remain easily accessible without creating visual clutter.
+ 
 #### Community Engagement
-
+ 
 Peer support and user motivation are encouraged through the design of the community section, which incorporates:
-
-- Prominent presentation of success stories and achievements
-- Comment-based discussions that encourage user interaction
-- Visual activity indicators, including post and comment counts
-- Notifications and content feeds designed to promote ongoing participation
-- Subscriber-exclusive access, reinforcing the value of the membership offering
-
-These features collectively contribute to the development of an active and engaged user community.
-
+ 
+- Prominent presentation of member posts and achievements
+- A shared community feed that encourages participation
+- The ability for members to author, edit, and remove their own posts
+These features collectively contribute to the development of an active community.
+ 
 #### Interactivity
-
-Meaningful user interaction is supported through plan browsing, product filtering, checkout processes, subscription management, community participation, and administrative functionality. Clear calls to action guide users through critical workflows, including registration, profile creation, subscription activation, and community access. Loading indicators and progress states are incorporated into long-running operations, such as Stripe Checkout, to maintain transparency and reduce accidental duplicate submissions.
-
+ 
+Meaningful user interaction is supported through plan browsing, checkout processes, community participation, and administrative functionality. Clear calls to action guide users through critical workflows, including registration, profile creation, subscription activation, and community access. Loading and disabled states are incorporated into the Stripe Checkout submission to maintain transparency and reduce accidental duplicate submissions.
+ 
 #### Trust and Credibility
-
-User confidence is strengthened through the inclusion of product reviews, five-star rating systems, transparent pricing structures, and detailed plan descriptions. Where applicable, coach credentials provide additional credibility. Secure checkout workflows, SSL encryption indicators, and clear payment-processing information further reassure users during financial transactions. Community success stories contribute valuable social proof and reinforce trust in the platform.
-
+ 
+User confidence is strengthened through the inclusion of product reviews, a 1–5 rating system, transparent pricing, and detailed plan descriptions. Secure checkout via Stripe, HTTPS across the site, and clear payment information further reassure users during financial transactions.
+ 
 #### Performance
-
-Responsive application performance is achieved through efficient server-side processing, database-query optimisation using `select_related()` and `prefetch_related()`, and the use of compressed static assets. Community feeds, plan browsing, and transaction processing benefit from fast response times, while progressive page loading ensures that above-the-fold content is prioritised without unnecessary delays.
-
+ 
+Responsive application performance is achieved through efficient server-side processing, database-query optimisation using `select_related()` and `prefetch_related()`, and the use of compressed static assets served via WhiteNoise. Community feeds, plan browsing, and transaction processing benefit from fast response times.
+ 
 #### Error Handling and Validation
-
-Data accuracy and completeness are maintained through comprehensive server-side and client-side validation procedures covering registration details, profile information, payment data, and community content. User-friendly validation messages provide clear guidance on corrective actions, while confirmation notifications reinforce successful task completion. Graceful handling of external service failures, including Stripe API issues, ensures that users receive meaningful feedback and appropriate next-step guidance (Code Institute, 2025).
-
+ 
+Data accuracy and completeness are maintained through server-side and client-side validation covering registration details, profile information, payment data, and community content. User-friendly validation messages provide clear guidance on corrective actions, while confirmation notifications reinforce successful task completion. Graceful handling of external service failures, including Stripe API and email-sending issues, ensures that users receive meaningful feedback and that a failure cannot break the order confirmation page (Code Institute, 2025).
+ 
 #### Feedback and Confirmation
-
+ 
 Immediate and contextual feedback is delivered through **flash messages**, informing users of the outcome of their actions. Examples include:
-
-- "Successfully subscribed! Welcome to the community."
-- "Payment failed. Please try a different card or contact support."
+ 
+- "Added [product] to your basket."
+- "Payment failed. Please try a different card."
 - "Your post has been shared with the community."
-- "Subscription cancelled. You have access until [date]."
+- "Profile updated successfully."
 
-To minimise accidental data loss, confirmation modal dialogues are implemented for destructive actions, including subscription cancellations and post deletions.
-
+Confirmation pages are provided for potentially destructive actions, including plan archiving and post deletion, to minimise accidental data loss.
+ 
 ### Testing and Feedback
  
 [⬆ Back to Table of Contents](#table-of-contents)
  
-Consistent functionality, responsiveness, and user engagement are verified through manual usability testing conducted across **desktop**, **tablet**, and **mobile** devices. Particular attention is given to the following areas:
+Consistent functionality, responsiveness, and user experience are verified through a documented manual test plan of 131 cases, conducted across **desktop**, **tablet**, and **mobile** viewports, alongside an automated suite of 94 tests. Particular attention is given to the following areas:
  
-- Plan browsing and filtering workflows
+- Plan browsing workflows
 - Subscription checkout and payment processes
-- Community participation, including posting and commenting
-- Profile administration and preference management
-- Administrative creation and management of plans and products
-- Permission-controlled access to subscriber-exclusive and public content
+- Community participation, including posting
+- Profile administration
+- Administrative creation and management of membership plans
+- Permission-controlled access to public and staff-only content
 
 To validate application functionality and user experience, the following testing methodologies are employed:
  
-- **User journey testing**, replicating real-world workflows such as registration → subscription → community access → plan purchase
+- **User journey testing**, replicating real-world workflows such as registration -> subscription -> community access -> plan purchase
 - **Form validation testing**, assessing the handling of missing, invalid, or incomplete data across registration, profile editing, plan creation, product review, and checkout forms
-- **CRUD functionality testing**, verifying the creation, retrieval, modification, and deletion of plans, products, posts, comments, and subscriptions
-- **Permission and access-control testing**, ensuring subscriber-only content remains inaccessible to unauthenticated users and administrative functionality is restricted to authorised staff members
+- **CRUD functionality testing**, verifying the creation, retrieval, modification, and deletion of plans, products, posts, and reviews
+- **Permission and access-control testing**, ensuring authentication-gated content is inaccessible to unauthenticated users and administrative functionality is restricted to staff members, with server-side `403` enforcement
 - **Payment workflow testing** using Stripe test cards (successful transactions, declined payments, and 3D Secure authentication) to validate checkout processes and webhook functionality
-- **Cross-browser testing** across Chrome, Firefox, Safari, and Edge environments (Mozilla Developer Network, 2024)
-- **HTML and CSS validation** using W3C validation tools to verify standards compliance and semantic markup implementation (W3C, 2023)
-- **Keyboard accessibility testing**, confirming that all interactive elements can be operated using keyboard controls alone (Tab, Enter, Escape)
-- **Screen-reader testing** using NVDA and JAWS to ensure content is announced correctly and navigation structures remain logical and accessible (WebAIM, 2023)
+- **HTML and CSS validation** using the W3C Markup Validation Service and Jigsaw CSS Validator (W3C, 2018)
+- **JavaScript validation** using JSHint
+- **Keyboard accessibility testing**, confirming that interactive elements can be operated using keyboard controls (Tab, Enter, Escape) and that the skip-to-content link functions
 
 Assessment of performance and accessibility is undertaken through the use of:
-
-- **Google Lighthouse**, evaluating performance, accessibility, search engine optimisation (SEO), and adherence to best practices
+ 
+- **Google Lighthouse**, evaluating performance, accessibility, and best practices
 - **Browser developer tools**, supporting responsive-design verification, console error monitoring, and network-performance analysis
-- **WAVE (Web Accessibility Evaluation Tool)**, identifying accessibility concerns and validating ARIA implementation
-- **HTML and CSS validators**, ensuring code quality and compliance with recognised web standards
-
-Given that fitness enthusiasts frequently interact with the platform whilst exercising or attending the gym, particular emphasis is placed on mobile usability. To enhance the user experience on smaller screens and touch-enabled devices, subscription management, checkout workflows, and community-content visibility are optimised for mobile interaction.
-
+- **WAVE (Web Accessibility Evaluation Tool)**, identifying accessibility concerns and validating ARIA implementation (WebAIM, 2025)
+Given that fitness enthusiasts frequently interact with the platform whilst exercising or attending the gym, particular emphasis is placed on mobile usability, with checkout workflows and community-content visibility verified across mobile viewports.
+ 
 Accessibility evaluation focuses on the following key areas:
-
-- **Colour-contrast verification** (4.5:1 for standard body text and 3:1 for larger text)
-- **Font-size assessment**, ensuring readability through a minimum body-text size of 14px
-- **Form labels and validation messages**, clearly associated with their corresponding input elements
+ 
+- **Colour-contrast verification** against WCAG AA (4.5:1 for standard body text)
+- **Form labels and validation messages** clearly associated with their corresponding input elements
 - **Visible focus indicators** to support keyboard-based navigation
 - **ARIA labels** applied to icon-only controls and interactive components
-- **Heading structures** that provide a logical and meaningful document hierarchy
+- **Heading structures** that provide a logical document hierarchy with a single `<h1>` per page
 
-Insights obtained during testing activities are utilised to:
-
-- Refine user journeys and minimise friction within critical workflows, including subscriptions and community engagement
-- Improve the clarity of plan descriptions, pricing structures, and subscription benefits
-- Enhance community features and moderation capabilities
-- Optimise checkout processes to reduce cart abandonment rates
+Insights obtained during testing activities are used to:
+ 
+- Refine user journeys and minimise friction within critical workflows
+- Improve the clarity of plan descriptions and pricing
 - Strengthen validation feedback and error-message clarity
-- Improve accessibility for users with disabilities
-- Enhance performance across slower devices and network connections
+- Improve accessibility, including correcting low-contrast defaults, an unassociated set of form labels, and a non-functioning skip link identified during testing
 
-Potential areas for future A/B testing include:
+Potential areas for future enhancement include:
+ 
+- Filtering and sorting on listing views
+- Subscription self-management via the Stripe Customer Portal
+- Community feed pagination and richer engagement features
+- A/B testing of pricing presentation and call-to-action wording
 
-- Subscription-pricing structures and feature allocation
-- Community-feed layouts and engagement measurements
-- Plan presentation methods and filtering functionality
-- Call-to-action button wording and placement
-- Email-notification frequency and content strategy
-
-Continuous feedback from beta users, including early subscribers and fitness coaches, is incorporated into an iterative development process. This ongoing feedback cycle informs feature prioritisation and platform enhancements, ensuring that the application continues to evolve in response to user expectations and changing market requirements.
-
-**Overall**, a comprehensive and user-centred design methodology is reflected throughout the UX strategy for **FitHub**, supporting the development of a sophisticated multi-user platform that effectively balances commercial objectives, including subscription services and product sales, with meaningful user engagement and community development. By prioritising accessibility, inclusivity, clarity, and operational efficiency across a diverse range of user groups and usage scenarios, the strategy supports both individual fitness achievements and collaborative community experiences.
-
+**Overall**, a user-centred design methodology is reflected throughout the UX strategy for **FitHub**, supporting a multi-user platform that balances commercial objectives — subscription services and product sales — with meaningful user engagement and community development. By prioritising accessibility, clarity, and operational efficiency across a diverse range of user groups and usage scenarios, the strategy supports both individual fitness goals and collaborative community experiences.
+ 
 ---
 
 ## Features
@@ -3603,7 +3588,7 @@ The platform enables users to:
 
 * Users proceed through:
 
-  **Product Detail → Cart → Checkout → Order Confirmation**
+  **Product Detail -> Cart -> Checkout -> Order Confirmation**
 
 * Payments are processed using Stripe Elements.
 
@@ -4613,7 +4598,7 @@ The `Order` model represents a completed one-time purchase generated through the
 | `subtotal` | DecimalField(8,2) | default=0 | Items subtotal (snapshot) |
 | `delivery_cost` | DecimalField(6,2) | default=0 | Delivery cost (snapshot) |
 | `total` | DecimalField(8,2) | default=0 | Order total (snapshot) |
-| `status` | CharField(20) | choices | processing → refunded |
+| `status` | CharField(20) | choices | processing -> refunded |
 | `stripe_payment_intent_id` | CharField(255) | blank=True | Stripe payment reference |
 | `created_at` | DateTimeField | auto_now_add=True | Order timestamp |
 
@@ -7176,7 +7161,7 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 | Test ID | Test Case | Expected Result | Status | Notes |
 |---------|-----------|-----------------|--------|-------|
-| 120 | Verify the complete test suite after each new feature | `python manage.py test` → OK, 0 test failures | PASS | Performed consistently throughout development; the automated suite expanded from 67 to 94 tests as new functionality was introduced. Final run confirms all 94 tests pass (Ran 94 tests, OK) with no failures or errors |
+| 120 | Verify the complete test suite after each new feature | `python manage.py test` -> OK, 0 test failures | PASS | Performed consistently throughout development; the automated suite expanded from 67 to 94 tests as new functionality was introduced. Final run confirms all 94 tests pass (Ran 94 tests, OK) with no failures or errors |
 
 <details>
 <summary>📸 Evidence for 120</summary>
@@ -7572,7 +7557,7 @@ The completed deployment satisfies the requirements of Milestone Project 4 by de
 
 #### Environment Configuration
 
-**Config Vars (Heroku Dashboard → Settings → Config Vars):**
+**Config Vars (Heroku Dashboard -> Settings -> Config Vars):**
 
 | Variable | Purpose | Status |
 |----------|---------|--------|
@@ -7818,7 +7803,7 @@ The webhook implementation incorporates several important security and reliabili
 - **Idempotent processing** — Orders are matched using the `stripe_payment_intent_id`, ensuring that replayed or duplicate webhook events never generate duplicate orders or perform stock deductions more than once.
 - **Intentional CSRF exemption** — As Stripe cannot provide a Django CSRF token, the cryptographic webhook signature serves as the authenticity mechanism in place of CSRF protection.
 
-**Endpoint:** `/orders/wh/` → `https://fithub-rp-90631f751ed4.herokuapp.com/orders/wh/`
+**Endpoint:** `/orders/wh/` -> `https://fithub-rp-90631f751ed4.herokuapp.com/orders/wh/`
 
 **Subscribed Event:** `payment_intent.succeeded`
 
@@ -7829,14 +7814,14 @@ To avoid a common source of confusion, it is important to note that **two separa
 | Environment | Source of the Signing Secret | Where It Is Configured |
 |-------------|------------------------------|------------------------|
 | Local development | Generated each time `stripe listen` is started via the Stripe CLI | `env.py` |
-| Production | Displayed for the webhook endpoint in **Stripe Workbench → Webhooks** | Heroku Config Var |
+| Production | Displayed for the webhook endpoint in **Stripe Workbench -> Webhooks** | Heroku Config Var |
 
 #### Local Webhook Testing (Stripe CLI)
 
 ```bash
 # Terminal 1 — forward Stripe events to the local application
 stripe listen --forward-to localhost:8000/orders/wh/
-# → outputs: "Your webhook signing secret is whsec_..." → copy this into env.py
+# -> outputs: "Your webhook signing secret is whsec_..." -> copy this into env.py
 
 # Terminal 2 — start the Django development server
 python manage.py runserver
@@ -7853,7 +7838,7 @@ stripe trigger payment_intent.succeeded
 
 Webhook management within Stripe is now handled through **Workbench**, replacing the previous Developers Dashboard.
 
-1. Sign in to the Stripe Dashboard in **test mode (sandbox)** and navigate to **Workbench → Webhooks**.
+1. Sign in to the Stripe Dashboard in **test mode (sandbox)** and navigate to **Workbench -> Webhooks**.
 2. Create a new **Webhook endpoint** as the event destination.
 3. Configure the **Endpoint URL** as `https://fithub-rp-90631f751ed4.herokuapp.com/orders/wh/`.
 4. Select **Your account** as the event source and subscribe to the `payment_intent.succeeded` event.
@@ -7868,7 +7853,7 @@ Setting or updating a Heroku Config Var automatically restarts the application's
 
 **Verified Result:** Following a successful payment using Stripe Test Mode, the Heroku router logs record `POST /orders/wh/ ... status=200` requests originating from Stripe. At the same time, the Stripe Workbench delivery log confirms that the webhook event was delivered and processed successfully.
 
-<!-- Screenshot: Workbench endpoint delivery log showing payment_intent.succeeded → 200 -->
+<!-- Screenshot: Workbench endpoint delivery log showing payment_intent.succeeded -> 200 -->
 <!-- Screenshot: heroku logs showing POST /orders/wh/ 200 -->
 
 **Important:** The webhook endpoint must be created within the **same Stripe mode** as the API keys used by the application. A webhook signing secret generated in **test mode** cannot validate events originating from **live mode**, and the reverse is equally true.
@@ -8044,7 +8029,7 @@ heroku logs -n 100 -a fithub-rp   # Check for "confirmation email failed" log en
 
 **Cause:** The `STRIPE_WH_SECRET` configured on Heroku does not match the webhook endpoint's signing secret. This commonly occurs when the local Stripe CLI secret is mistakenly used instead of the Stripe Workbench webhook secret, or when the webhook endpoint has been created in the incorrect mode (live instead of test, or vice versa).
 
-**Solution:** Reveal the webhook signing secret within **Stripe Workbench → Webhooks** (Test Mode) and update the Heroku configuration accordingly.
+**Solution:** Reveal the webhook signing secret within **Stripe Workbench -> Webhooks** (Test Mode) and update the Heroku configuration accordingly.
 
 ```bash
 heroku config:set STRIPE_WH_SECRET=whsec_... -a fithub-rp
@@ -8140,6 +8125,20 @@ The FitHub application has been successfully deployed to Heroku and is fully ope
 **Release Version:** <!-- vNN -->  
 **Deployment Method:** Git push to Heroku with automatic release-phase database migrations  
 **Status:** Active and Operational
+
+---
+
+## Reflection
+[⬆ Back to Table of contents](#table-of-contents)
+
+### Known Limitations and Future Work
+
+The following were identified as valuable but were not implemented within the project timeframe, and are documented here for transparency and as candidates for future development:
+
+- **Manual screen-reader testing (NVDA / VoiceOver):** Accessibility was verified using automated tools (WAVE and Lighthouse) and manual keyboard navigation, which confirmed semantic structure, ARIA usage, colour contrast, and focus order. Testing with a screen reader such as NVDA or VoiceOver was planned but not completed due to time constraints; it remains a priority for future accessibility validation.
+- **Cross-browser testing** was carried out primarily in Chromium-based browsers (Chrome and Edge) across mobile, tablet, and desktop viewports, with some verification in Firefox. Systematic testing across Firefox and Safari is a future step.
+- **Subscription self-management** via the Stripe Customer Portal, and subscription lifecycle webhooks, were descoped in favour of completing the core payment and access-control features.
+- **Filtering and sorting** on listing views, community feed pagination, and account deletion were descoped as lower-priority (Should/Could Have) items.
 
 ---
 
@@ -8291,6 +8290,10 @@ Available at: https://www.interaction-design.org/literature/topics/user-centered
 Available at: https://developer.mozilla.org/
   (Accessed: 31 May 2026).
 
+- **WebAIM (2025) WAVE Web Accessibility Evaluation Tool.**
+Available at: https://wave.webaim.org/
+  (Accessed: 01 June 2026).
+ 
 
 
 
