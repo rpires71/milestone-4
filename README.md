@@ -2609,15 +2609,15 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Order History Accessible to Authenticated Members
 
-- [ ] Given that a member is logged in, when they navigate to the **Order History** section, then a list of their previous orders is displayed.
+- [X] Given that a member is logged in, when they navigate to the **Order History** section, then a list of their previous orders is displayed.
 
 ##### AC2 – User-Specific Order Visibility
 
-- [ ] Given that the order history page is loaded, when order records are retrieved, then only orders associated with the authenticated member's account are shown.
+- [X] Given that the order history page is loaded, when order records are retrieved, then only orders associated with the authenticated member's account are shown.
 
 ##### AC3 – Structured Presentation of Order Information
 
-- [ ] Given that one or more orders exist, when the order history is displayed, then each order includes key information such as the order reference number, purchase date, item quantity, order status, and total amount paid.
+- [X] Given that one or more orders exist, when the order history is displayed, then each order includes key information such as the order reference number, purchase date, item quantity, order status, and total amount paid.
 
 ##### AC4 – Clear and Accessible Status Indicators
 
@@ -2629,15 +2629,15 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC6 – Secure Access to Order Details
 
-- [ ] Given that a member selects an order from their history, when the order detail page is displayed, then they can view the complete order information, and access to orders belonging to other members is prevented through server-side ownership validation.
+- [X] Given that a member selects an order from their history, when the order detail page is displayed, then they can view the complete order information, and access to orders belonging to other members is prevented through server-side ownership validation.
 
 ##### AC7 – Empty-State Handling
 
-- [ ] Given that a member has not yet placed any orders, when the order history page is accessed, then a clear empty-state message is displayed together with a prominent link directing them to the shop.
+- [X] Given that a member has not yet placed any orders, when the order history page is accessed, then a clear empty-state message is displayed together with a prominent link directing them to the shop.
 
 ##### AC8 – Accessible and Responsive Design
 
-- [ ] Given that a member views their order history using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then the content is presented in an accessible format (such as a table with headers on larger screens and card-based layouts on smaller screens) and remains fully keyboard navigable.
+- [X] Given that a member views their order history using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then the content is presented in an accessible format (such as a table with headers on larger screens and card-based layouts on smaller screens) and remains fully keyboard navigable.
 
 ---
 
@@ -2651,35 +2651,35 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Review Submission Available to Eligible Members
 
-- [ ] Given that a logged-in member is viewing a product page, when they choose to leave feedback, then a review form containing a rating field and comment area is available.
+- [X] Given that a logged-in member is viewing a product page, when they choose to leave feedback, then a review form containing a rating field and comment area is available.
 
 ##### AC2 – Review Creation with Input Validation
 
-- [ ] Given that a member submits a review, when the form is processed, then all input is validated (for example, a mandatory rating and character limits), and valid reviews are saved and associated with both the member and the relevant product.
+- [X] Given that a member submits a review, when the form is processed, then all input is validated (for example, a mandatory rating and character limits), and valid reviews are saved and associated with both the member and the relevant product.
 
 ##### AC3 – Immediate Review and Rating Updates
 
-- [ ] Given that a review has been successfully submitted, when the product page refreshes or reloads, then the review is displayed and the product's average rating is recalculated and updated accordingly.
+- [X] Given that a review has been successfully submitted, when the product page refreshes or reloads, then the review is displayed and the product's average rating is recalculated and updated accordingly.
 
 ##### AC4 – Edit Existing Reviews
 
-- [ ] Given that a member has previously submitted a review, when they choose to modify it, then the updated content is validated and saved successfully.
+- [X] Given that a member has previously submitted a review, when they choose to modify it, then the updated content is validated and saved successfully.
 
 ##### AC5 – Delete Reviews with Confirmation
 
-- [ ] Given that a member chooses to remove one of their reviews, when the deletion request is confirmed, then the review is permanently removed and the product's average rating is recalculated to reflect the change.
+- [X] Given that a member chooses to remove one of their reviews, when the deletion request is confirmed, then the review is permanently removed and the product's average rating is recalculated to reflect the change.
 
 ##### AC6 – Ownership-Based Permissions
 
-- [ ] Given that a member attempts to edit or delete a review, when the request is processed, then they can only modify reviews that they have created and are prevented from changing reviews submitted by other members.
+- [X] Given that a member attempts to edit or delete a review, when the request is processed, then they can only modify reviews that they have created and are prevented from changing reviews submitted by other members.
 
 ##### AC7 – Secure Handling of Review Content
 
-- [ ] Given that review content is submitted, stored, and displayed, when the data is processed, then it is sanitised and escaped appropriately to prevent malicious scripts or unauthorised code execution.
+- [X] Given that review content is submitted, stored, and displayed, when the data is processed, then it is sanitised and escaped appropriately to prevent malicious scripts or unauthorised code execution.
 
 ##### AC8 – Accessible and Responsive Review Features
 
-- [ ] Given that a member interacts with the review system using a desktop, tablet, mobile device, or assistive technology, when creating, editing, or deleting reviews, then all forms and review content remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+- [X] Given that a member interacts with the review system using a desktop, tablet, mobile device, or assistive technology, when creating, editing, or deleting reviews, then all forms and review content remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
@@ -2697,31 +2697,31 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC2 – Community Post Creation with Validation
 
-- [ ] Given that an active subscriber submits a new community post, when the form is processed, then all input is validated and, if successful, the post is saved and linked to the subscriber's account.
+- [X] Given that an active subscriber submits a new community post, when the form is processed, then all input is validated and, if successful, the post is saved and linked to the subscriber's account.
 
 ##### AC3 – Immediate Display of New Posts
 
-- [ ] Given that a community post has been created successfully, when the action is completed, then the post appears within the community feed without requiring additional user interaction.
+- [X] Given that a community post has been created successfully, when the action is completed, then the post appears within the community feed without requiring additional user interaction.
 
 ##### AC4 – Edit Existing Community Posts
 
-- [ ] Given that a subscriber has authored a community post, when they choose to edit it, then the updated content is validated and saved successfully.
+- [X] Given that a subscriber has authored a community post, when they choose to edit it, then the updated content is validated and saved successfully.
 
 ##### AC5 – Delete Community Posts with Confirmation
 
-- [ ] Given that a subscriber chooses to remove one of their community posts, when the deletion request is confirmed, then the post is permanently removed from the community feed.
+- [X] Given that a subscriber chooses to remove one of their community posts, when the deletion request is confirmed, then the post is permanently removed from the community feed.
 
 ##### AC6 – Ownership-Based Authorisation
 
-- [ ] Given that a subscriber attempts to edit or delete a community post, when the request is processed, then they are only permitted to modify posts that they have authored and are prevented from changing content created by other users.
+- [X] Given that a subscriber attempts to edit or delete a community post, when the request is processed, then they are only permitted to modify posts that they have authored and are prevented from changing content created by other users.
 
 ##### AC7 – Secure Handling of Community Content
 
-- [ ] Given that post content is submitted, stored, and displayed within the application, when the data is processed, then it is appropriately sanitised and escaped to protect against malicious scripts and unauthorised code execution.
+- [X] Given that post content is submitted, stored, and displayed within the application, when the data is processed, then it is appropriately sanitised and escaped to protect against malicious scripts and unauthorised code execution.
 
 ##### AC8 – Accessible and Responsive Community Features
 
-- [ ] Given that a subscriber accesses the community area using a desktop, tablet, mobile device, or assistive technology, when interacting with the post creation form or community feed, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
+- [X] Given that a subscriber accesses the community area using a desktop, tablet, mobile device, or assistive technology, when interacting with the post creation form or community feed, then all controls remain responsive, keyboard accessible, screen-reader compatible, and clearly labelled.
 
 ---
 
@@ -2743,7 +2743,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC3 – Clear and Consistent Post Presentation
 
-- [ ] Given that posts are displayed within the community feed, when the page loads, then each post includes the author's name, publication date, and content in a clear, readable, and consistent format.
+- [X] Given that posts are displayed within the community feed, when the page loads, then each post includes the author's name, publication date, and content in a clear, readable, and consistent format.
 
 ##### AC4 – Pagination for Scalability and Performance
 
@@ -2755,7 +2755,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC6 – Accessible and Responsive Community Experience
 
-- [ ] Given that a subscriber views the community feed using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then posts are presented using semantic HTML structure, the layout adapts appropriately to different screen sizes, and all content remains keyboard accessible and screen-reader compatible.
+- [X] Given that a subscriber views the community feed using a desktop, tablet, mobile device, or assistive technology, when interacting with the page, then posts are presented using semantic HTML structure, the layout adapts appropriately to different screen sizes, and all content remains keyboard accessible and screen-reader compatible.
 
 ---
 
@@ -2773,7 +2773,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC2 – Profile Information Can Be Updated
 
-- [ ] Given that a member edits their profile information, when the updated details are submitted, then all changes are validated and successfully saved to the database.
+- [X] Given that a member edits their profile information, when the updated details are submitted, then all changes are validated and successfully saved to the database.
 
 ##### AC3 – Email Address Uniqueness Validation
 
@@ -2785,7 +2785,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC5 – Ownership-Based Access Control
 
-- [ ] Given that a member accesses profile management functionality, when profile data is retrieved or updated, then they can only view and modify information associated with their own account and are prevented from accessing another user's data.
+- [X] Given that a member accesses profile management functionality, when profile data is retrieved or updated, then they can only view and modify information associated with their own account and are prevented from accessing another user's data.
 
 ##### AC6 – Clear Success and Error Feedback
 
@@ -2793,11 +2793,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC7 – Intelligent Form Pre-Population
 
-- [ ] Given that a member is authenticated and accesses a profile form, when existing information is available, then the application automatically pre-populates relevant fields (such as email address and personal details) to reduce unnecessary data entry.
+- [X] Given that a member is authenticated and accesses a profile form, when existing information is available, then the application automatically pre-populates relevant fields (such as email address and personal details) to reduce unnecessary data entry.
 
 ##### AC8 – Accessible and Responsive Profile Management
 
-- [ ] Given that a member updates their profile using a desktop, tablet, mobile device, or assistive technology, when interacting with profile forms, then all fields are clearly labelled, focus is managed appropriately during edit operations, and the interface remains responsive, keyboard accessible, and screen-reader compatible.
+- [X] Given that a member updates their profile using a desktop, tablet, mobile device, or assistive technology, when interacting with profile forms, then all fields are clearly labelled, focus is managed appropriately during edit operations, and the interface remains responsive, keyboard accessible, and screen-reader compatible.
 
 ---
 
@@ -2811,15 +2811,15 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Dashboard Available to Authenticated Members
 
-- [ ] Given that a member has successfully logged in, when they access their account area, then a personalised dashboard is available and displays an overview of their account.
+- [X] Given that a member has successfully logged in, when they access their account area, then a personalised dashboard is available and displays an overview of their account.
 
 ##### AC2 – Relevant Personalised Summary Information
 
-- [ ] Given that the dashboard is loaded, when account data is retrieved, then the dashboard displays relevant information such as subscription status, recent orders, saved items, and the member's fitness goals.
+- [X] Given that the dashboard is loaded, when account data is retrieved, then the dashboard displays relevant information such as subscription status, recent orders, saved items, and the member's fitness goals.
 
 ##### AC3 – Member-Specific Data Only
 
-- [ ] Given that a member accesses their dashboard, when account information is displayed, then only data associated with the authenticated member's account is shown.
+- [X] Given that a member accesses their dashboard, when account information is displayed, then only data associated with the authenticated member's account is shown.
 
 ##### AC4 – Upgrade Prompt for Non-Subscribers
 
@@ -2827,11 +2827,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC5 – Quick Access to Key Features
 
-- [ ] Given that the dashboard is displayed, when a member reviews the available options, then clear navigation shortcuts are provided to important areas of the application, including fitness plans, the shop, the community area, and profile management.
+- [X] Given that the dashboard is displayed, when a member reviews the available options, then clear navigation shortcuts are provided to important areas of the application, including fitness plans, the shop, the community area, and profile management.
 
 ##### AC6 – Accessible and Responsive Dashboard Experience
 
-- [ ] Given that a member accesses the dashboard using a desktop, tablet, mobile device, or assistive technology, when interacting with dashboard content, then information is organised using a logical heading structure, the layout adapts appropriately to different screen sizes, and all interactive elements remain keyboard accessible and screen-reader compatible.
+- [X] Given that a member accesses the dashboard using a desktop, tablet, mobile device, or assistive technology, when interacting with dashboard content, then information is organised using a logical heading structure, the layout adapts appropriately to different screen sizes, and all interactive elements remain keyboard accessible and screen-reader compatible.
 
 ---
 
@@ -2883,19 +2883,19 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Staff-Only Access with Defence-in-Depth Controls
 
-- [ ] Given that a non-staff user attempts to access the membership plan management area directly via a URL, when the request is processed, then a **403 Forbidden** response is returned, and management controls are hidden from non-staff users throughout the user interface.
+- [X] Given that a non-staff user attempts to access the membership plan management area directly via a URL, when the request is processed, then a **403 Forbidden** response is returned, and management controls are hidden from non-staff users throughout the user interface.
 
 ##### AC2 – Dedicated Front-End Management Interface
 
-- [ ] Given that an administrator manages membership plans, when performing management actions, then all functionality is available through the application's custom front-end interface rather than the built-in Django administration system.
+- [X] Given that an administrator manages membership plans, when performing management actions, then all functionality is available through the application's custom front-end interface rather than the built-in Django administration system.
 
 ##### AC3 – Create New Membership Plans
 
-- [ ] Given that an administrator completes the plan creation form with valid information, when the form is submitted, then a new membership plan is saved successfully and displayed within the management interface and, when published, becomes visible on the customer-facing Plans page.
+- [X] Given that an administrator completes the plan creation form with valid information, when the form is submitted, then a new membership plan is saved successfully and displayed within the management interface and, when published, becomes visible on the customer-facing Plans page.
 
 ##### AC4 – Shared Create and Edit Workflow
 
-- [ ] Given that an administrator chooses to edit an existing membership plan, when the edit page is opened, then the same form used for creation is displayed with the plan's existing data pre-populated, and any valid changes are saved successfully.
+- [X] Given that an administrator chooses to edit an existing membership plan, when the edit page is opened, then the same form used for creation is displayed with the plan's existing data pre-populated, and any valid changes are saved successfully.
 
 ##### AC5 – Comprehensive Server-Side Validation
 
@@ -2903,7 +2903,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC6 – Archive Plans Instead of Permanent Deletion
 
-- [ ] Given that an administrator removes a membership plan, when the action is confirmed, then the plan is archived (soft deleted) rather than permanently removed, ensuring that existing subscriptions and historical records remain intact whilst preventing new users from subscribing to the archived plan.
+- [X] Given that an administrator removes a membership plan, when the action is confirmed, then the plan is archived (soft deleted) rather than permanently removed, ensuring that existing subscriptions and historical records remain intact whilst preventing new users from subscribing to the archived plan.
 
 ##### AC7 – Synchronisation with Stripe Products and Prices
 
@@ -2911,15 +2911,15 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC8 – Immediate Reflection of Administrative Changes
 
-- [ ] Given that an administrator creates, updates, or archives a membership plan, when the request is completed successfully, then the changes are reflected within the management interface and customer-facing pages on the next application request.
+- [X] Given that an administrator creates, updates, or archives a membership plan, when the request is completed successfully, then the changes are reflected within the management interface and customer-facing pages on the next application request.
 
 ##### AC9 – Clear Success and Failure Feedback
 
-- [ ] Given that an administrative action succeeds or fails, when processing is complete, then the administrator receives clear confirmation or error feedback, and no partial updates are applied if an operation fails.
+- [X] Given that an administrative action succeeds or fails, when processing is complete, then the administrator receives clear confirmation or error feedback, and no partial updates are applied if an operation fails.
 
 ##### AC10 – Accessible and Responsive Management Interface
 
-- [ ] Given that an administrator manages membership plans using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then forms use appropriate labels, fieldsets, and validation messaging, errors are announced to assistive technologies, and the layout adapts responsively across different screen sizes (for example, transforming from tables to card-based layouts).
+- [X] Given that an administrator manages membership plans using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then forms use appropriate labels, fieldsets, and validation messaging, errors are announced to assistive technologies, and the layout adapts responsively across different screen sizes (for example, transforming from tables to card-based layouts).
 
 ---
 
