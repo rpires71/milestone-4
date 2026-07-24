@@ -185,65 +185,62 @@ The use of semantic HTML enhances accessibility, maintainability, and search eng
 Permission-based access control ensures that users can only view and modify their own data, while administrative functionality — including the creation of plans and products — is restricted exclusively to staff members. To enforce these permissions consistently throughout the application, **decorator-based view protection** (@login_required, @staff_member_required, @subscription_required) is implemented.
 
 ### 5. Secure Data Handling and Configuration
-
-With the use of **environment variables** and a .env file to ensure security and flexibility across development and deployment environments, sensitive configuration data — including secret keys, Stripe API credentials, and environment-specific settings — are securely managed.
-
-Secure authentication and authorisation mechanisms for user registration, login, password reset, and session management are provided by **django-allauth**. To prevent unauthorised access to profile data, community content, and subscription information, all sensitive views require authenticated user access.
-
-User input validation across all forms and external API failures (e.g., Stripe errors) are handled gracefully through the application’s implementation of appropriate **error handling and data validation mechanisms**, protecting user data and maintaining system stability.
-
-To prevent N+1 query issues and ensure responsive page loading times, database queries are optimised using **select_related() and prefetch_related()**. Throughout the codebase, compliance with **PEP 8 code style conventions** and adherence to **DRY (Don't Repeat Yourself) principles** are maintained.
+ 
+With the use of **environment variables** and a `.env` file to ensure security and flexibility across development and deployment environments, sensitive configuration data — including secret keys, Stripe API credentials, and environment-specific settings — are securely managed (Django Software Foundation, 2025a).
+ 
+Secure authentication and authorisation mechanisms for user registration, login, password reset, and session management are provided by **django-allauth** (Penners, 2025). To prevent unauthorised access to profile data, community content, and subscription information, all sensitive views require authenticated user access.
+ 
+User input validation across all forms and external API failures (e.g., Stripe errors) are handled gracefully through the application's implementation of appropriate **error handling and data validation mechanisms**, protecting user data and maintaining system stability.
+ 
+To prevent N+1 query issues and ensure responsive page loading times, database queries are optimised using **`select_related()` and `prefetch_related()`** (Django Software Foundation, 2025b). Throughout the codebase, compliance with **PEP 8 code style conventions** (van Rossum, Warsaw and Coghlan, 2001) and adherence to **DRY (Don't Repeat Yourself) principles** (Hunt and Thomas, 1999) are maintained.
 
 ### 6. Payment Processing and Subscription Management
-
-Support for secure payment processing is implemented through the integration of Stripe within the application using two revenue models:
- 
+ 
+Support for secure payment processing is implemented through the integration of **Stripe** within the application using two revenue models (Stripe, 2025a):
+ 
 - **One-time purchases:** Directly through Stripe Checkout, users can buy individual products and plans.
-
 - **Subscription-based access:** Users can subscribe to monthly or annual plans to access subscriber-only content (community, exclusive plans, members-only merchandise).
-
-Without requiring the user to refresh the page **webhook handlers** (`checkout.session.completed`, `invoice.paid`, `customer.subscription.deleted`, `subscription.updated`) asynchronously process payment events and update subscription statuses in real-time.
-
-During development, **Stripe test cards** are utilised to verify all payment workflows — including successful transactions, declined cards, and 3D Secure authentication — with comprehensive documentation of test results provided within the project README.
+Without requiring the user to refresh the page, **webhook handlers** asynchronously process payment events and update order and subscription records in real time (Stripe, 2025b).
+ 
+During development, **Stripe test cards** are utilised to verify all payment workflows — including successful transactions, declined cards, and 3D Secure authentication — with comprehensive documentation of test results provided within the project README (Stripe, 2025c).
+ 
 
 ### 7. Testing and Quality Assurance
-
-A **Test-Driven Development (TDD)** approach is employed throughout this project, with failing unit tests written prior to implementation. Through a clear Git commit history demonstrating that tests were created before features were implemented, this approach ensures rigorous code coverage and reflects disciplined software development practices.
-  
-**Automated unit tests** cover all major functionality:
-
+ 
+A **Test-Driven Development (TDD)** approach is employed throughout this project, with failing unit tests written prior to implementation (Beck, 2003). Through a clear Git commit history demonstrating that tests were created before features were implemented, this approach ensures rigorous code coverage and reflects disciplined software development practices.
+ 
+**Automated unit tests** cover all major functionality (Django Software Foundation, 2025):
+ 
 - Model methods and relationships
 - View permissions and access control
 - Form validation
 - Stripe webhook handlers (using mocked Stripe payloads)
 - User authentication and profile creation
-
 **Manual testing** validates end-to-end user journeys:
-
+ 
 - User registration -> profile creation -> subscription -> community access
 - Product browsing -> checkout -> order confirmation
 - Subscription cancellation and renewal workflows
 - Browser compatibility (Chrome, Firefox, Safari, Edge) across mobile, tablet, and desktop
-
 **Code validation** ensures compliance with modern development standards:
-
-- **W3C HTML Validator:** Zero errors
-- **Jigsaw CSS Validator:** Zero errors
-- **JSHint:** No major JavaScript issues
-- **PEP 8:** Python code style compliance
+ 
+- **W3C HTML Validator:** Zero errors (W3C, 2025a)
+- **Jigsaw CSS Validator:** Zero errors (W3C, 2025b)
+- **JSHint:** No major JavaScript issues (JSHint, 2025)
+- **PEP 8:** Python code style compliance (van Rossum, Warsaw and Coghlan, 2001)
 
 ### 8. Version Control and Deployment
 
-Throughout the development of this project, **Git and GitHub** version control are utilised to document development progress in a transparent and professional manner, track modifications, and manage source code versioning. Clear and descriptive commit messages following a structured format (`feat:`, `fix:`, `test:`, `docs:`, etc.) are implemented for each new feature and bug fix.
+Throughout the development of this project, **Git and GitHub** version control are utilised to document development progress in a transparent and professional manner, track modifications, and manage source code versioning (GitHub, 2025). Clear and descriptive commit messages following a structured format (`feat:`, `fix:`, `test:`, `docs:`, etc.) are implemented for each new feature and bug fix (Conventional Commits, 2023).
 
-Understanding of modern deployment workflows for production-grade full-stack applications is demonstrated through the deployment of the final version of the application using **Heroku**, a cloud-based hosting platform with **PostgreSQL** database support, ensuring public accessibility (Code Institute, 2025).
+Understanding of modern deployment workflows for production-grade full-stack applications is demonstrated through the deployment of the final version of the application using **Heroku**, a cloud-based hosting platform with **PostgreSQL** database support, ensuring public accessibility (Heroku, 2025).
 
-Without requiring code modifications, production (PostgreSQL, 2025) and development (SQLite, 2025) environments are executed using **environment-specific configuration** within the same codebase. All sensitive configuration variables are managed securely through Heroku Config Vars, and **DEBUG mode** is disabled in the production environment.
+Without requiring code modifications, production (PostgreSQL, 2025) and development (SQLite, 2025) environments are executed using **environment-specific configuration** within the same codebase. All sensitive configuration variables are managed securely through Heroku Config Vars, and **DEBUG mode** is disabled in the production environment (Django Software Foundation, 2025).
 
-### 9. Documentation and Attribution 
- 
+### 9. Documentation and Attribution
+
 Comprehensive project documentation is provided within the **`README.md`** file, including:
- 
+
 - **Project rationale** and business justification
 - **User stories** and target audience analysis
 - **Entity Relationship Diagram (ERD)** documenting the database schema
@@ -253,20 +250,30 @@ Comprehensive project documentation is provided within the **`README.md`** file,
 - **Testing procedures** and documented results
 - **Credits and attribution** for all external libraries, tutorials, and resources
 
-### Outcome 
- 
-Through the successful achievement of these objectives, **FitHub** demonstrates advanced proficiency in **full-stack web application development using modern frameworks**. The project incorporates the effective implementation of Django, database architecture, secure payment integration, asynchronous webhook processing, user authentication systems, and community-driven functionality to deliver a fully operational subscription-based fitness platform.
- 
+### Outcome
+
+Through the successful achievement of these objectives, **FitHub** demonstrates proficiency in **full-stack web application development using modern frameworks**. The project incorporates the effective implementation of Django, database architecture, secure payment integration, asynchronous webhook processing, user authentication systems, and community-driven functionality to deliver a fully operational subscription-based fitness platform.
+
 The completed application reflects both **professional presentation and technical competence**, demonstrating a comprehensive understanding of:
 
 - **User-centred design** and accessibility
 - **Secure data management** and payment processing
-- **Test-driven development** and software quality assurance
+- **Automated testing** and software quality assurance
 - **Real-world web application development practices** at Level 5
 - **Business logic implementation**, including dual revenue models, permissions, and access control.
 
-Aligned with the standards expected within **Level 5 Web Application Development**, the project demonstrates production deployment readiness and advanced capability in the development of scalable, secure, and user-focused web applications.
+Aligned with the standards expected within **Level 5 Web Application Development**, the project demonstrates production deployment readiness and capability in the development of scalable, secure, and user-focused web applications.
 
+---
+
+## References
+
+- Conventional Commits (2023) *Conventional Commits 1.0.0*. Available at: https://www.conventionalcommits.org/en/v1.0.0/ (Accessed: 24 July 2026).
+- Django Software Foundation (2025) *Django documentation: deployment checklist*. Available at: https://docs.djangoproject.com/en/stable/howto/deployment/checklist/ (Accessed: 24 July 2026).
+- GitHub (2025) *GitHub documentation*. Available at: https://docs.github.com/ (Accessed: 24 July 2026).
+- Heroku (2025) *Heroku Dev Center: deploying Python and Django applications*. Available at: https://devcenter.heroku.com/categories/python-support (Accessed: 24 July 2026).
+- PostgreSQL Global Development Group (2025) *PostgreSQL documentation*. Available at: https://www.postgresql.org/docs/ (Accessed: 24 July 2026).
+- SQLite (2025) *SQLite documentation*. Available at: https://www.sqlite.org/docs.html (Accessed: 24 July 2026).
 ---
 
 ## Purpose of the Website
@@ -8205,6 +8212,14 @@ The FitHub application has been successfully deployed to Heroku and is fully ope
 Available at: https://www.w3.org/TR/WCAG21/
   (Accessed: 31 May 2026).
 
+- **W3C (2025) Markup Validation Service.**
+Available at: https://validator.w3.org/
+  (Accessed: 31 May 2026).
+
+- **W3C (2025) CSS Validation Service.**
+Available at: https://jigsaw.w3.org/css-validator/
+  (Accessed: 31 May 2026).
+
 - **MDN Web Docs (2024) Client-side form validation.**
 Available at: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
   (Accessed: 31 May 2026).
@@ -8225,12 +8240,36 @@ Available at: https://stripe.com/docs/payments/checkout
 Available at: https://stripe.com/docs/api
   (Accessed: 31 May 2026).
 
+- **Stripe (2025) Webhooks documentation.**
+Available at: https://docs.stripe.com/webhooks
+  (Accessed: 31 May 2026).
+  
+- **Stripe (2025) Testing — test card numbers.**
+Available at: https://docs.stripe.com/testing
+  (Accessed: 31 May 2026).
+ 
 - **Mozilla Developer Network (2024) Web Application Security.**
 Available at: https://developer.mozilla.org/en-US/docs/Web/Security
   (Accessed: 31 May 2026).
 
 - **Django Software Foundation (2025) Django Documentation.**
 Available at: https://docs.djangoproject.com/en/stable/
+  (Accessed: 31 May 2026).
+
+- **Django Software Foundation (2025) Django documentation: settings.**
+Available at: https://docs.djangoproject.com/en/stable/topics/settings/
+  (Accessed: 31 May 2026).
+  
+- **Django Software Foundation (2025) Django documentation: QuerySet API reference.**
+Available at: https://docs.djangoproject.com/en/stable/ref/models/querysets/
+  (Accessed: 31 May 2026).
+
+- **Django Software Foundation (2025) Django documentation: testing in Django.**
+Available at: https://docs.djangoproject.com/en/stable/topics/testing/
+  (Accessed: 31 May 2026).
+
+- **Django Software Foundation (2025) Django documentation: deployment checklist.**
+Available at: https://docs.djangoproject.com/en/stable/howto/deployment/checklist/
   (Accessed: 31 May 2026).
   
 - **Jazzband (2025) django-allauth Documentation.**
@@ -8248,9 +8287,41 @@ Available at: https://codeinstitute.net/
 - **PostgreSQL Global Development Group (2025) PostgreSQL Documentation.**
 Available at: https://www.postgresql.org/docs/
   (Accessed: 31 May 2026).
-  
+
 - **SQLite (2025) SQLite Documentation.**
 Available at: https://www.sqlite.org/docs.html
+  (Accessed: 31 May 2026).
+
+- **Hunt, A. and Thomas, D. (1999) The Pragmatic Programmer: From Journeyman to Master.**
+Reading, MA: Addison-Wesley.
+  (Accessed: 31 May 2026).
+  
+- **Penners, R. (2025) django-allauth documentation.**
+Available at: https://docs.allauth.org/en/latest/
+  (Accessed: 31 May 2026).
+  
+- **van Rossum, G., Warsaw, B. and Coghlan, N. (2001) PEP 8 – Style Guide for Python Code.**
+Available at: https://peps.python.org/pep-0008/
+  (Accessed: 31 May 2026).
+
+- **Beck, K. (2003) Test-Driven Development: By Example.**
+Boston, MA: Addison-Wesley.
+  (Accessed: 31 May 2026).
+  
+- **JSHint (2025) JSHint: a JavaScript code quality tool.**
+Available at: https://jshint.com/
+  (Accessed: 31 May 2026).
+  
+- **Conventional Commits (2023) Conventional Commits 1.0.0.**
+Available at: https://www.conventionalcommits.org/en/v1.0.0/
+  (Accessed: 31 May 2026).
+  
+- **GitHub (2025) GitHub documentation.**
+Available at: https://docs.github.com/
+  (Accessed: 31 May 2026).
+
+- **Heroku (2025) Heroku Dev Center: deploying Python and Django applications.**
+Available at: https://devcenter.heroku.com/categories/python-support
   (Accessed: 31 May 2026).
 
 
