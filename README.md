@@ -89,6 +89,28 @@
   - [Continuous Deployment](#continuous-deployment)
   - [Production Environment Validation](#production-environment-validation)
   - [Conclusion](#conclusion)
+- [Website Information Architecture: Page Purpose & Structure](#website-information-architecture-page-purpose--structure)
+  - [Homepage (`home/index`) — Purpose & Structure](#homepage-homeindex--purpose--structure)
+  - [Plans Listing (`plans/plans`) — Purpose & Structure](#plans-listing-plansplans--purpose--structure)
+  - [Plan Detail (`plans/plan_detail`) — Purpose & Structure](#plan-detail-plansplan_detail--purpose--structure)
+  - [Subscription Success (`plans/subscription_success`) — Purpose & Structure](#subscription-success-planssubscription_success--purpose--structure)
+  - [Shop Listing (`shop/products`) — Purpose & Structure](#shop-listing-shopproducts--purpose--structure)
+  - [Product Detail (`shop/product_detail`) — Purpose & Structure](#product-detail-shopproduct_detail--purpose--structure)
+  - [Shopping Basket (`cart/cart`) — Purpose & Structure](#shopping-basket-cartcart--purpose--structure)
+  - [Checkout (`orders/checkout`) — Purpose & Structure](#checkout-orderscheckout--purpose--structure)
+  - [Order Confirmation (`orders/checkout_success`) — Purpose & Structure](#order-confirmation-orderscheckout_success--purpose--structure)
+  - [Order History (`orders/order_history`) — Purpose & Structure](#order-history-ordersorder_history--purpose--structure)
+  - [Order Detail (`orders/order_detail`) — Purpose & Structure](#order-detail-ordersorder_detail--purpose--structure)
+  - [Member Dashboard (`accounts/dashboard`) — Purpose & Structure](#member-dashboard-accountsdashboard--purpose--structure)
+  - [Profile Setup (`accounts/profile_setup`) — Purpose & Structure](#profile-setup-accountsprofile_setup--purpose--structure)
+  - [Profile Edit (`accounts/profile_edit`) — Purpose & Structure](#profile-edit-accountsprofile_edit--purpose--structure)
+  - [Community Feed (`community/post_list`) — Purpose & Structure](#community-feed-communitypost_list--purpose--structure)
+  - [Add / Edit Community Post (`community/add_post`, `edit_post`) — Purpose & Structure](#add--edit-community-post-communityadd_post-edit_post--purpose--structure)
+  - [Add / Edit Product Review (`reviews/add_review`, `edit_review`) — Purpose & Structure](#add--edit-product-review-reviewsadd_review-edit_review--purpose--structure)
+  - [Staff: Manage Plans (`plans/manage_plans`) — Purpose & Structure](#staff-manage-plans-plansmanage_plans--purpose--structure)
+  - [Staff: Create / Edit / Archive Plan (`plans/plan_create`, `plan_edit`, `plan_archive`) — Purpose & Structure](#staff-create--edit--archive-plan-plansplan_create-plan_edit-plan_archive--purpose--structure)
+  - [Terms & Privacy (`home/terms`, `home/privacy`) — Purpose & Structure](#terms--privacy-hometerms-homeprivacy--purpose--structure)
+  - [404 Error Page (`404.html`) — Purpose & Structure](#404-error-page-404html--purpose--structure)
 - [Django Admin Interface](#django-admin-interface)
 - [Reflection](#reflection)
 - [Credits](#credits)
@@ -8096,6 +8118,255 @@ The following were identified as valuable but were not implemented within the pr
 - **Cross-browser testing** was carried out primarily in Chromium-based browsers (Chrome and Edge) across mobile, tablet, and desktop viewports, with some verification in Firefox. Systematic testing across Firefox and Safari is a future step.
 - **Subscription self-management** via the Stripe Customer Portal, and subscription lifecycle webhooks, were descoped in favour of completing the core payment and access-control features.
 - **Filtering and sorting** on listing views, community feed pagination, and account deletion were descoped as lower-priority (Should/Could Have) items.
+
+---
+
+## Website Information Architecture: Page Purpose & Structure
+ 
+[⬆ Back to Table of Contents](#table-of-contents)
+ 
+The following section documents the primary pages of the **FitHub** application, describing the purpose and structure of each. The architecture is organised across the project's Django applications (home, accounts, plans, shop, cart, orders, community, and reviews), with access to each page governed by the appropriate authentication and permission controls.
+
+### Homepage (`home/index`) — Purpose & Structure
+
+<img width="1384" height="700" alt="image" src="https://github.com/user-attachments/assets/8ceb6149-5b5d-4925-ad6f-3d0b917955c5" />
+<img width="898" height="712" alt="image" src="https://github.com/user-attachments/assets/cd9c2df8-ae45-4dff-9cd1-fad219cc0e33" />
+<img width="909" height="546" alt="image" src="https://github.com/user-attachments/assets/99857eaf-ae83-4757-87a1-c8cec9e89228" />
+
+**Purpose:** The landing page introduces FitHub to visitors, communicating the platform's dual offering of membership plans and fitness merchandise, and directing users towards the primary journeys (browsing plans, exploring the shop, and joining the community).
+ 
+**Access:** Public.
+ 
+**Structure:** A hero section with the primary call-to-action, supporting sections that highlight key features and direct users into the plans, shop, and community areas, and the shared site header and footer.
+ 
+### Plans Listing (`plans/plans`) — Purpose & Structure
+
+<img width="1387" height="949" alt="image" src="https://github.com/user-attachments/assets/b73756b5-cadf-4ad7-b2d9-c26905ac2599" />
+
+**Purpose:** Displays all **published** membership plans in a card-based layout, allowing users to compare options before subscribing.
+ 
+**Access:** Public (only published plans are shown; draft and archived plans are excluded).
+ 
+**Structure:** A responsive grid of plan cards, each showing the plan name, tier, price, billing interval, and a link to the plan detail page.
+ 
+### Plan Detail (`plans/plan_detail`) — Purpose & Structure
+
+<img width="1291" height="969" alt="image" src="https://github.com/user-attachments/assets/978f0df8-53dd-4b5d-9410-d52df9c9bab6" />
+
+**Purpose:** Presents the full details of a single membership plan, including description, included features, and pricing, with a context-appropriate call-to-action.
+ 
+**Access:** Public for viewing; subscribing requires authentication.
+ 
+**Structure:** Plan overview, a "what's included" feature list (drawn from the related `PlanFeature` records), pricing, and a subscribe action that initiates Stripe Checkout.
+ 
+### Subscription Success (`plans/subscription_success`) — Purpose & Structure
+
+<img width="1656" height="840" alt="image" src="https://github.com/user-attachments/assets/6ae1f9a9-f633-460b-830f-2bf01e674714" />
+<img width="1351" height="468" alt="image" src="https://github.com/user-attachments/assets/ef4fe097-3910-40a2-a606-a00408643df7" />
+
+**Purpose:** Confirms that a subscription checkout has been initiated/completed and returns the member to the application.
+ 
+**Access:** Authenticated members returning from Stripe Checkout.
+ 
+**Structure:** A confirmation message and onward navigation into the member dashboard.
+ 
+### Shop Listing (`shop/products`) — Purpose & Structure
+
+<img width="1304" height="981" alt="image" src="https://github.com/user-attachments/assets/a307a20c-1c5b-46aa-8044-34993c163e9f" />
+<img width="674" height="146" alt="image" src="https://github.com/user-attachments/assets/84abe313-024d-4ae4-843d-b9423a2d581b" />
+
+**Purpose:** Displays available products for one-time purchase.
+ 
+**Access:** Public.
+ 
+**Structure:** A responsive grid of product cards showing image, name, price, and availability, each linking to the product detail page.
+ 
+### Product Detail (`shop/product_detail`) — Purpose & Structure
+
+<img width="1309" height="908" alt="image" src="https://github.com/user-attachments/assets/8a9d98f2-8493-4663-aa31-0093a89adfb6" />
+<img width="704" height="157" alt="image" src="https://github.com/user-attachments/assets/0a53cb4c-36d2-467f-991f-c9474b0e782e" />
+
+**Purpose:** Presents a single product with its description, price, stock status, add-to-basket control, and customer reviews.
+ 
+**Access:** Public for viewing; adding to basket and reviewing require authentication.
+ 
+**Structure:** Product information and image, an add-to-basket control (respecting stock limits), the average rating, and the list of reviews with add/edit/delete controls for the user's own review.
+ 
+### Shopping Basket (`cart/cart`) — Purpose & Structure
+
+<img width="1333" height="675" alt="image" src="https://github.com/user-attachments/assets/a812461a-f109-4a66-9073-25fb6865da7e" />
+
+**Purpose:** Displays the contents of the session-based basket and allows quantities to be updated or items removed prior to checkout.
+ 
+**Access:** Public (basket is session-based); checkout requires authentication.
+ 
+**Structure:** A line-item table with quantity controls and per-line and overall totals, an empty-state message with a link back to the shop, and a proceed-to-checkout action.
+ 
+### Checkout (`orders/checkout`) — Purpose & Structure
+
+<img width="1206" height="897" alt="image" src="https://github.com/user-attachments/assets/a3c16007-f266-477f-99b0-951517f0e1d6" />
+
+
+**Purpose:** Collects delivery details and payment, processing the transaction securely through Stripe.
+ 
+**Access:** Authenticated members with a non-empty basket.
+ 
+**Structure:** A delivery-details form with server-side validation, the Stripe Elements card input, an order summary, and a submit control with a loading/disabled state to prevent duplicate submissions.
+ 
+### Order Confirmation (`orders/checkout_success`) — Purpose & Structure
+
+<img width="1348" height="912" alt="image" src="https://github.com/user-attachments/assets/741f91f2-5c68-4f90-8963-e58227579b56" />
+<img width="943" height="205" alt="image" src="https://github.com/user-attachments/assets/481cb830-f42c-4dae-884b-2621f5ffaec3" />
+
+**Purpose:** Confirms a successful purchase, displaying the order reference and summary, and informing the user that a confirmation email has been sent.
+ 
+**Access:** The authenticated member who placed the order (ownership-checked).
+ 
+**Structure:** The order number, purchased items, totals, delivery details, an accessible status announcement, and a link to view the order in the member's account.
+ 
+### Order History (`orders/order_history`) — Purpose & Structure
+
+<img width="1396" height="898" alt="image" src="https://github.com/user-attachments/assets/c4aa3a54-4314-471c-9e71-256c69fa6616" />
+<img width="1366" height="882" alt="image" src="https://github.com/user-attachments/assets/62aae202-56a8-4e5a-8750-f5c67a79559d" />
+
+**Purpose:** Lists the authenticated member's previous orders.
+ 
+**Access:** Authenticated members (only the user's own orders are shown).
+ 
+**Structure:** A paginated, responsive table of orders showing order number, date, status, and total, each linking to the order detail page; an empty-state message with a link to the shop is shown when no orders exist.
+ 
+### Order Detail (`orders/order_detail`) — Purpose & Structure
+
+<img width="1442" height="793" alt="image" src="https://github.com/user-attachments/assets/ad5d7c2b-ea07-42fa-936d-560c19227da1" />
+
+**Purpose:** Displays the full details of a single order.
+ 
+**Access:** The order's owner only (server-side ownership check; other users receive a not-found response).
+ 
+**Structure:** Order reference, line items, totals, delivery information, and current status.
+ 
+### Member Dashboard (`accounts/dashboard`) — Purpose & Structure
+
+<img width="1349" height="914" alt="image" src="https://github.com/user-attachments/assets/b05621e2-a68e-491f-beb3-63165339501a" />
+<img width="1375" height="917" alt="image" src="https://github.com/user-attachments/assets/88c5de6f-0ba8-448b-b2fc-6d2574f76a7e" />
+<img width="1378" height="905" alt="image" src="https://github.com/user-attachments/assets/55f78f1a-1fb7-4d19-a2ba-1264af125aa4" />
+<img width="1361" height="913" alt="image" src="https://github.com/user-attachments/assets/81291213-f998-46e2-a147-82c6fe0b02fa" />
+<img width="1370" height="929" alt="image" src="https://github.com/user-attachments/assets/103fc7fa-96a7-450f-9863-afa7b7f17d90" />
+
+**Purpose:** Provides members with a personalised overview and central access point to their account areas.
+ 
+**Access:** Authenticated members.
+ 
+**Structure:** A tabbed interface presenting an overview (current plan, order count, fitness goal), account details, subscription information, order history, and a saved-items/community area, with synchronised side and top navigation.
+ 
+### Profile Setup (`accounts/profile_setup`) — Purpose & Structure
+
+<img width="1383" height="916" alt="image" src="https://github.com/user-attachments/assets/8142e8bc-46f2-4d4d-a7f4-355f6b4b2892" />
+
+**Purpose:** Collects fitness details in the one-time step following registration.
+ 
+**Access:** Authenticated members who have not yet completed setup.
+ 
+**Structure:** A form capturing fitness goal, experience level, and optional measurements, redirecting to the dashboard on completion.
+ 
+### Profile Edit (`accounts/profile_edit`) — Purpose & Structure
+
+<img width="1354" height="911" alt="image" src="https://github.com/user-attachments/assets/e8fa2c26-f41f-4c61-91b3-1ea04ce25c41" />
+
+**Purpose:** Allows members to update their fitness profile at any time.
+ 
+**Access:** Authenticated members (own profile only).
+ 
+**Structure:** A pre-populated form mirroring profile setup, reachable from the dashboard and returning to it after saving.
+
+### Authentication Pages (`accounts/login`, `signup`, `password reset`) — Purpose & Structure
+
+<img width="1268" height="370" alt="image" src="https://github.com/user-attachments/assets/6527bfc7-f885-4b84-93b3-cf411389015c" />
+<img width="1237" height="599" alt="image" src="https://github.com/user-attachments/assets/931f4de0-4aab-4900-93b2-e2cf6c6a2af4" />
+<img width="1242" height="791" alt="image" src="https://github.com/user-attachments/assets/88d92ec9-e5ec-4d9d-825a-94b04aa488f5" />
+
+**Purpose:** Handle user registration, login, logout, email verification, and password reset. These pages are provided by **django-allauth** and customised through template overrides so that they adopt FitHub's branding and layout rather than allauth's defaults.
+
+**Access:** Public (login, registration, and password-reset request); the password-reset completion pages are reached via a secure emailed link.
+
+**Structure:** Each page extends the site's base layout and presents a clearly labelled form. Field rendering is customised through a shared allauth field element (using django-widget-tweaks) so that inputs receive consistent Bootstrap styling and accessible labels. The set includes:
+ 
+### Community Feed (`community/post_list`) — Purpose & Structure
+
+<img width="1349" height="988" alt="image" src="https://github.com/user-attachments/assets/9aaa949d-3160-4683-9464-9b5b3f1e7c0b" />
+
+**Purpose:** Displays the community feed of member posts, encouraging peer support and engagement.
+ 
+**Access:** Publicly readable; creating a post requires authentication.
+ 
+**Structure:** A chronological list of posts showing author, date, and content, with author-only edit and delete controls where applicable.
+ 
+### Add / Edit Community Post (`community/add_post`, `edit_post`) — Purpose & Structure
+
+<img width="1300" height="521" alt="image" src="https://github.com/user-attachments/assets/b0f9ae9b-182e-47a5-8a5c-598e4e9e6142" />
+<img width="1282" height="511" alt="image" src="https://github.com/user-attachments/assets/2fbfda0e-48b6-4354-b5e8-6b5ad374679e" />
+
+**Purpose:** Allows authenticated members to author and update community posts.
+ 
+**Access:** Authenticated members; editing and deletion are restricted to the post's author.
+ 
+**Structure:** A validated form with title and content fields, with a separate confirmation page for deletion.
+ 
+### Add / Edit Product Review (`reviews/add_review`, `edit_review`) — Purpose & Structure
+
+<img width="1305" height="912" alt="image" src="https://github.com/user-attachments/assets/3217637a-3145-4c34-b1c7-79f1e7917fc3" />
+<img width="655" height="150" alt="image" src="https://github.com/user-attachments/assets/d4bd4faf-a4ad-4dee-9891-2227e988ea60" />
+<img width="1245" height="489" alt="image" src="https://github.com/user-attachments/assets/00fe6c18-cfc3-4b3e-ba9f-b9f7e826797c" />
+<img width="1320" height="460" alt="image" src="https://github.com/user-attachments/assets/13e11114-bf00-4fa1-9d7a-6d8eaa7e1193" />
+
+**Purpose:** Allows authenticated members to submit and update a 1–5 rating and comment for a product.
+ 
+**Access:** Authenticated members; editing and deletion are restricted to the review's author. A unique constraint limits each member to one review per product.
+ 
+**Structure:** A validated rating-and-comment form, with a separate confirmation page for deletion.
+ 
+### Staff: Manage Plans (`plans/manage_plans`) — Purpose & Structure
+
+<img width="1247" height="550" alt="image" src="https://github.com/user-attachments/assets/fde654b4-492f-410c-870a-bdcc66568357" />
+
+**Purpose:** Provides staff with a front-end interface to view and manage all membership plans across every status.
+ 
+**Access:** Staff only; non-staff receive a `403 Forbidden` response.
+ 
+**Structure:** A list of all plans (published, draft, and archived) with their status and controls to create, edit, and archive.
+ 
+### Staff: Create / Edit / Archive Plan (`plans/plan_create`, `plan_edit`, `plan_archive`) — Purpose & Structure
+
+<img width="1239" height="739" alt="image" src="https://github.com/user-attachments/assets/e72e840a-225a-4550-962e-59cfb4212f10" />
+<img width="1274" height="740" alt="image" src="https://github.com/user-attachments/assets/a64dd4c5-2b03-4fe6-9165-4f3c2c8578ca" />
+<img width="1207" height="428" alt="image" src="https://github.com/user-attachments/assets/43f4c753-477c-41fd-aae9-ef038cda3356" />
+
+**Purpose:** Enables staff to create new plans, edit existing ones through a shared form, and archive plans (soft delete) without permanent deletion.
+ 
+**Access:** Staff only (`403` for non-staff).
+ 
+**Structure:** A shared create/edit form with server-side validation, and a confirmation page for archiving that preserves existing subscriptions and historical records.
+ 
+### Terms & Privacy (`home/terms`, `home/privacy`) — Purpose & Structure
+
+<img width="1223" height="683" alt="image" src="https://github.com/user-attachments/assets/c500384c-4416-4368-b295-cef3503ef7d3" />
+<img width="1268" height="698" alt="image" src="https://github.com/user-attachments/assets/a03fb846-9c50-4c2f-9a9e-b6a0ed274b2d" />
+
+**Purpose:** Present the platform's terms of service and privacy information.
+ 
+**Access:** Public.
+ 
+**Structure:** Static informational content within the shared site layout.
+ 
+### 404 Error Page (`404.html`) — Purpose & Structure
+
+<img width="1271" height="448" alt="image" src="https://github.com/user-attachments/assets/e00204b3-562a-4115-9514-7deb9d468058" />
+
+**Purpose:** Provides a branded, user-friendly response when a page cannot be found, helping users recover rather than exposing a default error page.
+ 
+**Access:** Served automatically on a 404 response in production.
+ 
+**Structure:** A clear message and navigation routes back into the application (home, plans, and shop), within the shared site layout.
 
 ---
 
