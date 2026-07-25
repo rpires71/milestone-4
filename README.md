@@ -8107,20 +8107,6 @@ The FitHub application has been successfully deployed to Heroku and is fully ope
 
 ---
 
-## Reflection
-[⬆ Back to Table of contents](#table-of-contents)
-
-### Known Limitations and Future Work
-
-The following were identified as valuable but were not implemented within the project timeframe, and are documented here for transparency and as candidates for future development:
-
-- **Manual screen-reader testing (NVDA / VoiceOver):** Accessibility was verified using automated tools (WAVE and Lighthouse) and manual keyboard navigation, which confirmed semantic structure, ARIA usage, colour contrast, and focus order. Testing with a screen reader such as NVDA or VoiceOver was planned but not completed due to time constraints; it remains a priority for future accessibility validation.
-- **Cross-browser testing** was carried out primarily in Chromium-based browsers (Chrome and Edge) across mobile, tablet, and desktop viewports, with some verification in Firefox. Systematic testing across Firefox and Safari is a future step.
-- **Subscription self-management** via the Stripe Customer Portal, and subscription lifecycle webhooks, were descoped in favour of completing the core payment and access-control features.
-- **Filtering and sorting** on listing views, community feed pagination, and account deletion were descoped as lower-priority (Should/Could Have) items.
-
----
-
 ## Website Information Architecture: Page Purpose & Structure
  
 [⬆ Back to Table of Contents](#table-of-contents)
@@ -8470,6 +8456,254 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Served automatically on a 404 response in production.
  
 **Structure:** A clear message and navigation routes back into the application (home, plans, and shop), within the shared site layout.
+
+---
+
+## Reflection
+[⬆ Back to Table of contents](#table-of-contents)
+
+### Known Limitations and Future Work
+
+The following were identified as valuable but were not implemented within the project timeframe, and are documented here for transparency and as candidates for future development:
+
+- **Manual screen-reader testing (NVDA / VoiceOver):** Accessibility was verified using automated tools (WAVE and Lighthouse) and manual keyboard navigation, which confirmed semantic structure, ARIA usage, colour contrast, and focus order. Testing with a screen reader such as NVDA or VoiceOver was planned but not completed due to time constraints; it remains a priority for future accessibility validation.
+- **Cross-browser testing** was carried out primarily in Chromium-based browsers (Chrome and Edge) across mobile, tablet, and desktop viewports, with some verification in Firefox. Systematic testing across Firefox and Safari is a future step.
+- **Subscription self-management** via the Stripe Customer Portal, and subscription lifecycle webhooks, were descoped in favour of completing the core payment and access-control features.
+- **Filtering and sorting** on listing views, community feed pagination, and account deletion were descoped as lower-priority (Should/Could Have) items.
+
+---
+
+## Django Admin Interface
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="430" height="303" alt="image" src="https://github.com/user-attachments/assets/b0a0e8f1-ab43-4f78-8a3c-5fc226c4e832" />
+
+### Overview
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+The **FitHub** platform incorporates a customised **Django Admin interface**, providing staff with a centralised tool for managing the application's core data. While membership plans are also manageable through a dedicated staff-only front-end interface, the Django admin provides comprehensive back-office management of products, categories, orders, subscriptions, reviews, community posts, and user accounts.
+
+Built upon Django's established **admin framework**, several models have been customised with tailored list displays, filters, search fields, and inline editing to streamline day-to-day administration.
+
+### Accessing the Admin Interface
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1890" height="895" alt="image" src="https://github.com/user-attachments/assets/3d18b44c-6111-443f-8187-31573f6adaa5" />
+
+#### Admin URL
+
+The Django Admin panel can be accessed through the following URLs, depending on the environment:
+
+**Production Environment (Heroku):**
+
+https://fithub-rp-90631f751ed4.herokuapp.com/admin/
+
+**Local Development Environment:**
+
+http://127.0.0.1:8000/admin/
+
+#### Login Requirements
+
+Access to the admin interface requires:
+
+- A user account with **staff status** (`is_staff = True`), or
+- A **superuser account** (`is_superuser = True`)
+
+Regular members without staff permissions cannot access the admin interface.
+
+### Creating an Admin User
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+#### Local Development
+
+```bash
+python manage.py createsuperuser
+```
+
+You will be prompted to enter a username, an optional email address, and a password (entered twice for confirmation).
+
+#### Production (Heroku)
+
+```bash
+heroku run python manage.py createsuperuser
+```
+
+**Alternative — grant an existing user staff/superuser status:**
+
+```bash
+heroku run python manage.py shell
+```
+```python
+from django.contrib.auth.models import User
+user = User.objects.get(username='your_username')
+user.is_staff = True
+user.is_superuser = True
+user.save()
+exit()
+```
+
+### Registered Models
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="839" height="905" alt="image" src="https://github.com/user-attachments/assets/0b032c42-39d7-4342-ae04-3e080425f814" />
+
+Upon logging in, administrators see the Django admin dashboard with the registered models grouped by application:
+
+**Accounts**
+- Profiles
+
+**Authentication and Authorization**
+- Users
+- Groups
+
+**Community**
+- Posts
+
+**Orders**
+- Orders
+- Order line items
+
+**Plans**
+- Plans (with inline plan features)
+- Subscriptions
+
+**Reviews**
+- Reviews
+
+**Shop**
+- Product categories
+- Products
+
+### Managing Plans
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1850" height="344" alt="image" src="https://github.com/user-attachments/assets/d5c9efa1-b1b3-4369-9116-23f17814b81a" />
+<img width="1863" height="497" alt="image" src="https://github.com/user-attachments/assets/1bd9dadf-7b99-46df-a870-f3d332bbcf26" />
+<img width="1854" height="527" alt="image" src="https://github.com/user-attachments/assets/ed099d0d-0ea9-47cb-9adf-0d39d5c20d25" />
+<img width="1880" height="731" alt="image" src="https://github.com/user-attachments/assets/8c6eb241-b526-4a42-a240-6ff26abfd717" />
+<img width="1600" height="498" alt="image" src="https://github.com/user-attachments/assets/403736fd-82f3-4fef-9c62-1f393efc2476" />
+
+The `Plan` model is registered with a customised admin configuration:
+
+- **List display:** name, tier, price, billing interval, and status
+- **List filters:** tier, billing interval, and status
+- **Search fields:** name and description
+- **Prepopulated fields:** the `slug` is generated automatically from the plan name
+- **Inline editing:** plan features (`PlanFeature`) are edited inline on the plan page, allowing the "what's included" items to be added and reordered without leaving the plan record
+
+This mirrors the staff front-end management interface, providing an alternative administrative route for plan maintenance.
+
+### Managing Subscriptions
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1870" height="874" alt="image" src="https://github.com/user-attachments/assets/23a639ed-c25b-4044-8c80-91b1f11d921c" />
+
+The `Subscription` model is registered with:
+
+- **List display:** user, plan, status, and current period end
+- **List filter:** status
+
+This allows staff to review which members hold which subscriptions and their current status.
+
+### Managing Products and Categories
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1855" height="356" alt="image" src="https://github.com/user-attachments/assets/f89adf2d-3110-4335-b768-86614c027bb6" />
+
+#### Products
+
+<img width="1871" height="599" alt="image" src="https://github.com/user-attachments/assets/94078257-82c8-44a3-945e-7fe5ad2059ca" />
+<img width="1859" height="726" alt="image" src="https://github.com/user-attachments/assets/e56771d4-25b5-4893-8129-c0473fd1f797" />
+
+The `Product` model is registered with:
+
+- **List display:** name, category, price, stock, and availability
+- **List filters:** category and availability
+- **Search fields:** name, brand, and description
+- **Prepopulated fields:** the `slug` is generated automatically from the product name
+
+Staff can create, edit, and manage the visibility of products (via the `is_available` flag) and adjust stock levels directly.
+
+#### Product Categories
+
+<img width="1866" height="383" alt="image" src="https://github.com/user-attachments/assets/78c0faee-9095-4b6a-afb1-a5bdff4a4cae" />
+<img width="1847" height="316" alt="image" src="https://github.com/user-attachments/assets/984b8095-eabf-4aea-977a-5ab75d737e6e" />
+
+The `ProductCategory` model is registered with:
+
+- **List display:** name and slug
+- **Prepopulated fields:** the `slug` is generated automatically from the category name
+
+### Managing Orders
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1861" height="859" alt="image" src="https://github.com/user-attachments/assets/a0dfb8e7-0c5b-43a1-96b1-5af9d69eebc3" />
+<img width="1873" height="865" alt="image" src="https://github.com/user-attachments/assets/216a5cd0-7da1-4305-a0c2-f160f3185758" />
+<img width="1859" height="757" alt="image" src="https://github.com/user-attachments/assets/02da0d44-09a7-47d8-8721-d5b5d2d0fd56" />
+<img width="1869" height="869" alt="image" src="https://github.com/user-attachments/assets/34797823-d8a2-4e51-8cb1-482b9c7ba631" />
+
+The `Order` and `OrderLineItem` models are registered with the admin, enabling staff to review completed orders, their line items, delivery details, totals, status, and the associated Stripe payment reference. Orders are created programmatically through the checkout flow and the Stripe webhook, so the admin is primarily used for review and support rather than manual order creation.
+
+### Managing Reviews
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1881" height="442" alt="image" src="https://github.com/user-attachments/assets/3789ac16-80d9-4fc9-8cb3-478c756708d4" />
+<img width="1873" height="583" alt="image" src="https://github.com/user-attachments/assets/61ea76b4-534b-461f-ba98-4ec5ed931e2c" />
+
+The `Review` model is registered with the admin, allowing staff to view and, if necessary, moderate product reviews. Each review is linked to its author and product, with a unique constraint preventing duplicate reviews from the same user for the same product.
+
+### Managing Community Posts
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1850" height="475" alt="image" src="https://github.com/user-attachments/assets/3db3cc49-0605-4bb2-972a-2be7e05d1638" />
+<img width="1884" height="577" alt="image" src="https://github.com/user-attachments/assets/600f9097-f275-470e-a2d7-99d3ab767506" />
+
+The `Post` model is registered with:
+
+- **List display:** title, author, and created date
+- **List filter:** created date
+- **Search fields:** title and content
+
+This supports moderation of community content, enabling staff to locate and, where necessary, remove posts.
+
+### User Management
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+<img width="1862" height="468" alt="image" src="https://github.com/user-attachments/assets/025743af-c46b-45c2-a822-e5a5c90093e1" />
+<img width="1866" height="887" alt="image" src="https://github.com/user-attachments/assets/d5130a68-8d47-41a8-bb72-f7822ea734d4" />
+<img width="1858" height="636" alt="image" src="https://github.com/user-attachments/assets/d186f088-04b7-4bc2-9005-d9e52b9d05af" />
+
+Django's built-in `User` administration provides comprehensive account management:
+
+- **List display:** username, email, first name, last name, staff status, and active status
+- **Filters:** staff status, superuser status, active status, and groups
+
+**Permission roles:**
+
+- **Staff status (`is_staff`)** — grants access to the admin interface
+- **Superuser status (`is_superuser`)** — grants full access to all admin functions
+- **Active status (`is_active`)** — controls whether a user can log in
+
+### Admin Security
+
+[⬆ Back to Table of Contents](#table-of-contents)
+
+- **CSRF protection:** all admin forms include CSRF tokens, using Django's built-in protection against cross-site request forgery.
+- **Password security:** passwords are validated against Django's password validators (minimum length, user-attribute similarity, common-password, and numeric-only checks) and hashed using the PBKDF2 algorithm before storage.
+- **Permission-based access:** the admin respects Django's permission system, so users see and act only on models for which they hold permissions; superusers bypass these checks.
+- **HTTPS in production:** the deployed application is served over HTTPS, protecting admin sessions in transit.
 
 ---
 
