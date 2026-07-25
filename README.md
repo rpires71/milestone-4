@@ -647,183 +647,147 @@ Potential areas for future enhancement include:
  
 [⬆ Back to Table of Contents](#table-of-contents)
  
-Developed as a full-stack, database-driven web application, **FitHub** replicates the functionality of a real-world subscription-based fitness community platform. Through a structured and interactive user interface that aligns with contemporary web application standards, the system provides functionality that enables users to **create accounts, explore personalised exercise and nutrition plans, purchase branded fitness merchandise, subscribe to community-access features, share success stories with fellow members, and manage their subscriptions** (Code Institute, 2025).
+Developed as a full-stack, database-driven web application, **FitHub** replicates the functionality of a real-world subscription-based fitness community platform. Through a structured and interactive user interface that aligns with contemporary web application standards, the system provides functionality that enables users to **create accounts, explore exercise and nutrition plans, purchase branded fitness merchandise, subscribe to membership plans, share posts with fellow members, and manage their profiles** (Code Institute, 2025).
  
-The application places particular emphasis on **server-side processing and relational database integration** rather than relying on third-party fitness APIs or prebuilt subscription-management services. Secure and efficient management of user profiles, plan catalogues, product inventories, community-generated content, subscription billing, and payment transactions is achieved through the implementation of custom business logic and database-driven functionality.
+The application places particular emphasis on **server-side processing and relational database integration** rather than relying on third-party fitness APIs or prebuilt subscription-management services. Secure and efficient management of user profiles, plan catalogues, product inventories, community-generated content, and payment transactions is achieved through the implementation of custom business logic and database-driven functionality.
  
-All user information, including **fitness profiles**, **subscription records**, **purchase history**, and **community contributions**, is processed through validated data-entry mechanisms and stored within a **relational PostgreSQL database**. This approach ensures data persistence, maintains data integrity, and supports secure access-control procedures across the platform.
-
+All user information, including **fitness profiles**, **subscription records**, **purchase history**, and **community contributions**, is processed through validated data-entry mechanisms and stored within a **relational database** (SQLite in development, PostgreSQL in production). This approach ensures data persistence, maintains data integrity, and supports secure access-control procedures across the platform.
+ 
 ### Core Features
  
 #### User Authentication and Profile Management
  
-Secure account registration, user authentication, and session management are provided through the integration of **django-allauth**. Upon successful registration, a dedicated **UserProfile** is automatically generated for each user, storing fitness-specific information that supports personalisation and user engagement.
+Secure account registration, user authentication, and session management are provided through the integration of **django-allauth** (Penners, 2025). Each user has an associated **Profile** storing fitness-specific information that supports personalisation and engagement.
  
 Profile data includes:
  
 - **Fitness objectives** (weight loss, muscle gain, endurance, flexibility, and general fitness)
 - **Experience categories** (beginner, intermediate, and advanced)
-- **Physical measurements** (weight and height) used to support personalised plan recommendations
- 
-At any stage, users are able to update and manage their profile information through pre-populated forms designed to streamline data entry and enhance the overall user experience. Access to profile information is protected through **secure authentication mechanisms**, ensuring that users can view and modify only their own data, while permission-based decorators enforce access restrictions and prevent unauthorised interaction with protected resources.
+- **Physical measurements** (weight and height)
 
-#### Browse and Filter Plans
+At any stage, users are able to update and manage their profile information through pre-populated forms designed to streamline data entry. Access to profile information is protected through **secure authentication mechanisms**, ensuring that users can view and modify only their own data, while permission-based decorators and server-side checks prevent unauthorised interaction with protected resources.
  
-Discovery of **Exercise Plans** and **Nutrition Plans** is facilitated through the **Plans** section, allowing users to explore content aligned with their individual fitness objectives and experience levels. To support efficient navigation and plan selection, the following browsing capabilities are provided:
+#### Browse Plans
  
-- **Plan catalogues** presenting the title, difficulty rating, duration, pricing information, and a concise overview of each plan
-- **Category-based filtering** enabling plans to be refined by type (exercise or nutrition) and difficulty level
-- **Comprehensive plan pages** containing detailed descriptions, trainer qualifications, anticipated outcomes, and customer feedback
-- **Subscriber-only indicators**, including lock icons and prominent calls to action encouraging subscription upgrades
-- **Responsive grid-based layouts** that automatically adapt to desktop, tablet, and mobile viewing environments
+Discovery of **Exercise Plans** and **Nutrition Plans** is facilitated through the **Plans** section, allowing users to explore content aligned with their fitness objectives and experience levels. The following browsing capabilities are provided:
+ 
+- **Plan catalogues** presenting the title, difficulty rating, pricing information, and a concise overview of each plan
+- **Comprehensive plan pages** containing detailed descriptions, key features, and access-controlled content
+- **Responsive grid-based layouts** that adapt to desktop, tablet, and mobile viewing environments
 
-Flexible purchasing options are supported through a dual-access model, whereby plans are priced individually (£9.99–£49.99) while also being available as part of an active subscription, thereby supporting multiple revenue streams within the platform.
-
-#### E-Commerce Shop and Product Management
+Flexible purchasing options are supported through a dual-access model, whereby plans are associated with a price and are made available through an active subscription, supporting multiple revenue streams within the platform.
  
-Access to branded fitness merchandise, including clothing, supplements, equipment, and accessories, is provided through the **Shop** section of the platform. To support product discovery, purchasing, and post-purchase management, the following functionality is available:
+#### E-Commerce Shop
+ 
+Access to branded fitness merchandise is provided through the **Shop** section of the platform. The following functionality is available:
  
 - **Product catalogues** displaying images, descriptions, pricing information, and current stock availability
-- **Advanced product filtering** based on category, price range, and popularity
-- **Five-star review functionality** enabling users to submit ratings and detailed product feedback
-- **Average rating indicators** displayed on product cards to assist users in making informed purchasing decisions
-- **Shopping basket functionality** integrated with **secure Stripe Checkout** to facilitate one-time transactions
-- **Order-confirmation pages** providing order references and estimated delivery schedules
-- **Purchase-history records** allowing users to review previous orders and conveniently reorder products
+- **Product review functionality** enabling users to submit a 1–5 rating and written feedback, with owner-only editing and deletion
+- **Average rating indicators** displayed to assist users in making informed purchasing decisions
+- **Shopping basket functionality** integrated with **secure Stripe Checkout** to facilitate one-time transactions, with stock-quantity limits enforced
+- **Order-confirmation pages** providing order references and a summary of the purchase
+- **Purchase-history records** allowing users to review their previous orders
 
-Administrative management of products is performed through a protected interface, enabling authorised staff members to maintain inventory levels, update pricing structures, and efficiently manage the product catalogue.
-
+Administration of the product catalogue is performed by staff through the Django administration interface, with customised configurations for products and categories.
+ 
 #### Subscription Management
  
-Access to subscriber-exclusive functionality within **FitHub** is provided through a **dual-tier subscription model**, offering users a choice between the following membership options:
+Membership access within **FitHub** is provided through a **subscription model**, offering monthly and annual options:
  
-- **Monthly subscription** (£9.99 per month) with automated recurring billing
-- **Annual subscription** (£99.99 per year) charged as a single payment, providing a saving of approximately 17%
-
+- **Monthly subscription** with recurring billing
+- **Annual subscription** charged as a single annual payment
 To support subscription administration and payment management, the platform incorporates the following features:
  
-- **Subscription plan pages** presenting membership tiers, included features, and pricing information
-- **Secure Stripe Checkout integration** utilising Stripe's Subscriptions API to process recurring payments
-- **Subscription management dashboards** displaying the active membership tier, upcoming billing dates, and available cancellation options
-- **Automated webhook processing** responsible for managing payment renewals, failed-payment scenarios, and subscription-status synchronisation
-- **Flexible cancellation functionality** enabling users to terminate subscriptions at any time while retaining access until the end of the current billing cycle
-- **Automatic renewal notifications** issued in advance of scheduled subscription charges
+- **Subscription plan pages** presenting membership options, included features, and pricing information
+- **Secure Stripe Checkout integration** used to initiate subscription payments
+- A **dashboard** displaying the member's current plan
 
-Implementation of the Stripe subscription infrastructure demonstrates the practical application of real-world recurring-payment systems, including the management of common edge cases such as failed transactions, expired payment methods, and customer-initiated cancellations.
-
-#### Subscriber-Only Community
+The subscription implementation demonstrates the practical application of Stripe Checkout for initiating recurring payments. Subscription self-management (cancellation, plan changes) via the Stripe Customer Portal, and subscription lifecycle webhooks, are documented as future work in the reflection.
  
-Exclusive access to the **Community** section is granted to paying subscribers, creating an environment that promotes peer support, accountability, and ongoing motivation. To encourage meaningful interaction and member engagement, the community incorporates the following functionality:
+#### Community
  
-- **Success-story submissions** enabling subscribers to share fitness milestones, progress photographs, and personal experiences
+The **Community** section provides a shared, publicly readable feed that promotes peer support, accountability, and motivation. Posting is available to authenticated members. To encourage engagement, the community incorporates the following functionality:
+ 
+- **Post submissions** enabling members to share fitness milestones and personal experiences
 - **Chronologically ordered feeds** presenting the most recent community posts first
-- **Discussion threads** facilitating peer-to-peer conversations, encouragement, and knowledge sharing
-- **Post-creation forms** incorporating title and content fields, input validation, and confirmation feedback upon successful submission
-- **Post editing and deletion capabilities** restricted to the original author, ensuring users can manage only their own content
-- **Comment-management controls** allowing users to remove their own comments through author-specific permissions
-- **Community preview pages** for non-subscribers, highlighting selected activity and encouraging membership conversion
-- **Responsive layouts** optimised to support seamless community interaction across desktop, tablet, and mobile devices
+- **Post-creation forms** incorporating title and content fields, input validation, and confirmation feedback on successful submission
+- **Post editing and deletion capabilities** restricted to the original author through server-side ownership checks
+- **Responsive layouts** optimised for desktop, tablet, and mobile devices
 
-By fostering a sense of belonging, shared achievement, and mutual accountability, the community functionality enhances subscription value while contributing to long-term user engagement and retention.
-
+The public feed allows prospective members to see community activity before subscribing, while contribution requires an account.
+ 
 #### Payment Processing and Order Management
  
-Support for secure financial transactions within **FitHub** is delivered through the integration of **Stripe payment processing**, which is implemented across two distinct payment workflows:
+Support for secure financial transactions within **FitHub** is delivered through the integration of **Stripe payment processing** (Stripe, 2025), implemented across two workflows:
  
 ##### One-Time Purchases (Shop)
+ 
+- **Stripe Elements and Payment Intents** used for secure product purchases, with card data collected directly by Stripe so that it never reaches the application server
+- **PCI-compliant payment processing** handled by Stripe
+- **Automatic order creation** following successful payment authorisation
+- **Failed-payment handling** providing clear error notifications and the opportunity to retry
+- **Order-confirmation emails** sent following a successful order, with failures logged so they cannot break the confirmation page
 
-The following functionality supports the processing of individual product transactions:
+##### Subscriptions
+ 
+- **Stripe Checkout** used to initiate monthly and annual membership payments
+- **A signature-verified webhook handler** processing the `payment_intent.succeeded` event to create orders server-side
+- **Idempotency control** preventing duplicate order creation by checking whether an order already exists for a given `PaymentIntent`
+- **Stripe test-card compatibility** supporting development and quality-assurance testing of successful, declined, and 3D Secure payment flows
 
-- **Stripe Checkout Sessions** utilised for secure product purchases
-- **Card tokenisation and PCI-compliant payment processing** to protect sensitive payment information
-- **Automatic order generation** following successful payment authorisation
-- **Failed-payment management** providing clear error notifications and opportunities to retry transactions
-- **Order-confirmation emails** containing purchase receipts and transaction details
-
-##### Recurring Subscriptions
-
-Subscription-based billing is facilitated through Stripe's recurring-payment infrastructure and includes:
-
-- **Stripe Subscriptions API** supporting monthly and annual membership billing
-- **Webhook event processing** (`checkout.session.completed`, `invoice.paid`, `customer.subscription.deleted`, `subscription.updated`) to manage asynchronous payment events
-- **Idempotency controls** implemented to prevent duplicate webhook execution
-- **Real-time subscription synchronisation** ensuring membership-status updates occur without requiring page refreshes
-- **Automated handling of payment failures**, dunning processes, and customer-initiated cancellations
-- **Stripe test-card compatibility** supporting development, quality assurance, and payment-workflow testing
-
-To maintain transparency and enhance the user experience, comprehensive **payment feedback mechanisms** are incorporated throughout the checkout process, including:
-
-- Clearly structured checkout workflows with transparent pricing and associated charges
-- Success notifications confirming completed orders and active subscriptions
-- Failure alerts providing actionable guidance, including payment retries and support options
-- Loading states applied to checkout controls to minimise accidental duplicate submissions during transaction processing
+To maintain transparency, **payment feedback mechanisms** are incorporated throughout the checkout process, including:
+ 
+- Clearly structured checkout workflows with transparent pricing
+- Success notifications confirming completed orders
+- Failure alerts providing actionable guidance and the ability to retry
+- Loading and disabled states applied to checkout controls to minimise accidental duplicate submissions
 
 #### Administrative Interfaces
  
-Access to protected management functionality is provided exclusively to **staff members**, including coaches and administrators, through a dedicated set of administrative views designed to support platform management and operational activities.
+Access to protected management functionality is provided to **staff members** through a dedicated, staff-only front-end interface for membership plans, and through the Django administration interface for other records.
  
 The available administrative features include:
  
-- **Exercise Plan creation interfaces**, enabling coaches to define new plans by specifying titles, descriptions, difficulty levels, durations, and pricing structures
-- **Nutrition Plan management forms** incorporating similar functionality, tailored specifically to nutrition-focused content
-- **Product administration tools** allowing the creation and management of shop inventory, including images, descriptions, pricing information, and stock levels
-- **Order-management views** providing access to customer information, purchase records, and revenue-monitoring data
-- **Community-content moderation functionality** (planned for future implementation), enabling the review of user-generated content and the removal of inappropriate material where necessary
-- **Analytics dashboards** (future enhancement) designed to present subscription statistics, revenue performance, and user-engagement metrics
+- **Membership plan creation and editing** through a custom staff-only front-end interface, specifying titles, descriptions, features, difficulty, and pricing
+- **Plan archiving (soft delete)**, preserving existing subscriptions and historical records while preventing new subscriptions to archived plans
+- **Product, order, review, and subscription administration** through the Django administration interface, with customised model configurations
 
-To ensure that administrative functionality remains secure and accessible only to authorised personnel, permission-based controls are enforced through the use of the `@staff_member_required` decorator.
-
+To ensure that administrative functionality remains secure, permission-based controls enforce staff-only access, returning a `403 Forbidden` response to non-staff users at both the interface and URL level.
+ 
 #### Data Validation and Error Handling
  
-Reliable data processing and application stability are maintained through the implementation of comprehensive validation and error-management mechanisms across all areas of user interaction.
- 
-The platform incorporates the following validation and error-handling features:
+Reliable data processing and application stability are maintained through validation and error-management mechanisms across all areas of user interaction:
  
 - **Form-validation procedures** applied to user registration (including email-uniqueness checks and password-strength requirements), profile updates, plan creation, product reviews, and community-content submissions
-- **Server-side validation mechanisms** ensuring data accuracy and integrity before information is committed to the database
-- **Client-side validation controls** utilising HTML5 constraints and JavaScript checks to provide immediate feedback during data entry
-- **User-friendly validation messages** offering clear explanations of input errors alongside actionable guidance for resolution
-- **Graceful API error management** addressing Stripe-related failures, timeout conditions, and network-connectivity issues
-- **Custom error pages** (404, 403, and 500) designed to assist users in recovering from unexpected situations and navigating back to relevant content
-
-By combining multiple layers of validation and error handling, the application promotes dependable data management, improves system reliability, and minimises user frustration throughout key workflows.
+- **Server-side validation** ensuring data accuracy and integrity before information is committed to the database
+- **Client-side validation** using HTML5 constraints to provide immediate feedback during data entry
+- **User-friendly validation messages** offering clear explanations of input errors alongside actionable guidance
+- **Graceful API error management** for Stripe-related failures, ensuring users receive meaningful feedback
+- **A custom, branded 404 page** to assist users in recovering from unexpected navigation and returning to relevant content
 
 #### Responsive Design and Accessibility
  
-Accessibility and responsive usability are fundamental design priorities throughout the application, ensuring a consistent and inclusive experience across a wide range of devices and user requirements.
+Accessibility and responsive usability are design priorities throughout the application:
  
-The platform incorporates the following accessibility and responsive-design features:
- 
-- A **mobile-first development approach** implemented using the Bootstrap 5 CSS framework to provide a seamless user experience across multiple device types
-- Compliance with **WCAG 2.1 Level AA accessibility standards**, including:
-  - **Semantic HTML5 elements** (`<nav>`, `<main>`, `<section>`, `<article>`) to communicate document structure effectively
+- A **mobile-first development approach** implemented using the Bootstrap 5 CSS framework (Bootstrap, 2025)
+- **Targeting WCAG 2.1 Level AA** accessibility standards (W3C, 2018), verified using the WAVE tool and Lighthouse, including:
+  - **Semantic HTML5 elements** (`<nav>`, `<main>`, `<section>`, `<article>`) to communicate document structure
   - **ARIA labels and attributes** applied to form controls and icon-based interactive elements
-  - **Alternative text (alt text)** provided for all images
-  - **Colour-contrast ratios** meeting accessibility requirements (minimum 4.5:1 for standard text)
-  - A logical **heading hierarchy** (`<h1>` through `<h6>`) supporting content organisation and navigation
-  - Comprehensive **keyboard-navigation support** using controls such as Tab, Enter, and Escape
-  - Compatibility with **screen-reader technologies** to improve accessibility for visually impaired users
-
-- **Responsive grid-based layouts** designed to adapt effectively to mobile (320px), tablet (768px), and desktop (1024px+) viewport dimensions
-- A **touch-optimised interface** incorporating appropriately sized buttons and interactive controls for mobile-device users
-- **Progress indicators and loading states** displayed during long-running processes, such as Stripe Checkout transactions, to keep users informed of processing status
-- **Flash-message notifications** providing immediate, contextual feedback in response to user actions and system events
-
-Through the implementation of these accessibility and responsive-design practices, the platform promotes inclusivity, enhances usability, and ensures a consistent user experience regardless of device type, input method, or accessibility requirement.
+  - **Alternative text** provided for images
+  - **Colour-contrast ratios** meeting the minimum of 4.5:1 for standard text, with low-contrast defaults corrected during testing
+  - A logical **heading hierarchy** (`<h1>` through `<h6>`) with a single `<h1>` per page
+  - **Keyboard-navigation support** (Tab, Enter, Escape) and a functioning skip-to-content link
+- **Responsive layouts** designed to adapt across mobile, tablet, and desktop viewport dimensions
+- **Flash-message notifications** providing immediate, contextual feedback in response to user actions
 
 #### Performance Optimisation
  
-Application performance is enhanced through the implementation of a range of optimisation techniques designed to improve responsiveness, reduce resource consumption, and support scalability.
+Application performance is supported through the following techniques:
  
-Key performance-enhancement measures include:
- 
-- **Database-query optimisation** through the use of `select_related()` and `prefetch_related()`, reducing unnecessary database requests and mitigating N+1 query issues
-- **Compressed static resources**, including CSS and JavaScript assets, to minimise page-load times and reduce bandwidth usage
-- **Progressive content delivery**, ensuring that essential information is displayed first while supplementary content is loaded subsequently
-- **Efficient server-side rendering** using Django templates to limit unnecessary processing and improve response times
-- **Caching mechanisms** applied to frequently accessed content, such as plan catalogues and product information, to reduce database load and accelerate content retrieval
-
-Collectively, these optimisation strategies contribute to faster page rendering, improved scalability, and a more responsive user experience across the platform.
+- **Database-query optimisation** through the use of `select_related()` and `prefetch_related()`, reducing database requests and mitigating N+1 query issues
+- **Compressed static assets** served via WhiteNoise, with a manifest storage backend, to reduce page-load times
+- **Efficient server-side rendering** using Django templates
+Collectively, these strategies contribute to responsive page rendering and a consistent user experience across the platform.
 
 ---
 
@@ -983,7 +947,7 @@ By incorporating these social-integration features, the platform will encourage 
  
 [⬆ Back to Table of Contents](#table-of-contents)
  
-A variety of technologies, tools, and development resources have been utilised throughout the creation of this project to support both the design and implementation phases. This section provides an overview of the primary technologies employed, including hardware platforms, development environments, software frameworks, database technologies, and payment-processing solutions that contributed to the successful delivery of the application.
+A variety of technologies, tools, and development resources have been utilised throughout the creation of this project to support both the design and implementation phases. This section provides an overview of the primary technologies employed, including hardware platforms, development environments, software frameworks, database technologies, and payment-processing solutions that contributed to the successful delivery of the application (Code Institute, 2025).
 
 ---
 
@@ -1041,12 +1005,12 @@ A broad range of built-in components, including navigation bars, buttons, cards,
  
 Interactive client-side functionality throughout the application is powered by **JavaScript**, enhancing user engagement and supporting dynamic content behaviour. A variety of interactive features are implemented using JavaScript, including:
  
-- **Client-side form validation**, verifying email formats, password-strength requirements, and mandatory fields before submission
-- **Progress indicators and loading states**, reducing the likelihood of duplicate form submissions during processing
-- **Modal confirmation dialogues** for critical actions such as subscription cancellations and post deletions
-- **Dynamic content updates** without requiring full-page refreshes
-- **Flash-message management**, enabling notifications to be displayed and dismissed interactively
-- **Responsive navigation functionality**, supporting mobile-friendly menu interactions and adaptive navigation behaviour
+- **Client-side form validation**, using HTML5 constraints to check required fields and formats before submission
+- **Stripe Elements integration**, mounting the secure card input, displaying card errors as the user types, and confirming payment on submission
+- **Duplicate-submission prevention**, disabling the checkout button and locking the card element once payment is submitted
+- **Dashboard tab synchronisation**, keeping the side navigation, top tabs, and quick-action buttons in sync when switching between account sections
+- **Flash-message display** via Bootstrap's alert components
+- **Responsive navigation**, using Bootstrap's collapsible navbar for mobile menu interactions
 
 Collectively, these technologies contribute to a responsive, accessible, and engaging front-end experience while supporting modern web-development standards and best practices.
 
@@ -1194,20 +1158,6 @@ Within the project, Flake8 is utilised to:
 
 Linting behaviour is customised through a dedicated `.flake8` configuration file, which specifies a maximum line length of 88 characters to align with Black formatting conventions while excluding Django migration files from analysis.
  
-#### Black
- 
-Consistent code formatting throughout the application is maintained through **Black**, an automated Python code formatter that applies a standardised coding style across all source files. By removing the need for manual formatting decisions, Black promotes consistency, readability, and maintainability throughout the codebase.
- 
-Key characteristics of Black include:
- 
-- **Deterministic formatting**, ensuring identical input consistently produces identical output
-- **Minimal configuration options**, encouraging adoption of widely recognised formatting standards
-- **Standardised line-length management**, using a default limit of 88 characters
-- **Quotation-mark normalisation**, promoting consistency across source files
-- **Automatic trailing-comma insertion**, resulting in cleaner and more manageable version-control diffs
-
-Integration with Visual Studio Code extensions enables automatic formatting whenever files are saved, ensuring formatting consistency throughout the development process.
- 
 #### Pylint
  
 Comprehensive static code analysis is provided through **Pylint**, a Python quality-assurance tool that evaluates source code for programming errors, coding-standard compliance, maintainability concerns, and refactoring opportunities. In addition to generating detailed analysis reports, Pylint produces an overall code-quality score measured on a ten-point scale.
@@ -1229,11 +1179,11 @@ Configuration settings defined within `.isort.cfg` ensure compatibility with Bla
  
 - `profile = black` to maintain alignment with Black formatting standards
 - `known_django = django` to correctly identify Django-related packages
-- `known_first_party = accounts, plans, shop, community, subscriptions` to categorise locally developed applications
+- `known_first_party = accounts, plans, shop, community to categorise locally developed applications
 - `line_length = 88` to maintain consistency across code-quality tools
 - `skip = migrations` to exclude automatically generated migration files from import sorting
 
-The combined use of Flake8, Black, Pylint, and isort contributes to a consistent, maintainable, and professional codebase while supporting modern Python development standards and best practices.
+The combined use of Flake8, Pylint, and isort contributes to a consistent, maintainable, and professional codebase while supporting modern Python development standards and best practices.
 
 ---
 
@@ -1252,36 +1202,22 @@ Within the project, Django TestCase is utilised to:
 
 To maintain test reliability and data integrity, each test is executed within a dedicated and isolated test database, ensuring that testing activities do not impact production or development data.
  
-#### pytest & pytest-django
- 
-Additional testing flexibility is provided through **pytest**, a widely adopted Python testing framework recognised for its readability, extensibility, and streamlined syntax. Django-specific functionality is further enhanced through **pytest-django**, which introduces specialised fixtures and utilities tailored to Django applications.
- 
-Within the project, pytest is used to provide:
- 
-- A more concise and expressive testing syntax compared with Python's `unittest` framework
-- **Parametrised testing**, allowing multiple input scenarios to be evaluated efficiently within a single test definition
-- Advanced fixture management for test setup, configuration, and teardown operations
-- Enhanced assertion reporting and more informative error messages to simplify debugging and fault diagnosis
-
-The combined use of Django TestCase, pytest, and pytest-django provides a comprehensive testing environment that supports reliable quality assurance, efficient test execution, and maintainable automated testing practices throughout the development lifecycle.
-
 ---
 
 ### Design & Wireframing Tools
  
-#### Balsamiq Wireframes
- 
-The planning and user-interface design stages of the project were supported through the use of **Balsamiq Wireframes**, a web-based wireframing application designed to facilitate the rapid creation of website layouts and interface prototypes. Prior to development, Balsamiq was used to visualise the structure, navigation flow, and overall layout of the **FitHub** platform.
- 
-A range of features within Balsamiq contributed to the design process, including:
- 
-- A **drag-and-drop design environment** enabling rapid creation of interface mock-ups
-- A collection of **pre-built user-interface components**, including forms, buttons, and navigation elements
-- **Low-fidelity prototyping capabilities** that prioritise information architecture, layout structure, and user journeys over visual styling
-- **Export functionality** supporting the sharing of designs with stakeholders and project reviewers
-- **Version-management features** allowing iterative refinement and comparison of design revisions
+#### ChatGPT (AI-Assisted Wireframing)
 
-Wireframes were produced for all major areas of the application, including the homepage, user-registration page, dashboard, plan-listing pages, e-commerce shop, community feed, checkout workflow, and account-management section.
+The planning and user-interface design stages of the project were supported through the use of **ChatGPT**, an AI assistant used to generate and iterate on low-fidelity wireframe concepts for the **FitHub** platform prior to development. ChatGPT was used to explore the structure, navigation flow, and overall layout of the key pages, producing wireframe representations that were then refined into the final interface design.
+
+The AI-assisted approach contributed to the design process in the following ways:
+
+- **Rapid ideation**, generating initial layout concepts and interface arrangements from written descriptions of each page's purpose
+- **Iterative refinement**, allowing layouts to be adjusted and re-generated quickly in response to feedback
+- **Focus on information architecture**, prioritising page structure, content grouping, and user journeys over detailed visual styling at the planning stage
+- **Consistency of structure** across related pages, supporting a coherent navigation model
+
+Wireframe concepts were produced for the major areas of the application, including the homepage, user-registration page, dashboard, plan-listing pages, e-commerce shop, community feed, checkout workflow, and account-management section.
  
 #### Draw.io
  
@@ -1294,7 +1230,7 @@ Draw.io was utilised for:
 - **System-architecture diagramming** to visualise application components and interactions
 - **Exporting diagrams** in formats such as PNG, PDF, and SVG for inclusion within project documentation
 
-The completed ERD provides a clear representation of the application's database structure, illustrating the relationships between key models, including **User**, **UserProfile**, **ExercisePlan**, **NutritionPlan**, **Product**, **Order**, **OrderItem**, **Review**, **Post**, **Comment**, **Subscription**, and **StripeEvent**, together with their associated relational links.
+The completed ERD provides a clear representation of the application's database structure, illustrating the relationships between key models, including **User**, **UserProfile**, **ExercisePlan**, **NutritionPlan**, **Product**, **Order**, **OrderItem**, **Review**, **Post**, **Comment**, and **StripeEvent**, together with their associated relational links.
 
 ---
 
@@ -1330,12 +1266,12 @@ Project-specific validation requirements are managed through a dedicated `.jshin
  
 #### Stripe Dashboard & Testing Tools
  
-Payment-management and transaction-monitoring activities are facilitated through the **Stripe Dashboard**, which provides a centralised administrative interface for overseeing payment operations and subscription services.
+Payment-management and transaction-monitoring activities are facilitated through the **Stripe Dashboard**, which provides a centralised administrative interface for overseeing payment operations.
  
 The Stripe Dashboard supports:
  
 - Monitoring both test and live payment transactions
-- Managing subscription customers and billing information
+- Managing customers and billing information
 - Reviewing payment events, logs, and transaction histories
 - Testing and validating webhook integrations through Stripe's development tools
 
@@ -1429,6 +1365,40 @@ GIMP was utilised for:
 
 Collectively, these supporting utilities enhanced productivity, streamlined development and design workflows, and contributed to the creation of a consistent and professionally presented application.
 
+#### django-widget-tweaks
+
+**django-widget-tweaks** is used to customise the rendering of form fields directly within Django templates. It enables CSS classes, attributes, and Bootstrap styling to be applied to individual form widgets without altering the form definitions in Python, supporting consistent, accessible form presentation across the registration, profile, review, community, and plan-management forms.
+
+#### Pillow
+
+**Pillow**, the Python Imaging Library fork, provides the image-processing support required by Django's `ImageField`. It handles the validation and processing of image files associated with products and membership plans, ensuring uploaded and referenced images are correctly managed within the application.
+
+#### psycopg2-binary
+
+**psycopg2-binary** is the PostgreSQL database adapter for Python. It enables Django's ORM to communicate with the PostgreSQL database used in the production environment on Heroku, handling the underlying connection and query execution between the application and the database.
+
+#### Stripe CLI
+
+The **Stripe CLI** is used during development to test webhook handling locally. It forwards live Stripe test events to the local development server, allowing the signature-verified webhook handler to be exercised without deploying, and supports triggering test events to verify order creation. Webhook events are forwarded to the application's webhook endpoint using a command of the form:
+
+```bash
+stripe listen --forward-to localhost:8000/orders/wh/
+```
+
+*(The forwarding path corresponds to the project's actual webhook URL; confirm the exact path in `orders/urls.py` before finalising.)*
+
+#### Lighthouse
+
+**Google Lighthouse**, integrated within Chrome DevTools, is used to audit the application's **performance**, **accessibility**, and **best practices**. Lighthouse audits were run across key pages to measure page-load metrics, confirm accessibility compliance, and verify adherence to modern web best practices, with the recorded scores documented within the testing section.
+
+#### WAVE (Web Accessibility Evaluation Tool)
+
+**WAVE**, developed by WebAIM, is used to evaluate the accessibility of the application's rendered pages. WAVE was used throughout development to identify and resolve accessibility issues, including verifying that form labels are correctly associated with their inputs, confirming the presence and validity of the skip-to-content link, and checking colour-contrast compliance against WCAG 2.1 Level AA.
+
+#### pylint-django
+
+**pylint-django** is a Pylint plugin that extends static analysis with an understanding of Django-specific constructs, such as the model manager (`objects`) and model metaclasses. It was used alongside Pylint to produce meaningful per-application code-quality scores without false positives arising from Django's dynamic attributes, with configuration recorded in the project's `.pylintrc` file.
+
 ---
 
 ### Web Browsers
@@ -1451,19 +1421,6 @@ By utilising multiple browsers throughout development, the application can be th
 
 ### Environment Management
  
-#### python-dotenv
- 
-Secure configuration management within the application is supported through **python-dotenv**, a Python library that loads environment variables from a `.env` file into the `os.environ` namespace. This approach enables sensitive settings to be stored separately from the source code, improving security and reducing the risk of exposing confidential information.
- 
-Key configuration values managed through python-dotenv include:
- 
-- `SECRET_KEY` — Django's cryptographic secret key
-- `DATABASE_URL` — Database connection configuration string
-- `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` — Stripe API authentication credentials
-- `DEBUG` — Environment setting controlling development and production behaviour
-
-To prevent sensitive configuration data from being exposed through version-control systems, the `.env` file is excluded from repository commits through inclusion within the `.gitignore` file.
- 
 #### dj-database-url
  
 Database configuration is simplified through the use of **dj-database-url**, a Python utility designed to parse and interpret database connection strings automatically. The package is particularly valuable within cloud-hosted environments, where database credentials are commonly provided through environment variables.
@@ -1483,7 +1440,7 @@ Application execution within the production environment is managed through **Gun
 Within the Heroku deployment environment, Gunicorn is configured through a `Procfile`, which defines the command required to launch the application:
  
 ```bash
-web: gunicorn fitHub.wsgi
+web: gunicorn fithub.wsgi
 ```
 
 This configuration instructs Heroku to start a Gunicorn web process that loads the Django WSGI application and listens for incoming web traffic. By utilising Gunicorn, the application benefits from a reliable and production-ready server capable of handling concurrent requests efficiently.
@@ -1532,7 +1489,7 @@ By categorising commits according to their purpose, changes can be identified qu
  
 Examples of commit messages used within the project include:
  
-- `feat: add Stripe webhook handler for subscription renewals`
+- `feat: add Stripe webhook handler for plan renewals`
 - `test: add unit tests for Product review model`
 - `fix: resolve N+1 query issue in shop list view`
 - `docs: update README with deployment instructions`
@@ -1543,11 +1500,11 @@ The adoption of clear and meaningful commit descriptions provides a transparent 
 
 ### Summary
  
-A broad range of modern technologies, development frameworks, and industry-recognised practices have been integrated throughout the FitHub project to support the creation of a scalable, secure, and user-focused fitness subscription platform. Core technologies such as **Django** for backend development, **Bootstrap** for responsive user-interface design, **Stripe** for secure payment processing, and **PostgreSQL** for relational data management collectively provide the foundation for a robust and professional web application.
+A broad range of modern technologies, development frameworks, and industry-recognised practices have been integrated throughout the FitHub project to support the creation of a secure and user-focused fitness subscription platform. Core technologies such as **Django** for backend development, **Bootstrap 5** for responsive user-interface design, **Stripe** for secure payment processing, and **PostgreSQL** for relational data management (with **SQLite** in development) collectively provide the foundation for a robust and professional web application.
  
-High standards of software quality, accessibility, and maintainability are further supported through the combined use of development tools, including **Visual Studio Code**, **Git**, and **GitHub**, alongside code-quality solutions such as **Flake8**, **Black**, and **Pylint**. In addition, comprehensive testing is facilitated through frameworks including **Django TestCase** and **pytest**, while design and planning activities are supported by tools such as **Balsamiq Wireframes** and **Draw.io**.
+High standards of software quality, accessibility, and maintainability are further supported through the combined use of development tools, including **Visual Studio Code**, **Git**, and **GitHub**, alongside code-quality solutions such as **flake8**, **isort**, and **Pylint** (with the **pylint-django** plugin). Comprehensive testing is facilitated through **Django's TestCase** framework, complemented by validation and auditing tools including the **W3C Markup Validator**, **Jigsaw CSS Validator**, **JSHint**, **Lighthouse**, and **WAVE**. Design and planning activities were supported by AI-assisted wireframing.
  
-The effective integration of these technologies demonstrates the practical implementation of contemporary full-stack web-development methodologies, encompassing responsive design, secure authentication, payment processing, database management, automated testing, accessibility compliance, and professional deployment practices. As a result, FitHub reflects the technical competence, development standards, and professional expectations associated with **Level 5 of the UK Higher Education Framework**.
+The effective integration of these technologies demonstrates the practical implementation of contemporary full-stack web-development methodologies, encompassing responsive design, secure authentication, payment processing, database management, automated and manual testing, accessibility practices, and professional deployment. As a result, FitHub reflects the technical competence, development standards, and professional expectations associated with **Level 5 web application development**.
 
 ---
 
@@ -1847,12 +1804,12 @@ Wireframes were also produced for staff and coach management functionality, incl
 By developing wireframes for each of these core areas, the project ensured that all major workflows, user interactions, and business requirements were visualised, reviewed, and validated before implementation. This comprehensive approach reduced development risk, improved usability planning, and provided a structured foundation for both front-end and back-end development activities.
 
 ### Summary
- 
-The wireframes created for **FitHub** acted as a vital link between project requirements and technical implementation, providing a structured framework through which user experience, functionality, and information architecture could be evaluated and refined before development commenced. By establishing a clear visual representation of the platform at an early stage, design decisions could be validated and aligned with both user needs and business objectives.
- 
-Throughout the planning process, the wireframes reinforced a commitment to delivering an **accessible, intuitive, and user-focused fitness subscription platform** that reflects the expectations of modern e-commerce systems and online community applications. Their development demonstrates the application of recognised **full-stack software-development practices**, consistent with the professional standards expected at **Level 5 of the UK Higher Education Framework**.
- 
-By modelling a variety of user journeys—including those of public visitors, registered users, subscribers, coaches, and administrators—the wireframes ensured that the platform's complexity could be managed through logical navigation structures, clear interface design, and well-organised information architecture. This structured and user-centred methodology reduced development risk, improved planning accuracy, and helped ensure that the final implementation would effectively support the needs of all user groups.
+
+The wireframes created for **FitHub** acted as a link between project requirements and technical implementation, providing a structured framework through which user experience, functionality, and information architecture could be considered and refined before development commenced. By establishing a visual representation of the platform at an early stage, design decisions could be explored and aligned with both user needs and the project's objectives.
+
+Throughout the planning process, the wireframes supported a commitment to delivering an **accessible, intuitive, and user-focused fitness subscription platform** that reflects the expectations of modern e-commerce systems and online community applications. Their development demonstrates the application of recognised **full-stack software-development practices**, consistent with the professional standards expected at **Level 5 web application development**.
+
+By modelling a range of user journeys — including those of public visitors, registered members, and administrators — the wireframes helped ensure that the platform's complexity could be managed through logical navigation structures, clear interface design, and well-organised information architecture. This structured and user-centred approach supported planning accuracy and helped ensure that the final implementation would effectively support the needs of the platform's user groups.
 
 ---
 
@@ -8293,7 +8250,7 @@ Available at: https://developer.mozilla.org/
 - **WebAIM (2025) WAVE Web Accessibility Evaluation Tool.**
 Available at: https://wave.webaim.org/
   (Accessed: 01 June 2026).
- 
+
 
 
 
