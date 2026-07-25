@@ -8129,6 +8129,8 @@ The following section documents the primary pages of the **FitHub** application,
 
 ### Homepage (`home/index`) — Purpose & Structure
 
+[⬆ Back to Table of Contents](#table-of-contents)
+
 <img width="1384" height="700" alt="image" src="https://github.com/user-attachments/assets/8ceb6149-5b5d-4925-ad6f-3d0b917955c5" />
 <img width="898" height="712" alt="image" src="https://github.com/user-attachments/assets/cd9c2df8-ae45-4dff-9cd1-fad219cc0e33" />
 <img width="909" height="546" alt="image" src="https://github.com/user-attachments/assets/99857eaf-ae83-4757-87a1-c8cec9e89228" />
@@ -8138,8 +8140,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public.
  
 **Structure:** A hero section with the primary call-to-action, supporting sections that highlight key features and direct users into the plans, shop, and community areas, and the shared site header and footer.
+
+##### Link to Homepage
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/)
  
 ### Plans Listing (`plans/plans`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1387" height="949" alt="image" src="https://github.com/user-attachments/assets/b73756b5-cadf-4ad7-b2d9-c26905ac2599" />
 
@@ -8148,8 +8155,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public (only published plans are shown; draft and archived plans are excluded).
  
 **Structure:** A responsive grid of plan cards, each showing the plan name, tier, price, billing interval, and a link to the plan detail page.
- 
+
+##### Link to Plans Listing
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/plans/)
+
 ### Plan Detail (`plans/plan_detail`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1291" height="969" alt="image" src="https://github.com/user-attachments/assets/978f0df8-53dd-4b5d-9410-d52df9c9bab6" />
 
@@ -8158,8 +8170,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public for viewing; subscribing requires authentication.
  
 **Structure:** Plan overview, a "what's included" feature list (drawn from the related `PlanFeature` records), pricing, and a subscribe action that initiates Stripe Checkout.
- 
+
+##### Link to Plan Detail
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/plans/starter/)
+
 ### Subscription Success (`plans/subscription_success`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1656" height="840" alt="image" src="https://github.com/user-attachments/assets/6ae1f9a9-f633-460b-830f-2bf01e674714" />
 <img width="1351" height="468" alt="image" src="https://github.com/user-attachments/assets/ef4fe097-3910-40a2-a606-a00408643df7" />
@@ -8172,6 +8189,8 @@ The following section documents the primary pages of the **FitHub** application,
  
 ### Shop Listing (`shop/products`) — Purpose & Structure
 
+[⬆ Back to Table of Contents](#table-of-contents)
+
 <img width="1304" height="981" alt="image" src="https://github.com/user-attachments/assets/a307a20c-1c5b-46aa-8044-34993c163e9f" />
 <img width="674" height="146" alt="image" src="https://github.com/user-attachments/assets/84abe313-024d-4ae4-843d-b9423a2d581b" />
 
@@ -8180,8 +8199,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public.
  
 **Structure:** A responsive grid of product cards showing image, name, price, and availability, each linking to the product detail page.
- 
+
+##### Link to Shop Listing
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/shop/)
+
 ### Product Detail (`shop/product_detail`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1309" height="908" alt="image" src="https://github.com/user-attachments/assets/8a9d98f2-8493-4663-aa31-0093a89adfb6" />
 <img width="704" height="157" alt="image" src="https://github.com/user-attachments/assets/0a53cb4c-36d2-467f-991f-c9474b0e782e" />
@@ -8191,8 +8215,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public for viewing; adding to basket and reviewing require authentication.
  
 **Structure:** Product information and image, an add-to-basket control (respecting stock limits), the average rating, and the list of reviews with add/edit/delete controls for the user's own review.
+
+##### Link to Product Detail
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/products/creatine-monohydrate-500g/)
  
 ### Shopping Basket (`cart/cart`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1333" height="675" alt="image" src="https://github.com/user-attachments/assets/a812461a-f109-4a66-9073-25fb6865da7e" />
 
@@ -8201,19 +8230,28 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public (basket is session-based); checkout requires authentication.
  
 **Structure:** A line-item table with quantity controls and per-line and overall totals, an empty-state message with a link back to the shop, and a proceed-to-checkout action.
+
+##### Link to Shopping Basket
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/cart/)
  
 ### Checkout (`orders/checkout`) — Purpose & Structure
 
-<img width="1206" height="897" alt="image" src="https://github.com/user-attachments/assets/a3c16007-f266-477f-99b0-951517f0e1d6" />
+[⬆ Back to Table of Contents](#table-of-contents)
 
+<img width="1206" height="897" alt="image" src="https://github.com/user-attachments/assets/a3c16007-f266-477f-99b0-951517f0e1d6" />
 
 **Purpose:** Collects delivery details and payment, processing the transaction securely through Stripe.
  
 **Access:** Authenticated members with a non-empty basket.
  
 **Structure:** A delivery-details form with server-side validation, the Stripe Elements card input, an order summary, and a submit control with a loading/disabled state to prevent duplicate submissions.
+
+##### Link to Checkout Page *(requires sign-in and a non-empty basket)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/orders/checkout/)
  
 ### Order Confirmation (`orders/checkout_success`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1348" height="912" alt="image" src="https://github.com/user-attachments/assets/741f91f2-5c68-4f90-8963-e58227579b56" />
 <img width="943" height="205" alt="image" src="https://github.com/user-attachments/assets/481cb830-f42c-4dae-884b-2621f5ffaec3" />
@@ -8226,8 +8264,13 @@ The following section documents the primary pages of the **FitHub** application,
  
 ### Order History (`orders/order_history`) — Purpose & Structure
 
+[⬆ Back to Table of Contents](#table-of-contents)
+
 <img width="1396" height="898" alt="image" src="https://github.com/user-attachments/assets/c4aa3a54-4314-471c-9e71-256c69fa6616" />
 <img width="1366" height="882" alt="image" src="https://github.com/user-attachments/assets/62aae202-56a8-4e5a-8750-f5c67a79559d" />
+
+##### Link to Order History *(requires sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/orders/history/)
 
 **Purpose:** Lists the authenticated member's previous orders.
  
@@ -8236,6 +8279,8 @@ The following section documents the primary pages of the **FitHub** application,
 **Structure:** A paginated, responsive table of orders showing order number, date, status, and total, each linking to the order detail page; an empty-state message with a link to the shop is shown when no orders exist.
  
 ### Order Detail (`orders/order_detail`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1442" height="793" alt="image" src="https://github.com/user-attachments/assets/ad5d7c2b-ea07-42fa-936d-560c19227da1" />
 
@@ -8246,6 +8291,8 @@ The following section documents the primary pages of the **FitHub** application,
 **Structure:** Order reference, line items, totals, delivery information, and current status.
  
 ### Member Dashboard (`accounts/dashboard`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1349" height="914" alt="image" src="https://github.com/user-attachments/assets/b05621e2-a68e-491f-beb3-63165339501a" />
 <img width="1375" height="917" alt="image" src="https://github.com/user-attachments/assets/88c5de6f-0ba8-448b-b2fc-6d2574f76a7e" />
@@ -8258,8 +8305,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Authenticated members.
  
 **Structure:** A tabbed interface presenting an overview (current plan, order count, fitness goal), account details, subscription information, order history, and a saved-items/community area, with synchronised side and top navigation.
+
+##### Link to Member Dashboard *(requires sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/accounts/)
  
 ### Profile Setup (`accounts/profile_setup`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1383" height="916" alt="image" src="https://github.com/user-attachments/assets/8142e8bc-46f2-4d4d-a7f4-355f6b4b2892" />
 
@@ -8268,8 +8320,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Authenticated members who have not yet completed setup.
  
 **Structure:** A form capturing fitness goal, experience level, and optional measurements, redirecting to the dashboard on completion.
+
+##### Link to Profile Setup *(requires sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/accounts/profile-setup/)
  
 ### Profile Edit (`accounts/profile_edit`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1354" height="911" alt="image" src="https://github.com/user-attachments/assets/e8fa2c26-f41f-4c61-91b3-1ea04ce25c41" />
 
@@ -8279,7 +8336,12 @@ The following section documents the primary pages of the **FitHub** application,
  
 **Structure:** A pre-populated form mirroring profile setup, reachable from the dashboard and returning to it after saving.
 
+##### Link to Profile Edit *(requires sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/accounts/profile/edit/)
+
 ### Authentication Pages (`accounts/login`, `signup`, `password reset`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1268" height="370" alt="image" src="https://github.com/user-attachments/assets/6527bfc7-f885-4b84-93b3-cf411389015c" />
 <img width="1237" height="599" alt="image" src="https://github.com/user-attachments/assets/931f4de0-4aab-4900-93b2-e2cf6c6a2af4" />
@@ -8289,9 +8351,20 @@ The following section documents the primary pages of the **FitHub** application,
 
 **Access:** Public (login, registration, and password-reset request); the password-reset completion pages are reached via a secure emailed link.
 
-**Structure:** Each page extends the site's base layout and presents a clearly labelled form. Field rendering is customised through a shared allauth field element (using django-widget-tweaks) so that inputs receive consistent Bootstrap styling and accessible labels. The set includes:
+**Structure:** Each page extends the site's base layout and presents a clearly labelled form. Field rendering is customised through a shared allauth field element (using django-widget-tweaks) so that inputs receive consistent Bootstrap styling and accessible labels. 
+
+##### Link to Login Page
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/accounts/login/)
+
+##### Link to Registration Page
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/accounts/signup/)
+
+##### Link to Password Reset Page
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/accounts/password/reset/)
  
 ### Community Feed (`community/post_list`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1349" height="988" alt="image" src="https://github.com/user-attachments/assets/9aaa949d-3160-4683-9464-9b5b3f1e7c0b" />
 
@@ -8300,8 +8373,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Publicly readable; creating a post requires authentication.
  
 **Structure:** A chronological list of posts showing author, date, and content, with author-only edit and delete controls where applicable.
+
+##### Link to Community Feed
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/community/)
  
 ### Add / Edit Community Post (`community/add_post`, `edit_post`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1300" height="521" alt="image" src="https://github.com/user-attachments/assets/b0f9ae9b-182e-47a5-8a5c-598e4e9e6142" />
 <img width="1282" height="511" alt="image" src="https://github.com/user-attachments/assets/2fbfda0e-48b6-4354-b5e8-6b5ad374679e" />
@@ -8311,8 +8389,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Authenticated members; editing and deletion are restricted to the post's author.
  
 **Structure:** A validated form with title and content fields, with a separate confirmation page for deletion.
+
+##### Link to Add Community Post *(requires sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/community/add/)
  
 ### Add / Edit Product Review (`reviews/add_review`, `edit_review`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1305" height="912" alt="image" src="https://github.com/user-attachments/assets/3217637a-3145-4c34-b1c7-79f1e7917fc3" />
 <img width="655" height="150" alt="image" src="https://github.com/user-attachments/assets/d4bd4faf-a4ad-4dee-9891-2227e988ea60" />
@@ -8327,6 +8410,8 @@ The following section documents the primary pages of the **FitHub** application,
  
 ### Staff: Manage Plans (`plans/manage_plans`) — Purpose & Structure
 
+[⬆ Back to Table of Contents](#table-of-contents)
+
 <img width="1247" height="550" alt="image" src="https://github.com/user-attachments/assets/fde654b4-492f-410c-870a-bdcc66568357" />
 
 **Purpose:** Provides staff with a front-end interface to view and manage all membership plans across every status.
@@ -8334,8 +8419,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Staff only; non-staff receive a `403 Forbidden` response.
  
 **Structure:** A list of all plans (published, draft, and archived) with their status and controls to create, edit, and archive.
+
+##### Link to Staff: Manage Plans *(requires staff sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/plans/manage/)
  
 ### Staff: Create / Edit / Archive Plan (`plans/plan_create`, `plan_edit`, `plan_archive`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1239" height="739" alt="image" src="https://github.com/user-attachments/assets/e72e840a-225a-4550-962e-59cfb4212f10" />
 <img width="1274" height="740" alt="image" src="https://github.com/user-attachments/assets/a64dd4c5-2b03-4fe6-9165-4f3c2c8578ca" />
@@ -8346,8 +8436,13 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Staff only (`403` for non-staff).
  
 **Structure:** A shared create/edit form with server-side validation, and a confirmation page for archiving that preserves existing subscriptions and historical records.
+
+##### Link to Staff: Create Plan *(requires staff sign-in)*
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/plans/manage/new/)
  
 ### Terms & Privacy (`home/terms`, `home/privacy`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1223" height="683" alt="image" src="https://github.com/user-attachments/assets/c500384c-4416-4368-b295-cef3503ef7d3" />
 <img width="1268" height="698" alt="image" src="https://github.com/user-attachments/assets/a03fb846-9c50-4c2f-9a9e-b6a0ed274b2d" />
@@ -8357,8 +8452,16 @@ The following section documents the primary pages of the **FitHub** application,
 **Access:** Public.
  
 **Structure:** Static informational content within the shared site layout.
+
+##### Link to Terms of Service
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/terms/)
+
+##### Link to Privacy Policy
+- [Link to Live Website](https://fithub-rp-90631f751ed4.herokuapp.com/privacy/)
  
 ### 404 Error Page (`404.html`) — Purpose & Structure
+
+[⬆ Back to Table of Contents](#table-of-contents)
 
 <img width="1271" height="448" alt="image" src="https://github.com/user-attachments/assets/e00204b3-562a-4115-9514-7deb9d468058" />
 
