@@ -64,9 +64,11 @@ def subscription_success(request):
         return redirect('plans')
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
-
     try:
-        session = stripe.checkout.Session.retrieve(session_id)
+        session = stripe.checkout.Session.retrieve(
+            session_id, expand=['line_items']
+        )
+    # pylint: disable=broad-exception-caught
     except Exception:
         messages.error(request, 'We could not verify your subscription.')
         return redirect('plans')
@@ -77,16 +79,11 @@ def subscription_success(request):
         return redirect('plans')
 
     # Resolve the plan from the Stripe price on the verified session, not from a
-    # user-supplied URL parameter.
+    # user-supplied URL parameter. Use attribute access (session is a
+    # StripeObject, which does not support .get()).
     price_id = None
-    line_items = session.get('line_items')
-    if line_items:
-        price_id = line_items['data'][0]['price']['id']
-    else:
-        line_items = stripe.checkout.Session.list_line_items(session_id, limit=1)
-        if line_items and line_items.data:
-            price_id = line_items.data[0].price.id
-
+    if session.line_items and session.line_items.data:
+        price_id = session.line_items.data[0].price.id
     plan = get_object_or_404(Plan, stripe_price_id=price_id)
 
     # Prevent multiple active subscriptions: update the user's existing active
@@ -96,14 +93,14 @@ def subscription_success(request):
     ).first()
     if existing:
         existing.plan = plan
-        existing.stripe_subscription_id = session.get('subscription', '')
+        existing.stripe_subscription_id = session.subscription or ''
         existing.save()
     else:
         Subscription.objects.create(
             user=request.user,
             plan=plan,
             status='active',
-            stripe_subscription_id=session.get('subscription', ''),
+            stripe_subscription_id=session.subscription or '',
         )
 
     messages.success(request, f'You are now subscribed to {plan.name}!')

@@ -221,13 +221,12 @@ class SubscriptionSuccessViewTests(TestCase):
     def test_success_paid_session_creates_subscription(self, mock_retrieve):
         """A verified, paid session creates one active subscription."""
         self.client.login(username='bob', password='pass12345')
-        # Mock a paid session whose line item points at our plan's price.
         session = Mock()
         session.payment_status = 'paid'
-        session.get.side_effect = lambda k, d=None: {
-            'line_items': {'data': [{'price': {'id': 'price_test123'}}]},
-            'subscription': 'sub_test_123',
-        }.get(k, d)
+        session.subscription = 'sub_test_123'
+        line_item = Mock()
+        line_item.price = Mock(id='price_test123')
+        session.line_items = Mock(data=[line_item])
         mock_retrieve.return_value = session
 
         response = self.client.get(self.url, {'session_id': 'cs_test_123'})
@@ -243,16 +242,15 @@ class SubscriptionSuccessViewTests(TestCase):
     def test_success_does_not_create_duplicate_active_subscription(self, mock_retrieve):
         """Subscribing while already active updates, not duplicates."""
         self.client.login(username='bob', password='pass12345')
-        # Pre-existing active subscription for this user.
         Subscription.objects.create(
             user=self.user, plan=self.plan, status='active'
         )
         session = Mock()
         session.payment_status = 'paid'
-        session.get.side_effect = lambda k, d=None: {
-            'line_items': {'data': [{'price': {'id': 'price_test123'}}]},
-            'subscription': 'sub_test_123',
-        }.get(k, d)
+        session.subscription = 'sub_test_123'
+        line_item = Mock()
+        line_item.price = Mock(id='price_test123')
+        session.line_items = Mock(data=[line_item])
         mock_retrieve.return_value = session
 
         self.client.get(self.url, {'session_id': 'cs_test_123'})
