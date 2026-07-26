@@ -21,7 +21,7 @@ def _sign(payload):
     return f't={ts},v1={sig}'
 
 
-def _event(pid, cart):
+def _event(pid, cart, amount, currency='gbp', status='succeeded'):
     return json.dumps({
         'id': 'evt_' + pid,
         'object': 'event',
@@ -30,6 +30,10 @@ def _event(pid, cart):
         'data': {'object': {
             'id': pid,
             'object': 'payment_intent',
+            'status': status,
+            'amount': amount,
+            'amount_received': amount,
+            'currency': currency,
             'metadata': {
                 'cart': json.dumps(cart),
                 'full_name': 'Webhook User',
@@ -56,7 +60,7 @@ class StripeWebhookTest(TestCase):
         )
 
     def test_valid_event_creates_order(self):
-        payload = _event('pi_valid', {str(self.product.id): 2})
+        payload = _event('pi_valid', {str(self.product.id): 2}, amount=4000)
         response = self.client.post(
             reverse('stripe_webhook'), data=payload,
             content_type='application/json', HTTP_STRIPE_SIGNATURE=_sign(payload),
@@ -68,7 +72,7 @@ class StripeWebhookTest(TestCase):
         self.assertEqual(self.product.stock, 8)  # 10 - 2
 
     def test_bad_signature_rejected(self):
-        payload = _event('pi_bad', {str(self.product.id): 1})
+        payload = _event('pi_bad', {str(self.product.id): 1}, amount=2000)
         response = self.client.post(
             reverse('stripe_webhook'), data=payload,
             content_type='application/json',
@@ -78,7 +82,7 @@ class StripeWebhookTest(TestCase):
         self.assertFalse(Order.objects.filter(stripe_payment_intent_id='pi_bad').exists())
 
     def test_duplicate_event_is_idempotent(self):
-        payload = _event('pi_dupe', {str(self.product.id): 1})
+        payload = _event('pi_dupe', {str(self.product.id): 1}, amount=2000)
         header = _sign(payload)
         self.client.post(reverse('stripe_webhook'), data=payload,
                          content_type='application/json', HTTP_STRIPE_SIGNATURE=header)
@@ -97,9 +101,25 @@ class StripeWebhookTest(TestCase):
             subtotal=20, total=20, stripe_payment_intent_id='pi_exists',
         )
         before = Order.objects.count()
-        payload = _event('pi_exists', {str(self.product.id): 3})
+        payload = _event('pi_exists', {str(self.product.id): 3}, amount=6000)
         self.client.post(reverse('stripe_webhook'), data=payload,
                          content_type='application/json', HTTP_STRIPE_SIGNATURE=_sign(payload))
         self.assertEqual(Order.objects.count(), before)  # no duplicate
         self.product.refresh_from_db()
         self.assertEqual(self.product.stock, 10)  # stock not double-deducted
+
+    def test_amount_mismatch_creates_no_order(self):
+        """A payment whose amount doesn't match the cart is not fulfilled."""
+        # Cart is 2 x £20 = £40 (4000p), but Stripe reports only 2000p.
+        payload = _event('pi_wrong', {str(self.product.id): 2}, amount=2000)
+        response = self.client.post(
+            reverse('stripe_webhook'), data=payload,
+            content_type='application/json',
+            HTTP_STRIPE_SIGNATURE=_sign(payload),
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(
+            Order.objects.filter(stripe_payment_intent_id='pi_wrong').exists()
+        )
+        self.product.refresh_from_db()
+        self.assertEqual(self.product.stock, 10)

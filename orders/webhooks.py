@@ -52,22 +52,26 @@ def stripe_webhook(request):
 
 
 def _handle_payment_succeeded(intent):
-    """Create the order for a successful payment, if it doesn't exist yet."""
+    """Create the order for a successful payment, after verifying the charge."""
     pid = intent['id']
 
-    # Idempotency: if an order already exists for this PaymentIntent (because the
-    # normal checkout flow already created it), do nothing.
+    # Idempotency: if an order already exists for this PaymentIntent, do nothing.
     if Order.objects.filter(stripe_payment_intent_id=pid).exists():
         return
 
+    # Defence-in-depth: confirm the intent's own status is 'succeeded'.
+    status = intent['status'] if 'status' in intent else None
+    if status != 'succeeded':
+        return
+
     metadata = intent['metadata'] if 'metadata' in intent else {}
-    # metadata is a StripeObject; normalise access
 
     def meta(key, default=''):
         try:
             return metadata[key]
         except (KeyError, TypeError):
             return default
+
     cart_json = meta('cart', '{}')
     try:
         cart = json.loads(cart_json)
@@ -75,43 +79,64 @@ def _handle_payment_succeeded(intent):
         cart = {}
 
     if not cart:
-        # Nothing to build an order from.
         return
 
-    # Rebuild the order from the metadata Stripe stored on the PaymentIntent.
-    order = Order(
-        order_number=pid,  # use the intent id as a stable order number here
-        full_name=meta('full_name'),
-        email=meta('email'),
-        phone=meta('phone'),
-        address_line1=meta('address_line1'),
-        address_line2=meta('address_line2'),
-        town_city=meta('town_city'),
-        postcode=meta('postcode'),
-        country=meta('country'),
-        stripe_payment_intent_id=pid,
-    )
-
-    from django.db import transaction
+    # Build line items and compute the expected total from current prices,
+    # BEFORE creating the order or reducing any stock.
+    line_items = []
     subtotal = 0
+    for item_id, quantity in cart.items():
+        try:
+            product = Product.objects.get(pk=item_id)
+        except Product.DoesNotExist:
+            continue
+        line_items.append((product, quantity))
+        subtotal += quantity * product.price
+
+    if not line_items:
+        return
+
+    # Verify the amount and currency Stripe actually charged match this order.
+    # Checkout uses round(total * 100); mirror that exactly to avoid false
+    # mismatches. Stripe amounts are in the smallest currency unit (pence).
+    expected_amount = round(subtotal * 100)
+    charged_amount = (
+        intent['amount_received'] if 'amount_received' in intent
+        else (intent['amount'] if 'amount' in intent else None)
+    )
+    charged_currency = (
+        intent['currency'] if 'currency' in intent else ''
+    ).lower()
+
+    if charged_amount != expected_amount:
+        return
+    if charged_currency != settings.STRIPE_CURRENCY.lower():
+        return
+
+    # All checks passed: create the order and reduce stock atomically.
+    from django.db import transaction
     with transaction.atomic():
-        order.subtotal = 0
-        order.total = 0
+        order = Order(
+            order_number=pid,
+            full_name=meta('full_name'),
+            email=meta('email'),
+            phone=meta('phone'),
+            address_line1=meta('address_line1'),
+            address_line2=meta('address_line2'),
+            town_city=meta('town_city'),
+            postcode=meta('postcode'),
+            country=meta('country'),
+            stripe_payment_intent_id=pid,
+            subtotal=subtotal,
+            total=subtotal,
+        )
         order.save()
-        for item_id, quantity in cart.items():
-            try:
-                product = Product.objects.get(pk=item_id)
-            except Product.DoesNotExist:
-                continue
+        for product, quantity in line_items:
             OrderLineItem.objects.create(
                 order=order,
                 product=product,
                 quantity=quantity,
                 price=product.price,
             )
-            subtotal += quantity * product.price
             new_stock = max(product.stock - quantity, 0)
             Product.objects.filter(pk=product.pk).update(stock=new_stock)
-        order.subtotal = subtotal
-        order.total = subtotal
-        order.save()
