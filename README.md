@@ -202,7 +202,7 @@ To keep users informed of processing status and prevent accidental duplicate sub
 
 To ensure that users can efficiently navigate between the key sections — **Home**, **Dashboard**, **Shop**, **Plans**, **Community**, and **Account Settings** — a logical information architecture is implemented through a clear page hierarchy and consistent navigation structure.
 
-The use of semantic HTML enhances accessibility, maintainability, and search engine optimisation (SEO), while supporting best practices in modern web application development (Mozilla Developer Network, 2024). Conditional navigation is implemented to ensure that only authenticated users can access subscriber-exclusive content, while non-subscribers are presented with a teaser page designed to encourage subscription conversions.
+The use of semantic HTML enhances accessibility, maintainability, and search engine optimisation (SEO), while supporting best practices in modern web application development (Mozilla Developer Network, 2024). Conditional navigation is implemented to ensure that the community feed is publicly readable, while posting, editing and deleting posts require authentication.
 
 Permission-based access control ensures that users can only view and modify their own data, while administrative functionality — including the creation of plans and products — is restricted exclusively to staff members. To enforce these permissions consistently throughout the application, **decorator-based view protection** (@login_required, @staff_member_required, @subscription_required) is implemented.
 
@@ -221,7 +221,7 @@ To prevent N+1 query issues and ensure responsive page loading times, database q
 Support for secure payment processing is implemented through the integration of **Stripe** within the application using two revenue models (Stripe, 2025a):
  
 - **One-time purchases:** Directly through Stripe Checkout, users can buy individual products and plans.
-- **Subscription-based access:** Users can subscribe to monthly or annual plans to access subscriber-only content (community, exclusive plans, members-only merchandise).
+- **Subscription-based access:** Users can subscribe to monthly or annual plans. The community feed is publicly readable, and posting requires an authenticated account.
 Without requiring the user to refresh the page, **webhook handlers** asynchronously process payment events and update order and subscription records in real time (Stripe, 2025b).
  
 During development, **Stripe test cards** are utilised to verify all payment workflows — including successful transactions, declined cards, and 3D Secure authentication — with comprehensive documentation of test results provided within the project README (Stripe, 2025c).
@@ -1178,7 +1178,7 @@ Within the project, Flake8 is utilised to:
 - Verify indentation consistency and line-length requirements
 - Highlight potential logical and structural issues within the codebase
 
-Linting behaviour is customised through a dedicated `.flake8` configuration file, which specifies a maximum line length of 88 characters to align with Black formatting conventions while excluding Django migration files from analysis.
+Linting behaviour is customised through a dedicated `setup.cfg` configuration file, which specifies a maximum line length of 100 characters while excluding Django migration files from analysis.
  
 #### Pylint
  
@@ -1197,9 +1197,9 @@ Pylint is used to assess:
  
 Management of Python import statements is automated through **isort**, a utility that organises and sorts imports in accordance with PEP 8 recommendations. Imports are categorised into logical groups, including standard-library modules, third-party packages, and locally developed application modules, before being arranged alphabetically.
  
-Configuration settings defined within `.isort.cfg` ensure compatibility with Black and Flake8 by applying the following rules:
+Configuration settings defined within `setup.cfg` ensure consistent import ordering by applying the following rules:
  
-- `profile = black` to maintain alignment with Black formatting standards
+- a maximum line length of 100 characters, consistent with the flake8 configuration
 - `known_django = django` to correctly identify Django-related packages
 - `known_first_party = accounts, plans, shop, community to categorise locally developed applications
 - `line_length = 88` to maintain consistency across code-quality tools
@@ -1557,7 +1557,7 @@ This journey focuses on guiding prospective users from initial platform discover
 - Fitness-profile creation and goal-configuration processes
 - Exercise and nutrition plan discovery, including filtering by difficulty level and fitness objective
 - Subscription-tier comparison, selection, and checkout procedures
-- Access to subscriber-exclusive community features
+- Access to community features (publicly readable; posting requires an account)
  
 #### E-Commerce Journey (Product Discovery to Purchase)
  
@@ -1568,7 +1568,7 @@ This workflow supports users throughout the purchasing process, from product exp
 - Secure checkout workflows and payment-confirmation processes
 - Order-history management and invoice-access functionality
  
-#### Community Engagement Journey (Subscriber-Exclusive)
+#### Community Engagement Journey
  
 Designed to encourage interaction and long-term engagement, this user journey focuses on community participation and content sharing:
  
@@ -1633,7 +1633,7 @@ The wireframes defined the following core navigation areas:
 - **Dashboard** — Central hub providing authenticated users with access to personalised content and account information
 - **Plans** — Dedicated area for discovering, browsing, and purchasing exercise and nutrition plans
 - **Shop** — E-commerce section containing fitness-related products and merchandise
-- **Community** — Subscriber-exclusive area providing access to community discussions and success stories
+- **Community** — a publicly readable feed of member posts; posting requires an authenticated account
 - **Account Settings** — Profile-management and account-configuration functionality
  
 Role-based and conditional navigation behaviours were incorporated into the wireframes to ensure that relevant functionality is presented according to the user's authentication and subscription status. For example, unauthenticated visitors are presented with **Log In** and **Sign Up** calls to action, authenticated users gain access to personalised dashboard features, and active subscribers are provided with community-access functionality. Visualising these navigation states during the wireframing phase helped ensure clarity, consistency, and an intuitive user experience.
@@ -1796,9 +1796,9 @@ The e-commerce component of the platform was supported through wireframes illust
 - Order-confirmation pages
 - Order-history management interfaces
  
-#### Community Section (Subscriber-Only)
+#### Community Section
  
-Subscriber-exclusive community functionality was represented through wireframes covering:
+Community functionality was represented through wireframes covering:
  
 - Community-feed pages displaying member content
 - Individual post-detail views
@@ -2034,7 +2034,7 @@ The page focuses on clear feedback, robust handling of asynchronous processes, a
 
 The user profile, or "My Account", is the member's central hub for managing their account, viewing their activity, and controlling their membership and preferences. A clear header and breadcrumb set the context, and the page is organised so that the many different aspects of a member's relationship with FitHub — their details, subscription, orders, saved items and community activity — are grouped into focused sections rather than presented as one long, overwhelming form.
 
-The page combines a persistent profile summary card (avatar, name, membership status and join date) with a tab-driven content area covering Overview, Account Details, Subscription, Orders, Saved Items and Community. The Overview tab gives an at-a-glance summary of the member's activity, fitness goal and active plan, while the other tabs provide focused management of each area. Account details use an edit-in-place pattern, allowing the member to update their information with validation and clear save/cancel actions — demonstrating update functionality directly in the interface. Subscription management is delegated to the Stripe Customer Portal, so billing changes and cancellations are handled securely without rebuilding payment infrastructure, with the application storing the Stripe customer ID and keeping plan status in sync via webhooks. Account actions, including a clearly separated and confirmed "delete account" option, are available throughout.
+The page combines a persistent profile summary card (avatar, name, membership status and join date) with a tab-driven content area covering Overview, Account Details, Subscription, Orders, Saved Items and Community. The Overview tab gives an at-a-glance summary of the member's activity, fitness goal and active plan, while the other tabs provide focused management of each area. Account details use an edit-in-place pattern, allowing the member to update their information with validation and clear save/cancel actions — demonstrating update functionality directly in the interface. The application stores the Stripe customer ID against the member's profile. (Self-service subscription management via the Stripe Customer Portal, subscription-status webhooks, and account deletion are documented as future work rather than implemented features.)
 
 The page focuses on clear information architecture, full control over the member's own data, and a fully responsive layout that adapts deliberately across breakpoints — the section navigation moving from a sidebar on desktop, to a tab strip on tablet, to a dropdown on mobile. Several states are designed for explicitly — view mode, edit-in-place, validation error, update success, empty states for orders and saved items, and a type-to-confirm delete-account flow that respects the irreversibility of the action and the member's data-protection rights. Accessibility is built in throughout: an ARIA tab pattern, focus moving to the first field in edit mode, alt text on all images, descriptive labels, destructive actions behind confirmation, success and error announced via an aria-live region, minimum 44px touch targets, and WCAG 2.1 AA compliance. The page shows only the member's own, access-controlled data. Through clear organisation, in-place editing, and secure account management, members stay in full control of their FitHub account.
 
@@ -2051,7 +2051,7 @@ The page focuses on clear information architecture, full control over the member
 
 The order history page lets members view and manage their past orders as read-only historical records. A clear header and breadcrumb set the context, and the page is built around a list-and-detail model: a scannable list of all the member's orders, each opening into a full detail view, so members can find a past purchase quickly and review it in full.
 
-The order list presents each order with its key information — order number, date, items, status and total — and supports filtering, sorting and searching so it remains usable as a member's history grows, with pagination keeping large histories performant. Order status is shown using a clear, consistent lifecycle (Processing, Dispatched, Delivered, Cancelled, Refunded) conveyed by text and icon rather than colour alone, and refund status is driven by Stripe webhooks so it stays accurate. Selecting an order opens its detail view, which reuses the structure of the confirmation page — items, delivery address, order summary and a status timeline — and provides useful actions such as reorder, invoice download and access to support. Throughout, an ownership guard ensures a member can only view their own orders. As with the rest of the account area, recurring subscription billing and invoices are managed in the Stripe Customer Portal rather than here.
+The order list presents each order with its key information — order number, date, items, status and total — and is paginated to keep large histories performant. (Filtering, sorting and searching are documented as future work.) Order status is shown using clear, descriptive text rather than colour alone. Selecting an order opens its detail view, which reuses the structure of the confirmation page — items, delivery address, order summary and a status timeline — and shows the full order detail. (Reorder and invoice-download actions are documented as future work.) Throughout, an ownership guard ensures a member can only view their own orders. 
 
 The page focuses on clear presentation of historical data and a fully responsive layout that adapts deliberately across breakpoints — the desktop order table transforming into stacked cards on tablet and mobile, and the detail view reflowing into collapsible sections. Several states are designed for explicitly — loading, empty (no orders yet), no-results (from filters), many-orders (paginated), and order-not-found (with the ownership guard). Accessibility is built in throughout: a real data table with column headers on desktop, status badges carrying text and icons, descriptive link text ("View order FH-10428"), labelled filter controls, pagination marking the current page, an aria-live region for filter updates, visible focus states, minimum 44px touch targets, and WCAG 2.1 AA compliance. Through clear organisation, accurate status, and reliable access control, members can track and revisit their purchases with confidence.
 
@@ -2085,7 +2085,7 @@ The page focuses on secure, role-based access, robust data integrity, and a full
 
 [⬆ Back to Table of contents](#table-of-contents)
 
-FitHub is a fitness subscription web application built with Django that allows users to enrol in fitness plans, purchase merchandise through an integrated e-commerce system, and interact with other members within a subscriber-only community platform.
+FitHub is a fitness subscription web application built with Django that allows users to enrol in fitness plans, purchase merchandise through an integrated e-commerce system, and interact with other members within a community platform.
 
 - Each user story follows the standard format: *"As a [role], I want to [goal] so that [benefit]"* and is assigned a **MoSCo priority** (**Must**, **Should**, or **Could**) to indicate its relative importance within the project.
 
@@ -2205,9 +2205,9 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 - [ ] Given that multiple fitness plans are available, when a user applies filters (such as plan type or difficulty level) or changes the sorting criteria, then the displayed results update accordingly to reflect the selected options.
 
-##### AC4 – Subscriber-Only Content Clearly Identified
+##### AC4 – Subscriber-Only Content Clearly Identified *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that a plan contains premium or subscriber-exclusive content, when it is viewed by a non-subscriber, then a clear access restriction indicator is displayed using both text and an accompanying icon rather than relying solely on colour.
+- [ ] *(Not implemented — future work)* Given that a plan contains premium content, when it is viewed by a non-subscriber, then an access-restriction indicator would be displayed using descriptive text.
 
 ##### AC5 – Empty State Management
 
@@ -2241,7 +2241,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC2 – Content Restriction for Non-Subscribers
 
-- [ ] Given that a member does not have an active subscription, when they view a subscriber-exclusive fitness plan, then a preview or teaser of the content is displayed together with a clear subscription call-to-action instead of the full protected content.
+- [ ] *(Not implemented — future work)* Given that a member does not have an active subscription, when they view a premium fitness plan, then a preview or teaser with a subscription call-to-action would be displayed instead of the full content.
 
 ##### AC3 – Full Access for Eligible Subscribers
 
@@ -2319,9 +2319,9 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 - [ ] Given that a user has an active subscription, when they access their profile or subscription management area, then a clearly visible **Manage Subscription** option is displayed.
 
-##### AC2 – Integration with the Stripe Customer Portal
+##### AC2 – Integration with the Stripe Customer Portal *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that a subscriber chooses to manage their membership, when they select the **Manage Subscription** option, then they are securely redirected to the Stripe Customer Portal where they can update payment details, change subscription plans, or cancel their subscription.
+- [ ] *(Not implemented — future work)* Given that a subscriber chooses to manage their membership, when they select a **Manage Subscription** option, then they would be redirected to the Stripe Customer Portal to update payment details, change plans, or cancel.
 
 ##### AC3 – Subscription Changes Synchronised via Webhooks
 
@@ -2333,7 +2333,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC5 – Continued Access Until the End of the Billing Period
 
-- [ ] Given that a subscriber cancels an active subscription, when the cancellation is processed, then access to subscriber-only content and features remains available until the end of the current paid billing cycle, after which access is automatically removed.
+- [ ] *(Not implemented — future work)* Given that a subscriber cancels an active subscription, when the cancellation is processed, then access would remain until the end of the current paid billing cycle, after which it is removed.
 
 ##### AC6 – Subscription Status Reflected Across the Platform
 
@@ -2405,7 +2405,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC3 – Save Items for Later Purchase
 
-- [ ] Given that a member selects the **Save for Later** option, when the action is processed, then the item is removed from the active cart and stored separately so that it can be restored at a later date.
+- [ ] *(Not implemented — future work)* Given that a member selects the **Save for Later** option, when the action is processed, then the item is removed from the active cart and stored separately so that it can be restored at a later date.
 
 ##### AC4 – Stock Availability Enforcement
 
@@ -2733,7 +2733,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC4 – Upgrade Prompt for Non-Subscribers
 
-- [ ] Given that a member does not have an active subscription, when they view the dashboard, then a clear upgrade or subscription call-to-action is displayed in place of subscriber-only content or functionality.
+- [ ] Given that a member does not have an active subscription, when they view the dashboard, then a clear upgrade or subscription call-to-action is displayed.
 
 ##### AC5 – Quick Access to Key Features
 
@@ -3583,11 +3583,11 @@ The **My Account** hub provides centralised access to:
 * Saved items
 * Community activity
 
-Subscription management is delegated to the **Stripe Customer Portal**, ensuring secure handling of billing information.
+Subscription checkout is handled through **Stripe Checkout**. Self-service subscription management via the Stripe Customer Portal is documented as future work.
 
 #### Community Engagement
 
-Subscriber-only content is protected through server-side access control.
+Posting, editing and deleting community content is protected through server-side authentication and ownership checks.
 
 Users without an active subscription are guided towards the subscription journey through contextual upgrade prompts and content previews rather than being granted access to protected resources.
 
@@ -3643,7 +3643,7 @@ Sensitive pages are protected through ownership and role-based access checks.
 Examples include:
 
 * Members can access only their own orders and account information.
-* Subscribers can access only subscriber-exclusive content.
+* Posting to the community requires an authenticated account; the feed itself is publicly readable.
 * Staff-only areas are inaccessible to standard users.
 
 #### Graceful Error Recovery
@@ -3699,7 +3699,7 @@ The database structure consists of:
 
 FitHub employs two distinct commercial workflows:
 
-- **Membership plans** are managed as recurring subscriptions and processed through **Stripe Checkout** and the **Stripe Customer Portal**.
+- **Membership plans** are processed as recurring subscriptions through **Stripe Checkout**. (Self-service management via the Stripe Customer Portal is future work.)
 - **Shop products** are purchased as one-time transactions through the shopping cart and checkout process using **Stripe Payment Intents** and **Stripe Elements**.
 
 This separation is reflected directly within the database schema. Membership plans are associated with the `Subscription` model, whereas merchandise purchases are represented through the `Order` and `OrderLineItem` models. By modelling subscriptions and product purchases independently, the database accurately reflects the different business processes and payment workflows used throughout the platform.
@@ -4206,7 +4206,7 @@ python manage.py startapp community
 | `shop`      | Product catalogue, categories, and product media               |
 | `orders`    | Cart, checkout, and order processing                           |
 | `reviews`   | Product reviews and ratings                                    |
-| `community` | Subscriber-only community posts and interactions               |
+| `community` | Community posts (publicly readable; posting requires login)     |
 
 ### Step 5: Registering Applications
 
@@ -4364,7 +4364,7 @@ The models are organised across six dedicated Django applications — `accounts`
 
 FitHub distinguishes between recurring subscription services and one-time merchandise purchases.
 
-- **Membership Plans** are managed through Stripe Checkout and the Stripe Customer Portal and are represented by the `Plan` and `Subscription` models.
+- **Membership Plans** are processed through Stripe Checkout and represented by the `Plan` and `Subscription` models. (Self-service management via the Stripe Customer Portal is future work.)
 - **Shop Products** are purchased through the cart and checkout workflow using Stripe PaymentIntents and are represented by the `Product`, `Order`, and `OrderLineItem` models.
 
 This separation reflects real-world business processes while maintaining a clear, scalable, and maintainable database structure.
@@ -8854,11 +8854,4 @@ Available at: https://developer.mozilla.org/
 - **WebAIM (2025) WAVE Web Accessibility Evaluation Tool.**
 Available at: https://wave.webaim.org/
   (Accessed: 01 June 2026).
-
-
-
-
- 
-
-
-
+  
