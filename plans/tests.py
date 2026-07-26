@@ -134,7 +134,7 @@ class SubscribeViewTests(TestCase):
         mock_create.return_value = Mock(url='https://checkout.stripe.com/c/test')
         self.client.login(username='bob', password='pass12345')
 
-        response = self.client.get(reverse('subscribe', args=[self.plan.slug]))
+        response = self.client.post(reverse('subscribe', args=[self.plan.slug]))
 
         # Stripe was called once
         self.assertTrue(mock_create.called)
@@ -151,7 +151,7 @@ class SubscribeViewTests(TestCase):
         """A plan with no stripe_price_id errors and never hits Stripe."""
         self.client.login(username='bob', password='pass12345')
 
-        response = self.client.get(
+        response = self.client.post(
             reverse('subscribe', args=[self.plan_no_price.slug])
         )
 
@@ -166,8 +166,14 @@ class SubscribeViewTests(TestCase):
             stripe_price_id='price_x',
         )
         self.client.login(username='bob', password='pass12345')
-        response = self.client.get(reverse('subscribe', args=[draft.slug]))
+        response = self.client.post(reverse('subscribe', args=[draft.slug]))
         self.assertEqual(response.status_code, 404)
+
+    def test_subscribe_get_request_rejected(self):
+        """Subscribe rejects GET requests (POST required)."""
+        self.client.login(username='bob', password='pass12345')
+        response = self.client.get(reverse('subscribe', args=[self.plan.slug]))
+        self.assertEqual(response.status_code, 405)
 
 
 class SubscriptionSuccessViewTests(TestCase):

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.utils.text import slugify
+from django.views.decorators.http import require_POST
 
 from .forms import PlanForm
 from .models import Plan, PlanFeature, Subscription
@@ -29,6 +30,7 @@ def plan_detail(request, slug):
 
 
 @login_required
+@require_POST
 def subscribe(request, slug):
     """Start a Stripe subscription checkout for a plan."""
     plan = get_object_or_404(Plan, slug=slug, status='published')

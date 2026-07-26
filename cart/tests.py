@@ -162,6 +162,13 @@ class CartViewTest(TestCase):
                          {'quantity': -3})
         self.assertNotIn(str(self.product.id), self.client.session['cart'])
 
+    def test_get_request_rejected_on_add(self):
+        """State-changing cart actions reject GET requests (require POST)."""
+        response = self.client.get(
+            reverse('add_to_cart', args=[self.product.id])
+        )
+        self.assertEqual(response.status_code, 405)  # 405 Method Not Allowed
+
 
 class CartContextProcessorTest(TestCase):
     """Tests for the cart_contents context processor."""

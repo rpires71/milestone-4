@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render, reverse
 # inserted values so they can't inject malicious markup. This replaced an
 # unsafe mark_safe() call (defect D22).
 from django.utils.html import format_html
+from django.views.decorators.http import require_POST
 
 from shop.models import Product
 
@@ -18,6 +19,7 @@ def view_cart(request):
     return render(request, 'cart/cart.html')
 
 
+@require_POST
 def add_to_cart(request, product_id):
     """Add a quantity of a product to the cart, capped at available stock."""
     # product_id was captured from the URL (<int:product_id>). Look up the real
@@ -85,6 +87,7 @@ def add_to_cart(request, product_id):
     return redirect(redirect_url)
 
 
+@require_POST
 def adjust_cart(request, product_id):
     """Set the quantity of a product in the cart, capped at available stock."""
     product = get_object_or_404(Product, pk=product_id)
@@ -122,6 +125,7 @@ def adjust_cart(request, product_id):
     return redirect('view_cart')
 
 
+@require_POST
 def remove_from_cart(request, product_id):
     """Remove a product from the cart entirely."""
     product = get_object_or_404(Product, pk=product_id)
