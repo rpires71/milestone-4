@@ -185,28 +185,74 @@ class SubscriptionSuccessViewTests(TestCase):
         self.url = reverse('subscription_success')
 
     def test_success_requires_login(self):
-        response = self.client.get(self.url, {'plan': self.plan.slug})
+        response = self.client.get(self.url, {'session_id': 'cs_test_123'})
         self.assertEqual(response.status_code, 302)
         self.assertIn('/accounts/login/', response.url)
 
-    def test_success_creates_subscription(self):
-        """Hitting the success page records a Subscription for the user."""
+    def test_success_without_session_id_redirects(self):
+        """No session_id in the URL is rejected without creating anything."""
         self.client.login(username='bob', password='pass12345')
-        response = self.client.get(self.url, {'plan': self.plan.slug})
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(
+            Subscription.objects.filter(user=self.user).exists()
+        )
+
+    @patch('plans.views.stripe.checkout.Session.retrieve')
+    def test_success_unpaid_session_creates_no_subscription(self, mock_retrieve):
+        """A session that is not paid must not create a subscription."""
+        self.client.login(username='bob', password='pass12345')
+        mock_retrieve.return_value = Mock(payment_status='unpaid')
+
+        response = self.client.get(self.url, {'session_id': 'cs_test_123'})
+
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(
+            Subscription.objects.filter(user=self.user).exists()
+        )
+
+    @patch('plans.views.stripe.checkout.Session.retrieve')
+    def test_success_paid_session_creates_subscription(self, mock_retrieve):
+        """A verified, paid session creates one active subscription."""
+        self.client.login(username='bob', password='pass12345')
+        # Mock a paid session whose line item points at our plan's price.
+        session = Mock()
+        session.payment_status = 'paid'
+        session.get.side_effect = lambda k, d=None: {
+            'line_items': {'data': [{'price': {'id': 'price_test123'}}]},
+            'subscription': 'sub_test_123',
+        }.get(k, d)
+        mock_retrieve.return_value = session
+
+        response = self.client.get(self.url, {'session_id': 'cs_test_123'})
 
         self.assertEqual(response.status_code, 200)
         self.assertTrue(
-            Subscription.objects.filter(user=self.user, plan=self.plan).exists()
+            Subscription.objects.filter(
+                user=self.user, plan=self.plan, status='active'
+            ).exists()
         )
 
-    def test_success_is_idempotent(self):
-        """Visiting success twice does not create duplicate subscriptions."""
+    @patch('plans.views.stripe.checkout.Session.retrieve')
+    def test_success_does_not_create_duplicate_active_subscription(self, mock_retrieve):
+        """Subscribing while already active updates, not duplicates."""
         self.client.login(username='bob', password='pass12345')
-        self.client.get(self.url, {'plan': self.plan.slug})
-        self.client.get(self.url, {'plan': self.plan.slug})
+        # Pre-existing active subscription for this user.
+        Subscription.objects.create(
+            user=self.user, plan=self.plan, status='active'
+        )
+        session = Mock()
+        session.payment_status = 'paid'
+        session.get.side_effect = lambda k, d=None: {
+            'line_items': {'data': [{'price': {'id': 'price_test123'}}]},
+            'subscription': 'sub_test_123',
+        }.get(k, d)
+        mock_retrieve.return_value = session
+
+        self.client.get(self.url, {'session_id': 'cs_test_123'})
 
         count = Subscription.objects.filter(
-            user=self.user, plan=self.plan
+            user=self.user, status='active'
         ).count()
         self.assertEqual(count, 1)
 

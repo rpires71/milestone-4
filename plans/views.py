@@ -44,7 +44,7 @@ def subscribe(request, slug):
         line_items=[{'price': plan.stripe_price_id, 'quantity': 1}],
         success_url=request.build_absolute_uri(
             reverse('subscription_success')
-        ) + f'?plan={plan.slug}',
+        ) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url=request.build_absolute_uri(
             reverse('plan_detail', args=[plan.slug])
         ),
@@ -55,16 +55,55 @@ def subscribe(request, slug):
 
 @login_required
 def subscription_success(request):
-    """Record the subscription and show a confirmation."""
-    slug = request.GET.get('plan')
-    plan = get_object_or_404(Plan, slug=slug)
+    """Record the subscription after verifying payment with Stripe."""
+    session_id = request.GET.get('session_id')
+    if not session_id:
+        messages.error(request, 'No checkout session was provided.')
+        return redirect('plans')
 
-    # Record the subscription (idempotent-ish: avoid duplicates)
-    Subscription.objects.get_or_create(
-        user=request.user,
-        plan=plan,
-        defaults={'status': 'active'},
-    )
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    try:
+        session = stripe.checkout.Session.retrieve(session_id)
+    except Exception:
+        messages.error(request, 'We could not verify your subscription.')
+        return redirect('plans')
+
+    # Verify payment actually completed - this closes the free-subscription hole.
+    if session.payment_status != 'paid':
+        messages.error(request, 'Your subscription payment was not completed.')
+        return redirect('plans')
+
+    # Resolve the plan from the Stripe price on the verified session, not from a
+    # user-supplied URL parameter.
+    price_id = None
+    line_items = session.get('line_items')
+    if line_items:
+        price_id = line_items['data'][0]['price']['id']
+    else:
+        line_items = stripe.checkout.Session.list_line_items(session_id, limit=1)
+        if line_items and line_items.data:
+            price_id = line_items.data[0].price.id
+
+    plan = get_object_or_404(Plan, stripe_price_id=price_id)
+
+    # Prevent multiple active subscriptions: update the user's existing active
+    # subscription to the new plan rather than creating an additional one.
+    existing = Subscription.objects.filter(
+        user=request.user, status='active'
+    ).first()
+    if existing:
+        existing.plan = plan
+        existing.stripe_subscription_id = session.get('subscription', '')
+        existing.save()
+    else:
+        Subscription.objects.create(
+            user=request.user,
+            plan=plan,
+            status='active',
+            stripe_subscription_id=session.get('subscription', ''),
+        )
+
     messages.success(request, f'You are now subscribed to {plan.name}!')
     return render(request, 'plans/subscription_success.html', {'plan': plan})
 
