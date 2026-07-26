@@ -12,6 +12,21 @@ from .models import Review
 def add_review(request, slug):
     """Allow a logged-in user to add a review for a product."""
     product = get_object_or_404(Product, slug=slug)
+
+    # A user may only review a product once (enforced by a unique constraint
+    # on the model). If they already have one, guide them to edit it rather
+    # than letting the duplicate save raise an IntegrityError.
+    existing = Review.objects.filter(
+        user=request.user, product=product
+    ).first()
+    if existing:
+        messages.info(
+            request,
+            'You have already reviewed this product. '
+            'You can edit your existing review below.'
+        )
+        return redirect('product_detail', slug=product.slug)
+
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
