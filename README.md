@@ -158,7 +158,7 @@ The project follows modern professional development and deployment practices, in
 - Separation of **development and production settings**
 - Use of **environment variables** for sensitive configuration data
 - A comprehensive testing strategy incorporating both **manual and automated testing**
-- Application of **Test-Driven Development (TDD)** principles where appropriate
+- Comprehensive automated testing (94 tests) alongside a documented manual test plan
 
 As part of the project submission, extensive testing was carried out to verify the application's functionality, responsiveness, usability, e-commerce workflows, payment processing, and data handling procedures.
 
@@ -229,7 +229,7 @@ During development, **Stripe test cards** are utilised to verify all payment wor
 
 ### 7. Testing and Quality Assurance
  
-A **Test-Driven Development (TDD)** approach is employed throughout this project, with failing unit tests written prior to implementation (Beck, 2003). Through a clear Git commit history demonstrating that tests were created before features were implemented, this approach ensures rigorous code coverage and reflects disciplined software development practices.
+A comprehensive automated testing approach is employed throughout this project, combining unit and integration tests with a documented manual test plan. The suite comprises 94 tests across all seven applications, covering models, views, forms, authentication, access control and the Stripe webhook handlers, and was run before commits to guard against regressions (Django Software Foundation, 2025).
  
 **Automated unit tests** cover all major functionality (Django Software Foundation, 2025):
  
@@ -242,8 +242,8 @@ A **Test-Driven Development (TDD)** approach is employed throughout this project
  
 - User registration -> profile creation -> subscription -> community access
 - Product browsing -> checkout -> order confirmation
-- Subscription cancellation and renewal workflows
-- Browser compatibility (Chrome, Firefox, Safari, Edge) across mobile, tablet, and desktop
+- Subscription checkout via Stripe (successful and cancelled payments)
+- Browser and responsive testing (primarily Chrome and Edge, with some Firefox verification) across mobile, tablet, and desktop viewports
 **Code validation** ensures compliance with modern development standards:
  
 - **W3C HTML Validator:** Zero errors (W3C, 2025a)
@@ -8817,10 +8817,6 @@ Available at: https://docs.allauth.org/en/latest/
   
 - **van Rossum, G., Warsaw, B. and Coghlan, N. (2001) PEP 8 – Style Guide for Python Code.**
 Available at: https://peps.python.org/pep-0008/
-  (Accessed: 31 May 2026).
-
-- **Beck, K. (2003) Test-Driven Development: By Example.**
-Boston, MA: Addison-Wesley.
   (Accessed: 31 May 2026).
   
 - **JSHint (2025) JSHint: a JavaScript code quality tool.**
