@@ -13,6 +13,8 @@ from django.core.paginator import Paginator
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.template.loader import render_to_string
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 
 from shop.models import Product
 
@@ -211,3 +213,35 @@ def order_detail(request, order_number):
     )
     context = {'order': order}
     return render(request, 'orders/order_detail.html', context)
+
+
+@require_POST
+def cache_checkout_data(request):
+    """Attach cart and delivery metadata to the PaymentIntent BEFORE payment.
+
+    Called by the checkout JS immediately before confirmCardPayment, so that
+    the webhook can always rebuild the order from metadata even if the
+    customer's browser closes before returning to the site.
+    """
+    try:
+        pid = request.POST.get('client_secret', '').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        cart = request.session.get('cart', {})
+        stripe.PaymentIntent.modify(pid, metadata={
+            'cart': json.dumps(cart),
+            'full_name': request.POST.get('full_name', ''),
+            'email': request.POST.get('email', ''),
+            'phone': request.POST.get('phone', ''),
+            'address_line1': request.POST.get('address_line1', ''),
+            'address_line2': request.POST.get('address_line2', ''),
+            'town_city': request.POST.get('town_city', ''),
+            'postcode': request.POST.get('postcode', ''),
+            'country': request.POST.get('country', ''),
+            'username': request.user.username if request.user.is_authenticated else '',
+        })
+        return HttpResponse(status=200)
+    # pylint: disable=broad-exception-caught
+    except Exception as error:
+        messages.error(request, 'Sorry, your payment cannot be processed right '
+                                'now. Please try again later.')
+        return HttpResponse(content=str(error), status=400)

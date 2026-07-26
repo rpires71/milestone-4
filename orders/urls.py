@@ -10,4 +10,5 @@ urlpatterns = [
     path('wh/', webhooks.stripe_webhook, name='stripe_webhook'),
     path('history/', views.order_history, name='order_history'),
     path('history/<order_number>/', views.order_detail, name='order_detail'),
+    path('cache_checkout_data/', views.cache_checkout_data, name='cache_checkout_data'),
 ]
