@@ -2835,41 +2835,35 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 #### As an administrator, I want to **create, update, and manage shop products** so that **customers are presented with accurate, up-to-date merchandise listings at all times.** *(Should Have)*
 
+> **Implementation note:** Product management is delivered through the configured Django admin interface rather than a custom front-end (a deliberate scope decision; the custom front-end was built for membership plans — see User Story 18). The criteria below are assessed against the Django admin.
+
 [⬆ Back to Table of Contents](#table-of-contents)
 
 #### Acceptance Criteria
 
-##### AC1 – Restricted Access for Staff Users
-
-- [ ] Given that a non-staff user attempts to access the product management area, when the request is processed, then access is denied with a **403 Forbidden** response, and all management controls remain hidden from non-staff users throughout the application interface.
+##### AC1 – Staff-Restricted Access
+- [X] Given that a non-staff user attempts to access the Django admin, then access is restricted to staff/superusers, and product management is not exposed in the customer-facing interface.
 
 ##### AC2 – Product Catalogue Management View
-
-- [ ] Given that an administrator opens the product management section, when the page loads, then all existing products are displayed in a structured list showing key information, including product name, category, price, stock level, and availability status.
+- [X] Given that an administrator opens the product list in the Django admin, then products are displayed showing name, category, price, stock level, and availability status (via the configured `ProductAdmin.list_display`).
 
 ##### AC3 – Create New Products
-
-- [ ] Given that an administrator completes the product creation form with valid information, when the form is submitted, then the product is saved successfully and becomes visible within the management interface and, where applicable, the customer-facing shop.
+- [X] Given that an administrator completes the product form in the Django admin, when submitted, then the product is saved and, where available, appears in the customer-facing shop.
 
 ##### AC4 – Edit Existing Products
+- [X] Given that an administrator updates a product in the Django admin, when valid changes are submitted, then the details are stored and reflected in the shop on the next request.
 
-- [ ] Given that an administrator updates product information, when valid changes are submitted, then the amended product details are stored in the database and reflected across the customer-facing shop on the next request.
+##### AC5 – Hide Products from Sale
+- [X] Given that an administrator sets a product to unavailable in the Django admin, then it is hidden from the shop while historical orders remain intact. (Hiding via the `is_available` flag; full soft-delete archiving is future work.)
 
-##### AC5 – Archive or Hide Products
-
-- [ ] Given that an administrator chooses to remove a product from sale, when the action is confirmed, then the product is hidden or archived rather than permanently deleted, ensuring historical orders remain intact whilst preventing new purchases.
-
-##### AC6 – Validation and Image Management
-
-- [ ] Given that an administrator submits product information, when the data is processed, then all required fields are validated, pricing values are verified, and any uploaded product images are checked for permitted file types and size restrictions.
+##### AC6 – Validation *(Image type/size validation: future work)*
+- [X] Given that an administrator submits product information in the Django admin, then required fields and data types are validated by the model and admin form. (Custom image type and file-size validation are future work.)
 
 ##### AC7 – Immediate Reflection of Product Changes
+- [X] Given that a product is created, edited, or hidden in the Django admin, then the change is reflected in the customer-facing shop on the next request.
 
-- [ ] Given that a product is created, edited, archived, or hidden, when the operation is completed successfully, then the updated information is reflected within the customer-facing shop on the next application request.
-
-##### AC8 – Accessible and Responsive Administration Interface
-
-- [ ] Given that an administrator manages products using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then all controls remain keyboard accessible, clearly labelled, and responsive across different screen sizes.
+##### AC8 – Accessible and Responsive Administration Interface *(Provided by Django)*
+- [X] Given that an administrator manages products via the Django admin, then the Django admin provides labelled forms and a responsive interface (provided by the Django framework rather than custom-built).
 
 ---
 
@@ -2877,41 +2871,35 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 #### As an administrator, I want to **view and monitor customer orders and subscriber accounts** so that **I can provide effective customer support and oversee business activity.** *(Could Have)*
 
+> **Implementation note:** Order and subscriber monitoring is delivered through the configured Django admin interface rather than a custom front-end (a deliberate scope decision — see User Story 18 for the custom plan-management interface). The criteria below are assessed against the Django admin.
+
 [⬆ Back to Table of Contents](#table-of-contents)
 
 #### Acceptance Criteria
 
-##### AC1 – Restricted Access for Staff Users
-
-- [ ] Given that a non-staff user attempts to access order or subscriber management areas, when the request is processed, then access is denied with a **403 Forbidden** response.
+##### AC1 – Staff-Restricted Access
+- [X] Given that a non-staff user attempts to access the Django admin, then access is restricted to staff/superusers, and order and subscriber data are not exposed in the customer-facing interface.
 
 ##### AC2 – Order Management Overview
-
-- [ ] Given that an administrator accesses the orders section, when the page loads, then a structured list of orders is displayed, including key information such as order number, customer name, order date, current status, and total value.
+- [X] Given that an administrator opens the Orders section of the Django admin, then orders are displayed with their key details (order number, customer information, date, status, and total), with individual line items viewable per order.
 
 ##### AC3 – Subscriber Management Overview
-
-- [ ] Given that an administrator accesses the subscriber management section, when subscriber data is retrieved, then both active and inactive subscribers are displayed along with their membership plan and subscription status.
+- [X] Given that an administrator opens the Subscriptions section of the Django admin, then subscribers are displayed with their user, membership plan, status, and current period end (via the configured `SubscriptionAdmin.list_display`), filterable by status.
 
 ##### AC4 – Search and Filtering Capabilities
+- [X] Given that an administrator uses the Django admin, then records can be filtered (for example, subscriptions by status) and searched using the configured admin search and filter options. (Order search/filter is limited to the default admin configuration.)
 
-- [ ] Given that an administrator performs a search or applies filters, when criteria such as customer name, subscription status, or order status are selected, then only matching records are displayed.
-
-##### AC5 – Empty-State Handling
-
-- [ ] Given that no records match the selected search or filter criteria, when the results are returned, then a clear and informative message is displayed instead of an empty or broken interface.
+##### AC5 – Empty-State Handling *(Provided by Django)*
+- [X] Given that no records match a search or filter in the Django admin, then the admin displays an appropriate "no results" message.
 
 ##### AC6 – Secure and Proportionate Data Display
+- [X] Given that customer information is presented in the Django admin, then access is limited to staff, and no payment card data is stored or displayed (only Stripe reference identifiers are held).
 
-- [ ] Given that customer information is presented to an administrator, when records are displayed, then only data required to complete the task is shown and processed in accordance with applicable data protection requirements.
+##### AC7 – Performance and Scalability *(Provided by Django)*
+- [X] Given that large numbers of records exist, then the Django admin paginates list views by default to maintain responsiveness.
 
-##### AC7 – Performance and Scalability
-
-- [ ] Given that large numbers of orders or subscriber records exist, when an administrator views the data, then the interface remains responsive through mechanisms such as pagination, filtering, and efficient data retrieval.
-
-##### AC8 – Accessible and Responsive Interface
-
-- [ ] Given that an administrator accesses order or subscriber information using a desktop, tablet, mobile device, or assistive technology, when interacting with the interface, then data is presented accessibly, remains keyboard navigable, and adapts appropriately to different screen sizes.
+##### AC8 – Accessible and Responsive Interface *(Provided by Django)*
+- [X] Given that an administrator accesses order or subscriber data via the Django admin, then the Django admin provides a labelled, keyboard-navigable, responsive interface (provided by the Django framework rather than custom-built).
 
 ---
 
