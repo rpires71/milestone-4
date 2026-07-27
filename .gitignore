@@ -1,41 +1,85 @@
+# The .gitignore file specifies files and directories that Git should
+# exclude from version control. Ignoring generated files, temporary data,
+# sensitive configuration and development-specific resources helps keep
+# the repository secure, portable and focused solely on the project's
+# source code.
+
+# ---------------------------------------------------------------------
 # Python
+# Ignore compiled Python files and interpreter cache directories that
+# are generated automatically during program execution.
+# ---------------------------------------------------------------------
 *.py[cod]
 *$py.class
 __pycache__/
 *.pyc
- 
+
+# ---------------------------------------------------------------------
 # Virtual Environment
+# Exclude local virtual environments because they contain installed
+# packages that can be recreated using the requirements.txt file.
+# ---------------------------------------------------------------------
 venv/
 env/
 .venv
- 
+
+# ---------------------------------------------------------------------
 # Django
+# Ignore runtime logs, the local SQLite development database and
+# uploaded media files, as these are generated during application use.
+# ---------------------------------------------------------------------
 *.log
 db.sqlite3
 db.sqlite3-journal
 media/
- 
-# Environment variables
+
+# ---------------------------------------------------------------------
+# Environment Variables
+# Exclude files containing sensitive configuration such as secret keys,
+# API credentials and database connection information.
+# ---------------------------------------------------------------------
 .env
 env.py
- 
-# IDE
+
+# ---------------------------------------------------------------------
+# Integrated Development Environments (IDEs)
+# Ignore editor-specific settings and temporary workspace files so that
+# each developer can maintain their own local configuration.
+# ---------------------------------------------------------------------
 .vscode/
 .idea/
 *.swp
- 
-# OS
+
+# ---------------------------------------------------------------------
+# Operating System Files
+# Exclude operating system metadata files that are automatically created
+# by Windows and macOS but are not required by the project.
+# ---------------------------------------------------------------------
 .DS_Store
 Thumbs.db
- 
-# Static files
+
+# ---------------------------------------------------------------------
+# Collected Static Files
+# Ignore generated static assets created during deployment because they
+# can be recreated automatically using Django's collectstatic command.
+# ---------------------------------------------------------------------
 staticfiles/
 static_root/
- 
-# Coverage / testing
+
+# ---------------------------------------------------------------------
+# Coverage and Testing
+# Exclude code coverage reports, testing caches and generated artefacts,
+# as these are recreated whenever the test suite is executed.
+# ---------------------------------------------------------------------
 htmlcov/
 .coverage
 .coverage.*
 coverage.xml
 .pytest_cache/
+
+# ---------------------------------------------------------------------
+# Application-Specific Generated Content
+# Ignore generated resources within the products application that are
+# not intended to be tracked in version control.
+# ---------------------------------------------------------------------
 products/
