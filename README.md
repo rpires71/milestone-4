@@ -1,5 +1,7 @@
 # Milestone 4 Project – Full Stack Frameworks with Django – FitHub Fitness Subscription Application
 
+<img width="1474" height="587" alt="image" src="https://github.com/user-attachments/assets/3b7fe222-b205-4adb-a3b1-c89ff8fee64f" />
+
 ---
 
 ## Links
