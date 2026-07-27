@@ -1,32 +1,139 @@
-﻿asgiref==3.11.1
+﻿# This file defines the external Python packages required by the FitHub
+# application, together with their pinned versions. Using fixed versions
+# ensures a consistent and reproducible development, testing and deployment
+# environment, allowing the project's dependencies to be installed using
+# `pip install -r requirements.txt`.
+
+# ASGI support library used by Django to provide asynchronous capabilities,
+# including compatibility between synchronous and asynchronous code.
+asgiref==3.11.1
+
+# Analyses Python's abstract syntax tree and supports Pylint's static
+# examination of the project's source code.
 astroid==4.0.4
+
+# Provides an up-to-date collection of trusted certificate authorities,
+# allowing HTTPS requests to verify remote servers securely.
 certifi==2026.6.17
+
+# Detects and normalises character encodings in HTTP responses. It is used
+# by the Requests library when processing text received from external services.
 charset-normalizer==3.4.7
+
+# Provides cross-platform support for coloured terminal output, particularly
+# when development and code-quality tools are run on Windows.
 colorama==0.4.6
+
+# Extends Python's object serialisation capabilities and is used internally
+# by development tools such as Pylint.
 dill==0.4.1
+
+# Converts database connection URLs into Django database configuration
+# dictionaries. This allows the production PostgreSQL connection supplied
+# through environment variables to be configured securely.
 dj-database-url==3.1.2
+
+# Provides the core web framework used to build FitHub, including URL routing,
+# templates, forms, authentication, database models, migrations and the
+# administrative interface.
 Django==4.2.23
+
+# Extends Django's authentication system with account registration, login,
+# logout, password reset, email verification and account-management features.
 django-allauth==65.18.0
+
+# Allows Django form fields to be customised directly within templates,
+# supporting Bootstrap classes and improved presentation without duplicating
+# form-rendering logic in Python.
 django-widget-tweaks==1.5.1
+
+# Checks Python source code for style violations, syntax concerns and common
+# programming errors using the configured project linting rules.
 flake8==7.3.0
+
+# Provides the production WSGI server used to run the Django application
+# after deployment to Heroku.
 gunicorn==26.0.0
+
+# Supports the handling of internationalised domain names in URLs and is
+# used by the Requests library when communicating with external services.
 idna==3.18
+
+# Organises Python imports into a consistent and readable order, helping
+# maintain a uniform structure throughout the project's modules.
 isort==8.0.1
+
+# Measures the complexity of Python functions and contributes complexity
+# checks to Flake8.
 mccabe==0.7.0
+
+# Provides utilities for interpreting and comparing package versions and
+# dependency metadata.
 packaging==26.2
+
+# Provides image-processing support for uploaded product, profile and other
+# application images handled through Django's ImageField.
 pillow==12.2.0
+
+# Provides platform-independent access to appropriate configuration,
+# cache and data directories for development utilities.
 platformdirs==4.11.0
+
+# Enables Django to communicate with the PostgreSQL database used in the
+# production environment. The binary distribution avoids requiring a local
+# PostgreSQL compiler during installation.
 psycopg2-binary==2.9.12
+
+# Enforces Python style conventions and provides many of the formatting
+# checks reported through Flake8.
 pycodestyle==2.14.0
+
+# Detects logical issues such as unused imports, undefined names and variables
+# that are assigned but never used. Its checks are included within Flake8.
 pyflakes==3.4.0
+
+# Performs detailed static analysis of Python code to identify maintainability,
+# consistency and potential programming issues.
 pylint==4.0.6
+
+# Extends Pylint so that it understands Django-specific patterns, including
+# models, managers, forms and dynamically generated framework attributes.
 pylint-django==2.8.0
+
+# Provides shared utilities used by Pylint extensions, including the
+# pylint-django plugin.
 pylint-plugin-utils==0.9.0
+
+# Provides a straightforward interface for sending HTTP requests. It supports
+# communication with external web services and APIs used by the application
+# or its installed packages.
 requests==2.34.2
+
+# Parses and formats SQL statements and is used internally by Django when
+# processing database queries and management commands.
 sqlparse==0.5.5
+
+# Provides Stripe's Python software development kit, allowing FitHub to create
+# Checkout sessions, process payments, manage subscriptions and validate
+# webhook events securely.
 stripe==15.2.1
+
+# Reads and writes TOML configuration data while preserving its structure.
+# It is primarily used by Python development and code-quality tools.
 tomlkit==0.15.1
+
+# Provides backwards-compatible support for newer Python type-hinting
+# features required by Django and other installed dependencies.
 typing_extensions==4.15.0
+
+# Supplies time-zone data on systems that do not provide a complete native
+# time-zone database, helping Django process dates and times consistently.
 tzdata==2026.2
+
+# Provides HTTP connection pooling, retries and low-level request handling.
+# It operates as a supporting dependency of the Requests library.
 urllib3==2.7.0
+
+# Allows Django to serve compressed and cacheable static files in production
+# without requiring a separate static-file web server.
 whitenoise==6.12.0
