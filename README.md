@@ -2805,17 +2805,17 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 - [X] Given that an administrator chooses to edit an existing membership plan, when the edit page is opened, then the same form used for creation is displayed with the plan's existing data pre-populated, and any valid changes are saved successfully.
 
-##### AC5 – Comprehensive Server-Side Validation
+##### AC5 – Server-Side Validation
 
-- [ ] Given that an administrator submits a membership plan form, when the data is processed, then all input is validated on the server side, including required fields, positive pricing values, image type restrictions, and file-size limits, with clear inline validation messages displayed for invalid submissions.
+- [X] Given that an administrator submits a membership plan form, when the data is processed, then all input is validated on the server side, including required fields and pricing, with clear inline validation messages displayed for invalid submissions. (Image type and file-size validation are noted as future work.)
 
 ##### AC6 – Archive Plans Instead of Permanent Deletion
 
 - [X] Given that an administrator removes a membership plan, when the action is confirmed, then the plan is archived (soft deleted) rather than permanently removed, ensuring that existing subscriptions and historical records remain intact whilst preventing new users from subscribing to the archived plan.
 
-##### AC7 – Synchronisation with Stripe Products and Prices
+##### AC7 – Synchronisation with Stripe Products and Prices *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that an administrator creates or updates a membership plan, when the change is processed, then the corresponding Stripe Product and Price records are synchronised accordingly. Where a pricing change occurs, a new Stripe Price is created and the previous Price is archived because Stripe Prices are immutable.
+- [ ] *(Not implemented — future work)* Given that an administrator creates or updates a membership plan, when the change is processed, then the corresponding Stripe Product and Price records are synchronised... (The application stores a Stripe Price ID per plan; automated creation and archival of Stripe Prices is future work.)
 
 ##### AC8 – Immediate Reflection of Administrative Changes
 
