@@ -1,8 +1,34 @@
+# The .pylintrc file centralises the configuration used by Pylint when
+# performing static analysis of the project's Python source code. Defining
+# these settings in a single location ensures that consistent code-quality
+# rules are applied throughout development, improving maintainability and
+# reducing the need to repeatedly specify command-line options.
+
 [MAIN]
+
+# Load the Django plugin so that Pylint understands Django-specific
+# functionality, reducing false positives when analysing models,
+# managers, forms and other framework components.
 load-plugins = pylint_django
+
+# Specify the Django settings module that Pylint should use when
+# analysing the application.
 django-settings-module = fithub.settings
+
+# Exclude generated files, third-party libraries and static assets from
+# analysis because they are not part of the project's application logic.
 ignore = migrations,venv,staticfiles
+
+# Suppress the imported-auth-user warning because Django dynamically
+# provides the configured user model, which can otherwise trigger an
+# unnecessary warning during static analysis.
 disable = imported-auth-user
 
+
 [FORMAT]
+
+# Limit source-code lines to a maximum of 100 characters. This provides
+# a balance between readability and the practical requirements of Django
+# projects, where ORM queries, URLs and template expressions can result
+# in longer statements.
 max-line-length = 100
