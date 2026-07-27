@@ -4,6 +4,11 @@
 <div class="container py-5">
   <h1 class="mb-4">Welcome aboard!</h1>
   <p>You are now subscribed to <strong>{{ plan.name }}</strong>.</p>
+  <ul class="list-unstyled mb-3">
+    <li><strong>Plan:</strong> {{ plan.name }} ({{ plan.get_tier_display }})</li>
+    <li><strong>Price:</strong> &pound;{{ plan.price }}</li>
+    <li><strong>Billing:</strong> {{ plan.get_billing_interval_display }}</li>
+  </ul>
   <a href="{% url 'plans' %}" class="btn btn-danger mt-3">Back to plans</a>
 </div>
 {% endblock %}
