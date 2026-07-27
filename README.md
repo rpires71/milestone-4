@@ -2599,9 +2599,9 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 #### Acceptance Criteria
 
-##### AC1 – Community Posting Restricted to Active Subscribers
+##### AC1 – Community Posting Restricted to Authenticated Members
 
-- [ ] Given that a user does not have an active subscription, when they attempt to create a community post, then access is denied through server-side permission checks and a clear subscription prompt is displayed.
+- [X] Given that a user is not logged in, when they attempt to create a community post, then access is denied through server-side permission checks (@login_required) and they are redirected to log in.
 
 ##### AC2 – Community Post Creation with Validation
 
