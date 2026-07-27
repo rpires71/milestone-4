@@ -159,7 +159,7 @@ ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = "/dashboard/profile-setup/"
 
-# Internationalization
+# Internationalisation
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
