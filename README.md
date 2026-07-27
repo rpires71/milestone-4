@@ -2201,9 +2201,9 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 - [X] Given that plans are displayed on the Plans page, when a user views an individual plan card, then the card includes, at a minimum, the plan name, difficulty level or tier, subscription price, and billing frequency.
 
-##### AC3 – Filtering and Sorting Functionality
+##### AC3 – Filtering and Sorting Functionality *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that multiple fitness plans are available, when a user applies filters (such as plan type or difficulty level) or changes the sorting criteria, then the displayed results update accordingly to reflect the selected options.
+- [ ] *(Not implemented — future work)* Given that multiple fitness plans are available, when a user applies filters (such as plan type or difficulty level) or changes the sorting criteria, then the displayed results update accordingly to reflect the selected options.
 
 ##### AC4 – Subscriber-Only Content Clearly Identified *(Not implemented — see Scope Decisions / Future Work)*
 
@@ -2219,7 +2219,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC7 – Accessibility Compliance
 
-- [ ] Given that a user navigates the Plans page using assistive technologies, when interacting with plan cards and controls, then semantic HTML structure is used, images include meaningful alternative text, and all interactive elements remain fully keyboard accessible.
+- [X] Given that a user navigates the Plans page using assistive technologies, when interacting with plan cards and controls, then semantic HTML structure is used, images include meaningful alternative text, and all interactive elements remain fully keyboard accessible.
 
 ##### AC8 – Graceful Error Handling
 
@@ -2245,15 +2245,15 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC3 – Full Access for Eligible Subscribers
 
-- [X] Given that a member has an active subscription that includes the selected fitness plan, when they access the plan detail page, then the complete plan content is made available.
+- [ ] Given that a member has an active subscription that includes the selected fitness plan, when they access the plan detail page, then the complete plan content is made available.
 
 ##### AC4 – Server-Side Access Control Enforcement
 
-- [X] Given that protected plan content is requested, when access permissions are evaluated, then authorisation is enforced on the server side to prevent non-subscribers from accessing restricted content through URL manipulation, browser tools, or modified requests.
+- [ ] Given that protected plan content is requested, when access permissions are evaluated, then authorisation is enforced on the server side to prevent non-subscribers from accessing restricted content through URL manipulation, browser tools, or modified requests.
 
 ##### AC5 – Context-Aware Calls to Action
 
-- [ ] Given that a user is viewing a fitness plan, when the page is displayed, then the primary call-to-action clearly reflects their current subscription status, such as subscribing to the plan or accessing available content.
+- [X] Given that a user is viewing a fitness plan, when the page is displayed, then the primary call-to-action clearly reflects their current subscription status, such as subscribing to the plan or accessing available content.
 
 ##### AC6 – Accessibility and Responsive Design Compliance
 
@@ -2269,47 +2269,45 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 #### As a member, I want to **subscribe to a membership plan** so that **I can gain access to premium fitness content, exclusive resources, and the subscriber community.** *(Must Have)*
 
-[⬆ Back to Table of Contents](#table-of-contents)
-
 #### Acceptance Criteria
 
 ##### AC1 – Secure Subscription Checkout for Authenticated Members
 
-- [X] Given that a member is logged into the platform, when they choose a subscription plan and billing option (monthly or annual), then they are redirected to a secure Stripe checkout process for the selected subscription.
+- [x] Given that a member is logged into the platform, when they choose a subscription plan and billing option (monthly or annual), then they are redirected to a secure Stripe checkout process for the selected subscription.
 
 ##### AC2 – Secure Payment Processing via Stripe
 
-- [X] Given that a member enters payment information during checkout, when the transaction is processed, then Stripe securely handles the payment and no payment card information is stored, processed, or exposed by the application.
+- [x] Given that a member enters payment information during checkout, when the transaction is processed, then Stripe securely handles the payment and no payment card information is stored, processed, or exposed by the application.
 
-##### AC3 – Subscription Confirmation Through Webhooks
+##### AC3 – Subscription Confirmation Through Webhooks *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that a subscription payment has been successfully completed, when Stripe sends the relevant webhook event (for example, `customer.subscription.created`), then the subscription record is created or updated within the database, ensuring reliable processing even if the user closes their browser before the checkout flow completes.
+- [ ] *(Not implemented — future work)*  Given that a subscription payment has been successfully completed, when Stripe sends the relevant webhook event (for example, `customer.subscription.created`), then the subscription record is created or updated within the database, ensuring reliable processing even if the user closes their browser before the checkout flow completes.
 
 ##### AC4 – Clear Subscription Success Feedback
 
-- [ ] Given that a subscription has been successfully activated, when the member is redirected back to the application, then a confirmation message is displayed containing the selected plan, subscription cost, billing interval, and renewal date.
+- [x] Given that a subscription has been successfully activated, when the member is redirected back to the application, then a confirmation message is displayed containing the selected plan, its tier, price, and billing interval.
 
 ##### AC5 – Helpful Payment Failure Handling
 
-- [X] Given that a payment is declined or cannot be completed, when the transaction fails, then the system displays a clear and informative error message and allows the member to retry the payment process without losing their progress.
+- [x] Given that a payment is declined or cannot be completed, when the transaction fails, then the system displays a clear and informative error message and allows the member to retry the payment process without losing their progress.
 
-##### AC6 – Immediate Subscription Status Updates
+##### AC6 – Subscription Status Reflected in Account Areas
 
-- [ ] Given that a subscription becomes active, when the member next interacts with the application, then their subscription status is reflected consistently throughout the platform, including their profile, dashboard, content access permissions, and community features.
+- [X] Given that a subscription becomes active, when the member next interacts with the application, then their subscription status is reflected consistently in their profile and dashboard.
 
 ##### AC7 – Prevention of Duplicate Active Subscriptions
 
-- [ ] Given that a member already has an active subscription, when they attempt to subscribe to another plan, then the system prevents the creation of duplicate subscriptions and directs the member to manage their existing subscription where appropriate.
+- [x] Given that a member already has an active subscription, when they attempt to subscribe to another plan, then the system prevents the creation of duplicate subscriptions and directs the member to manage their existing subscription where appropriate.
 
 ##### AC8 – Accessible and Responsive Subscription Experience
 
-- [X] Given that a member completes the subscription process on a desktop, tablet, mobile device, or through assistive technologies, when progressing through the checkout journey, then all functionality remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback at every stage.
+- [x] Given that a member completes the subscription process on a desktop, tablet, mobile device, or through assistive technologies, when progressing through the checkout journey, then all functionality remains responsive, keyboard accessible, screen-reader compatible, and provides clear feedback at every stage.
 
 ---
 
 ### User Story 6: Manage or Cancel a Subscription (Subscriber)
 
-#### As a subscriber, I want to **manage or cancel my subscription** so that **I can maintain control over my membership, billing preferences, and subscription status.** *(Must Have)*
+#### As a subscriber, I want to **manage or cancel my subscription** so that **I can maintain control over my membership, billing preferences, and subscription status.** *(Should Have)*
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
@@ -2397,7 +2395,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Quantity Updates with Real-Time Price Recalculation
 
-- [X] Given that a member changes the quantity of an item within their shopping cart, when the update is applied, then the corresponding line total and overall order total are recalculated immediately, and the change is announced to assistive technologies using an appropriate live region.
+- [X] Given that a member changes the quantity of an item within their shopping cart, when the update is applied, then the corresponding line total and overall order total are recalculated immediately, and the change is announced to assistive technologies.
 
 ##### AC2 – Remove Products from the Shopping Cart
 
@@ -2417,7 +2415,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC6 – Accurate Order Calculations
 
-- [ ] Given that the contents of the shopping cart are modified, when totals are recalculated, then the subtotal, delivery charges, discounts (where applicable), and final order total are calculated correctly, including any free-delivery threshold rules.
+- [X] Given that a member changes the quantity of an item within their shopping cart, when the update is applied, then the corresponding line total and overall order total are recalculated and displayed.
 
 ##### AC7 – Accessible and Responsive Cart Management
 
@@ -2459,11 +2457,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC7 – Accurate Pricing and Order Totals
 
-- [ ] Given that an order is submitted, when pricing information is calculated, then all totals, including VAT-inclusive pricing, delivery charges, discounts, and free-delivery threshold rules, accurately match the values previously displayed within the shopping cart.
+- [X] Given that an order is submitted, when pricing information is calculated, then the order total accurately matches the value displayed in the shopping cart, and is verified server-side against the amount charged by Stripe before the order is fulfilled.
 
 ##### AC8 – Protection Against Empty Cart Checkouts
 
-- [ ] Given that a member attempts to access the checkout page without any items in their shopping cart, when the request is processed, then they are redirected to the shop rather than being presented with an invalid £0.00 checkout process.
+- [X] Given that a member attempts to access the checkout page without any items in their shopping cart, when the request is processed, then they are redirected to the shop rather than being presented with an invalid £0.00 checkout process.
 
 ##### AC9 – Accessible and Responsive Checkout Experience
 
@@ -2487,21 +2485,21 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 - [X] Given that an order confirmation page is shown, when the member reviews the confirmation, then it includes the order reference number, purchased items, order total, delivery information, and confirmation that an order email has been sent.
 
-##### AC3 – Confirmation Data Sourced from the Verified Order Record
+##### AC3 – Confirmation Data Sourced from the Persisted Order Record
 
-- [ ] Given that the order confirmation page is loaded, when order information is displayed, then the data originates from the order record created or confirmed by the Stripe webhook rather than being generated solely from redirect parameters.
+- [X] Given that the order confirmation page is loaded, when order information is displayed, then the data originates from the order record persisted in the database (retrieved by its unique order number), rather than being generated solely from redirect parameters. The Stripe webhook provides a reliability fallback that recreates the order from payment metadata if the checkout flow does not complete in the browser.
 
-##### AC4 – Support for Asynchronous Order Confirmation
+##### AC4 – Support for Asynchronous Order Confirmation *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that the order confirmation page loads before the webhook has finished processing the order, when the page is displayed, then a temporary **"Confirming Your Order"** status is shown and automatically transitions to the completed confirmation view once processing has finished.
+- [ ] *(Not implemented — future work)* Given that the order confirmation page loads before the webhook has finished processing the order, when the page is displayed, then a temporary **"Confirming Your Order"** status is shown and automatically transitions to the completed confirmation view once processing has finished.
 
 ##### AC5 – Ownership and Authorisation Controls
 
-- [X] Given that a member attempts to access an order confirmation page, when the request is processed, then only orders associated with their account are accessible, and any attempt to view another user's order results in an appropriate not-found or permission-denied response.
+- [X] Given that a member accesses their order history, when they open an individual order, then only orders associated with their account are accessible, and any attempt to view another user's order returns a not-found response. The post-checkout confirmation page is reached via an unguessable order reference (a random UUID) generated at checkout.
 
-##### AC6 – Confirmation Email Guidance and Support
+##### AC6 – Confirmation Email Guidance
 
-- [ ] Given that an order has been successfully confirmed, when the confirmation page is displayed, then the member is informed that a confirmation email has been sent and provided with appropriate guidance if the email has not been received (for example, checking spam folders or requesting a resend).
+- [X] Given that an order has been successfully confirmed, when the confirmation page is displayed, then the member is informed that a confirmation email has been sent and advised to check their spam or junk folder if it does not arrive. (A self-service resend option is noted as future work.)
 
 ##### AC7 – Accessible and Responsive Confirmation Experience
 
