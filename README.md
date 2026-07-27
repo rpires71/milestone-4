@@ -2527,13 +2527,13 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 - [X] Given that one or more orders exist, when the order history is displayed, then each order includes key information such as the order reference number, purchase date, item quantity, order status, and total amount paid.
 
-##### AC4 – Clear and Accessible Status Indicators
+##### AC4 – Clear and Accessible Status Indicators *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that order records are displayed, when a status is shown (for example, Processing, Dispatched, Delivered, Cancelled, or Refunded), then it is communicated using both descriptive text and an accompanying icon rather than relying solely on colour.
+- [ ] *(Not implemented — future work)* Given that order records are displayed, when a status is shown (for example, Processing, Dispatched, Delivered, Cancelled, or Refunded), then it is communicated using both descriptive text and an accompanying icon rather than relying solely on colour.
 
-##### AC5 – Filtering, Sorting, and Pagination Support
+##### AC5 – Pagination Support *(Filtering and sorting: future work)*
 
-- [ ] Given that a member has a large number of orders, when browsing their order history, then they can filter, sort, and paginate the results to maintain usability and efficient navigation.
+- [X] Given that a member has a large number of orders, when browsing their order history, then the results are paginated to maintain usability and efficient navigation. (Filtering and sorting are noted as future work.)
 
 ##### AC6 – Secure Access to Order Details
 
