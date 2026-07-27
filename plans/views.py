@@ -22,6 +22,12 @@ def all_plans(request):
 def plan_detail(request, slug):
     """Display an individual plan with its features."""
     plan = get_object_or_404(Plan, slug=slug, status='published')
+    if request.GET.get('cancelled'):
+        messages.info(
+            request,
+            'Your subscription checkout was cancelled. '
+            'You have not been charged.'
+        )
     similar_plans = Plan.objects.filter(
         status='published'
     ).exclude(pk=plan.pk)[:3]
@@ -49,7 +55,7 @@ def subscribe(request, slug):
         ) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url=request.build_absolute_uri(
             reverse('plan_detail', args=[plan.slug])
-        ),
+        ) + '?cancelled=1',
         customer_email=request.user.email or None,
     )
     return redirect(checkout_session.url, code=303)
