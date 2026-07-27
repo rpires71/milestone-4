@@ -2723,7 +2723,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC2 – Relevant Personalised Summary Information
 
-- [X] Given that the dashboard is loaded, when account data is retrieved, then the dashboard displays relevant information such as subscription status, recent orders, saved items, and the member's fitness goals.
+- [X] Given that the dashboard is loaded, when account data is retrieved, then the dashboard displays relevant information such as subscription status, recent orders, and the member's fitness goals.
 
 ##### AC3 – Member-Specific Data Only
 
@@ -2731,7 +2731,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC4 – Upgrade Prompt for Non-Subscribers
 
-- [ ] Given that a member does not have an active subscription, when they view the dashboard, then a clear upgrade or subscription call-to-action is displayed.
+- [X] Given that a member does not have an active subscription, when they view the dashboard, then a clear upgrade or subscription call-to-action ("Browse Plans") is displayed.
 
 ##### AC5 – Quick Access to Key Features
 
