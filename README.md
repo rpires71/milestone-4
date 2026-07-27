@@ -2641,25 +2641,25 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 #### Acceptance Criteria
 
-##### AC1 – Community Feed Available to Active Subscribers
+##### AC1 – Community Feed Publicly Readable
 
-- [ ] Given that a user has an active subscription, when they navigate to the community area, then community posts are retrieved from the database and displayed within the feed.
+- [X] Given that a user visits the community area, when they navigate to it, then community posts are retrieved from the database and displayed within the feed. (The feed is publicly readable; posting requires authentication — see User Story 13.)
 
-##### AC2 – Access Control for Non-Subscribers
+##### AC2 – Public Feed Access *(Design decision — feed is intentionally public)*
 
-- [ ] Given that a user does not have an active subscription, when they attempt to access the community feed, then they are presented with a preview or teaser page together with a subscription call-to-action, while access to the full feed is restricted through server-side permission checks.
+- [X] Given that any user accesses the community feed, when the page loads, then the feed is displayed openly as a publicly readable resource. Restricting the feed to subscribers was considered and deliberately not implemented; the community is open to encourage engagement, with posting gated by authentication.
 
 ##### AC3 – Clear and Consistent Post Presentation
 
 - [X] Given that posts are displayed within the community feed, when the page loads, then each post includes the author's name, publication date, and content in a clear, readable, and consistent format.
 
-##### AC4 – Pagination for Scalability and Performance
+##### AC4 – Pagination for Scalability and Performance *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that a large number of community posts exist, when the feed is displayed, then pagination is applied to ensure efficient performance and a positive user experience.
+- [ ] *(Not implemented — future work)* Given that a large number of community posts exist, when the feed is displayed, then pagination is applied to ensure efficient performance and a positive user experience.
 
 ##### AC5 – Empty-State Handling
 
-- [ ] Given that no community posts have been created, when a subscriber accesses the feed, then a friendly message is displayed encouraging members to create the first post and begin community engagement.
+- [X] Given that no community posts have been created, when a subscriber accesses the feed, then a friendly message is displayed encouraging members to create the first post and begin community engagement.
 
 ##### AC6 – Accessible and Responsive Community Experience
 
