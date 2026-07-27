@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block extra_title %}| Server Error{% endblock %}
+{% block content %}
+<section class="container py-5 text-center">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <p class="display-1 fw-bold mb-0" style="color: #C81E2D;">500</p>
+      <h1 class="h3 mb-3">Something went wrong</h1>
+      <p class="text-secondary mb-4">
+        We're sorry — an unexpected error occurred while processing your
+        request. Please try again in a few moments.
+      </p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-2">
+        <a href="/" class="btn btn-fithub-primary">Back to Home</a>
+        <a href="/plans/" class="btn btn-outline-dark">Browse Plans</a>
+        <a href="/products/" class="btn btn-outline-dark">Browse Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
