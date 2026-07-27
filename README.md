@@ -2677,7 +2677,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC1 – Profile Displays Member-Specific Information
 
-- [ ] Given that a member accesses their profile page, when the page loads, then their personal information, including name, email address, fitness goals, profile image, and subscription status, is displayed accurately.
+- [X] Given that a member accesses their profile page, when the page loads, then their personal information, including name, email address, fitness goals, and subscription status, is displayed accurately.
 
 ##### AC2 – Profile Information Can Be Updated
 
@@ -2685,11 +2685,11 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC3 – Email Address Uniqueness Validation
 
-- [ ] Given that a member attempts to change their email address, when the submitted email is already associated with another account, then the update is rejected and a clear validation message is displayed.
+- [X] Given that a user registers or manages their email address, when a duplicate email is submitted, then it is rejected through django-allauth's built-in email uniqueness validation. (Email is managed via allauth rather than the profile form.)
 
-##### AC4 – Profile Image Upload and Validation
+##### AC4 – Profile Image Upload and Validation *(Not implemented — see Scope Decisions / Future Work)*
 
-- [ ] Given that a member uploads a profile image, when the file is submitted, then the file type and size are validated, the image is stored using the configured media or cloud storage solution, and the updated image is displayed within the member's profile.
+- [ ] *(Not implemented — future work)* Given that a member uploads a profile image, when the file is submitted, then the file type and size are validated, the image is stored using the configured media or cloud storage solution, and the updated image is displayed within the member's profile.
 
 ##### AC5 – Ownership-Based Access Control
 
@@ -2697,7 +2697,7 @@ FitHub is a fitness subscription web application built with Django that allows u
 
 ##### AC6 – Clear Success and Error Feedback
 
-- [ ] Given that a profile update succeeds or fails, when the operation is completed, then the member receives a clear confirmation or error message, which is announced to assistive technologies through an appropriate live region.
+- [X] Given that a profile update succeeds or fails, when the operation is completed, then the member receives a clear confirmation or error message, which is announced to assistive technologies through an appropriate live region.
 
 ##### AC7 – Intelligent Form Pre-Population
 
