@@ -8684,9 +8684,6 @@ Django's built-in `User` administration provides comprehensive account managemen
 ## Reflection
 [⬆ Back to Table of contents](#table-of-contents)
 
-## Reflection
-[⬆ Back to Table of contents](#table-of-contents)
-
 ### Summary
 
 For **Milestone 4**, I built **FitHub**, a full-stack fitness platform combining membership subscriptions with an online shop. I developed it on **Django 4.2.23** and **Python 3.12**, backed by **PostgreSQL** in production and **SQLite** while working locally, with **Bootstrap 5** handling the styling. The live version runs on **Heroku**, where **WhiteNoise** delivers the static assets and **Gunicorn** acts as the application server. Through a responsive, accessible interface built around FitHub's red-and-black identity, visitors can explore and sign up to membership plans, buy fitness products, and take part in a community feed.
@@ -9170,7 +9167,7 @@ Assembling thorough technical documentation formed a sizeable part of the projec
 
 ### A Note on the Development Timeline
 
-FitHub was originally due on **30 April 2026**. A mix of health difficulties and demands from my teaching role, however, led my university to grant an extension, moving the final submission to **[INSERT YOUR ACTUAL EXTENDED DATE]**. That extra time let me keep developing the project while making sure the unexpected setbacks of the original period didn't undercut the quality of what I delivered.
+FitHub was originally due on **30 April 2026**. A mix of health difficulties and demands from my teaching role, however, led my university to grant an extension, moving the final submission to **29 July 2026**. That extra time let me keep developing the project while making sure the unexpected setbacks of the original period didn't undercut the quality of what I delivered.
 
 Rather than stretching the scope for its own sake, I spent the extended period firming up the application's overall quality. I concentrated on refining what was already there, widening automated test coverage, improving accessibility, enriching the documentation, clearing defects, and polishing the user experience. Taking that route meant the final submission stood as a stable, thoroughly tested, production-ready **Minimum Viable Product (MVP)** rather than something carrying half-finished features.
 
@@ -9337,4 +9334,73 @@ Available at: https://developer.mozilla.org/
 - **WebAIM (2025) WAVE Web Accessibility Evaluation Tool.**
 Available at: https://wave.webaim.org/
   (Accessed: 01 June 2026).
-  
+
+---
+
+### Code, Comments & Media Attribution
+
+I produced this project as part of my **Milestone 4 Full-Stack Development Project**, the FitHub fitness subscription and e-commerce platform.
+
+Every part of the HTML, CSS, Python, and Django functionality within it was **planned, written, and tailored by me**. Where particular design approaches, coding patterns, or technical explanations shaped my work, they were drawn from my own research, earlier practice, the official documentation, and educational learning materials.
+
+---
+
+#### Code Sources and Influence
+
+**Adapted from My Earlier Projects**
+
+I carried forward selected design ideas and styling approaches from my **Milestone 1, 2 and 3** projects, then developed them further for FitHub. This included the use of CSS custom properties to organise the colour palette, reusable interface elements such as navigation bars, buttons, cards and footer layouts, responsive techniques created with the Bootstrap grid, and accessibility practices including semantic HTML and ARIA labels.
+
+Every reused element was revised rather than copied without alteration. I adjusted the structure, appearance and behaviour so that each component matched FitHub's red-and-black brand identity and worked correctly within Django's template system.
+
+---
+
+#### Django & Python Code
+
+**Django Framework Implementation**
+
+The backend of FitHub was developed by following the **official Django documentation** together with the framework's recommended development practices. Throughout the project I referred to Django's guidance to ensure that the application's structure, coding standards and implementation remained consistent with accepted best practice.
+
+The overall project architecture was based on Django's recommended project structure and its **Model-View-Template (MVT)** design pattern. These resources provided the foundation for organising the application into reusable apps while maintaining a clear separation between data models, business logic and presentation.
+
+Database design and model development were guided by Django's documentation on models and field types. These references helped me design a normalised database schema, select suitable field types and implement relationships that support the application's functionality while maintaining data integrity.
+
+The implementation of views and URL routing followed Django's guidance on request handling and URL dispatching. This enabled me to create clear routing structures and maintain readable, well-organised function-based views throughout the project.
+
+Form development was based upon Django's forms framework and validation documentation. By following these recommendations, I was able to implement secure server-side validation, provide meaningful feedback to users and take advantage of Django's built-in CSRF protection.
+
+User authentication and account management were developed using Django's authentication framework together with **django-allauth**. The official documentation helped me implement secure login, registration, password management and authenticated user sessions without creating a custom authentication system.
+
+The administration interface was customised using Django's Admin documentation and `ModelAdmin` configuration. This allowed me to create an organised administration area that simplified the management of products, subscriptions, orders, community posts and user accounts.
+
+Finally, Django's template language documentation was used extensively when developing the user interface. Built-in template tags, filters and template inheritance allowed me to create reusable layouts while reducing duplicated code across the application.
+
+**References**
+
+- Django Software Foundation. *Django Official Tutorial*.
+- Django Software Foundation. *Django MVT Architecture*.
+- Django Software Foundation. *Django Models*.
+- Django Software Foundation. *Model Field Reference*.
+- Django Software Foundation. *Django Views*.
+- Django Software Foundation. *URL Dispatcher*.
+- Django Software Foundation. *Django Forms*.
+- Django Software Foundation. *Form Validation*.
+- Django Software Foundation. *Django Authentication System*.
+- Django Software Foundation. *User Authentication in Django*.
+- Django Software Foundation. *Django Admin*.
+- Django Software Foundation. *ModelAdmin Objects*.
+- Django Software Foundation. *Django Template Language*.
+- Django Software Foundation. *Built-in Template Tags*.
+
+---
+
+**Python Code Quality Tools**
+
+I relied on established Python development tools to keep the code to a high standard:
+
+- **Flake8 linting:** [Flake8 documentation](https://flake8.pycqa.org/en/latest/), [PEP 8 style guide](https://peps.python.org/pep-0008/)
+- **Pylint analysis:** [Pylint documentation](https://pylint.pycqa.org/en/latest/), [pylint-django plugin](https://github.com/PyCQA/pylint-django)
+- **Import ordering:** [isort documentation](https://pycqa.github.io/isort/), [PEP 8 import guidance](https://peps.python.org/pep-0008/#imports)
+
+---
+
