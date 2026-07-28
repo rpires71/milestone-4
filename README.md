@@ -8686,23 +8686,19 @@ Django's built-in `User` administration provides comprehensive account managemen
 
 ### Summary
 
-The development of **FitHub** formed the basis of my **Milestone 4** project, where I designed and implemented a full-stack fitness platform combining membership subscriptions, e-commerce functionality and community engagement within a single web application. The project was developed using **Django 4.2.23** and **Python 3.12**, with **SQLite** used throughout development and **PostgreSQL** deployed within the production environment. The user interface was built using **Bootstrap 5**, while deployment was carried out on **Heroku**, utilising **Gunicorn** as the application server and **WhiteNoise** to efficiently serve static assets. Throughout the project, I adopted a responsive, accessible and mobile-first approach, presenting the application using a consistent red-and-black FitHub visual identity.
+For **Milestone 4**, I built **FitHub**, a full-stack fitness platform combining membership subscriptions with an online shop. I developed it on **Django 4.2.23** and **Python 3.12**, backed by **PostgreSQL** in production and **SQLite** while working locally, with **Bootstrap 5** handling the styling. The live version runs on **Heroku**, where **WhiteNoise** delivers the static assets and **Gunicorn** acts as the application server. Through a responsive, accessible interface built around FitHub's red-and-black identity, visitors can explore and sign up to membership plans, buy fitness products, and take part in a community feed.
 
-Rather than building the application as a single monolithic project, I organised the solution into seven modular Django applications comprising **home**, **accounts**, **plans**, **shop**, **cart**, **orders**, and **community/reviews**. This modular architecture follows Django's **Model-View-Template (MVT)** design pattern, allowing the separation of business logic, presentation and data management whilst improving maintainability and scalability. Secure user authentication and account management were implemented using **django-allauth**, whilst complete CRUD functionality was developed for community discussions, product reviews and the administration of membership plans.
+I structured the project around Django's **Model-View-Template (MVT)** pattern, spread across seven applications, with the backend logic organised clearly, sign-in handled securely through **django-allauth**, and full create-read-update-delete capability for community posts, product reviews, and the membership plans that staff maintain. I entrusted all payments to **Stripe**, which covers both recurring memberships (via Stripe Checkout) and single product purchases (via Stripe Elements and PaymentIntents); a signature-checked, idempotent webhook then ensures each order is recorded dependably. Beyond that, the platform offers checkout for both guests and signed-in members, a session-based basket that respects stock levels, order confirmation and history, fitness-profile editing, a dedicated staff-facing screen for adding, amending, and archiving plans, and oversight of products, orders, and subscribers through the tailored Django admin.
 
-To support commercial functionality, secure payment processing was integrated using **Stripe**. Recurring membership subscriptions are processed through **Stripe Checkout**, whilst one-off purchases utilise **Stripe Elements** and **PaymentIntents**. Reliable order processing is achieved through a signature-verified, idempotent webhook implementation that ensures transactions are handled accurately without duplication. Alongside payment processing, I implemented both guest and authenticated checkout journeys, a session-based shopping basket incorporating stock validation, comprehensive order confirmation and history pages, personalised fitness profile management, a dedicated front-end interface allowing authorised staff to create, edit and archive membership plans, together with an enhanced Django administration area for managing products, subscriptions, orders and customers.
+I tested the work thoroughly to keep it dependable and to uphold solid development standards. Altogether I wrote **99 automated tests** using Django's `TestCase` framework, exercising the models, views, forms, access controls, and the Stripe payment and webhook logic, and I paired these with a written **131-case manual test plan**. I should be candid that I did not follow a strict Test-Driven Development method; instead, I grew the tests alongside each feature as it took shape. I checked code quality with **Flake8, Pylint, and isort**, gauged accessibility against **WAVE, Lighthouse, and the WCAG 2.1 AA guidelines**, and confirmed the markup with the **W3C HTML and CSS validators** and **JSHint**. The upshot was **no Flake8 findings at all**, **Pylint scores comfortably past 8.0 in every application** (with several reaching a perfect 10.00), and complete **PEP 8 conformance**.
 
-A significant emphasis was placed upon software quality throughout the development process. Instead of following a strict Test-Driven Development methodology, automated tests were written alongside new functionality as features were introduced. The completed project contains **99 automated tests** implemented using Django's **TestCase** framework, covering models, views, forms, permissions, payment processing and Stripe webhook functionality. These automated tests were complemented by a comprehensive **131-case manual testing plan**, providing end-to-end verification of both functional and non-functional requirements.
+The site guides three distinct groups of people along clear paths:
 
-To maintain coding standards, the project was analysed using **Flake8**, **Pylint** and **isort**, ensuring consistent formatting and adherence to recognised Python development practices. Accessibility was evaluated using **WAVE**, **Google Lighthouse** and the **WCAG 2.1 AA** guidelines, whilst markup and client-side code were validated using the **W3C HTML Validator**, **W3C CSS Validator** and **JSHint**. These quality assurance activities resulted in **zero Flake8 errors**, **Pylint scores exceeding 8.0 across every Django application**, with several applications achieving the maximum **10.00** rating, together with full **PEP 8 compliance** and consistently strong accessibility outcomes.
+- **Visitors:** Homepage -> Plans / Shop / Community (open to read) -> Register  
+- **Signed-in members:** Login -> Dashboard -> Subscribe / Shop -> Basket -> Checkout -> Order Confirmation  
+- **Staff:** Manage Plans (add / amend / archive) -> Django admin (products, orders, subscribers)  
 
-The application has been designed around several clearly defined user journeys that reflect the different roles supported within the system.
-
-- **Visitors:** Homepage -> Membership Plans / Shop / Community -> Register
-- **Authenticated Members:** Login -> Dashboard -> Membership Subscription / Shop -> Shopping Basket -> Secure Checkout -> Order Confirmation
-- **Staff Users:** Membership Plan Management (custom front-end interface for creating, editing and archiving plans) -> Django Administration (products, orders, subscriptions and customer management)
-
-Across every page of the application, I maintained a consistent user experience through the use of shared navigation and footer components, responsive layouts and coherent branding. Authentication-aware navigation adapts according to the user's sign-in status, whilst accessibility has been enhanced through keyboard-friendly navigation, ARIA live-region announcements for user feedback, semantic HTML, logical heading structures and a skip-to-content link. Collectively, these features provide a professional, accessible and secure web application that demonstrates the practical application of full-stack development principles whilst delivering a complete fitness membership and e-commerce platform.
+Across every page I kept the look and feel consistent, reusing the same navigation and footer, reflecting whether someone is signed in, announcing feedback through ARIA live regions, offering a skip-to-content link, and making sure the whole thing can be driven from the keyboard.
 
 ### Known Limitations and Future Work
 
@@ -8715,628 +8711,469 @@ The following were identified as valuable but were not implemented within the pr
 
 ### What Worked Well
 
-Throughout the development of **FitHub**, several aspects of the project proved particularly successful. By adopting recognised software engineering principles, Django's built-in features and modern web development practices, I was able to produce a maintainable, secure and scalable application whilst meeting the functional and technical objectives defined for Milestone 4.
+#### Full-Stack Architecture and Django Integration
 
-#### Full-Stack Architecture & Django Integration
+Developing FitHub using Django's Model-View-Template (MVT) architecture proved to be one of the strongest design decisions I made throughout the project. Separating the data models, application logic and user interface across seven individual applications made the codebase much easier to understand, maintain and extend as the project evolved.
 
-One of the greatest strengths of the project was the decision to adopt Django's **Model-View-Template (MVT)** architecture. By separating the application's data models, business logic and presentation layer into distinct components, I found it considerably easier to organise the codebase, maintain existing functionality and introduce new features without affecting unrelated parts of the system. Dividing the project into seven dedicated Django applications (**home**, **accounts**, **plans**, **shop**, **cart**, **orders**, and **community**) also encouraged modular development and improved the long-term maintainability of the application.
+For data storage, I used SQLite during development before moving to PostgreSQL for the live deployment. This approach allowed me to work efficiently in a local environment while benefiting from PostgreSQL's reliable, ACID-compliant database engine in production to manage members, subscriptions, products, orders and community content securely.
 
-During development I utilised **SQLite** because of its simplicity and rapid setup, before migrating seamlessly to **PostgreSQL** for production deployment. This provided a reliable, ACID-compliant relational database capable of managing user accounts, membership plans, subscriptions, customer orders and community content within a robust production environment.
+Using Django's Object Relational Mapper (ORM) significantly simplified database interactions. Instead of writing SQL queries manually, I was able to work directly with Python objects, which improved readability while reducing the risk of SQL injection attacks through parameterised queries. Where appropriate, I also implemented `select_related()` and `prefetch_related()` to minimise unnecessary database queries and improve overall performance.
 
-Another aspect that worked particularly well was Django's Object Relational Mapper (ORM). Rather than writing raw SQL queries, database interactions were performed entirely through Python models, improving code readability whilst reducing the risk of SQL injection attacks through parameterised queries. Performance was further improved through the use of `select_related()` and `prefetch_related()`, which reduced unnecessary database queries when retrieving related data.
+User authentication was greatly simplified through the use of **django-allauth**. Rather than developing my own authentication system, I was able to make use of secure password hashing, session management, email authentication and password recovery features. I also ensured that the login and registration pages were only available to users who were not already authenticated.
 
-User authentication and account management were implemented using **django-allauth**, allowing me to take advantage of secure password hashing, session management, email-based authentication and password recovery without needing to develop these complex features manually. Restricting login and registration pages to anonymous users also helped improve the overall user experience.
+Throughout the project I chose to use function-based views because I found them straightforward to read and maintain. Any functionality that was required in multiple locations, such as restricting access to staff members, was extracted into reusable decorators rather than duplicating the same logic across several views.
 
-Throughout the project I chose to implement **function-based views**, as I found them easier to understand and maintain within the scope of this application. Reusable decorators were developed for shared functionality, including staff-only access control, helping to reduce duplicated code whilst improving readability.
+#### Database Design and Models
 
-#### Database Design & Model Structure
+The database structure remained well organised by following a normalised design. The ten core models, including **Plan**, **Subscription**, **Product**, **Order**, **OrderLineItem**, **Post**, **Review** and **Profile**, each had clearly defined responsibilities, helping to avoid unnecessary duplication while maintaining efficient relationships between data.
 
-Designing a well-normalised database schema proved to be another successful aspect of the project. The application comprises ten interconnected models, including **Plan**, **Subscription**, **Product**, **Order**, **OrderLineItem**, **Profile**, **Post** and **Review**, each with clearly defined responsibilities and relationships.
+Validation was implemented directly within the model layer wherever possible. Django validators, field constraints and a `unique_together` constraint ensured that invalid data could not be stored in the database. For example, members are prevented from submitting multiple reviews for the same product.
 
-Business rules were enforced directly within the models through Django validators, field constraints and database-level restrictions. For example, the `unique_together` constraint prevents members from submitting multiple reviews for the same product, ensuring data integrity without relying solely upon application logic.
+Instead of permanently deleting retired membership plans, I implemented an archiving approach. This allows existing subscriptions and historical records to remain intact while preventing new customers from subscribing to plans that are no longer available.
 
-Rather than permanently deleting membership plans, I implemented a soft-delete approach whereby plans are archived instead. This preserves historical subscriptions and order records whilst preventing archived plans from being selected by new customers.
+Django's migration framework also proved invaluable throughout development. Every database change was recorded and version controlled, making it straightforward to apply schema updates consistently from the development environment through to the production deployment.
 
-Django's migration framework also proved invaluable throughout development, allowing database schema changes to be tracked, version controlled and deployed consistently across both development and production environments.
+#### Authentication and Authorisation
 
-#### Authentication & Authorisation
+One design decision that worked particularly well was allowing both guest customers and registered members to complete purchases. This reduced the barrier for first-time visitors while still providing registered users with additional benefits, such as access to their previous orders.
 
-Implementing robust access control was a key success throughout the project.
+Security was strengthened through several layers of authorisation. Administrative plan management was protected using a custom `staff_required` decorator that returned a **403 Forbidden** response whenever an unauthorised user attempted access. These administrative controls were also hidden from non-staff users within the interface, ensuring that both the front-end and back-end enforced the same restrictions.
 
-Allowing both guest and authenticated checkout reduced friction for first-time customers whilst still providing registered members with additional functionality such as order history and personalised dashboards.
+Ownership validation was applied consistently throughout the application. Members are only able to edit or remove their own reviews and community posts, while access to order history is restricted to the account that originally placed the order. These permissions were all verified through automated testing.
 
-Administrative functionality was protected using a custom `staff_required` decorator, ensuring that only authorised staff members could manage membership plans. In addition to server-side permission checks, management controls were hidden from standard users within the interface, providing defence-in-depth security.
+#### Payment Processing and E-Commerce
 
-Ownership validation was implemented across community posts, product reviews and customer orders. Server-side checks ensure that members can edit or delete only their own content and view only their own purchases. These security controls were also verified through automated testing.
+Stripe provided a dependable payment platform throughout the project. Recurring memberships were processed using Stripe Checkout, while one-off shop purchases were completed using Stripe Elements together with PaymentIntents. As a result, sensitive payment card information never passed through my own server.
 
-#### Payment Processing & E-Commerce
+Additional server-side verification was implemented before recording successful transactions. Subscription records were only created after confirming that the Checkout Session had been successfully paid, while product orders were validated by comparing the PaymentIntent amount and currency against the expected values before being saved.
 
-Integrating **Stripe** was one of the most rewarding technical aspects of the project.
+The webhook implementation also proved particularly reliable. Each webhook request was verified using Stripe's signature validation and designed to be idempotent. Order information was reconstructed using metadata stored before payment, ensuring that purchases were still completed correctly even if a customer closed their browser before returning to the website.
 
-Recurring memberships are processed securely through **Stripe Checkout**, whilst one-off product purchases utilise **Stripe Elements** together with **PaymentIntents**. Because payment information is transmitted directly between the customer's browser and Stripe, sensitive card data never passes through the FitHub application itself.
+Stock management was also handled safely. Basket quantities were limited to available inventory, while stock updates were processed atomically within a database transaction to minimise the risk of inconsistencies during concurrent purchases.
 
-Before any subscription or order is created, server-side verification confirms that payment has been successfully completed and that the transaction amount and currency exactly match the expected values generated by the application.
+#### Form Handling and Validation
 
-To improve reliability, I implemented a signature-verified and idempotent Stripe webhook. This ensures that successful payments are processed correctly even if the customer's browser is closed before returning to the website, whilst preventing duplicate orders from being created.
+Django's ModelForm framework considerably reduced the amount of repetitive code that would otherwise have been required. Forms for orders, membership plans, user profiles, community posts and product reviews all benefited from built-in validation, error handling and Cross-Site Request Forgery (CSRF) protection.
 
-The shopping basket also incorporates stock validation, limiting customers to available inventory and updating stock levels atomically within database transactions to maintain consistency.
+Every form submission was validated on the server before any data was processed or stored. Whenever validation failed, users received clear feedback explaining what needed to be corrected before continuing.
 
-#### Forms & Data Validation
+Actions that modified important data, such as basket updates and subscription management, were intentionally restricted to POST requests using the `@require_POST` decorator. This helped prevent unintended changes caused by direct URL requests.
 
-Django's Forms framework significantly simplified the handling of user input throughout the project.
+#### Code Quality and Standards
 
-ModelForms were implemented for orders, membership plans, user profiles, community posts and product reviews, providing built-in validation, CSRF protection and simplified error handling.
+Maintaining a consistent coding standard throughout the project made the application easier to develop and maintain. Flake8 reported no coding standard violations across the entire codebase, with configuration managed centrally through `setup.cfg` using a maximum line length of 100 characters.
 
-Every form submission undergoes server-side validation before being processed, ensuring that invalid or malicious data cannot be stored within the database. Validation errors are presented clearly alongside the relevant fields, improving usability and guiding users towards successful completion.
+Pylint analysis also produced consistently high scores across every application, with each app achieving at least **8.0** and several receiving the maximum score of **10.00**.
 
-Actions that modify application state, including shopping basket updates and subscription requests, are restricted to **POST** requests through the `@require_POST` decorator, reducing the likelihood of accidental or unauthorised state changes.
+Import statements were organised automatically using **isort**, ensuring a consistent ordering of Python standard libraries, Django modules, third-party packages and local application imports.
 
-#### Code Quality & Development Standards
+To improve maintainability, I added descriptive docstrings and explanatory comments throughout the project. These focus on explaining the purpose behind the code rather than simply describing individual statements.
 
-Maintaining high coding standards remained a priority throughout development.
+#### Deployment and Production Configuration
 
-Using **Flake8** enabled me to produce code that fully complies with the **PEP 8** style guide, with zero reported issues across the completed project.
+Deployment to Heroku was reliable throughout development and testing. Each deployment automatically executed Django migrations during the release phase, ensuring that the production database always remained synchronised with the application code.
 
-Regular analysis using **Pylint** highlighted opportunities to improve code quality, with every Django application exceeding the target score of **8.0**, and several achieving the maximum **10.00** rating.
+Sensitive configuration values, including `SECRET_KEY`, `DATABASE_URL`, Stripe API keys and the `DEBUG` setting, were stored securely as environment variables rather than being committed to the source code repository.
 
-Import statements were automatically organised using **isort**, producing a consistent structure across the entire project.
+Static assets were served efficiently using WhiteNoise, allowing compressed and hashed files to be delivered without requiring an external content delivery network.
 
-Comprehensive docstrings and explanatory comments were also included throughout the codebase, making the application easier to understand, maintain and extend in the future.
+Transitioning from SQLite during development to PostgreSQL in production was straightforward thanks to `dj-database-url`, which simplified environment-specific database configuration.
 
-#### Deployment & Production Environment
-
-Deploying the application to **Heroku** proved to be a straightforward and reliable process.
-
-Production configuration was managed using environment variables, ensuring that sensitive information such as the `SECRET_KEY`, Stripe credentials, database connection strings and `DEBUG` settings remained outside version control.
-
-Static files are served efficiently using **WhiteNoise**, eliminating the need for additional content delivery infrastructure, whilst **Gunicorn** replaces Django's built-in development server to provide a production-ready WSGI environment.
-
-Migrating from SQLite during development to PostgreSQL in production was achieved smoothly through **dj-database-url**, demonstrating Django's flexibility across different database backends.
-
-#### Accessibility & Inclusive Design
-
-Accessibility formed an important consideration throughout the project rather than being treated solely as a final testing exercise.
-
-The completed application was evaluated using **WAVE**, **Google Lighthouse** and the **WCAG 2.1 Level AA** guidelines, allowing accessibility issues to be identified and addressed throughout development.
-
-Semantic HTML5 elements, including `<header>`, `<main>` and `<footer>`, together with a logical heading hierarchy, improve compatibility with assistive technologies.
-
-User feedback messages utilise ARIA live regions to ensure that important notifications are announced automatically by screen readers, whilst keyboard navigation is supported across interactive components, forms and navigation menus.
-
-Every informative image includes meaningful alternative text, ensuring that visual content remains accessible to users relying upon screen readers.
-
-#### Responsive Design & Cross-Browser Compatibility
-
-From the outset, I adopted a mobile-first approach to interface design.
-
-Bootstrap 5's responsive grid system enabled layouts to adapt smoothly from small mobile devices through to large desktop displays, ensuring a consistent user experience regardless of screen size.
-
-Responsive tables, flexible containers and scalable typography contribute to a user interface that remains readable and functional across different devices.
-
-Functionality was tested primarily using **Google Chrome** and **Microsoft Edge**, together with additional verification using **Mozilla Firefox**, providing confidence that the application behaves consistently across multiple browsers.
-
-To improve page performance, product photographs and hero images were stored using the **WebP** format, reducing download sizes whilst maintaining image quality.
-
-#### Version Control & Git Workflow
-
-Git version control played an essential role throughout development.
-
-Development progress was documented through frequent commits using clear, descriptive commit messages following conventional prefixes such as **feat**, **fix** and **docs**. This provided a detailed history of project evolution whilst making changes easier to review and trace.
-
-The GitHub repository was updated regularly throughout development, with production deployments managed directly through Git using `git push heroku main`, providing a simple and reliable deployment workflow.
-
-#### Testing & Quality Assurance
-
-Testing formed an integral part of the development process.
-
-The completed application contains **99 automated tests** written using Django's `TestCase` framework. These tests cover models, forms, views, permissions, payment processing and Stripe webhook functionality, including invalid input, duplicate submissions and payment verification scenarios.
-
-Automated testing was complemented by a detailed **131-case manual testing plan**, covering complete user journeys, validation, responsiveness, browser compatibility and every user-story acceptance criterion.
-
-In addition to functional testing, code quality was monitored continuously using **Flake8**, **Pylint** and **isort**, whilst accessibility was evaluated through **WAVE**, **Google Lighthouse** and manual keyboard navigation. Although formal screen-reader testing remains an area for future development, the project demonstrates a strong commitment to accessibility and quality assurance across both functional and non-functional requirements.
-
-### Challenges Encountered (and How I Addressed Them)
-
-Throughout the development of **FitHub**, I encountered a variety of technical and architectural challenges that required careful investigation and problem solving. Resolving these issues not only improved the overall quality of the application but also strengthened my understanding of Django, Stripe, software testing and production deployment.
-
-#### Strengthening Server-Side Payment Verification
-
-**Challenge**
-
-During the early stages of development, both subscription purchases and product orders relied heavily upon the successful completion of client-side redirects after payment. Whilst functional, this approach presented a security weakness because records could potentially be created without the application independently verifying that payment had actually been completed through Stripe.
-
-**How I Addressed It**
-
-To strengthen the payment workflow, I redesigned the verification process so that payment confirmation was performed entirely on the server.
-
-This involved:
-
-- Retrieving the completed Stripe Checkout Session before recording any subscription.
-- Confirming the Checkout Session's `payment_status` before creating subscription records.
-- Verifying the associated PaymentIntent's status, amount and currency against the expected order total before creating customer orders or reducing stock levels.
-- Developing automated tests that demonstrated unpaid sessions and mismatched payment values could not generate subscriptions or orders.
-
-**Outcome**
-
-Subscriptions and customer orders are now recorded only after payment has been independently verified by Stripe, providing significantly greater security and preventing fraudulent or incomplete transactions.
-
-#### Preventing Multiple Active Memberships
-
-**Challenge**
-
-While testing the subscription workflow, I discovered that members could initiate the subscription process multiple times, resulting in duplicate active subscriptions being created for the same account.
-
-**How I Addressed It**
-
-Rather than creating additional subscription records, I introduced validation that checks whether an active subscription already exists before creating a new one.
-
-If a member already has an active subscription:
-
-- The existing subscription is updated to the newly selected plan.
-- A duplicate subscription is not created.
-- Automated tests verify that repeated subscription attempts maintain only a single active membership.
-
-**Outcome**
-
-Each member can now possess only one active subscription at any given time, ensuring data integrity and simplifying subscription management.
-
-#### Improving Webhook Reliability
-
-**Challenge**
-
-Initially, shopping basket metadata was attached only after payment had been completed. If a customer closed their browser before returning to the application, valuable order information could be lost, preventing successful order creation.
-
-**How I Addressed It**
-
-To overcome this issue, I introduced a dedicated `cache_checkout_data` view that stores shopping basket and delivery information within the Stripe PaymentIntent before payment confirmation occurs.
-
-The signature-verified webhook can subsequently reconstruct the order using this cached metadata should the customer fail to return to the website after payment.
-
-**Outcome**
-
-Order fulfilment now remains reliable regardless of whether customers return to the confirmation page, ensuring completed payments are never lost because of browser interruptions.
-
-#### Resolving Stripe Subscription Checkout Errors
-
-**Challenge**
-
-Following deployment to the live production environment, I encountered a **500 Internal Server Error** after completing a genuine subscription purchase. Although mocked automated tests passed successfully, Stripe's live subscription mode returned Checkout Session data differently from my initial assumptions.
-
-**How I Addressed It**
-
-After investigating the live API responses, I:
-
-- Expanded the retrieved Checkout Session to include `line_items`.
-- Replaced unsupported `.get()` method calls with the appropriate Stripe object attribute access.
-- Updated the mocked unit tests to reflect Stripe's actual response structure.
-
-**Outcome**
-
-The subscription confirmation page now renders correctly after live payments, demonstrating the importance of supplementing mocked unit tests with real-world production testing.
-
-#### Correcting Requirements File Encoding
-
-**Challenge**
-
-Whilst preparing the application for deployment, I discovered that PowerShell had generated `requirements.txt` using UTF-16 encoding rather than the standard UTF-8 format. This caused dependency installation issues within clean deployment environments.
-
-**How I Addressed It**
-
-The requirements file was regenerated using UTF-8 encoding before forcing Heroku to rebuild the application without using its dependency cache.
-
-**Outcome**
-
-Dependencies now install consistently across both local development and production environments using a standards-compliant requirements file.
-
-#### Achieving Complete Flake8 Compliance
-
-**Challenge**
-
-As development progressed, the codebase gradually accumulated a number of PEP 8 violations, including excessive line lengths, trailing whitespace and inconsistent file formatting.
-
-**How I Addressed It**
-
-Rather than making broad automated changes, I reviewed every reported issue individually.
-
-This included:
-
-- Removing unnecessary whitespace.
-- Wrapping overly long lines.
-- Correcting missing final newlines.
-- Configuring `setup.cfg` to use a 100-character maximum line length that better suited the project's coding style.
-
-**Outcome**
-
-The completed project achieves zero reported Flake8 issues whilst maintaining consistent formatting throughout the codebase.
-
-#### Improving Pylint Scores
-
-**Challenge**
-
-Although Pylint proved extremely valuable for improving code quality, it also produced several false-positive warnings relating to Django's dynamic behaviour, particularly model managers and model classes.
-
-**How I Addressed It**
-
-To ensure Pylint correctly understood Django's architecture, I incorporated the `pylint-django` plugin and selectively disabled a small number of warnings where they were known to be inaccurate.
-
-**Outcome**
-
-Every Django application achieved a Pylint score above the recommended benchmark of **8.0**, with several receiving the maximum score of **10.00**.
-
-#### Standardising Import Structure
-
-**Challenge**
-
-As the project expanded across multiple Django applications, import statements gradually became inconsistent in both ordering and readability.
-
-**How I Addressed It**
-
-I configured **isort** using `setup.cfg` and applied it consistently across every application within the project.
-
-**Outcome**
-
-Imports now follow a consistent and professional structure, improving readability whilst making files easier to maintain.
-
-#### Resolving Static Asset Deployment Issues
-
-**Challenge**
-
-After the initial Heroku deployment, CSS, JavaScript and image assets were not loading correctly within the production environment.
-
-**How I Addressed It**
-
-To resolve this issue I:
-
-- Added WhiteNoise middleware.
-- Configured compressed static file storage.
-- Ensured `collectstatic` was executed during every deployment.
-
-**Outcome**
-
-Static assets are now served efficiently using compressed, hashed filenames, providing reliable performance across production deployments.
-
-#### Improving Error Handling
-
-**Challenge**
-
-Unexpected server failures and missing pages initially displayed generic error responses that were inconsistent with the overall appearance of the application.
-
-A second issue involved confirmation emails, where a temporary email delivery failure had the potential to interrupt the checkout confirmation page.
-
-**How I Addressed It**
-
-I introduced branded custom error pages for both **404** and **500** responses, ensuring a consistent user experience across the website.
-
-I also modified the checkout workflow so that confirmation email failures are logged rather than preventing customers from accessing their successful order confirmation.
-
-**Outcome**
-
-Members are now presented with informative, branded error pages, whilst successful purchases remain unaffected by temporary email delivery problems.
-
-#### Preventing Duplicate Product Reviews
-
-**Challenge**
-
-The database correctly prevented duplicate product reviews using a `unique_together` constraint. However, attempting to submit a second review resulted in an unhandled database exception rather than providing useful feedback to the user.
-
-**How I Addressed It**
-
-Before saving a review, the application now checks whether the authenticated member has already reviewed the selected product.
-
-Where a duplicate review is detected:
-
-- The review is not saved.
-- The member is redirected appropriately.
-- An informative feedback message explains why the submission could not be completed.
-
-**Outcome**
-
-Duplicate reviews are now handled gracefully, significantly improving the user experience whilst maintaining database integrity.
-
-#### Improving Documentation Accuracy
-
-**Challenge**
-
-As development evolved, portions of the README and supporting documentation continued to describe planned functionality that had not ultimately been implemented. Some development tools and methodologies were also referenced despite not forming part of the final project.
-
-**How I Addressed It**
-
-I conducted a comprehensive review of both the documentation and the completed codebase, ensuring every implemented feature could be directly supported by the finished application.
-
-This involved:
-
-- Revisiting every user story.
-- Comparing acceptance criteria against the completed functionality.
-- Removing unsupported claims.
-- Clearly distinguishing completed functionality from future enhancements.
-
-**Outcome**
-
-The documentation now provides an accurate representation of the completed application, improving both transparency and maintainability.
-
-#### Producing a Consistent Product Catalogue
-
-**Challenge**
-
-Product photographs originated from different sources and displayed noticeably different background tones, resulting in an inconsistent appearance throughout the online shop.
-
-**How I Addressed It**
-
-Each image was carefully edited to create a consistent white background whilst preserving the original subject, lighting and subtle shadow detail.
-
-The original WebP format and image dimensions were retained throughout the editing process to maintain performance and consistency.
-
-**Outcome**
-
-The completed product catalogue presents a cleaner and more professional appearance, reinforcing the overall quality and visual consistency of the FitHub brand.
-
-### What I Would Improve Next
-
-Although **FitHub** satisfies the objectives established for Milestone 4 and provides a fully functional subscription-based fitness platform, the project has also highlighted several opportunities for future development. Given additional time, I would continue expanding the application by introducing new functionality that would improve the user experience, strengthen security, enhance scalability and further increase the commercial viability of the platform.
-
-#### Enhanced Email Functionality
-
-Communication between the platform and its members could be significantly improved by extending the current email system.
-
-- **Production email delivery:** Rather than relying on the existing development email backend, I would integrate a dedicated SMTP provider such as SendGrid or Mailgun to deliver registration confirmations, password reset emails and purchase notifications more reliably.
-- **Branded email templates:** Professionally designed HTML email templates would be created to reflect the FitHub visual identity across subscription confirmations, order receipts and general account correspondence.
-- **Subscription reminder emails:** Using background task processing with tools such as Celery or Django-Q, automated reminders could be sent prior to subscription renewals or membership expiry dates.
-- **Account verification:** Email verification would be introduced during the registration process to confirm account ownership, improve security and reduce the likelihood of fraudulent registrations.
-
-#### Subscription Management
-
-The subscription system could be expanded to provide members with greater flexibility and control over their memberships.
-
-- **Stripe Customer Portal integration:** Members would be able to upgrade, downgrade, renew or cancel their subscriptions directly through Stripe's hosted customer portal.
-- **Subscription lifecycle notifications:** Automated notifications would keep members informed whenever their subscriptions renew, expire, fail or are cancelled.
-- **Discount and promotional codes:** Seasonal offers and promotional vouchers could be introduced to encourage new subscriptions and reward existing members.
-- **Gift subscriptions:** Members would be able to purchase fitness memberships as gifts for family members or friends.
-
-#### Shop Enhancements
-
-Several additional e-commerce features could improve both usability and the overall shopping experience.
-
-- **Advanced filtering and sorting:** Products could be filtered according to category, popularity, rating, availability and price.
-- **Wishlist functionality:** Registered members would be able to save products for future purchases.
-- **Related product recommendations:** Similar or complementary products could be suggested based upon browsing activity and previous purchases.
-- **Inventory monitoring:** Automatic notifications could alert administrators whenever stock levels fall below predefined thresholds.
-
-#### Community Improvements
-
-The community section could be developed into a more interactive social platform.
-
-- **Threaded discussions:** Members would be able to reply directly to community posts, creating structured conversations.
-- **Likes and reactions:** Reaction buttons could encourage greater community participation and recognise valuable contributions.
-- **Public member profiles:** Fitness achievements, recent activity and community contributions could be displayed on dedicated member profile pages.
-- **Content moderation tools:** Reporting mechanisms and moderation workflows would help maintain a safe and positive community environment.
-
-#### Personalised Fitness Features
-
-Future releases could provide members with more personalised fitness experiences.
-
-- **Workout tracking:** Members could record completed workouts and monitor their long-term progress.
-- **Progress monitoring:** Historical records of body measurements, weight changes and fitness milestones could be maintained within individual profiles.
-- **Personalised recommendations:** Membership plans, products and fitness content could be suggested according to each member's profile and activity.
-- **Achievement system:** Digital badges and milestone rewards could encourage long-term engagement and continued participation.
-
-#### Analytics & Administration
-
-Administrative functionality could be extended to provide more comprehensive business intelligence.
-
-- **Management dashboard:** Administrators could monitor subscription growth, revenue trends and sales performance from a central dashboard.
-- **Customer analytics:** Purchasing behaviour and subscription retention statistics could provide valuable business insights.
-- **Data export:** Orders, subscriptions and customer information could be exported in CSV or Excel format.
-- **Flexible reporting:** Reports could be generated using configurable date ranges and filtering criteria.
-
-#### Performance Optimisation
-
-Several additional optimisations could further improve application performance as the platform grows.
-
-- **Further database optimisation:** The use of `select_related()` and `prefetch_related()` could be expanded to minimise unnecessary database queries.
-- **Caching:** Redis could be introduced to cache frequently accessed data, templates and database queries.
-- **Content Delivery Network:** Static assets could be distributed through a CDN such as Cloudflare to improve loading times worldwide.
-- **Lazy image loading:** Product images and community content could be loaded only when required, reducing initial page-load times.
-
-#### Testing Improvements
-
-Although comprehensive testing has already been completed, several enhancements could strengthen future development.
-
-- **Continuous Integration:** GitHub Actions could automatically execute the automated test suite for every commit and pull request.
-- **End-to-end browser testing:** Tools such as Selenium or Playwright could verify complete user journeys automatically.
-- **Load and stress testing:** Application performance could be evaluated under high traffic using tools such as Locust.
-- **Automated security scanning:** Utilities including Bandit and Safety could be incorporated into the testing pipeline to identify potential security vulnerabilities.
-
-#### Accessibility Enhancements
-
-Accessibility would continue to remain a priority during future development.
-
-- **Screen-reader testing:** Comprehensive evaluation using NVDA and VoiceOver would further improve compatibility with assistive technologies.
-- **Reduced motion support:** Animations could respect the `prefers-reduced-motion` media query for users with motion sensitivities.
-- **WCAG refinement:** The application could be further enhanced to align with the latest WCAG 2.2 recommendations.
-- **Keyboard navigation:** Additional testing would ensure every interactive component remains fully operable without the use of a mouse.
-
-#### Security Improvements
-
-Additional security measures could further strengthen the platform.
-
-- **Authentication rate limiting:** Brute-force login attempts could be mitigated through the implementation of `django-ratelimit`.
-- **Two-factor authentication:** Optional multi-factor authentication could be offered to improve account security.
-- **Content Security Policy:** Additional HTTP security headers could provide greater protection against cross-site scripting attacks.
-- **Automated vulnerability monitoring:** Continuous security scanning could be incorporated into the deployment workflow.
-
-#### Progressive Web App
-
-Developing FitHub as a Progressive Web App would significantly improve the mobile user experience.
-
-- **Offline capability:** Selected features could remain available even when an internet connection is unavailable.
-- **Installable application:** Members could install FitHub directly onto their desktop or mobile devices without requiring a native application.
-- **Push notifications:** Real-time notifications could inform members about subscription activity, community updates and promotional offers.
-
-#### Internationalisation
-
-Supporting multiple languages would broaden the platform's accessibility and commercial reach.
-
-- **Internationalisation (i18n):** Django's translation framework could support English, Portuguese and additional languages.
-- **Multi-currency pricing:** Product and subscription prices could be presented according to the visitor's region.
-- **Regional localisation:** Dates, times and number formats could automatically adapt to local conventions.
-
-#### Artificial Intelligence Features
-
-Artificial Intelligence offers significant opportunities for improving both personalisation and business intelligence.
-
-- **AI-generated workout recommendations:** Exercise programmes could be tailored automatically according to each member's goals and experience level.
-- **Nutrition recommendations:** Personalised nutrition guidance could be generated using member profile information.
-- **Automated community moderation:** AI could assist with identifying spam, inappropriate content and abusive behaviour.
-- **Predictive analytics:** Machine learning techniques could forecast subscription trends, customer retention and future purchasing behaviour.
-
-### Key Lessons Learned
-
-The development of **FitHub** has provided me with valuable practical experience across every stage of the software development lifecycle. Although many of the underlying concepts had been introduced during previous milestones, applying them within a large-scale, production-ready Django application significantly increased both my technical ability and confidence as a full-stack developer. Throughout the project, I gained a number of important insights that will influence how I approach future software development projects.
-
-#### Strengthening My Understanding of Django
-
-Working on a complete full-stack application considerably expanded my knowledge of the Django framework and demonstrated the advantages of adopting its built-in development patterns.
-
-- **Modular application design:** Dividing the project into dedicated Django applications helped me maintain a clear separation of responsibilities, making the application easier to maintain, extend and test.
-- **Appreciating the MVT architecture:** Separating business logic, data models and presentation layers reinforced the importance of writing well-structured, maintainable code.
-- **Utilising Django's built-in functionality:** Features including **django-allauth**, **ModelForms**, database migrations, decorators and the Django administration interface enabled me to implement robust functionality whilst reducing unnecessary custom development.
-- **Careful migration planning:** Managing migrations in a logical sequence proved essential as the database evolved throughout the project, reducing the likelihood of deployment and data consistency issues.
-
-#### Producing Higher Quality Code
-
-One of the most important lessons I learned was the value of maintaining consistently high coding standards throughout development.
-
-- **Static code analysis improves reliability:** Using tools such as Flake8, Pylint and isort helped identify potential issues that may otherwise have remained unnoticed.
-- **Consistent coding conventions improve maintainability:** Adhering to PEP 8 standards resulted in a cleaner, more professional codebase that was considerably easier to understand and maintain.
-- **Refactoring strengthens software quality:** Revisiting existing code regularly allowed me to simplify complex logic, remove duplication and improve readability.
-- **Well-written documentation supports long-term maintenance:** Meaningful docstrings and carefully written comments made more complex sections of the application significantly easier to understand.
-
-#### Appreciating the Value of Comprehensive Testing
-
-Throughout the project I developed a much greater appreciation of the role that testing plays in producing reliable software.
-
-- **Testing throughout development reduces defects:** Running automated tests alongside feature development enabled problems to be identified before introducing additional functionality.
-- **Automated testing safeguards future development:** Maintaining a comprehensive automated test suite provided reassurance that future modifications did not introduce unexpected regressions.
-- **Manual testing remains indispensable:** End-to-end testing identified usability concerns, interface inconsistencies and real-world scenarios that automated tests alone could not reveal.
-- **Production testing complements mocked testing:** Working with Stripe demonstrated that genuine payment transactions can expose behaviours that are not always reproduced within mocked unit tests.
-
-#### Understanding Production Deployment
-
-Deploying the application provided valuable insight into the practical differences between development and production environments.
-
-- **Protecting configuration data is essential:** Sensitive information, including API credentials and secret keys, should always be managed using environment variables rather than being stored within the source code.
-- **Production environments behave differently:** Certain issues only became apparent once the application had been deployed to Heroku, reinforcing the importance of validating functionality within a live environment.
-- **Static asset configuration is critical:** Correctly configuring WhiteNoise ensured that CSS, JavaScript and image assets were served consistently in production.
-- **Database portability is one of Django's strengths:** Moving seamlessly from SQLite during development to PostgreSQL in production demonstrated the flexibility and reliability of Django's ORM.
-
-#### Building More Secure Applications
-
-Security became a much more significant consideration than in any of my previous projects.
-
-- **Server-side validation should always be trusted over client-side validation:** Critical business rules should be enforced on the server before processing any user input.
-- **Multiple security layers provide stronger protection:** Combining model validation, Django forms, decorators and database constraints created a more secure application than relying on any individual mechanism.
-- **Independent payment verification is essential:** Stripe transactions should always be verified server-side before subscriptions or customer orders are created.
-- **Django provides an excellent security foundation:** Built-in protection against SQL injection, cross-site scripting and CSRF attacks simplified the implementation of secure functionality.
-
-#### Designing Better User Experiences
-
-Developing FitHub reinforced the importance of placing user experience at the centre of the design process.
-
-- **Reducing barriers encourages engagement:** Supporting both guest and authenticated checkout provides greater flexibility whilst encouraging users to register in the future.
-- **Clear feedback improves user confidence:** Informative validation messages, success notifications and confirmation pages help users understand the outcome of every interaction.
-- **Consistency enhances usability:** Maintaining a common visual style, navigation structure and page layout throughout the application creates a more intuitive user experience.
-- **A mobile-first approach delivers better responsiveness:** Designing initially for smaller devices ensured that the interface adapted effectively across desktop, tablet and mobile platforms.
-
-#### Improving Application Performance
-
-As the project expanded, performance became an increasingly important aspect of development.
-
-- **Efficient database queries improve responsiveness:** Using `select_related()` and `prefetch_related()` reduced unnecessary database activity and improved page performance.
-- **Optimised images reduce loading times:** Converting assets to the WebP format allowed image sizes to be reduced whilst preserving visual quality.
-- **Static file optimisation benefits production environments:** WhiteNoise provided an efficient method of serving compressed static assets after deployment.
-- **Perceived performance matters:** Loading indicators and responsive user interfaces improve how quickly the application feels, even when background processing is taking place.
-
-#### Accessibility Should Never Be an Afterthought
-
-One of the most valuable lessons I learned was that accessibility should form part of the design process from the very beginning.
-
-- **Early accessibility planning prevents unnecessary redesign:** Incorporating WCAG guidance from the outset proved considerably easier than attempting to retrofit accessibility later.
-- **Semantic HTML provides the foundation:** Logical heading structures, landmarks and correctly associated form labels improve compatibility with assistive technologies.
-- **Accessibility testing should be continuous:** Regular evaluation using WAVE and Lighthouse enabled accessibility issues to be identified and resolved throughout development.
-- **Keyboard accessibility benefits every user:** Ensuring that all interactive elements could be operated without a mouse improved both accessibility and general usability.
-
-#### Developing Professional Version Control Practices
-
-Working on a larger application strengthened my understanding of effective version control.
-
-- **Descriptive commit messages improve traceability:** Clearly documenting the purpose of each change made the project's development history much easier to understand.
-- **Frequent commits reduce development risk:** Smaller, focused commits simplified debugging and reduced the likelihood of introducing multiple issues simultaneously.
-- **Version control supports confident experimentation:** Git allowed me to explore new ideas whilst retaining the ability to revert safely to previous working versions.
-- **A structured commit history documents project evolution:** Maintaining a detailed Git history now provides a comprehensive record of how the application developed over time.
-
-#### Strengthening Project Planning Skills
-
-Managing a project of this size reinforced several important project management principles.
-
-- **User stories provide a clear development roadmap:** Basing implementation on well-defined user stories ensured that development remained focused on genuine user requirements.
-- **Prioritising essential functionality controls project scope:** Concentrating initially on core features helped ensure that the application remained achievable within the available timescale.
-- **Technical documentation requires significant commitment:** Producing a detailed README, comprehensive testing documentation and supporting evidence required considerable effort but substantially improved the overall quality of the project.
-- **Continuous refinement leads to better software:** Regularly reviewing and improving earlier work strengthened both the underlying codebase and the overall user experience.
-
-#### Growing as a Full-Stack Developer
-
-Overall, the development of **FitHub** has significantly increased both my technical knowledge and my confidence in developing full-stack applications.
-
-- **Frontend and backend development are equally important:** An attractive user interface must be supported by secure, reliable server-side functionality in order to deliver a successful application.
-- **Sound database design underpins scalable software:** Carefully structured relational databases simplify development whilst supporting long-term maintainability.
-- **Deployment is an integral part of software development:** A project cannot be considered complete until it has been successfully deployed, configured and tested within a production environment.
-- **Balancing technical and business objectives produces stronger solutions:** Considering usability, security, accessibility, scalability and commercial requirements together resulted in a more realistic, maintainable and professional web application.
-
-### Evidence Pointers
-
-The successful completion of **FitHub** is supported by a substantial body of evidence gathered throughout the development lifecycle, demonstrating the adoption of recognised software engineering practices, modern deployment techniques, comprehensive testing procedures, accessibility standards, and professional documentation. Collectively, these artefacts provide verifiable evidence of both the technical implementation and the quality-assurance processes undertaken during the project.
-
-#### Code Quality
-
-Maintaining a clean, reliable and maintainable codebase remained a priority throughout the development of **FitHub**. To support this objective, I regularly validated the Python code using recognised static analysis tools, ensuring that the application complied with established professional coding standards. The entire project adheres to **PEP 8** guidelines, with **Flake8** confirming that no outstanding validation issues remained. Code consistency and maintainability were further strengthened through the use of **Pylint**, with each Django application achieving scores that exceeded the project's minimum quality threshold. To maintain a logical and consistent import structure across the application, **isort** was incorporated into my workflow, automatically organising standard library modules, third-party packages and project-specific imports. Dedicated configuration files for Flake8, Pylint and isort were maintained within the repository, ensuring that code validation remained consistent throughout development.
-
-#### Deployment
-
-To demonstrate that the application was suitable for production use, I successfully deployed **FitHub** to the **Heroku** cloud platform using a production-ready configuration. The live application is publicly accessible at **https://fithub-rp-90631f751ed4.herokuapp.com/**, allowing all implemented functionality to be evaluated within a real-world hosting environment. Sensitive configuration values, including the Django secret key, Stripe credentials and database connection settings, were managed securely through environment variables rather than being stored within the source code. Static assets are efficiently served using **WhiteNoise**, whilst a **PostgreSQL** database provides reliable data storage within the production environment, with all database migrations successfully applied during deployment.
+Production traffic was handled using the Gunicorn WSGI server rather than Django's built-in development server, providing a more appropriate environment for hosting the live application.
 
 #### Accessibility
 
-Creating an inclusive application formed an important part of the development process, with accessibility being considered from the earliest stages of implementation. Throughout development, I used the **WAVE Web Accessibility Evaluation Tool** to identify and resolve accessibility issues before deployment. The application has been designed to target **WCAG 2.1 Level AA** recommendations through the implementation of semantic HTML, logical heading structures, accessible form labels, ARIA attributes and appropriate landmark elements. Colour combinations were reviewed and refined to ensure that text met the recommended contrast ratios, whilst keyboard navigation was verified to ensure that core functionality remained fully accessible without requiring a pointing device.
+Accessibility remained an important consideration throughout the project. I assessed the application using both WAVE and Lighthouse while aiming to meet the **WCAG 2.1 AA** accessibility guidelines.
+
+Pages were structured using a logical heading hierarchy together with semantic HTML elements such as `<header>`, `<main>` and `<footer>`. A skip-to-content link was also included to improve navigation for keyboard and assistive technology users.
+
+User feedback messages were assigned `role="alert"` so that screen readers automatically announced important information when it appeared.
+
+Every interactive element was designed to be accessible using only the keyboard, while all forms included appropriate labels, including visually hidden labels where necessary. Images throughout the application were also supplied with meaningful alternative text to support users relying on screen readers.
+
+#### Responsive Design and Cross-Browser Testing
+
+The interface was developed using a mobile-first approach before progressively adapting layouts for larger screen sizes using Bootstrap 5's responsive grid system.
+
+Individual pages adjusted smoothly across a range of devices, including responsive table layouts that reorganised content appropriately on narrower displays.
+
+Cross-browser compatibility was verified primarily using Google Chrome and Microsoft Edge, with additional testing carried out in Mozilla Firefox to ensure consistent behaviour.
+
+To improve page loading performance, product images and hero graphics were stored using the WebP image format, reducing file sizes without noticeably affecting image quality.
+
+#### Version Control and Git Workflow
+
+Using Git throughout development provided a clear record of the project's progression. Each commit followed a consistent naming convention using prefixes such as **feat**, **fix** and **docs**, making it much easier to track individual changes over time.
+
+The complete development history was maintained on GitHub through regular commits and pushes, providing secure version control and allowing work to be recovered whenever necessary.
+
+Deploying new versions of the application remained straightforward because Heroku integrates directly with Git, allowing updates to be published quickly using `git push heroku main`.
+
+#### Testing Coverage
+
+Testing formed an important part of the overall development process. The automated test suite contains **99 Django `TestCase` tests** covering models, views, forms, authentication, authorisation and the Stripe payment and webhook functionality. These tests also included edge cases such as invalid input, duplicate submissions and mismatched payment values.
+
+Alongside the automated testing, I produced a comprehensive manual testing plan consisting of **131 individual test cases**. This covered user journeys, validation, responsive behaviour and every user story acceptance criterion identified during planning.
+
+Code quality was continuously monitored using Flake8, Pylint and isort, helping to maintain consistent coding standards throughout development.
+
+Finally, accessibility was assessed using WAVE, Lighthouse and manual keyboard navigation. Although these checks demonstrated that the application meets a high accessibility standard, comprehensive testing using dedicated screen-reader software has been identified as future work that could further strengthen the project.
+
+### Challenges Encountered and How I Addressed Them
+
+Building **FitHub** presented a variety of technical and design difficulties, each of which required careful investigation, testing and practical problem-solving. Resolving these issues improved the final quality of the application and strengthened my understanding of Django, Stripe, automated testing and production deployment.
+
+#### Strengthening Server-Side Payment Verification
+
+During the early stages of development, both membership purchases and product orders depended too heavily on the customer's browser returning to the website after payment. Although the process appeared to work, it created a security weakness because records could potentially be written without the application independently confirming with Stripe that payment had actually been completed.
+
+To correct this, I redesigned the verification process so that payment confirmation took place entirely on the server. Before creating a subscription, the application now retrieves the completed Stripe Checkout Session and checks its `payment_status`. Product purchases are also verified by examining the associated PaymentIntent and comparing its status, amount and currency with the expected order total before an order is created or stock is reduced. I also added automated tests to prove that unpaid sessions and incorrect payment amounts cannot generate valid subscriptions or orders.
+
+As a result, no transaction is stored until Stripe has independently confirmed that the payment was successful. This closes the original security gap and prevents incomplete or potentially fraudulent purchases from entering the database.
+
+#### Preventing Multiple Active Memberships
+
+While testing the subscription journey, I discovered that a member could start the process several times and create more than one active subscription against the same account.
+
+I resolved this by checking for an existing active subscription before creating a new record. When a membership is already present, the existing subscription is updated to the newly selected plan rather than adding another database entry. Automated tests were also written to confirm that repeated attempts still leave the user with only one active membership.
+
+This approach keeps the subscription data accurate and ensures that each member can hold no more than one active plan at any time.
+
+#### Making the Payment Webhook More Reliable
+
+The first version of the checkout process attached basket metadata only after payment had been completed. This meant that if a customer closed the browser before returning to FitHub, the order details could be lost and the purchase might never be recorded.
+
+To improve reliability, I created a dedicated `cache_checkout_data` view that stores the basket and delivery information within the Stripe PaymentIntent before the payment is confirmed. The signature-verified webhook can then use this metadata to reconstruct the order if the customer does not return to the confirmation page.
+
+This change ensures that completed payments are processed successfully regardless of whether the browser redirect finishes, preventing valid orders from being lost when a customer closes the page too early.
+
+#### Resolving Stripe Subscription Checkout Errors
+
+After deploying the application, completing a genuine subscription purchase produced a **500 Internal Server Error**. The mocked tests had passed, but Stripe's live subscription response used a different Checkout Session structure from the one I had expected.
+
+I investigated the live API response and expanded the retrieved Checkout Session so that it included `line_items`. I also replaced unsupported `.get()` calls with the attribute-based access expected by Stripe objects. The mocked unit tests were then revised so that their structure matched the response returned by the live API more closely.
+
+Following these changes, the confirmation page rendered correctly after a real subscription payment. This highlighted the importance of supporting mocked testing with controlled testing against the production service.
+
+#### Correcting the Requirements File Encoding
+
+While preparing the project for deployment, I found that PowerShell had saved `requirements.txt` using UTF-16 encoding rather than the expected UTF-8 format. This caused dependency installation to fail in a clean deployment environment.
+
+I regenerated the file using UTF-8 encoding and then forced Heroku to rebuild the application without relying on the previous dependency cache.
+
+The corrected file now installs the required packages consistently in both local and production environments.
+
+#### Achieving Full Flake8 Compliance
+
+As the application expanded, several PEP 8 issues appeared across the codebase, including lines that exceeded the preferred length, trailing whitespace and inconsistent formatting.
+
+I reviewed each Flake8 warning individually rather than applying changes without inspection. I removed unnecessary whitespace, wrapped long lines, added missing final newlines and configured `setup.cfg` with a 100-character line limit that was appropriate for the project.
+
+The completed codebase now produces no Flake8 violations and follows a consistent formatting standard throughout.
+
+#### Improving Pylint Scores
+
+Pylint provided useful feedback, although it also generated several inaccurate warnings because of Django's dynamic behaviour, particularly around model managers and model classes.
+
+To improve the accuracy of the analysis, I installed the `pylint-django` plugin and disabled only a small number of warnings that I had confirmed were false positives.
+
+Every application subsequently exceeded the recommended score of 8.0, with several achieving the maximum result of **10.00**.
+
+#### Organising the Import Structure
+
+As the project grew across multiple Django applications, import statements became less consistent and increasingly difficult to scan.
+
+I configured **isort** through `setup.cfg` and applied it across the entire project so that imports followed the same predictable structure in every file.
+
+Imports are now arranged clearly into standard library, Django, third-party and local sections, which improves readability and long-term maintainability.
+
+#### Fixing Static Asset Deployment
+
+After the first Heroku deployment, the production version of FitHub failed to load its CSS, JavaScript and image assets correctly.
+
+I resolved the issue by adding WhiteNoise middleware, configuring compressed static file storage and confirming that `collectstatic` ran during every deployment.
+
+Static content is now served reliably in production using compressed and hashed filenames, improving both consistency and performance.
+
+#### Improving Error Handling
+
+Unexpected failures and missing pages initially displayed generic error screens that did not match the design of the wider application. A temporary failure when sending an order confirmation email could also prevent the completed checkout page from loading.
+
+I created branded templates for both **404** and **500** responses so that errors remained visually consistent with the rest of FitHub. I also revised the checkout process so that email delivery failures were logged without interrupting access to the successfully completed order.
+
+Users now receive clearer and more helpful error pages, while a valid purchase is no longer affected by a temporary email problem.
+
+#### Managing Duplicate Product Reviews Gracefully
+
+The database correctly prevented duplicate reviews through a `unique_together` constraint. However, a second submission originally produced an unhandled database exception rather than useful feedback for the member.
+
+I added a check before saving the review to determine whether the signed-in user had already reviewed the selected product. When an existing record is found, the duplicate is not saved, the member is redirected appropriately and a clear message explains the reason.
+
+This provides a smoother experience while preserving the integrity of the review data.
+
+#### Keeping the Documentation Accurate
+
+As development progressed, some sections of the README and supporting documentation continued to describe planned features that were not included in the final application. A small number of tools and methods were also mentioned even though they were not ultimately used.
+
+I reviewed the completed code alongside the documentation and checked that every statement could be supported by the final implementation. This involved revisiting each user story, comparing every acceptance criterion with the completed functionality, removing unsupported claims and separating finished work from possible future improvements.
+
+The documentation now provides an honest and dependable account of the finished application, making it more credible and easier to maintain.
+
+#### Creating a Consistent Product Catalogue
+
+The original product images came from several sources and used slightly different background tones, which made the shop catalogue appear visually inconsistent.
+
+I edited each image so that it used a uniform white background while retaining the original product, lighting and soft shadow details. I also preserved the existing WebP format and image dimensions.
+
+The final catalogue now has a cleaner and more professional appearance, strengthening the visual consistency of the wider FitHub brand.
+
+### What I Would Improve Next
+
+Although **FitHub** meets the objectives I set for Milestone 4 and operates as a complete subscription-based fitness platform, the development process revealed several areas that could be strengthened in a future version. With more time available, I would continue to expand the application by adding features that improve usability, reinforce security, support future growth and increase the platform's commercial potential.
+
+#### Enhanced Email Functionality
+
+The current email system could be developed further so that communication between FitHub and its members becomes more dependable and professional.
+
+For production use, I would replace the development email backend with a dedicated SMTP service such as SendGrid or Mailgun. This would make registration confirmations, password reset messages, purchase receipts and membership notifications more reliable.
+
+I would also design branded HTML email templates that reflect FitHub's visual identity. These templates could be used for subscription confirmations, order receipts, password recovery messages and other account-related communication, giving members a more consistent experience.
+
+Automated subscription reminders would be another useful addition. By introducing background task processing through Celery or Django-Q, FitHub could send messages before a membership renewal or expiry date without slowing down normal web requests.
+
+I would also add email verification to the registration process. Confirming ownership of an email address would improve account security and help reduce false or fraudulent registrations.
+
+#### Subscription Management
+
+The subscription system could offer members more direct control over how their memberships are managed.
+
+One improvement would be to integrate Stripe's Customer Portal. This would allow members to upgrade, downgrade, renew or cancel a plan through Stripe's secure hosted interface instead of relying entirely on custom account-management pages.
+
+I would also introduce automated lifecycle notifications so that members receive clear updates when a subscription renews, expires, fails to process or is cancelled.
+
+Discount codes and promotional vouchers could be added to support seasonal campaigns, encourage new registrations and reward existing members. Gift subscriptions could also widen the platform's appeal by allowing customers to purchase memberships for relatives or friends.
+
+#### Shop Enhancements
+
+The shop could be expanded with additional e-commerce features that make products easier to discover and manage.
+
+Advanced filtering and sorting would allow customers to organise products by category, rating, popularity, price and availability. This would be particularly useful as the number of products grows.
+
+A wishlist feature would give registered members the option to save products and return to them later without immediately placing them in the basket.
+
+Related and complementary products could also be recommended using browsing behaviour or previous purchases. This could help customers discover useful items while increasing the commercial value of the shop.
+
+For administrators, stock monitoring could be improved by sending automatic warnings whenever inventory falls below a chosen threshold.
+
+#### Community Improvements
+
+The community area could be developed into a more engaging and interactive part of the platform.
+
+Threaded replies would allow members to respond directly to individual posts, producing clearer and more organised discussions.
+
+Likes and reaction buttons could encourage participation while giving members a simple way to recognise helpful or motivating contributions.
+
+Public member profiles could also display achievements, recent activity and community involvement, helping to create a stronger sense of connection between users.
+
+To maintain a safe environment, I would add content-reporting tools and a moderation workflow that allows inappropriate posts to be reviewed and managed efficiently.
+
+#### Personalised Fitness Features
+
+A future version of FitHub could offer a more individual experience by using each member's goals and activity data.
+
+Workout tracking would allow members to record completed sessions and review their progress over time.
+
+Profile-based progress monitoring could store historical information such as body measurements, weight changes and fitness milestones, giving users a clearer view of their development.
+
+The platform could also recommend plans, products and content according to a member's fitness goals, experience level and previous activity.
+
+An achievement system using digital badges and milestone rewards could encourage members to remain active and continue using the platform over a longer period.
+
+#### Analytics and Administration
+
+The administration area could be expanded to provide more detailed information about the performance of the business.
+
+A central management dashboard could display subscription growth, sales figures, recurring revenue and product performance.
+
+Customer analytics could reveal patterns in purchasing behaviour and membership retention, helping administrators make more informed decisions.
+
+I would also add CSV and Excel export functionality for orders, subscriptions and customer records, making the data easier to analyse outside the application.
+
+Flexible reporting tools could allow administrators to choose date ranges, transaction types and other filters before generating a report.
+
+#### Performance Optimisation
+
+As the platform grows, further optimisation would help maintain fast and reliable performance.
+
+I would extend the use of `select_related()` and `prefetch_related()` to additional queries where related objects are accessed repeatedly.
+
+Redis could be introduced to cache commonly requested data, selected templates and expensive database results.
+
+Static assets could also be delivered through a content delivery network such as Cloudflare, improving loading times for users in different regions.
+
+Lazy loading could be applied more widely so that product and community images are only loaded when they approach the visible area of the page.
+
+#### Testing Improvements
+
+The current testing process is comprehensive, but several additions could make future development even more dependable.
+
+GitHub Actions could run the automated test suite whenever code is committed or a pull request is opened. This would identify regressions before changes are merged or deployed.
+
+End-to-end browser tests written with Selenium or Playwright could automatically reproduce full user journeys, including registration, purchasing and subscription management.
+
+Load and stress testing with Locust could show how the application performs when many users access it at the same time.
+
+Automated security tools such as Bandit and Safety could also be included in the testing pipeline to identify vulnerable dependencies and potentially unsafe Python code.
+
+#### Accessibility Enhancements
+
+Accessibility would remain an important consideration in future development.
+
+I would carry out more extensive screen-reader testing with NVDA and VoiceOver to confirm that important journeys are understandable and usable through assistive technology.
+
+Animations and transitions could be updated to respect the `prefers-reduced-motion` media query, helping users who experience discomfort from movement effects.
+
+The application could also be reviewed against the latest WCAG 2.2 guidance so that newer recommendations are considered alongside the existing WCAG 2.1 AA work.
+
+Further keyboard-only testing would help ensure that every interactive feature remains fully accessible without a mouse.
+
+#### Security Improvements
+
+Additional safeguards could make the platform more resistant to common security threats.
+
+Rate limiting could be added to login and authentication routes through a package such as `django-ratelimit`, reducing the risk of repeated brute-force attempts.
+
+Optional two-factor authentication would provide an additional layer of account protection for members who choose to enable it.
+
+A stricter Content Security Policy and other HTTP security headers could further reduce exposure to cross-site scripting and related attacks.
+
+I would also add automated vulnerability monitoring to the deployment workflow so that security concerns are detected as early as possible.
+
+#### Progressive Web App
+
+Turning FitHub into a Progressive Web App could significantly improve the experience on mobile devices.
+
+Selected areas of the application could remain available when an internet connection is temporarily unavailable.
+
+Members could install FitHub directly on a phone, tablet or desktop without needing a separately developed native application.
+
+Push notifications could also provide timely updates about renewals, community activity, order progress and promotional campaigns.
+
+#### Internationalisation
+
+Supporting additional regions and languages would make the platform accessible to a wider audience.
+
+Django's internationalisation framework could be used to provide English, Portuguese and other language versions of the interface.
+
+Multi-currency support could allow product and subscription prices to be displayed according to the user's region.
+
+Dates, times and number formats could also adapt automatically to local conventions, creating a more natural experience for international members.
+
+#### Artificial Intelligence Features
+
+Artificial intelligence could support both personalisation and business analysis in a future release.
+
+Workout plans could be generated according to each member's goals, experience level and recorded activity.
+
+Nutrition suggestions could also be tailored using profile information, although these would need to be presented carefully and supported by suitable professional guidance.
+
+AI-assisted moderation could help identify spam, abusive language and inappropriate community content for review by administrators.
+
+Predictive analytics could also be used to estimate subscription trends, identify members at risk of cancelling and forecast future purchasing behaviour.
+
+### Key Lessons Learned
+
+Creating **FitHub** handed me practical experience spanning every stage of building software. A good many of the core concepts had cropped up in previous milestones, yet applying them within a sizeable, production-ready Django build noticeably strengthened both my technical ability and my self-assurance as a full-stack developer. As I went, I gathered several takeaways that will guide how I approach future work.
+
+#### Deepening My Grasp of Django
+
+Carrying a full-stack application all the way through broadened my understanding of Django markedly and made plain why sticking to its tried-and-tested conventions is worthwhile. Breaking the build into separate applications helped me hold each area's responsibilities apart, which left the whole thing simpler to maintain, grow, and test. Keeping the logic, the data models, and the presentation distinct underlined just how much a tidy structure counts towards code that endures. Making use of Django's own toolkit — **django-allauth**, ModelForms, migrations, decorators, and the admin — allowed me to assemble dependable features without resorting to more custom code than I needed. Sequencing the migrations thoughtfully also proved vital as the schema shifted over time, saving me the deployment and consistency troubles that haphazard migrations so often bring.
+
+#### Writing Better-Quality Code
+
+Among the plainest lessons was the sheer worth of steady, disciplined standards. Static-analysis tools like Flake8, Pylint, and isort kept flagging things I'd likely have overlooked. Keeping to PEP 8 gave me a neater, more professional codebase that read and maintained far more easily, and circling back to older code now and then let me simplify tangled logic, strip out repetition, and sharpen the clarity. I also grew to value how much well-judged docstrings and comments ease the way through an application's more difficult passages — for anyone who follows, myself included.
+
+#### Valuing Thorough Testing
+
+The build left me with a far greater regard for what testing brings to trustworthy software. Running automated checks as I shaped each feature let me catch faults before stacking further work on top, and holding that suite broad reassured me that later edits hadn't silently undone something that had been working. Manual, end-to-end testing mattered every bit as much, turning up usability rough edges and real-world cases that automated checks by themselves would never have caught. My work with Stripe pressed the lesson home: an actual live payment revealed behaviour my mocked unit tests had never reproduced, teaching me that live testing and mocked testing each earn their keep.
+
+#### Understanding Production Deployment
+
+Taking the application live showed me the genuine distance between a development setup and a production one. It grew clear that sensitive material — API keys and secrets — belongs in environment variables rather than sitting in the code, and that certain faults only show their face once the app is truly running on Heroku, which is exactly why checking against a live environment counts for so much. Setting WhiteNoise up correctly was what eventually got the CSS, JavaScript, and images serving dependably, and shifting smoothly from SQLite in development to PostgreSQL in production demonstrated how adaptable and reliable Django's ORM really is.
+
+#### Building More Secure Applications
+
+Security occupied my thoughts far more here than on any earlier project. I learned to place my trust in server-side validation ahead of anything the browser does, applying the crucial rules on the server before any user input is acted upon. Stacking several protections together — model validation, Django forms, decorators, and database constraints — yielded something more robust than any lone measure would. Checking every Stripe transaction independently on the server before a subscription or order came into being turned out to be essential, and Django's ready-made guards against SQL injection, cross-site scripting, and CSRF handed me a steadying base on which to build safely.
+
+#### Designing Better User Experiences
+
+Putting FitHub together kept reminding me to keep the person using it front and centre. Letting both guests and registered members reach checkout eased the path to a purchase while still gently encouraging people to register down the line. Clear, helpful feedback — validation prompts, success notices, and confirmation pages — let people grasp the upshot of whatever they'd just done. Holding a steady look, navigation, and layout across the site made it feel more intuitive, and designing for smaller screens first meant the interface flexed neatly across desktop, tablet, and mobile.
+
+#### Improving Application Performance
+
+As the build expanded, performance grew into a steadily bigger concern. Reaching for `select_related()` and `prefetch_related()` pared back unnecessary database work and sped the pages up, while switching imagery to WebP shrank file sizes with no visible drop in quality. WhiteNoise offered a tidy way to serve compressed static assets once deployed, and modest touches such as loading indicators and responsive interfaces lifted how fast the application *seemed*, even with work carrying on out of sight.
+
+#### Treating Accessibility as a First-Class Concern
+
+One of the richest lessons was that accessibility belongs in the design from the very start, not tacked on at the end. Threading WCAG guidance through from the beginning turned out to be far gentler than any later retrofit would have been. Semantic HTML — sensible headings, landmarks, and correctly tied form labels — set the stage for assistive technology to do its job, and checking in regularly with WAVE and Lighthouse let me spot and settle issues as I went instead of in a last-minute rush. Ensuring every interactive element worked without a mouse helped not only assistive-technology users but everyone else too.
+
+#### Developing Professional Version-Control Habits
+
+A bigger project honed my version-control practice. Composing descriptive commit messages kept the history genuinely legible, and committing in small, deliberate steps made faults easier to trace and cut the risk of knotting several problems together. Git also gave me room to experiment, safe in the knowledge I could retreat to a working version if an idea fell flat, and the ordered history now serves as a full account of how the application took shape.
+
+#### Strengthening My Project-Planning Skills
+
+Steering a project of this scale reinforced a handful of project-management basics. Rooting the work in clearly defined user stories kept development trained on real needs, and focusing first on the essentials helped keep the whole undertaking within reach of the time available. Writing a detailed README, full testing documentation, and supporting evidence demanded genuine effort, yet it raised the project's quality considerably — and returning to refine earlier work gradually improved both the code and the experience.
+
+#### Growing as a Full-Stack Developer
+
+On the whole, FitHub has meaningfully advanced both my technical knowledge and my confidence in building full-stack applications. It made clear that a polished front end amounts to little without secure, dependable server-side logic behind it, and that a carefully arranged relational database makes everything further down the line easier to build and keep up. I also came to regard deployment as part of the work rather than a closing afterthought: a project isn't truly done until it has been deployed, configured, and tested in production. Most of all, weighing usability, security, accessibility, scalability, and commercial needs together — instead of one at a time — is what delivered a more realistic, maintainable, and professional result.
+
+### Evidence Pointers
+
+Bringing **FitHub** to completion is underpinned by a considerable body of evidence gathered right across the development lifecycle, reflecting established software-engineering practices, current deployment techniques, rigorous testing, accessibility standards, and professional documentation. Taken together, these artefacts give verifiable proof both of what was built and of the quality-assurance work carried out around it.
+
+#### Code Quality
+
+Holding the codebase clean, reliable, and maintainable remained a priority from first to last. I routinely put the Python code through recognised static-analysis tools to confirm it met professional standards. The project as a whole observes **PEP 8**, with **Flake8** flagging nothing outstanding, and I reinforced consistency further with **Pylint**, where every application scored above the project's minimum bar. To keep the imports orderly across the codebase, I built **isort** into my routine so that standard-library modules, third-party packages, and local imports fell into a predictable order. I retained dedicated configuration files for Flake8, Pylint, and isort in the repository so that checking stayed uniform throughout.
+
+#### Deployment
+
+To prove the application was truly production-ready, I released **FitHub** to the **Heroku** platform under a production configuration. The live site sits publicly at **https://fithub-rp-90631f751ed4.herokuapp.com/**, so each implemented feature can be exercised in a genuine hosting setting. Sensitive values — the Django secret key, the Stripe credentials, and the database connection settings — reside in environment variables rather than the source. **WhiteNoise** serves the static assets efficiently, while a **PostgreSQL** database supplies dependable storage in production, with every migration applied cleanly during deployment.
+
+#### Accessibility
+
+Producing something inclusive mattered to me from the outset. All through development I turned to the **WAVE** evaluation tool to uncover and settle accessibility issues ahead of going live. The application aims at **WCAG 2.1 Level AA** by way of semantic HTML, sensible heading structures, accessible form labels, ARIA attributes, and suitable landmarks. I examined and tuned colour combinations so that text cleared the recommended contrast ratios, and I tried the keyboard navigation to be sure the core functionality worked without a pointing device.
 
 #### Performance
 
-As the project expanded, performance optimisation became increasingly important in maintaining a responsive user experience. Database efficiency was improved through the implementation of Django's `select_related()` and `prefetch_related()` methods where appropriate, reducing unnecessary database queries and improving page responsiveness. The use of **WhiteNoise** ensures that compressed static assets are delivered efficiently following deployment, whilst optimised web image formats help reduce loading times without compromising image quality. Combined with Bootstrap's responsive framework and efficient server-side template rendering, these optimisations contribute towards a consistent user experience across desktop, tablet and mobile devices.
+As the project grew, keeping it quick to respond took on greater weight. I sharpened database efficiency with Django's `select_related()` and `prefetch_related()` wherever they earned their place, trimming needless queries and speeding the pages along. **WhiteNoise** delivers compressed static assets efficiently once deployed, and streamlined web-image formats bring loading times down without giving up quality. Set against Bootstrap's responsive framework and efficient server-side rendering, these decisions combine into a steady experience across desktop, tablet, and mobile.
 
 #### Testing Documentation
 
-Extensive testing evidence was produced throughout development to demonstrate that the application functioned reliably across all implemented features. A comprehensive manual testing plan comprising **131 structured test cases** was created to validate individual user stories, user journeys and acceptance criteria. This was complemented by a suite of **94 automated unit and integration tests**, covering models, forms, views, authentication, permission handling and Stripe webhook functionality. Browser compatibility was verified primarily using Chrome and Microsoft Edge, with additional testing performed in Firefox, whilst responsive layouts were assessed across desktop, tablet and mobile viewports. Security-focused testing further confirmed the correct implementation of authentication, authorisation, ownership validation, Stripe payment processing and Django's built-in CSRF protection mechanisms.
+I generated extensive testing evidence throughout to demonstrate the application held up reliably across its features. A manual testing plan of **131 structured test cases** validated the individual user stories, journeys, and acceptance criteria, backed by a suite of **99 automated unit and integration tests** spanning models, forms, views, authentication, permission handling, and the Stripe webhook logic. I examined browser compatibility mainly in Chrome and Microsoft Edge, with additional checks in Firefox, and gauged the responsive layouts across desktop, tablet, and mobile viewports. Security-minded testing confirmed that authentication, authorisation, ownership checks, Stripe payment processing, and Django's CSRF protection all behaved as intended.
 
 #### Functional Testing
 
-Each major area of functionality within **FitHub** was systematically tested to verify that it behaved as expected under normal operating conditions. Authentication workflows, including user registration, login, logout, password recovery and profile creation, were successfully validated. Stripe subscription purchases, webhook processing and subscription access controls were thoroughly verified, alongside the complete e-commerce workflow covering product browsing, shopping basket management, checkout processing and order history. CRUD functionality was confirmed across user profiles, product reviews, community posts and membership plans, while administrative features were tested to ensure that staff-only functionality remained protected through appropriate permission controls.
+I made my way through each major part of FitHub methodically to confirm it did what was expected in ordinary use. The authentication workflows — registration, login, logout, password recovery, and profile creation — all came through cleanly. I checked Stripe subscription purchases, webhook processing, and subscription access controls closely, together with the full e-commerce route from browsing products through basket handling and checkout to order history. I confirmed create-read-update-delete behaviour across profiles, product reviews, community posts, and membership plans, and I exercised the administrative features to be sure staff-only functionality stayed shielded behind the proper permission checks.
 
 #### Version Control
 
-Professional version-control practices were maintained throughout the entire development process using **Git** and **GitHub**. The repository contains a complete development history documenting the progression of the project from its initial implementation through to the final production release. By adopting a structured commit naming convention, each feature enhancement, defect resolution and documentation update is clearly recorded, providing a transparent record of the application's evolution. Following successful testing, deployments to Heroku were performed directly from the GitHub repository, demonstrating a reliable and repeatable deployment workflow.
+I sustained professional version-control practice throughout with **Git** and **GitHub**. The repository carries a full history tracing the project from its first implementation to the final production release. By keeping to a structured commit-naming convention, every feature, fix, and documentation update is plainly recorded, offering a transparent account of how the application progressed. Once testing satisfied me, I deployed to Heroku directly from the GitHub repository, showing a dependable, repeatable workflow.
 
 #### Documentation
 
-Producing comprehensive technical documentation formed a significant part of the overall project. The accompanying **README.md** provides detailed information covering the project objectives, user stories, database design, wireframes, implemented functionality, testing procedures, deployment instructions and technical implementation decisions. Supporting documentation also explains the automated testing strategy, Stripe payment integration, deployment configuration and security measures adopted throughout development. Within the source code itself, descriptive docstrings and carefully placed inline comments have been included to explain more complex sections of logic, while detailed setup instructions have been provided to support both local development and production deployment environments.
+Assembling thorough technical documentation formed a sizeable part of the project. The accompanying **README.md** lays out the objectives, user stories, database design, wireframes, implemented functionality, testing approach, deployment steps, and the technical decisions behind the build. Additional notes cover the automated testing strategy, the Stripe integration, the deployment configuration, and the security measures I put in place. Within the code itself, descriptive docstrings and well-placed inline comments explain the more involved logic, and I've supplied detailed setup instructions to support both local development and production deployment.
 
-### Note on Development Timeline
+### A Note on the Development Timeline
 
-The original submission deadline for **FitHub** was **30 April 2026**. However, due to a combination of health-related circumstances and professional commitments arising from my teaching responsibilities, my university approved an extension, allowing the final submission to be completed by **29 July 2026**. The additional time enabled me to continue developing the project whilst ensuring that the quality of the implementation was not compromised by the unforeseen setbacks experienced during the original development period.
+FitHub was originally due on **30 April 2026**. A mix of health difficulties and demands from my teaching role, however, led my university to grant an extension, moving the final submission to **29 July 2026**. That extra time let me keep developing the project while making sure the unexpected setbacks of the original period didn't undercut the quality of what I delivered.
 
-Rather than expanding the project's scope unnecessarily, I used the extended development period to strengthen the overall quality of the application. Particular attention was given to refining existing functionality, increasing automated test coverage, improving accessibility, enhancing documentation, resolving defects, and optimising the user experience. This approach ensured that the final submission represented a stable, thoroughly tested and production-ready **Minimum Viable Product (MVP)** rather than an application containing partially implemented functionality.
+Rather than stretching the scope for its own sake, I spent the extended period firming up the application's overall quality. I concentrated on refining what was already there, widening automated test coverage, improving accessibility, enriching the documentation, clearing defects, and polishing the user experience. Taking that route meant the final submission stood as a stable, thoroughly tested, production-ready **Minimum Viable Product (MVP)** rather than something carrying half-finished features.
 
-Although several enhancement ideas remain identified for future development—including richer community functionality, advanced business analytics, personalised recommendations and subscription self-management through the **Stripe Customer Portal**—the core objectives of the project were fully achieved. Secure authentication, subscription management, Stripe payment processing, e-commerce functionality, community features, responsive design and relational database integration were all successfully implemented. Furthermore, the application's modular architecture has been designed to support future expansion without requiring significant structural redesign.
+A number of enhancement ideas remain earmarked for later — among them richer community functionality, more advanced business analytics, personalised recommendations, and subscription self-management through the **Stripe Customer Portal** — but the project's core aims were fully met. Secure authentication, subscription purchasing, Stripe payment processing, e-commerce functionality, community features, responsive design, and relational-database integration were all delivered. The application's modular architecture, moreover, has been shaped to accommodate future growth without needing a major structural overhaul.
 
-Throughout the development process, I maintained a strong focus on professional software engineering standards. Code quality was monitored using **Flake8**, **Pylint** and **isort**, accessibility was evaluated against **WCAG 2.1 Level AA** guidelines, and both manual and automated testing were performed extensively before deployment. Collectively, these practices have resulted in a secure, maintainable and scalable full-stack application that provides a solid foundation for future enhancements.
+Throughout, I kept a firm focus on professional software-engineering standards. I monitored code quality with **Flake8**, **Pylint**, and **isort**, measured accessibility against the **WCAG 2.1 Level AA** guidelines, and carried out both manual and automated testing extensively before deployment. Together, these practices have produced a secure, maintainable, and scalable full-stack application that lays a firm groundwork for whatever comes next.
 
 ---
 
@@ -9497,4 +9334,260 @@ Available at: https://developer.mozilla.org/
 - **WebAIM (2025) WAVE Web Accessibility Evaluation Tool.**
 Available at: https://wave.webaim.org/
   (Accessed: 01 June 2026).
-  
+
+---
+
+### Code, Comments & Media Attribution
+
+I produced this project as part of my **Milestone 4 Full-Stack Development Project**, the FitHub fitness subscription and e-commerce platform.
+
+Every part of the HTML, CSS, Python, and Django functionality within it was **planned, written, and tailored by me**. Where particular design approaches, coding patterns, or technical explanations shaped my work, they were drawn from my own research, earlier practice, the official documentation, and educational learning materials.
+
+---
+
+#### Code Sources and Influence
+
+**Adapted from My Earlier Projects**
+
+I carried forward selected design ideas and styling approaches from my **Milestone 1, 2 and 3** projects, then developed them further for FitHub. This included the use of CSS custom properties to organise the colour palette, reusable interface elements such as navigation bars, buttons, cards and footer layouts, responsive techniques created with the Bootstrap grid, and accessibility practices including semantic HTML and ARIA labels.
+
+Every reused element was revised rather than copied without alteration. I adjusted the structure, appearance and behaviour so that each component matched FitHub's red-and-black brand identity and worked correctly within Django's template system.
+
+---
+
+#### Django & Python Code
+
+**Django Framework Implementation**
+
+The backend of FitHub was developed by following the **official Django documentation** together with the framework's recommended development practices. Throughout the project I referred to Django's guidance to ensure that the application's structure, coding standards and implementation remained consistent with accepted best practice.
+
+The overall project architecture was based on Django's recommended project structure and its **Model-View-Template (MVT)** design pattern. These resources provided the foundation for organising the application into reusable apps while maintaining a clear separation between data models, business logic and presentation.
+
+Database design and model development were guided by Django's documentation on models and field types. These references helped me design a normalised database schema, select suitable field types and implement relationships that support the application's functionality while maintaining data integrity.
+
+The implementation of views and URL routing followed Django's guidance on request handling and URL dispatching. This enabled me to create clear routing structures and maintain readable, well-organised function-based views throughout the project.
+
+Form development was based upon Django's forms framework and validation documentation. By following these recommendations, I was able to implement secure server-side validation, provide meaningful feedback to users and take advantage of Django's built-in CSRF protection.
+
+User authentication and account management were developed using Django's authentication framework together with **django-allauth**. The official documentation helped me implement secure login, registration, password management and authenticated user sessions without creating a custom authentication system.
+
+The administration interface was customised using Django's Admin documentation and `ModelAdmin` configuration. This allowed me to create an organised administration area that simplified the management of products, subscriptions, orders, community posts and user accounts.
+
+Finally, Django's template language documentation was used extensively when developing the user interface. Built-in template tags, filters and template inheritance allowed me to create reusable layouts while reducing duplicated code across the application.
+
+**References**
+
+- Django Software Foundation. *Django Official Tutorial*.
+- Django Software Foundation. *Django MVT Architecture*.
+- Django Software Foundation. *Django Models*.
+- Django Software Foundation. *Model Field Reference*.
+- Django Software Foundation. *Django Views*.
+- Django Software Foundation. *URL Dispatcher*.
+- Django Software Foundation. *Django Forms*.
+- Django Software Foundation. *Form Validation*.
+- Django Software Foundation. *Django Authentication System*.
+- Django Software Foundation. *User Authentication in Django*.
+- Django Software Foundation. *Django Admin*.
+- Django Software Foundation. *ModelAdmin Objects*.
+- Django Software Foundation. *Django Template Language*.
+- Django Software Foundation. *Built-in Template Tags*.
+
+---
+
+**Python Code Quality Tools**
+
+I relied on established Python development tools to keep the code to a high standard:
+
+- **Flake8 linting:** [Flake8 documentation](https://flake8.pycqa.org/en/latest/), [PEP 8 style guide](https://peps.python.org/pep-0008/)
+- **Pylint analysis:** [Pylint documentation](https://pylint.pycqa.org/en/latest/), [pylint-django plugin](https://github.com/PyCQA/pylint-django)
+- **Import ordering:** [isort documentation](https://pycqa.github.io/isort/), [PEP 8 import guidance](https://peps.python.org/pep-0008/#imports)
+
+---
+
+**Database & Deployment**
+
+I followed the official platform documentation for production deployment and configuration:
+
+- **PostgreSQL integration:** [Django PostgreSQL notes](https://docs.djangoproject.com/en/4.2/ref/databases/#postgresql-notes), [dj-database-url](https://github.com/jazzband/dj-database-url)
+- **Heroku deployment:** [Heroku Python guide](https://devcenter.heroku.com/articles/getting-started-with-python), [Django on Heroku](https://devcenter.heroku.com/articles/django-app-configuration)
+- **Static file handling:** [WhiteNoise documentation](http://whitenoise.evans.io/en/stable/), [Django static files](https://docs.djangoproject.com/en/4.2/howto/static-files/)
+- **Environment variables:** [Python `os.environ`](https://docs.python.org/3/library/os.html#os.environ), [The Twelve-Factor App](https://12factor.net/config)
+- **Production server:** [Gunicorn documentation](https://docs.gunicorn.org/en/stable/), [Deploying Django with Gunicorn](https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/gunicorn/)
+
+---
+
+#### Payment & Subscription Logic
+
+**Business Rules & Validation**
+
+FitHub's core logic — covering Stripe payments, subscriptions, the shopping basket, and access control — was implemented with guidance from the following resources:
+
+- **Stripe payments:** [Stripe Python library](https://github.com/stripe/stripe-python), [Stripe PaymentIntents API](https://docs.stripe.com/api/payment_intents), [Stripe Checkout Sessions](https://docs.stripe.com/api/checkout/sessions)
+- **Stripe webhooks:** [Stripe webhooks guide](https://docs.stripe.com/webhooks), [Verifying webhook signatures](https://docs.stripe.com/webhooks#verify-events)
+- **Stock & basket handling:** [Django QuerySet API](https://docs.djangoproject.com/en/4.2/ref/models/querysets/), [Database transactions](https://docs.djangoproject.com/en/4.2/topics/db/transactions/)
+- **Form validation:** [Django form validation](https://docs.djangoproject.com/en/4.2/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other), [Model validators](https://docs.djangoproject.com/en/4.2/ref/validators/)
+- **Access control:** [Django authentication & permissions](https://docs.djangoproject.com/en/4.2/topics/auth/default/#permissions-and-authorization), [The login_required decorator](https://docs.djangoproject.com/en/4.2/topics/auth/default/#the-login-required-decorator), [require_POST decorator](https://docs.djangoproject.com/en/4.2/topics/http/decorators/#django.views.decorators.http.require_POST)
+
+---
+
+#### Frontend Development
+
+**Bootstrap & Responsive Design**
+
+I built the interface with **Bootstrap 5** alongside my own custom styling:
+
+- **Bootstrap framework:** [Bootstrap 5 documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/), [Bootstrap components](https://getbootstrap.com/docs/5.3/components/)
+- **Grid system:** [Bootstrap grid](https://getbootstrap.com/docs/5.3/layout/grid/), [Responsive breakpoints](https://getbootstrap.com/docs/5.3/layout/breakpoints/)
+- **Form styling:** [Bootstrap forms](https://getbootstrap.com/docs/5.3/forms/overview/), [Form validation styling](https://getbootstrap.com/docs/5.3/forms/validation/)
+- **Navigation components:** [Bootstrap navbar](https://getbootstrap.com/docs/5.3/components/navbar/), [Responsive collapse](https://getbootstrap.com/docs/5.3/components/collapse/)
+- **Tables:** [Bootstrap tables](https://getbootstrap.com/docs/5.3/content/tables/), [Responsive tables](https://getbootstrap.com/docs/5.3/content/tables/#responsive-tables)
+
+---
+
+**CSS Custom Properties & Styling**
+
+My CSS follows current best practices:
+
+- **CSS variables:** [MDN – Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+- **Flexbox layout:** [MDN – Basic concepts of Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox), [CSS-Tricks – A guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- **Responsive images:** [MDN – Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- **Accessibility styling:** [WebAIM – CSS and accessibility](https://webaim.org/articles/css/), [WCAG 2.1 quick reference](https://www.w3.org/WAI/WCAG21/quickref/)
+
+---
+
+**JavaScript Functionality**
+
+I implemented the interactive client-side behaviour in **vanilla JavaScript**, together with Stripe's official client library:
+
+- **Stripe.js:** [Stripe.js reference](https://docs.stripe.com/js), [Stripe Elements](https://docs.stripe.com/payments/elements)
+- **Event handling:** [MDN – addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+- **DOM manipulation:** [MDN – Document Object Model](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model), [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+- **Fetch requests:** [MDN – Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- **Form validation:** [MDN – Form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation), [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)
+
+---
+
+#### Testing & Validation
+
+**Code Quality Assurance**
+
+I used the following tools to check code quality and compliance:
+
+- **HTML validation:** [W3C Markup Validation Service](https://validator.w3.org/), [Nu HTML Checker](https://validator.github.io/validator/)
+- **CSS validation:** [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+- **JavaScript validation:** [JSHint](https://jshint.com/)
+- **Accessibility testing:** [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/), [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/), [WCAG 2.1 AA conformance](https://www.w3.org/WAI/WCAG2AA-Conformance)
+- **Python testing:** [Django testing tools](https://docs.djangoproject.com/en/4.2/topics/testing/), [Python unittest](https://docs.python.org/3/library/unittest.html)
+- **Cross-browser testing:** Manual testing primarily in Chrome and Microsoft Edge, with some verification in Firefox
+
+---
+
+**Performance Optimisation**
+
+- **Image optimisation:** [WebP format](https://developers.google.com/speed/webp), [Image compression techniques](https://web.dev/articles/use-imagemin-to-compress-images)
+- **Static file compression:** [WhiteNoise compression](http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support)
+- **Efficient database queries:** [Django database optimisation](https://docs.djangoproject.com/en/4.2/topics/db/optimization/), [select_related and prefetch_related](https://docs.djangoproject.com/en/4.2/ref/models/querysets/#select-related)
+
+---
+
+#### Online Documentation & Resources
+
+**Primary Learning Resources**
+
+I referred to the following resources regularly throughout development:
+
+- **Django documentation** – my main reference for implementing the framework and following its best practices
+- **Stripe documentation** – guidance for integrating subscriptions, PaymentIntents, Checkout, and webhooks
+- **Python documentation** – help with the standard library and built-in functionality
+- **MDN Web Docs** – the authoritative reference for HTML, CSS, and JavaScript APIs
+- **Bootstrap documentation** – component usage and responsive layout techniques
+- **django-allauth documentation** – configuring authentication, registration, and account management
+- **W3Schools** – quick-reference material for web-development concepts
+- **Stack Overflow** – troubleshooting and community-driven technical solutions
+
+---
+
+#### AI Assistance — Code, Comments & Media
+
+I drew on AI tools — **ChatGPT, GitHub Copilot, and Claude AI** — purely as **supportive learning aids** during development. Specifically, they helped me to:
+
+- Clarify Django framework concepts and how the ORM behaves
+- Consider improvements to code structure, validation, and payment-verification logic
+- Work through debugging, including template errors, routing, form validation, and the Stripe integration
+- Draft explanatory comments describing Django patterns and Python conventions
+- Research deployment approaches, performance improvements, and security practices
+- Devise test scenarios and sample data for user-acceptance testing
+- Support the writing and structuring of the documentation
+
+Every suggestion the tools offered was **reviewed, adapted where needed, and implemented by me**, and I checked each one against the official documentation and my own understanding before relying on it.
+
+---
+
+#### Images, Logos & Media Attribution
+
+The project brings together a mix of **AI-generated assets, manually edited graphics, and open-source resources**.
+
+**FitHub Branding & Visual Assets**
+
+I generated the **FitHub logo, product imagery and hero imagery** using **ChatGPT / DALL·E**, then edited them to resize and crop for display, align them with FitHub's red-and-black brand identity, convert them to **WebP** for better performance, and optimise them for responsive display across devices.
+
+**Interface Icons**
+
+- **Font Awesome icons**, used under the [Font Awesome Free License](https://fontawesome.com/license/free)
+- **Bootstrap Icons**, used under the [MIT License](https://github.com/twbs/icons/blob/main/LICENSE.md)
+
+**Image Editing Tools**
+
+- **Python (Pillow)** – used to standardise product-image backgrounds while preserving detail
+  https://python-pillow.org/
+- **GIMP** – for wider image editing and optimisation
+  https://www.gimp.org/
+
+**Typography**
+
+I used a **system font stack** to keep things accessible and fast, deliberately avoiding external web fonts so that page-load times stay low and the site remains consistent across platforms.
+
+---
+
+#### Previous Work Attribution
+
+**Pires, R. (2025/2026).** *Reused and adapted components from my Milestone 2 - Holiday Destination Finder & Milestone 3 - Portuguese Kitchen projects.*
+
+I reused and developed further a number of elements from my earlier work, including my CSS-variable structure and design-system organisation, responsive and mobile-first layout patterns, customised Bootstrap components, accessibility techniques (semantic HTML, ARIA attributes, and keyboard navigation), and form styling and validation approaches. I **substantially reworked** each reused component to suit Django templates, backend integration, and FitHub's red-and-black branding.
+
+---
+
+#### Code Institute Learning Platform
+
+Course materials, tutorials, and guidance from the **Code Institute Full Stack Software Development programme** supported my work in areas such as Django application architecture and project structure, database modelling and relational design, user authentication and authorisation, form processing and validation, template inheritance and the Django Template Language, Stripe payment integration, and production deployment and hosting.
+
+The programme's **e-commerce walkthrough project (boutique_ado)** in particular informed my approach to integrating Stripe payments and webhooks, which I then adapted and extended to fit FitHub's subscription and product-purchase model.
+
+---
+
+#### Third-Party Python Packages
+
+Production dependencies (see `requirements.txt`):
+
+- **Django 4.2.23** – web framework ([Django License](https://github.com/django/django/blob/main/LICENSE))
+- **stripe 15.2.1** – Stripe payment processing library ([MIT License](https://github.com/stripe/stripe-python/blob/master/LICENSE))
+- **django-allauth 65.18.0** – authentication, registration, and account management ([MIT License](https://github.com/pennersr/django-allauth/blob/main/LICENSE))
+- **django-widget-tweaks 1.5.1** – template-level form field customisation ([MIT License](https://github.com/jazzband/django-widget-tweaks/blob/master/LICENSE))
+- **pillow 12.2.0** – image processing ([MIT-CMU License](https://github.com/python-pillow/Pillow/blob/main/LICENSE))
+- **gunicorn 26.0.0** – production WSGI server ([MIT License](https://github.com/benoitc/gunicorn/blob/master/LICENSE))
+- **psycopg2-binary 2.9.12** – PostgreSQL adapter ([LGPL License](https://github.com/psycopg/psycopg2/blob/master/LICENSE))
+- **dj-database-url 3.1.2** – database URL configuration ([BSD License](https://github.com/jazzband/dj-database-url/blob/master/LICENSE))
+- **whitenoise 6.12.0** – static file serving ([MIT License](https://github.com/evansd/whitenoise/blob/master/LICENSE))
+
+Development dependencies:
+
+- **flake8** – Python linting
+- **pylint** – static code analysis
+- **pylint-django** – Django-aware linting support
+- **isort** – import statement organisation
+
+I used all packages under their respective **open-source licences for educational purposes**.
+
+---
+
+[⬆ Back to Table of contents](#table-of-contents)
