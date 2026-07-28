@@ -7208,8 +7208,8 @@ The following pages were tested across each responsive breakpoint: Home, Plans, 
 
 ```bash
 python manage.py test
-# Found 94 test(s).
-# Ran 94 tests — OK
+# Found 99 test(s).
+# Ran 99 tests — OK
 ```
 
 <img width="893" height="231" alt="image" src="https://github.com/user-attachments/assets/67f97b21-3db2-440d-842c-87c980365460" />
