@@ -9404,3 +9404,190 @@ I relied on established Python development tools to keep the code to a high stan
 
 ---
 
+**Database & Deployment**
+
+I followed the official platform documentation for production deployment and configuration:
+
+- **PostgreSQL integration:** [Django PostgreSQL notes](https://docs.djangoproject.com/en/4.2/ref/databases/#postgresql-notes), [dj-database-url](https://github.com/jazzband/dj-database-url)
+- **Heroku deployment:** [Heroku Python guide](https://devcenter.heroku.com/articles/getting-started-with-python), [Django on Heroku](https://devcenter.heroku.com/articles/django-app-configuration)
+- **Static file handling:** [WhiteNoise documentation](http://whitenoise.evans.io/en/stable/), [Django static files](https://docs.djangoproject.com/en/4.2/howto/static-files/)
+- **Environment variables:** [Python `os.environ`](https://docs.python.org/3/library/os.html#os.environ), [The Twelve-Factor App](https://12factor.net/config)
+- **Production server:** [Gunicorn documentation](https://docs.gunicorn.org/en/stable/), [Deploying Django with Gunicorn](https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/gunicorn/)
+
+---
+
+#### Payment & Subscription Logic
+
+**Business Rules & Validation**
+
+FitHub's core logic — covering Stripe payments, subscriptions, the shopping basket, and access control — was implemented with guidance from the following resources:
+
+- **Stripe payments:** [Stripe Python library](https://github.com/stripe/stripe-python), [Stripe PaymentIntents API](https://docs.stripe.com/api/payment_intents), [Stripe Checkout Sessions](https://docs.stripe.com/api/checkout/sessions)
+- **Stripe webhooks:** [Stripe webhooks guide](https://docs.stripe.com/webhooks), [Verifying webhook signatures](https://docs.stripe.com/webhooks#verify-events)
+- **Stock & basket handling:** [Django QuerySet API](https://docs.djangoproject.com/en/4.2/ref/models/querysets/), [Database transactions](https://docs.djangoproject.com/en/4.2/topics/db/transactions/)
+- **Form validation:** [Django form validation](https://docs.djangoproject.com/en/4.2/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other), [Model validators](https://docs.djangoproject.com/en/4.2/ref/validators/)
+- **Access control:** [Django authentication & permissions](https://docs.djangoproject.com/en/4.2/topics/auth/default/#permissions-and-authorization), [The login_required decorator](https://docs.djangoproject.com/en/4.2/topics/auth/default/#the-login-required-decorator), [require_POST decorator](https://docs.djangoproject.com/en/4.2/topics/http/decorators/#django.views.decorators.http.require_POST)
+
+---
+
+#### Frontend Development
+
+**Bootstrap & Responsive Design**
+
+I built the interface with **Bootstrap 5** alongside my own custom styling:
+
+- **Bootstrap framework:** [Bootstrap 5 documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/), [Bootstrap components](https://getbootstrap.com/docs/5.3/components/)
+- **Grid system:** [Bootstrap grid](https://getbootstrap.com/docs/5.3/layout/grid/), [Responsive breakpoints](https://getbootstrap.com/docs/5.3/layout/breakpoints/)
+- **Form styling:** [Bootstrap forms](https://getbootstrap.com/docs/5.3/forms/overview/), [Form validation styling](https://getbootstrap.com/docs/5.3/forms/validation/)
+- **Navigation components:** [Bootstrap navbar](https://getbootstrap.com/docs/5.3/components/navbar/), [Responsive collapse](https://getbootstrap.com/docs/5.3/components/collapse/)
+- **Tables:** [Bootstrap tables](https://getbootstrap.com/docs/5.3/content/tables/), [Responsive tables](https://getbootstrap.com/docs/5.3/content/tables/#responsive-tables)
+
+---
+
+**CSS Custom Properties & Styling**
+
+My CSS follows current best practices:
+
+- **CSS variables:** [MDN – Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+- **Flexbox layout:** [MDN – Basic concepts of Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox), [CSS-Tricks – A guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- **Responsive images:** [MDN – Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- **Accessibility styling:** [WebAIM – CSS and accessibility](https://webaim.org/articles/css/), [WCAG 2.1 quick reference](https://www.w3.org/WAI/WCAG21/quickref/)
+
+---
+
+**JavaScript Functionality**
+
+I implemented the interactive client-side behaviour in **vanilla JavaScript**, together with Stripe's official client library:
+
+- **Stripe.js:** [Stripe.js reference](https://docs.stripe.com/js), [Stripe Elements](https://docs.stripe.com/payments/elements)
+- **Event handling:** [MDN – addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+- **DOM manipulation:** [MDN – Document Object Model](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model), [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+- **Fetch requests:** [MDN – Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- **Form validation:** [MDN – Form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation), [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)
+
+---
+
+#### Testing & Validation
+
+**Code Quality Assurance**
+
+I used the following tools to check code quality and compliance:
+
+- **HTML validation:** [W3C Markup Validation Service](https://validator.w3.org/), [Nu HTML Checker](https://validator.github.io/validator/)
+- **CSS validation:** [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+- **JavaScript validation:** [JSHint](https://jshint.com/)
+- **Accessibility testing:** [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/), [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/), [WCAG 2.1 AA conformance](https://www.w3.org/WAI/WCAG2AA-Conformance)
+- **Python testing:** [Django testing tools](https://docs.djangoproject.com/en/4.2/topics/testing/), [Python unittest](https://docs.python.org/3/library/unittest.html)
+- **Cross-browser testing:** Manual testing primarily in Chrome and Microsoft Edge, with some verification in Firefox
+
+---
+
+**Performance Optimisation**
+
+- **Image optimisation:** [WebP format](https://developers.google.com/speed/webp), [Image compression techniques](https://web.dev/articles/use-imagemin-to-compress-images)
+- **Static file compression:** [WhiteNoise compression](http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support)
+- **Efficient database queries:** [Django database optimisation](https://docs.djangoproject.com/en/4.2/topics/db/optimization/), [select_related and prefetch_related](https://docs.djangoproject.com/en/4.2/ref/models/querysets/#select-related)
+
+---
+
+#### Online Documentation & Resources
+
+**Primary Learning Resources**
+
+I referred to the following resources regularly throughout development:
+
+- **Django documentation** – my main reference for implementing the framework and following its best practices
+- **Stripe documentation** – guidance for integrating subscriptions, PaymentIntents, Checkout, and webhooks
+- **Python documentation** – help with the standard library and built-in functionality
+- **MDN Web Docs** – the authoritative reference for HTML, CSS, and JavaScript APIs
+- **Bootstrap documentation** – component usage and responsive layout techniques
+- **django-allauth documentation** – configuring authentication, registration, and account management
+- **W3Schools** – quick-reference material for web-development concepts
+- **Stack Overflow** – troubleshooting and community-driven technical solutions
+
+---
+
+#### AI Assistance — Code, Comments & Media
+
+I drew on AI tools — **ChatGPT, GitHub Copilot, and Claude AI** — purely as **supportive learning aids** during development. Specifically, they helped me to:
+
+- Clarify Django framework concepts and how the ORM behaves
+- Consider improvements to code structure, validation, and payment-verification logic
+- Work through debugging, including template errors, routing, form validation, and the Stripe integration
+- Draft explanatory comments describing Django patterns and Python conventions
+- Research deployment approaches, performance improvements, and security practices
+- Devise test scenarios and sample data for user-acceptance testing
+- Support the writing and structuring of the documentation
+
+Every suggestion the tools offered was **reviewed, adapted where needed, and implemented by me**, and I checked each one against the official documentation and my own understanding before relying on it.
+
+---
+
+#### Images, Logos & Media Attribution
+
+The project brings together a mix of **AI-generated assets, manually edited graphics, and open-source resources**.
+
+**FitHub Branding & Visual Assets**
+
+I generated the **FitHub logo, product imagery and hero imagery** using **ChatGPT / DALL·E**, then edited them to resize and crop for display, align them with FitHub's red-and-black brand identity, convert them to **WebP** for better performance, and optimise them for responsive display across devices.
+
+**Interface Icons**
+
+- **Font Awesome icons**, used under the [Font Awesome Free License](https://fontawesome.com/license/free)
+- **Bootstrap Icons**, used under the [MIT License](https://github.com/twbs/icons/blob/main/LICENSE.md)
+
+**Image Editing Tools**
+
+- **Python (Pillow)** – used to standardise product-image backgrounds while preserving detail
+  https://python-pillow.org/
+- **GIMP** – for wider image editing and optimisation
+  https://www.gimp.org/
+
+**Typography**
+
+I used a **system font stack** to keep things accessible and fast, deliberately avoiding external web fonts so that page-load times stay low and the site remains consistent across platforms.
+
+---
+
+#### Previous Work Attribution
+
+**Pires, R. (2025/2026).** *Reused and adapted components from my Milestone 2 - Holiday Destination Finder & Milestone 3 - Portuguese Kitchen projects.*
+
+I reused and developed further a number of elements from my earlier work, including my CSS-variable structure and design-system organisation, responsive and mobile-first layout patterns, customised Bootstrap components, accessibility techniques (semantic HTML, ARIA attributes, and keyboard navigation), and form styling and validation approaches. I **substantially reworked** each reused component to suit Django templates, backend integration, and FitHub's red-and-black branding.
+
+---
+
+#### Code Institute Learning Platform
+
+Course materials, tutorials, and guidance from the **Code Institute Full Stack Software Development programme** supported my work in areas such as Django application architecture and project structure, database modelling and relational design, user authentication and authorisation, form processing and validation, template inheritance and the Django Template Language, Stripe payment integration, and production deployment and hosting.
+
+The programme's **e-commerce walkthrough project (boutique_ado)** in particular informed my approach to integrating Stripe payments and webhooks, which I then adapted and extended to fit FitHub's subscription and product-purchase model.
+
+---
+
+#### Third-Party Python Packages
+
+Production dependencies (see `requirements.txt`):
+
+- **Django 4.2.23** – web framework ([Django License](https://github.com/django/django/blob/main/LICENSE))
+- **stripe 15.2.1** – Stripe payment processing library ([MIT License](https://github.com/stripe/stripe-python/blob/master/LICENSE))
+- **django-allauth 65.18.0** – authentication, registration, and account management ([MIT License](https://github.com/pennersr/django-allauth/blob/main/LICENSE))
+- **django-widget-tweaks 1.5.1** – template-level form field customisation ([MIT License](https://github.com/jazzband/django-widget-tweaks/blob/master/LICENSE))
+- **pillow 12.2.0** – image processing ([MIT-CMU License](https://github.com/python-pillow/Pillow/blob/main/LICENSE))
+- **gunicorn 26.0.0** – production WSGI server ([MIT License](https://github.com/benoitc/gunicorn/blob/master/LICENSE))
+- **psycopg2-binary 2.9.12** – PostgreSQL adapter ([LGPL License](https://github.com/psycopg/psycopg2/blob/master/LICENSE))
+- **dj-database-url 3.1.2** – database URL configuration ([BSD License](https://github.com/jazzband/dj-database-url/blob/master/LICENSE))
+- **whitenoise 6.12.0** – static file serving ([MIT License](https://github.com/evansd/whitenoise/blob/master/LICENSE))
+
+Development dependencies:
+
+- **flake8** – Python linting
+- **pylint** – static code analysis
+- **pylint-django** – Django-aware linting support
+- **isort** – import statement organisation
+
+I used all packages under their respective **open-source licences for educational purposes**.
+
+---
+
+[⬆ Back to Table of contents](#table-of-contents)
